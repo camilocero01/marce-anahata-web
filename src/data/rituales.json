@@ -1,0 +1,34 @@
+[
+  {
+    "id": "pareja",
+    "titulo": "Ritual de Pareja",
+    "descripcion": "Un espacio sagrado para reconectar corazones, sanar vínculos y elevar la vibración del amor a través del sonido y la meditación.",
+    "imagen": "/images/ritual-pareja.webp",
+    "duracion": "2 horas",
+    "slug": "/contacto?tema=pareja"
+  },
+  {
+    "id": "cumpleanos",
+    "titulo": "Ritual de Cumpleaños (Vuelta al Sol)",
+    "descripcion": "Celebra tu vida e intenciona tu nuevo ciclo. Una ceremonia de gratitud y proyección para tu nuevo año.",
+    "imagen": "/images/ritual-cumple.webp",
+    "duracion": "90 min",
+    "slug": "/contacto?tema=cumpleanos"
+  },
+  {
+    "id": "babybless",
+    "titulo": "Baby Blessing",
+    "descripcion": "Honramos la llegada de la nueva alma y bendecimos a la madre en su transición hacia la maternidad.",
+    "imagen": "/images/baby-bless.webp",
+    "duracion": "2 horas",
+    "slug": "/contacto?tema=babybless"
+  },
+  {
+    "id": "fin-ano",
+    "titulo": "Ritual de Cierre y Apertura",
+    "descripcion": "Limpieza energética para soltar lo viejo y manifestar propósitos claros para el año entrante.",
+    "imagen": "/images/fin-ano.webp",
+    "duracion": "Variable",
+    "slug": "/contacto?tema=finano"
+  }
+]

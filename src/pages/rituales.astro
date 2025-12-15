@@ -1,0 +1,40 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ServiceCard from '../components/cards/ServiceCard.astro';
+import ritualesData from '../data/rituales.json'; // Importamos los datos
+
+---
+
+<Layout 
+  title="Rituales Sagrados" 
+  description="Celebra momentos especiales con nuestros rituales de pareja, cumpleaños y baby blessing en Medellín. Conexión espiritual y terapia de sonido."
+>
+  <section class="relative py-20 px-4 bg-stone-100 text-center">
+    <div class="max-w-3xl mx-auto">
+      <h1 class="text-5xl md:text-6xl text-stone-800 mb-6">Rituales Sagrados</h1>
+      <p class="text-xl text-stone-600 font-light">
+        Ceremonias diseñadas para honrar los ciclos de la vida, elevar la vibración y conectar desde el alma.
+      </p>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-6 py-20">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-12">
+      {ritualesData.map((ritual) => (
+        <ServiceCard 
+          titulo={ritual.titulo}
+          descripcion={ritual.descripcion}
+          imagen={ritual.imagen}
+          duracion={ritual.duracion}
+          link={ritual.slug}
+        />
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-stone-800 text-stone-100 py-16 px-6 text-center">
+    <h2 class="text-3xl mb-4">¿Buscas un ritual personalizado?</h2>
+    <p class="mb-8 font-light text-stone-300">Diseñamos la experiencia perfecta según tu intención y necesidad.</p>
+    <a href="/contacto" class="bg-stone-100 text-stone-900 py-3 px-8 rounded-sm hover:bg-stone-200 transition">Contáctame</a>
+  </section>
+</Layout>

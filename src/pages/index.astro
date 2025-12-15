@@ -1,16 +1,112 @@
 ---
+import Layout from '../layouts/Layout.astro';
 
+// Datos de servicios principales para el Home (puedes moverlos a un JSON luego si quieres)
+const serviciosHome = [
+  {
+    titulo: "Clases y Talleres",
+    descripcion: "Kundalini Yoga y técnicas de meditación para calmar la mente y fortalecer el cuerpo.",
+    link: "/clases", // Aún no creamos esta página, pero dejamos el link listo
+    imagen: "/images/home-yoga.webp"
+  },
+  {
+    titulo: "Rituales Sagrados",
+    descripcion: "Ceremonias de paso: cumpleaños, parejas y baby blessing acompañados de sanación sonora.",
+    link: "/rituales", // ¡Esta página YA existe!
+    imagen: "/images/home-rituales.webp"
+  },
+  {
+    titulo: "Bienestar Empresarial",
+    descripcion: "Lleva el equilibrio a tu equipo de trabajo con pausas conscientes y talleres de manejo de estrés.",
+    link: "/empresas", // Pendiente por crear
+    imagen: "/images/home-empresas.webp"
+  }
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Inicio" description="Marce Anahata: Centro de bienestar, Kundalini Yoga y Terapia de Sonido en Medellín.">
+  
+  <section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <div class="absolute inset-0 bg-gradient-to-b from-stone-50/80 to-stone-100/90 z-10"></div>
+      <img src="/images/hero-bg.webp" alt="Fondo meditación" class="w-full h-full object-cover opacity-60" />
+    </div>
+
+    <div class="relative z-20 text-center px-6 max-w-4xl mx-auto mt-10">
+      <span class="block text-stone-500 uppercase tracking-[0.3em] text-sm mb-4 animate-fade-in-up">Bienestar Integral</span>
+      <h1 class="text-5xl md:text-7xl text-stone-800 mb-6 leading-tight">
+        Eleva tu vibración, <br/> <span class="italic text-stone-600">conecta con tu alma.</span>
+      </h1>
+      <p class="text-xl text-stone-600 mb-10 max-w-2xl mx-auto font-light">
+        Un espacio sagrado en Medellín para la transformación a través del Kundalini Yoga, la meditación y la terapia de sonido.
+      </p>
+      <div class="flex flex-col md:flex-row gap-4 justify-center">
+        <a href="/rituales" class="bg-stone-800 text-stone-50 px-8 py-3 rounded-sm hover:bg-stone-700 transition duration-300">
+          Ver Rituales
+        </a>
+        <a href="#servicios" class="border border-stone-800 text-stone-800 px-8 py-3 rounded-sm hover:bg-stone-100 transition duration-300">
+          Explorar Servicios
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 px-6 bg-white">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-16">
+      <div class="md:w-1/2">
+        <div class="aspect-[4/5] bg-stone-200 rounded-lg overflow-hidden relative shadow-xl">
+           <img src="/images/marce-perfil.webp" alt="Marce Anahata" class="w-full h-full object-cover" />
+        </div>
+      </div>
+      <div class="md:w-1/2">
+        <h2 class="text-4xl text-stone-800 mb-6">Hola, soy Marce Anahata</h2>
+        <p class="text-lg text-stone-600 mb-6 leading-relaxed">
+          Soy dueña de este centro de bienestar, certificada como maestra de Kundalini Yoga y terapeuta del sonido. 
+        </p>
+        <p class="text-lg text-stone-600 mb-8 leading-relaxed">
+          Mi misión es crear espacios donde puedas desconectar del ruido externo y reconectar con tu sabiduría interna. A través de la vibración del Gong y la tecnología del Yoga, te acompaño en tu proceso de sanación.
+        </p>
+        <div class="flex gap-8 text-stone-500 font-serif italic text-lg border-t border-stone-100 pt-6">
+          <span>Kundalini Yoga</span>
+          <span>•</span>
+          <span>Sound Healing</span>
+          <span>•</span>
+          <span>Rituales</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicios" class="py-24 px-6 bg-stone-50">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl text-stone-800 mb-4">Mis Servicios</h2>
+        <p class="text-stone-500 max-w-xl mx-auto">Caminos diseñados para tu bienestar físico, mental y espiritual.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        {serviciosHome.map((servicio) => (
+          <a href={servicio.link} class="group block bg-white p-6 shadow-sm hover:shadow-lg transition duration-500 rounded-lg">
+            <div class="h-48 bg-stone-200 mb-6 overflow-hidden rounded-md">
+              <img src={servicio.imagen} alt={servicio.titulo} class="w-full h-full object-cover group-hover:scale-110 transition duration-700" />
+            </div>
+            <h3 class="text-2xl text-stone-800 mb-3 group-hover:text-stone-600 transition">{servicio.titulo}</h3>
+            <p class="text-stone-500 leading-relaxed mb-4">{servicio.descripcion}</p>
+            <span class="text-sm underline decoration-stone-300 underline-offset-4 group-hover:decoration-stone-500 transition">Saber más &rarr;</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 px-6 bg-stone-800 text-stone-100 text-center">
+    <div class="max-w-3xl mx-auto">
+      <span class="text-4xl mb-6 block">❝</span>
+      <p class="text-2xl md:text-3xl font-serif italic leading-relaxed mb-8">
+        "El ritual de cumpleaños con Marce fue un antes y un después. La terapia de sonido logró desbloquear emociones que ni sabía que tenía guardadas. Totalmente recomendado."
+      </p>
+      <cite class="not-italic text-stone-400 tracking-widest uppercase text-sm">— Ana María, Medellín</cite>
+    </div>
+  </section>
+
+</Layout>
