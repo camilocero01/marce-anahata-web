@@ -24,11 +24,45 @@ const { title, description = "Centro de bienestar Marce Anahata. Kundalini Yoga,
         <title>{title} | Marce Anahata</title>
     </head>
     <body class="bg-stone-50 text-stone-800 font-sans">
-        <header class="py-6 text-center border-b border-stone-200">
-            <span class="font-serif text-2xl tracking-widest text-stone-600">MARCE ANAHATA</span>
-        </header>
 
-        <main class="min-h-screen">
+    <!-- NAV FIXED -->
+    <nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm border-b z-50">
+    <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3">
+        <img src="/images/logo.svg" alt="Marce Anahata" class="h-10 w-auto" />
+        <span class="flex flex-col leading-tight">
+            <span class="font-serif text-xl text-marce-base-1">MARCE ANAHATA</span>
+            <span class="text-xs text-marce-base-2 -mt-0.5">Centro de bienestar</span>
+        </span>
+        </a>
+
+        <!-- Desktop -->
+        <div class="hidden md:flex gap-6 items-center">
+        <a href="/" class="text-sm text-stone-700 hover:text-marce-base-1">Home</a>
+        <a href="/rituales" class="text-sm text-stone-700 hover:text-marce-base-1">Rituales</a>
+        <a href="#servicios" class="text-sm text-stone-700 hover:text-marce-base-1">Servicios</a>
+        <a href="/nosotros" class="text-sm text-stone-700 hover:text-marce-base-1">Nosotros</a>
+        <a href="/contacto" class="text-sm text-marce-base-1 font-semibold border border-marce-base-1 px-3 py-1 rounded hover:bg-marce-base-1/10">Contáctenos</a>
+        </div>
+
+        <!-- Mobile -->
+        <details class="md:hidden">
+        <summary class="cursor-pointer px-2 py-1">
+            <span class="sr-only">Abrir menú</span>
+            <svg class="w-6 h-6 text-stone-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"/></svg>
+        </summary>
+        <div class="px-4 pb-3 flex flex-col gap-2">
+            <a href="/" class="py-2 text-stone-700">Home</a>
+            <a href="/rituales" class="py-2 text-stone-700">Rituales</a>
+            <a href="#servicios" class="py-2 text-stone-700">Servicios</a>
+            <a href="/nosotros" class="py-2 text-stone-700">Nosotros</a>
+            <a href="/contacto" class="py-2 text-marce-base-1 font-semibold">Contáctenos</a>
+        </div>
+        </details>
+    </div>
+    </nav>
+
+        <main class="min-h-screen pt-20">
             <slot />
         </main>
 
@@ -39,11 +73,47 @@ const { title, description = "Centro de bienestar Marce Anahata. Kundalini Yoga,
 </html>
 
 <style is:global>
-    /* Definimos las fuentes globales */
-    h1, h2, h3, h4 {
-        font-family: 'Cormorant Garamond', serif;
+	/* Fuentes */
+	h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; }
+	body { font-family: 'Lato', sans-serif; }
+
+    /* =========================================
+       BOTÓN PERSONALIZADO (.btn-claro)
+       ========================================= */
+    :root {
+      --color-btn-claro-bg: #5d5a8c;      /* Base 1 */
+      --color-btn-claro-hover: #6ed8d9;   /* Base 2 */
+      --color-btn-text: #6ed8d9;          /* Texto Cyan sobre fondo Violeta */
+      --color-btn-text-hover: #5d5a8c;    /* Texto Violeta sobre fondo Cyan */
     }
-    body {
-        font-family: 'Lato', sans-serif;
+
+    .btn-claro {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background-color: var(--color-btn-claro-bg);
+      color: var(--color-btn-text);
+      font-weight: 600;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 0.5rem;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .btn-claro:hover {
+      background-color: var(--color-btn-claro-hover);
+      color: var(--color-btn-text-hover); /* Cambio el color del texto al hacer hover para contraste */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-claro:active {
+      transform: translateY(1px);
+    }
+    
+    /* Ajuste para el carrusel de reseñas */
+    .swiper-pagination-bullet-active {
+        background-color: #5d5a8c !important; /* Base 1 */
     }
 </style>

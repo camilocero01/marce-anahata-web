@@ -1,0 +1,145 @@
+---
+// src/pages/cierre-apertura.astro
+import Layout from '../layouts/Layout.astro';
+import ReviewsSection from '../components/cards/ReviewsSection.astro';
+
+// --- DATOS DEL SERVICIO ---
+const serviceInfo = {
+  title: "Ritual de Cierre y Apertura: Transforma tu Realidad",
+  subtitle: "Limpieza energética profunda para soltar el peso de lo viejo y manifestar propósitos claros para tu nuevo ciclo.",
+  price: "$230.000 COP", // PON TU PRECIO REAL AQUÍ
+  duration: "2 a 2.5 Horas",
+  whatsappMessage: "Hola Marce Anahata, siento que necesito un cambio. Quiero agendar el Ritual de Cierre y Apertura para iniciar un nuevo ciclo con claridad."
+};
+
+const whatsappLink = `https://wa.me/573207329921?text=${encodeURIComponent(serviceInfo.whatsappMessage)}`; // CAMBIA EL NÚMERO
+---
+
+<Layout title="Ritual de Cierre y Apertura | Marce Anahata">
+  
+  <section class="relative h-[70vh] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img 
+        src="/images/ritual/ritual-cierre.webp" 
+        alt="Mujer en ritual de limpieza energética con humo" 
+        class="w-full h-full object-cover opacity-90"
+      />
+      <div class="absolute inset-0 bg-[#5d5a8c]/40 mix-blend-multiply"></div>
+      <div class="absolute inset-0 bg-orange-100/10 mix-blend-overlay"></div>
+    </div>
+
+    <div class="relative z-10 text-center text-white px-6 max-w-4xl mx-auto mt-20">
+      <span class="uppercase tracking-[0.2em] text-sm md:text-base mb-4 block text-[#6ed8d9]">Renovación Energética</span>
+      <h1 class="text-4xl md:text-6xl font-serif mb-6 leading-tight">{serviceInfo.title}</h1>
+      <p class="text-lg md:text-xl font-light max-w-2xl mx-auto mb-8 opacity-95 text-stone-100">
+        {serviceInfo.subtitle}
+      </p>
+      <a 
+        href={whatsappLink}
+        target="_blank"
+        class="inline-block bg-[#6ed8d9] text-[#243c5a] px-8 py-4 rounded-full font-medium hover:bg-white transition-all duration-300 transform hover:-translate-y-1 shadow-lg"
+      >
+        Iniciar mi Transformación
+      </a>
+    </div>
+  </section>
+
+  <section class="py-20 bg-stone-50 px-6">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div class="relative">
+        <div class="absolute -top-4 -left-4 w-full h-full border-2 border-[#5d5a8c]/20 rounded-xl z-0 rotate-2"></div>
+        <img 
+          src="https://images.unsplash.com/photo-1515549832467-8783363e19b6?q=80&w=1000&aspect_ratio=1:1&auto=format&fit=crop" 
+          alt="Escribiendo intenciones y soltando el pasado" 
+          class="rounded-xl shadow-xl relative z-10 w-full h-[500px] object-cover -rotate-2 hover:rotate-0 transition-transform duration-500"
+        />
+      </div>
+      <div>
+        <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-6">Para que entre lo nuevo, primero debe salir lo viejo</h2>
+        <p class="text-[#243c5a]/80 mb-6 leading-relaxed">
+          A menudo intentamos construir nuevos hábitos o atraer nuevas oportunidades sobre cimientos cargados de miedos, dudas y energía estancada del pasado. Es como intentar sembrar en un terreno lleno de maleza.
+        </p>
+        <p class="text-[#243c5a]/80 mb-8 leading-relaxed">
+          Este ritual es una pausa consciente y potente. Utilizamos herramientas ancestrales para transmutar lo que te pesa y crear el espacio fértil necesario para que tus verdaderos deseos florezcan.
+        </p>
+        <ul class="space-y-4">
+          <li class="flex items-center gap-3 text-[#5d5a8c]">
+            <span class="text-xl">🌬️</span> Ligereza mental y emocional
+          </li>
+          <li class="flex items-center gap-3 text-[#5d5a8c]">
+            <span class="text-xl">🔥</span> Transmutación de bloqueos
+          </li>
+          <li class="flex items-center gap-3 text-[#5d5a8c]">
+            <span class="text-xl">🎯</span> Claridad láser en tus metas
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white px-6">
+    <div class="max-w-4xl mx-auto text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-4">El Proceso de Transformación</h2>
+      <p class="text-[#243c5a]/60">Tres fases diseñadas para resetear tu energía.</p>
+    </div>
+
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-stone-50 p-8 rounded-xl text-center hover:shadow-md transition-shadow group border-b-4 border-[#5d5a8c]/20 hover:border-[#6ed8d9]">
+        <div class="w-16 h-16 bg-[#5d5a8c]/10 group-hover:bg-[#6ed8d9]/20 transition-colors rounded-full flex items-center justify-center mx-auto mb-6 text-2xl">🪵</div>
+        <h3 class="text-xl font-serif text-[#243c5a] mb-3">La Limpieza (El Fuego)</h3>
+        <p class="text-sm text-[#243c5a]/70">Reconocemos y escribimos lo que ya no sirve. Usamos el fuego sagrado (real o simbólico) y el sahumerio para transmutar esa energía densa.</p>
+      </div>
+      <div class="bg-stone-50 p-8 rounded-xl text-center hover:shadow-md transition-shadow group border-b-4 border-[#5d5a8c]/20 hover:border-[#6ed8d9]">
+        <div class="w-16 h-16 bg-[#5d5a8c]/10 group-hover:bg-[#6ed8d9]/20 transition-colors rounded-full flex items-center justify-center mx-auto mb-6 text-2xl">🧘</div>
+        <h3 class="text-xl font-serif text-[#243c5a] mb-3">El Centro (El Vacío)</h3>
+        <p class="text-sm text-[#243c5a]/70">A través de Kundalini Yoga y respiración, reseteamos el sistema nervioso y habitamos el espacio del "vacío fértil", donde todo es posible.</p>
+      </div>
+      <div class="bg-stone-50 p-8 rounded-xl text-center hover:shadow-md transition-shadow group border-b-4 border-[#5d5a8c]/20 hover:border-[#6ed8d9]">
+        <div class="w-16 h-16 bg-[#5d5a8c]/10 group-hover:bg-[#6ed8d9]/20 transition-colors rounded-full flex items-center justify-center mx-auto mb-6 text-2xl">📝</div>
+        <h3 class="text-xl font-serif text-[#243c5a] mb-3">La Siembra (La Visión)</h3>
+        <p class="text-sm text-[#243c5a]/70">Desde la claridad, intencionamos el futuro. Visualización creativa y escritura de propósitos para anclar la nueva realidad.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-[#243c5a] text-white px-6 relative overflow-hidden">
+    <div class="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
+    <div class="absolute -top-20 -right-20 w-80 h-80 bg-[#5d5a8c] rounded-full filter blur-[150px] opacity-30 mix-blend-screen"></div>
+    <div class="absolute -bottom-20 -left-20 w-80 h-80 bg-[#6ed8d9] rounded-full filter blur-[150px] opacity-20 mix-blend-screen"></div>
+
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+      <h2 class="text-3xl md:text-5xl font-serif mb-8">Tu próximo capítulo comienza hoy</h2>
+      
+      <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 md:p-12 inline-block max-w-2xl w-full">
+        <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-6 border-b border-white/10 pb-8">
+            <div class="text-center md:text-left">
+                <p class="text-[#6ed8d9] uppercase text-xs tracking-widest mb-1">Duración Aproximada</p>
+                <p class="text-xl">{serviceInfo.duration}</p>
+            </div>
+            <div class="text-center md:text-right">
+                <p class="text-[#6ed8d9] uppercase text-xs tracking-widest mb-1">Inversión del Ritual</p>
+                <p class="text-3xl font-serif">{serviceInfo.price}</p>
+            </div>
+        </div>
+
+        <p class="mb-8 text-white/90 font-light italic">
+          "La claridad no llega pensando más, sino soltando lo que nubla tu visión."
+        </p>
+
+        <a 
+          href={whatsappLink}
+          target="_blank"
+          class="w-full block bg-white text-[#243c5a] py-4 rounded-xl font-bold hover:bg-[#6ed8d9] transition-colors shadow-lg"
+        >
+          Agendar mi sesión de claridad
+        </a>
+        <p class="mt-4 text-xs text-white/40">*Disponible en formato individual, de pareja o para grupos pequeños (consultar precios). Se requiere reserva previa con el 50% para separar fecha</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="bg-stone-50">
+    <ReviewsSection />
+  </div>
+
+</Layout>

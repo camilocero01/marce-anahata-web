@@ -1,0 +1,153 @@
+---
+// src/pages/ritual-cumpleanos.astro (o el nombre que prefieras)
+import { Image } from 'astro:assets';
+import heroImage from '/images/ritual/ritual-cumpleanos.webp';
+import reviewsData from '../data/reviews.json';
+
+// Filtramos las reseñas para mostrar solo las que mencionan "cumpleaños"
+const birthdayReviews = reviewsData.filter(review => 
+  review.ubicacion.toLowerCase().includes('cumpleaños') || 
+  review.texto.toLowerCase().includes('cumpleaños')
+).slice(0, 3); // Tomamos solo las 3 primeras para no saturar
+
+const whatsappLink = "https://wa.me/57XXXXXXXXXX?text=Hola,%20estoy%20interesado/a%20en%20el%20Ritual%20de%20Cumpleaños%20Vuelta%20al%20Sol.";
+---
+
+<main class="bg-stone-50 overflow-x-hidden">
+
+  <section class="relative h-[70vh] flex items-center justify-center text-center px-6">
+    <div class="absolute inset-0 z-0">
+      <Image 
+        src={heroImage} 
+        alt="Ritual de Cumpleaños Vuelta al Sol" 
+        class="w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-b from-[#243c5a]/40 via-[#243c5a]/20 to-stone-50"></div>
+    </div>
+    
+    <div class="relative z-10 max-w-4xl mx-auto mt-20">
+        <span class="inline-block py-1 px-3 rounded-full bg-[#6ed8d9]/20 text-[#243c5a] text-sm font-medium tracking-wider uppercase mb-4 backdrop-blur-sm">
+            Tu Nueva Vuelta al Sol
+        </span>
+      <h1 class="text-4xl md:text-6xl font-serif text-white mb-6 drop-shadow-sm leading-tight">
+        Celebra tu Vida, <br/> Intenciona tu Nuevo Ciclo
+      </h1>
+      <p class="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto font-light leading-relaxed">
+        Más que una celebración, una ceremonia sagrada de gratitud y proyección para honrar tu existencia.
+      </p>
+      <div class="mt-8">
+        <a href="#reserva" class="inline-block bg-[#6ed8d9] hover:bg-[#5ac7c8] text-[#243c5a] font-semibold py-3 px-8 rounded-full transition-all transform hover:scale-105 shadow-lg hover:shadow-[#6ed8d9]/30">
+            Quiero mi Ritual
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 px-6">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-8">Un Portal Hacia Tu Próximo Año</h2>
+      <p class="text-lg text-stone-600 mb-6 leading-relaxed">
+        Tu cumpleaños es un momento astrológico y energético único. Es un portal personal donde el universo está más receptivo a tus deseos. A menudo, celebramos hacia afuera, pero olvidamos celebrar hacia adentro.
+      </p>
+      <p class="text-lg text-stone-600 leading-relaxed font-medium text-[#5d5a8c]">
+        Este ritual es ese espacio sagrado para hacer una pausa, agradecer profundamente el año que se va, soltar lo que ya no necesitas y sembrar con claridad las semillas de tus sueños para el ciclo que comienza.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white px-6">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a]">La Experiencia "Vuelta al Sol"</h2>
+        <p class="text-stone-500 mt-4">Una ceremonia diseñada para elevar tu vibración.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-stone-50 p-8 rounded-2xl hover:shadow-md transition-shadow border border-stone-100 text-center group">
+          <div class="w-16 h-16 bg-[#6ed8d9]/20 text-[#5d5a8c] rounded-full flex items-center justify-center mx-auto mb-6 text-3xl group-hover:scale-110 transition-transform">
+            🌱
+          </div>
+          <h3 class="text-xl font-serif text-[#243c5a] mb-4">Limpieza y Cierre</h3>
+          <p class="text-stone-600">
+            A través de sahumerios y meditación, limpiamos tu campo energético, agradeciendo y soltando el año viejo con amor para hacer espacio a lo nuevo.
+          </p>
+        </div>
+         <div class="bg-stone-50 p-8 rounded-2xl hover:shadow-md transition-shadow border border-stone-100 text-center group">
+            <div class="w-16 h-16 bg-[#6ed8d9]/20 text-[#5d5a8c] rounded-full flex items-center justify-center mx-auto mb-6 text-3xl group-hover:scale-110 transition-transform">
+              ✨
+            </div>
+            <h3 class="text-xl font-serif text-[#243c5a] mb-4">Conexión y Gratitud</h3>
+            <p class="text-stone-600">
+              Honramos tu camino. Una ceremonia emotiva para conectar con tu corazón, tus guías y, si lo deseas, con tus seres queridos en un círculo de amor.
+            </p>
+          </div>
+         <div class="bg-stone-50 p-8 rounded-2xl hover:shadow-md transition-shadow border border-stone-100 text-center group">
+            <div class="w-16 h-16 bg-[#6ed8d9]/20 text-[#5d5a8c] rounded-full flex items-center justify-center mx-auto mb-6 text-3xl group-hover:scale-110 transition-transform">
+              🎯
+            </div>
+            <h3 class="text-xl font-serif text-[#243c5a] mb-4">Intención y Proyección</h3>
+            <p class="text-stone-600">
+              Sembramos tus propósitos. Mediante técnicas de manifestación y Kundalini Yoga, proyectamos la energía para que tus deseos del nuevo año se materialicen.
+            </p>
+          </div>
+      </div>
+    </div>
+  </section>
+
+   <section class="py-20 px-6 bg-[#5d5a8c]/5">
+    <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] text-center mb-12">Historias de otros cumpleañeros</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {birthdayReviews.map((review) => (
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-100 flex flex-col h-full">
+                     <div class="text-[#5d5a8c] mb-4 text-sm tracking-widest">{"★".repeat(review.estrellas)}</div>
+                     <blockquote class="text-stone-600 italic mb-6 flex-grow text-sm leading-relaxed">"{review.texto.substring(0, 150)}..."</blockquote>
+                     <div class="flex items-center mt-auto pt-4 border-t border-stone-50">
+                        <div class="mr-3 shrink-0">
+                            {review.foto ? (
+                              <img src={review.foto} alt={review.nombre} class="w-10 h-10 rounded-full object-cover" loading="lazy"/>
+                            ) : (
+                              <div class="w-10 h-10 bg-[#6ed8d9]/20 rounded-full flex items-center justify-center text-[#5d5a8c] font-serif">{review.nombre.charAt(0)}</div>
+                            )}
+                        </div>
+                        <div>
+                             <p class="font-semibold text-[#243c5a] text-sm flex items-center">
+                                {review.bandera && <img src={`https://flagcdn.com/${review.bandera.toLowerCase()}.svg`} alt="bandera" class="w-4 h-auto mr-2 shadow-sm rounded-sm"/>}
+                                {review.nombre}
+                             </p>
+                        </div>
+                    </div>
+                </div>
+            ))}
+        </div>
+    </div>
+   </section>
+
+
+  <section id="reserva" class="py-24 px-6 bg-white text-center">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl md:text-5xl font-serif text-[#243c5a] mb-6">¿Listo para honrar tu nuevo ciclo?</h2>
+      <p class="text-xl text-stone-600 mb-12 max-w-2xl mx-auto">
+        Puedes vivir esta experiencia de forma íntima e individual, o compartirla en un círculo mágico con tus personas favoritas.
+      </p>
+      
+      <div class="flex flex-col md:flex-row justify-center gap-6">
+        <a href={whatsappLink.replace('Ritual', 'Ritual%20Individual')} target="_blank" class="group bg-stone-50 border-2 border-[#6ed8d9] p-8 rounded-2xl hover:bg-[#6ed8d9]/10 transition-all text-left md:w-96">
+            <h3 class="text-2xl font-serif text-[#243c5a] mb-2 group-hover:text-[#5d5a8c] transition-colors">Ritual Personal</h3>
+            <p class="text-stone-600 mb-6">Una sesión profunda 1 a 1 enfocada 100% en tu energía y tus propósitos.</p>
+            <span class="text-[#5d5a8c] font-semibold flex items-center">Reservar Individual <span class="ml-2 text-xl">→</span></span>
+        </a>
+
+        <a href={whatsappLink.replace('Ritual', 'Ritual%20Grupal')} target="_blank" class="group bg-[#243c5a] p-8 rounded-2xl hover:bg-[#5d5a8c] transition-all text-left md:w-96 relative overflow-hidden">
+             <div class="absolute top-0 right-0 -mt-4 -mr-4 text-[#6ed8d9]/10 text-9xl font-serif pointer-events-none">✨</div>
+            <h3 class="text-2xl font-serif text-white mb-2">Ritual Grupal</h3>
+            <p class="text-white/80 mb-6">Celebra en tribu. Invita a tus amigos/familia a ser testigos y partícipes de tu bendición.</p>
+            <span class="text-[#6ed8d9] font-semibold flex items-center">Reservar con Amigos <span class="ml-2 text-xl">→</span></span>
+        </a>
+      </div>
+      <p class="text-sm text-stone-400 mt-12">Incluye materiales, altar, guía personalizada y un pequeño presente de cumpleaños.</p>
+    </div>
+  </section>
+
+</main>

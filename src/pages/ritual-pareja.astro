@@ -1,0 +1,143 @@
+---
+// src/pages/ritual-pareja.astro
+import Layout from '../layouts/Layout.astro'; // Asegúrate de tener tu Layout base aquí
+import ReviewsSection from '../components/cards/ReviewsSection.astro'; // Reutilizamos tus reseñas si quieres
+
+// Datos del servicio (puedes editarlos aquí fácilmente)
+const serviceInfo = {
+  title: "Ritual de Pareja: Conexión Sagrada",
+  subtitle: "Un espacio para reconectar corazones, sanar vínculos y elevar la vibración del amor.",
+  price: "$360.000 COP", // Pon tu precio real aquí
+  duration: "2 Horas y media",
+  whatsappMessage: "Hola Marce Anahata, estoy interesad@ en el Ritual de Pareja, quisiera más información o agendar."
+};
+
+const whatsappLink = `https://wa.me/573207329921?text=${encodeURIComponent(serviceInfo.whatsappMessage)}`; // CAMBIA EL NÚMERO
+---
+
+<Layout title="Ritual de Pareja | Marce Anahata">
+  
+  <section class="relative h-[70vh] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img 
+        src="/images/ritual/ritual-pareja.webp" 
+        alt="Pareja en meditación" 
+        class="w-full h-full object-cover opacity-90"
+      />
+      <div class="absolute inset-0 bg-[#243c5a]/40 mix-blend-multiply"></div>
+    </div>
+
+    <div class="relative z-10 text-center text-white px-6 max-w-4xl mx-auto mt-20">
+      <span class="uppercase tracking-[0.2em] text-sm md:text-base mb-4 block text-[#6ed8d9]">Experiencia Exclusiva</span>
+      <h1 class="text-4xl md:text-6xl font-serif mb-6 leading-tight">{serviceInfo.title}</h1>
+      <p class="text-lg md:text-xl font-light max-w-2xl mx-auto mb-8 opacity-90">
+        {serviceInfo.subtitle}
+      </p>
+      <a 
+        href={whatsappLink}
+        target="_blank"
+        class="inline-block bg-[#6ed8d9] text-[#243c5a] px-8 py-4 rounded-full font-medium hover:bg-white transition-all duration-300 transform hover:-translate-y-1 shadow-lg"
+      >
+        Reservar Experiencia
+      </a>
+    </div>
+  </section>
+
+  <section class="py-20 bg-stone-50 px-6">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div class="order-2 md:order-1 relative">
+        <div class="absolute -top-4 -left-4 w-full h-full border-2 border-[#5d5a8c]/20 rounded-2xl z-0"></div>
+        <img 
+          src="/images/ritual/ritual-pareja-cacao.webp" 
+          alt="Manos unidas" 
+          class="rounded-2xl shadow-xl relative z-10 w-full h-[500px] object-cover"
+        />
+      </div>
+      <div class="order-1 md:order-2">
+        <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-6">Más que una cita, un reencuentro del alma</h2>
+        <p class="text-[#243c5a]/80 mb-6 leading-relaxed">
+          En la rutina diaria, a veces olvidamos mirarnos a los ojos y reconocernos desde el corazón. Este ritual no es una terapia tradicional, es una <strong>experiencia sensorial y energética</strong> diseñada para parejas que desean profundizar su intimidad espiritual.
+        </p>
+        <p class="text-[#243c5a]/80 mb-8 leading-relaxed">
+          A través del cacao ceremonial, el sonido y la respiración consciente, creamos un puente seguro para soltar reclamos y abrir espacio a la gratitud y el amor incondicional.
+        </p>
+        <ul class="space-y-4">
+          <li class="flex items-center gap-3 text-[#5d5a8c]">
+            <span class="text-xl">✨</span> Sanación de vínculos
+          </li>
+          <li class="flex items-center gap-3 text-[#5d5a8c]">
+            <span class="text-xl">🌿</span> Conexión sin palabras
+          </li>
+          <li class="flex items-center gap-3 text-[#5d5a8c]">
+            <span class="text-xl">❤️</span> Renovación de votos energéticos
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white px-6">
+    <div class="max-w-4xl mx-auto text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-4">El Viaje de la Experiencia</h2>
+      <p class="text-[#243c5a]/60">Cada momento está cuidado para sostener su energía.</p>
+    </div>
+
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-stone-50 p-8 rounded-xl text-center hover:shadow-md transition-shadow">
+        <div class="w-16 h-16 bg-[#5d5a8c]/10 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl">☕</div>
+        <h3 class="text-xl font-serif text-[#243c5a] mb-3">Apertura con Cacao</h3>
+        <p class="text-sm text-[#243c5a]/70">Iniciamos con la medicina del corazón para suavizar las defensas y abrirnos a sentir.</p>
+      </div>
+      <div class="bg-stone-50 p-8 rounded-xl text-center hover:shadow-md transition-shadow">
+        <div class="w-16 h-16 bg-[#5d5a8c]/10 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl">🧘‍♀️</div>
+        <h3 class="text-xl font-serif text-[#243c5a] mb-3">Conexión Kundalini</h3>
+        <p class="text-sm text-[#243c5a]/70">Respiración en pareja (Venus Kriyas) y meditación tántrica blanca para sincronizar auras.</p>
+      </div>
+      <div class="bg-stone-50 p-8 rounded-xl text-center hover:shadow-md transition-shadow">
+        <div class="w-16 h-16 bg-[#5d5a8c]/10 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl">🎶</div>
+        <h3 class="text-xl font-serif text-[#243c5a] mb-3">Baño de Sonido</h3>
+        <p class="text-sm text-[#243c5a]/70">Relajación profunda con cuencos de cristal y gongs para integrar la energía movida.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-[#243c5a] text-white px-6 relative overflow-hidden">
+    <div class="absolute top-0 left-0 w-64 h-64 bg-[#6ed8d9] rounded-full filter blur-[100px] opacity-10"></div>
+    <div class="absolute bottom-0 right-0 w-64 h-64 bg-[#5d5a8c] rounded-full filter blur-[100px] opacity-20"></div>
+
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+      <h2 class="text-3xl md:text-5xl font-serif mb-8">Regálense un momento eterno</h2>
+      
+      <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 md:p-12 inline-block max-w-2xl w-full">
+        <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-6 border-b border-white/10 pb-8">
+            <div class="text-center md:text-left">
+                <p class="text-[#6ed8d9] uppercase text-xs tracking-widest mb-1">Duración</p>
+                <p class="text-xl">{serviceInfo.duration}</p>
+            </div>
+            <div class="text-center md:text-right">
+                <p class="text-[#6ed8d9] uppercase text-xs tracking-widest mb-1">Inversión por Pareja</p>
+                <p class="text-3xl font-serif">{serviceInfo.price}</p>
+            </div>
+        </div>
+
+        <p class="mb-8 text-white/80 font-light italic">
+          "El amor no es algo que encuentras. El amor es algo que construyes."
+        </p>
+
+        <a 
+          href={whatsappLink}
+          target="_blank"
+          class="w-full block bg-white text-[#243c5a] py-4 rounded-xl font-bold hover:bg-[#6ed8d9] transition-colors"
+        >
+          Agendar Cita por WhatsApp
+        </a>
+        <p class="mt-4 text-xs text-white/40">Se requiere reserva previa con el 50% para separar fecha</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="bg-stone-50">
+    <ReviewsSection />
+  </div>
+
+</Layout>

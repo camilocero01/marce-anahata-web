@@ -1,1 +1,54 @@
 @import "tailwindcss";
+
+@theme {
+  --color-marce-base-1: #5d5a8c;
+  --color-marce-base-2: #6ed8d9;
+  --color-marce-base-3: #243c5a;
+}
+
+/*
+bg-marce-base-1
+text-marce-base-1
+border-marce-base-1
+*/
+
+/* =========================================
+   Variables de Color Personalizadas
+   ========================================= */
+:root {
+  /* Definimos los colores como variables para que sean fáciles de cambiar luego */
+  --color-btn-claro-bg: #5d5a8c;      /* El rojo intenso */
+  --color-btn-claro-hover: #6ed8d9;   /* El rojo más oscuro para cuando pasas el mouse */
+  --color-btn-text: #6ed8d9;          /* Texto blanco */
+}
+
+/* =========================================
+   Clase del Botón Estilo "Claro"
+   ========================================= */
+.btn-claro {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;       /* Espaciado interno cómodo */
+  background-color: var(--color-btn-claro-bg);
+  color: var(--color-btn-text);
+  font-weight: 600;              /* Texto seminegrita */
+  text-align: center;
+  text-decoration: none;         /* Quita el subrayado si es un enlace <a> */
+  border-radius: 0.5rem;         /* Bordes redondeados (aprox 8px) */
+  border: none;                  /* Sin borde adicional */
+  cursor: pointer;               /* Manito al pasar el mouse */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Una sombra sutil */
+  
+  /* Transición suave para el efecto hover */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Estado Hover (al pasar el mouse) */
+.btn-claro:hover {
+  background-color: var(--color-btn-claro-hover);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15); /* Sombra un poco más marcada */
+}
+
+/* Estado Active (al hacer clic) */
+.btn-claro:active {
+  transform: translateY(1px); /* Efecto sutil de presionar */
+}

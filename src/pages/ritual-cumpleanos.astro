@@ -1,0 +1,143 @@
+---
+// src/pages/ritual-cumpleanos.astro
+import Layout from '../layouts/Layout.astro';
+import ReviewsSection from '../components/cards/ReviewsSection.astro';
+
+// --- DATOS DEL SERVICIO (PERSONALIZA AQUÍ) ---
+const serviceInfo = {
+  title: "Ritual de Cumpleaños: Tu Nueva Vuelta al Sol",
+  subtitle: "Celebra tu existencia, agradece el ciclo que cierra y siembra con intención las semillas de tu nuevo año.",
+  price: "$230.000 COP", // PON TU PRECIO REAL AQUÍ
+  duration: "2 Horas",
+  whatsappMessage: "Hola Marce Anahata, ¡es mi cumpleaños pronto! Quiero celebrar con el Ritual de Vuelta al Sol. Deseo más información."
+};
+
+const whatsappLink = `https://wa.me/573207329921?text=${encodeURIComponent(serviceInfo.whatsappMessage)}`; // CAMBIA EL NÚMERO
+---
+
+<Layout title="Ritual de Cumpleaños | Marce Anahata">
+  
+  <section class="relative h-[70vh] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img 
+        src="/images/ritual/ritual-cumpleanos.webp" 
+        alt="Celebración consciente de cumpleaños" 
+        class="w-full h-full object-cover opacity-90"
+      />
+      <div class="absolute inset-0 bg-[#5d5a8c]/40 mix-blend-multiply"></div>
+    </div>
+
+    <div class="relative z-10 text-center text-white px-6 max-w-4xl mx-auto mt-20">
+      <span class="uppercase tracking-[0.2em] text-sm md:text-base mb-4 block text-[#6ed8d9]">Celebración Consciente</span>
+      <h1 class="text-4xl md:text-6xl font-serif mb-6 leading-tight">{serviceInfo.title}</h1>
+      <p class="text-lg md:text-xl font-light max-w-2xl mx-auto mb-8 opacity-90">
+        {serviceInfo.subtitle}
+      </p>
+      <a 
+        href={whatsappLink}
+        target="_blank"
+        class="inline-block bg-[#6ed8d9] text-[#243c5a] px-8 py-4 rounded-full font-medium hover:bg-white transition-all duration-300 transform hover:-translate-y-1 shadow-lg"
+      >
+        Reservar mi Celebración
+      </a>
+    </div>
+  </section>
+
+  <section class="py-20 bg-stone-50 px-6">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div class="relative">
+        <div class="absolute -top-4 -left-4 w-full h-full border-2 border-[#6ed8d9]/30 rounded-2xl z-0"></div>
+        <img 
+          src="/images/ritual/ritual-cumpleanos-vuelta-al-sol.webp" 
+          alt="Mujer celebrando su luz interior" 
+          class="rounded-2xl shadow-xl relative z-10 w-full h-[500px] object-cover"
+        />
+      </div>
+      <div>
+        <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-6">Más que un año más, un renacimiento</h2>
+        <p class="text-[#243c5a]/80 mb-6 leading-relaxed">
+          Tu cumpleaños es tu portal energético personal. Es el momento exacto en que el Sol vuelve a la posición en la que estaba cuando naciste, abriendo una ventana de manifestación poderosa.
+        </p>
+        <p class="text-[#243c5a]/80 mb-8 leading-relaxed">
+          A menudo celebramos hacia afuera, pero olvidamos celebrar hacia adentro. Este ritual es un regalo para tu alma, un espacio sagrado para honrar tu camino y diseñar conscientemente quién quieres ser en este nuevo ciclo.
+        </p>
+        <ul class="space-y-4">
+          <li class="flex items-center gap-3 text-[#5d5a8c]">
+            <span class="text-xl">🎂</span> Gratitud por lo vivido
+          </li>
+          <li class="flex items-center gap-3 text-[#5d5a8c]">
+            <span class="text-xl">✨</span> Elevación de tu vibración
+          </li>
+          <li class="flex items-center gap-3 text-[#5d5a8c]">
+            <span class="text-xl">🎯</span> Claridad de propósito
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white px-6">
+    <div class="max-w-4xl mx-auto text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-4">Las Etapas de tu Ceremonia</h2>
+      <p class="text-[#243c5a]/60">Un flujo diseñado para soltar el pasado y abrazar el futuro.</p>
+    </div>
+
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-stone-50 p-8 rounded-xl text-center hover:shadow-md transition-shadow group">
+        <div class="w-16 h-16 bg-[#5d5a8c]/10 group-hover:bg-[#6ed8d9]/20 transition-colors rounded-full flex items-center justify-center mx-auto mb-6 text-2xl">🍂</div>
+        <h3 class="text-xl font-serif text-[#243c5a] mb-3">Limpieza y Cierre</h3>
+        <p class="text-sm text-[#243c5a]/70">Mediante sahumerio y meditación, soltamos las cargas del año que termina para entrar ligeros al nuevo ciclo.</p>
+      </div>
+      <div class="bg-stone-50 p-8 rounded-xl text-center hover:shadow-md transition-shadow group">
+        <div class="w-16 h-16 bg-[#5d5a8c]/10 group-hover:bg-[#6ed8d9]/20 transition-colors rounded-full flex items-center justify-center mx-auto mb-6 text-2xl">⚡</div>
+        <h3 class="text-xl font-serif text-[#243c5a] mb-3">Kriya de Cumpleaños</h3>
+        <p class="text-sm text-[#243c5a]/70">Una práctica especial de Kundalini Yoga diseñada para resetear tu campo electromagnético y elevar tu vitalidad.</p>
+      </div>
+      <div class="bg-stone-50 p-8 rounded-xl text-center hover:shadow-md transition-shadow group">
+        <div class="w-16 h-16 bg-[#5d5a8c]/10 group-hover:bg-[#6ed8d9]/20 transition-colors rounded-full flex items-center justify-center mx-auto mb-6 text-2xl">🌱</div>
+        <h3 class="text-xl font-serif text-[#243c5a] mb-3">Siembra de Intenciones</h3>
+        <p class="text-sm text-[#243c5a]/70">Proyección mental y sonora (mantra) para manifestar tus deseos más profundos para este nuevo año de vida.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-[#5d5a8c] text-white px-6 relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-72 h-72 bg-[#6ed8d9] rounded-full filter blur-[120px] opacity-20"></div>
+    <div class="absolute bottom-0 left-0 w-72 h-72 bg-[#243c5a] rounded-full filter blur-[120px] opacity-30"></div>
+
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+      <h2 class="text-3xl md:text-5xl font-serif mb-8">Regálate el inicio que mereces</h2>
+      
+      <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8 md:p-12 inline-block max-w-2xl w-full">
+        <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-6 border-b border-white/10 pb-8">
+            <div class="text-center md:text-left">
+                <p class="text-[#6ed8d9] uppercase text-xs tracking-widest mb-1">Duración Aproximada</p>
+                <p class="text-xl">{serviceInfo.duration}</p>
+            </div>
+            <div class="text-center md:text-right">
+                <p class="text-[#6ed8d9] uppercase text-xs tracking-widest mb-1">Inversión Personal</p>
+                <p class="text-3xl font-serif">{serviceInfo.price}</p>
+            </div>
+        </div>
+
+        <p class="mb-8 text-white/90 font-light italic">
+          "Tu nacimiento fue un regalo del Universo para el mundo. Tu celebración consciente es tu regalo de vuelta al Universo."
+        </p>
+
+        <a 
+          href={whatsappLink}
+          target="_blank"
+          class="w-full block bg-[#6ed8d9] text-[#243c5a] py-4 rounded-xl font-bold hover:bg-white transition-colors shadow-lg"
+        >
+          Agendar mi Ritual de Cumpleaños
+        </a>
+        <p class="mt-4 text-xs text-white/50">*Puedes realizarlo solo/a o acompañado de tus seres más queridos (consulta valor grupal). Se requiere reserva previa con el 50% para separar fecha</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="bg-stone-50">
+    <ReviewsSection />
+  </div>
+
+</Layout>

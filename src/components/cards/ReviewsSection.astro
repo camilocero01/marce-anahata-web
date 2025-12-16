@@ -1,0 +1,148 @@
+---
+// src/components/ReviewsSection.astro
+import reviewsData from '../../data/reviews.json';
+import 'swiper/css';
+import 'swiper/css/pagination';
+
+const googleReviewsLink = "https://www.google.com/search?sca_esv=c581b398f00b64e5&q=Marce+Anahata+-+Centro+de+bienestar+Medell%C3%ADn&si=AMgyJEtREmoPL4P1I5IDCfuA8gybfVI2d5Uj7QMwYCZHKDZ-E8digRyuKFLuaq_GTmCUkL39iUOp2I4pUmF1uDhUV503YmVnTB23PfNQ4MOerXVzro1X_lmUuSqdl7xSBoOtlokEI3m4H7mnuTb5chGZQTWDBxvVJLo97qBQ_z8KL83eYwd9Z5M%3D&sa=X&ved=2ahUKEwj3q9znq8KRAxWGmLAFHbdkNWYQrrQLegQIHxAA&biw=1536&bih=826&dpr=1.25&zx=1765897501773&no_sw_cr=1"; 
+---
+
+<section class="py-24 bg-stone-50 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6 text-center mb-12 ">
+    <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-6">Lo que dicen quienes han vibrado aquí</h2>
+    <p class="text-[#243c5a]/70 max-w-2xl mx-auto">Testimonios reales de personas que han transformado su energía en nuestro centro.</p>
+  </div>
+
+  <div class="swiper reviews-carousel px-6 md:px-0 mb-12">
+    <div class="swiper-wrapper pb-12">
+      
+      {reviewsData.map((review) => (
+        <div class="swiper-slide h-auto">
+          <div class="bg-white p-8 rounded-2xl shadow-sm border border-marce-base-1 h-full flex flex-col hover:border-[#5d5a8c]/100 transition-colors relative group">
+            
+            {review.link && (
+              <a 
+                href={review.link} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                title="Ir a Google Maps"
+                class="absolute top-6 right-6 text-xs font-medium text-marce-base-2 hover:text-[#5d5a8c] hover:underline underline-offset-2 transition-colors"
+              >
+                Ver reseña
+              </a>
+            )}
+            <div class="text-[#5d5a8c] mb-6 text-lg tracking-widest">
+              {"★".repeat(review.estrellas)}
+            </div>
+            
+            <blockquote class="text-lg text-[#243c5a] leading-relaxed italic mb-8 flex-grow font-light">
+              "{review.texto}"
+            </blockquote>
+            
+            <div class="mt-auto flex items-center border-t border-stone-100 pt-6">
+              <div class="mr-4 shrink-0">
+                {review.foto ? (
+                  <img 
+                    src={review.foto} 
+                    alt={`Foto de ${review.nombre}`} 
+                    class="w-14 h-14 rounded-full object-cover border-2 border-white shadow-sm"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div class="w-14 h-14 bg-[#6ed8d9]/10 rounded-full flex items-center justify-center text-xl text-[#5d5a8c] font-serif border-2 border-white shadow-sm">
+                    {review.nombre.charAt(0)}
+                  </div>
+                )}
+              </div>
+              
+              <div class="text-left">
+                <div class="flex items-center gap-2 mb-1">
+                 {/* AQUÍ ESTÁ LA NUEVA IMPLEMENTACIÓN DE IMAGEN */}
+                  {review.bandera && (
+                     <img 
+                       src={`https://flagcdn.com/${review.bandera.toLowerCase()}.svg`} 
+                       alt={`Bandera de ${review.bandera}`} 
+                       class="w-6 h-auto shadow-sm rounded-sm"
+                     />
+                  )}
+                  <p class="font-semibold text-[#243c5a] text-lg leading-none">
+                    {review.nombre}
+                  </p>
+                   {/* AQUÍ ESTÁ LA NUEVA IMPLEMENTACIÓN DE IMAGEN */}
+                  {review.bandera && (
+                     <img 
+                       src={`https://flagcdn.com/${review.bandera.toLowerCase()}.svg`} 
+                       alt={`Bandera de ${review.bandera}`} 
+                       class="w-6 h-auto shadow-sm rounded-sm"
+                     />
+                  )}
+                </div>
+                <span class="text-sm text-[#5d5a8c] uppercase tracking-wider font-light block">{review.ubicacion}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+
+    </div>
+    <div class="swiper-pagination !bottom-0"></div>
+  </div>
+
+  <div class="text-center mt-8">
+    <a 
+      href={googleReviewsLink} 
+      target="_blank" 
+      rel="noopener noreferrer"
+      class="inline-flex items-center gap-3 px-6 py-3 bg-white text-[#243c5a] border border-stone-200 rounded-full hover:bg-stone-50 hover:border-[#6ed8d9] hover:text-[#5d5a8c] transition-all duration-300 shadow-sm group"
+    >
+      <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.26.81-.58z" fill="#FBBC05"/>
+        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+      </svg>
+      <span class="font-medium">Leer todas las reseñas en Google</span>
+      <span class="text-stone-400 group-hover:translate-x-1 transition-transform">→</span>
+    </a>
+  </div>
+
+</section>
+
+<script>
+  import Swiper from 'swiper';
+  import { Pagination, Autoplay } from 'swiper/modules';
+
+  const swiper = new Swiper('.reviews-carousel', {
+    modules: [Pagination, Autoplay],
+    slidesPerView: 1,
+    spaceBetween: 24,
+    loop: true,
+    grabCursor: true,
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+      dynamicBullets: true,
+    },
+    breakpoints: {
+      640: { slidesPerView: 2, spaceBetween: 24 },
+      1024: { slidesPerView: 3, spaceBetween: 32 }
+    }
+  });
+</script>
+
+<style is:global>
+  /* Color activo: Violeta #5d5a8c */
+  .swiper-pagination-bullet-active {
+    background-color: #5d5a8c !important; 
+    opacity: 1 !important;
+  }
+  /* Color inactivo */
+  .swiper-pagination-bullet {
+    background-color: #5d5a8c !important;
+    opacity: 0.3;
+  }
+</style>
