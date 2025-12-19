@@ -1,0 +1,246 @@
+---
+// src/pages/sobre-mi.astro
+import Layout from '../layouts/Layout.astro';
+import ReviewsSection from '../components/cards/ReviewsSection.astro';
+
+const whatsappLink = "https://wa.me/573207329921?text=Hola%20Marce%20Anahata,%20le%C3%AD%20tu%20historia%20y%20quisiera%20conocer%20m%C3%A1s%20sobre%20tus%20servicios.";
+---
+
+<Layout title="Sobre Mí | Marce Anahata">
+  
+  <section class="relative h-[60vh] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img 
+        src="/images/sobre-mi/sobre-mi.webp" 
+        alt="Marcela Zuleta Marín - Marce Anahata" 
+        class="w-full h-full object-cover opacity-90"
+      />
+      <div class="absolute inset-0 bg-[#243c5a]/40 mix-blend-multiply"></div>
+    </div>
+
+    <div class="relative z-10 text-center text-white px-6 max-w-4xl mx-auto mt-10">
+      <span class="uppercase tracking-[0.2em] text-sm md:text-base mb-4 block text-[#6ed8d9] font-medium">Mi Camino</span>
+      <h1 class="text-4xl md:text-6xl font-serif mb-6 leading-tight">Marcela Zuleta Marín</h1>
+      <p class="text-lg md:text-2xl font-light italic opacity-90 text-stone-100">
+        "Mi misión es crear espacios sagrados donde el sonido y la conciencia te permitan recordar quién eres realmente."
+      </p>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white px-6">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+      
+      <div class="order-2 md:order-1 relative">
+        <div class="absolute -top-4 -left-4 w-full h-full border-2 border-[#5d5a8c]/20 rounded-tl-[4rem] rounded-br-[4rem] z-0"></div>
+        <img 
+          src="/images/sobre-mi/sobre-mi-bio.webp" 
+          alt="Marce Anahata en sesión" 
+          class="rounded-tl-[4rem] rounded-br-[4rem] shadow-xl relative z-10 w-full h-[600px] object-cover grayscale hover:grayscale-0 transition-all duration-700"
+        />
+      </div>
+
+      <div class="order-1 md:order-2">
+        <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-6">De Marcela a Marce Anahata</h2>
+        <p class="text-[#243c5a]/80 mb-6 leading-relaxed text-lg">
+          Hola, soy Marce. Mi viaje hacia el bienestar no comenzó como una carrera, sino como una búsqueda personal de paz y propósito.
+        </p>
+        <p class="text-[#243c5a]/80 mb-6 leading-relaxed text-lg">
+          Descubrí que el cuerpo humano es una caja de resonancia perfecta, y que a menudo, el "ruido" de la vida moderna desafina nuestra melodía interna. Esta revelación me llevó a estudiar profundamente dos tecnologías ancestrales: el <strong>Kundalini Yoga</strong> y la <strong>Terapia de Sonido</strong>.
+        </p>
+        <p class="text-[#243c5a]/80 mb-8 leading-relaxed text-lg">
+          Hoy, integro la precisión científica de la física del sonido con la espiritualidad del yoga para ofrecer experiencias que no son solo "relajantes", sino profundamente transformadoras. No soy una gurú, soy una facilitadora de herramientas para que tú encuentres tu propio maestro interior.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="py-24 bg-stone-50 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-4">¿Por qué estas dos tecnologías?</h2>
+        <p class="text-[#243c5a]/70 text-lg max-w-2xl mx-auto">
+          No elegí estas disciplinas al azar. Ambas trabajan sobre el sistema nervioso y glandular para generar cambios reales y sostenibles.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+        
+        <div>
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-16 h-16 bg-[#6ed8d9]/20 rounded-full flex items-center justify-center text-3xl">🔔</div>
+            <h3 class="text-2xl font-serif text-[#243c5a]">Terapia de Sonido<br><span class="text-sm font-sans text-[#5d5a8c] uppercase tracking-wider font-bold">Medicina Vibracional</span></h3>
+          </div>
+          
+          <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-100 h-full">
+            <p class="text-[#243c5a]/80 mb-6 italic">"Un masaje a nivel celular que resetea tu frecuencia."</p>
+            
+            <ul class="space-y-4">
+              <li class="flex gap-3">
+                <span class="text-[#6ed8d9] font-bold text-xl">•</span>
+                <div>
+                  <strong class="block text-[#243c5a]">Relajación Profunda (Ondas Theta)</strong>
+                  <span class="text-sm text-[#243c5a]/70">Lleva al cerebro de un estado de alerta (Beta) a un estado de meditación profunda y reparación en minutos.</span>
+                </div>
+              </li>
+              <li class="flex gap-3">
+                <span class="text-[#6ed8d9] font-bold text-xl">•</span>
+                <div>
+                  <strong class="block text-[#243c5a]">Gestión del Estrés y Ansiedad</strong>
+                  <span class="text-sm text-[#243c5a]/70">Reduce drásticamente los niveles de cortisol y calma el sistema nervioso simpático (lucha/huida).</span>
+                </div>
+              </li>
+              <li class="flex gap-3">
+                <span class="text-[#6ed8d9] font-bold text-xl">•</span>
+                <div>
+                  <strong class="block text-[#243c5a]">Salud Física</strong>
+                  <span class="text-sm text-[#243c5a]/70">Fortalece el sistema inmunológico, reduce la presión arterial y alivia dolores físicos crónicos por inflamación.</span>
+                </div>
+              </li>
+               <li class="flex gap-3">
+                <span class="text-[#6ed8d9] font-bold text-xl">•</span>
+                <div>
+                  <strong class="block text-[#243c5a]">Desbloqueo Energético</strong>
+                  <span class="text-sm text-[#243c5a]/70">La vibración pura de los cuencos y el gong armoniza los chakras y libera emociones estancadas.</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-16 h-16 bg-[#5d5a8c]/10 rounded-full flex items-center justify-center text-3xl">🧘‍♀️</div>
+            <h3 class="text-2xl font-serif text-[#243c5a]">Kundalini Yoga<br><span class="text-sm font-sans text-[#5d5a8c] uppercase tracking-wider font-bold">El Yoga de la Conciencia</span></h3>
+          </div>
+          
+          <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-100 h-full">
+            <p class="text-[#243c5a]/80 mb-6 italic">"Tecnología precisa para fortalecer nervios y despertar tu potencial."</p>
+            
+            <ul class="space-y-4">
+              <li class="flex gap-3">
+                <span class="text-[#5d5a8c] font-bold text-xl">•</span>
+                <div>
+                  <strong class="block text-[#243c5a]">Vitalidad y Sistema Glandular</strong>
+                  <span class="text-sm text-[#243c5a]/70">Equilibra la secreción hormonal (tiroides, hipófisis) y rejuvenece los tejidos y órganos internos.</span>
+                </div>
+              </li>
+              <li class="flex gap-3">
+                <span class="text-[#5d5a8c] font-bold text-xl">•</span>
+                <div>
+                  <strong class="block text-[#243c5a]">Fortaleza Nerviosa</strong>
+                  <span class="text-sm text-[#243c5a]/70">Te da la capacidad de actuar con calma y neutralidad bajo presión. Construye una "mente invencible".</span>
+                </div>
+              </li>
+              <li class="flex gap-3">
+                <span class="text-[#5d5a8c] font-bold text-xl">•</span>
+                <div>
+                  <strong class="block text-[#243c5a]">Claridad Mental y Enfoque</strong>
+                  <span class="text-sm text-[#243c5a]/70">A través de la meditación y el mantra, limpia el subconsciente de patrones negativos y miedos.</span>
+                </div>
+              </li>
+              <li class="flex gap-3">
+                <span class="text-[#5d5a8c] font-bold text-xl">•</span>
+                <div>
+                  <strong class="block text-[#243c5a]">Expansión de Conciencia</strong>
+                  <span class="text-sm text-[#243c5a]/70">Despierta tu energía creativa latente (Kundalini), conectándote con tu propósito y tu intuición.</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <section class="py-24 bg-stone-50 px-6">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-4">Formación y Respaldo Profesional</h2>
+        <p class="text-[#243c5a]/70 text-lg">Un camino de estudio riguroso para sostener tu proceso con seguridad.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <div class="bg-white p-8 rounded-xl shadow-sm border-t-4 border-[#6ed8d9] hover:shadow-lg transition-shadow">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-12 h-12 bg-[#6ed8d9]/20 rounded-full flex items-center justify-center text-2xl">🔔</div>
+            <div>
+              <h3 class="text-xl font-bold text-[#243c5a]">Terapia de Sonido</h3>
+              <p class="text-xs text-[#5d5a8c] uppercase tracking-wider font-bold">Instituto Internacional (España)</p>
+            </div>
+          </div>
+          
+          <p class="text-[#243c5a]/80 mb-4 text-sm leading-relaxed">
+            Certificación de <strong>110 horas</strong> especializada en el uso terapéutico del sonido y la musicoterapia. Formación integral que abarca desde la física de las frecuencias hasta la psicología clínica aplicada.
+          </p>
+
+          <ul class="space-y-2 text-sm text-[#243c5a]/70 mb-6">
+            <li class="flex gap-2">✓ Avalado por la <strong>Fundación Musicoterapia y Salud</strong>.</li>
+            <li class="flex gap-2">✓ Dirección de <strong>Vikrampal Sandes</strong> y María Jesús del Olmo.</li>
+            <li class="flex gap-2">✓ Especialización en Gong, Cuencos y Voz.</li>
+            <li class="flex gap-2">✓ TFF: Impacto del Gong en sintomatología psicológica.</li>
+          </ul>
+        </div>
+
+        <div class="bg-white p-8 rounded-xl shadow-sm border-t-4 border-[#5d5a8c] hover:shadow-lg transition-shadow">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-12 h-12 bg-[#5d5a8c]/10 rounded-full flex items-center justify-center text-2xl">🧘‍♀️</div>
+            <div>
+              <h3 class="text-xl font-bold text-[#243c5a]">Kundalini Yoga</h3>
+              <p class="text-xs text-[#5d5a8c] uppercase tracking-wider font-bold">The Kundalini Research Institute (KRI)</p>
+            </div>
+          </div>
+          
+          <p class="text-[#243c5a]/80 mb-4 text-sm leading-relaxed">
+            Instructora Certificada Internacionalmente (Nivel 1). Un entrenamiento inmersivo de un año diseñado para dominar la tecnología del yoga y la auto-maestría.
+          </p>
+
+          <ul class="space-y-2 text-sm text-[#243c5a]/70 mb-6">
+            <li class="flex gap-2">✓ Formada por la maestra <strong>Nam Nidhan Khalsa</strong>.</li>
+            <li class="flex gap-2">✓ Anatomía Yóguica y Sistema de Chakras.</li>
+            <li class="flex gap-2">✓ Ciencia del Naad (Mantra) y Respiración.</li>
+            <li class="flex gap-2">✓ Metodología de enseñanza segura y ética.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-[#243c5a] text-white px-6 relative overflow-hidden">
+    <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+      <h2 class="text-3xl md:text-5xl font-serif mb-10">Mi Promesa Contigo</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center mb-12">
+        <div>
+          <div class="text-4xl mb-4 text-[#6ed8d9]">✨</div>
+          <h3 class="font-bold text-xl mb-2">Presencia</h3>
+          <p class="text-stone-300 text-sm">Sostengo un espacio seguro y libre de juicios.</p>
+        </div>
+        <div>
+          <div class="text-4xl mb-4 text-[#6ed8d9]">🛡️</div>
+          <h3 class="font-bold text-xl mb-2">Seguridad</h3>
+          <p class="text-stone-300 text-sm">Respeto tus procesos y ritmos personales.</p>
+        </div>
+        <div>
+          <div class="text-4xl mb-4 text-[#6ed8d9]">💎</div>
+          <h3 class="font-bold text-xl mb-2">Calidad</h3>
+          <p class="text-stone-300 text-sm">Uso instrumentos de alta gama y técnicas avaladas.</p>
+        </div>
+      </div>
+
+      <a 
+        href={whatsappLink}
+        target="_blank"
+        class="inline-block bg-white text-[#243c5a] px-10 py-4 rounded-full font-bold hover:bg-[#6ed8d9] transition-all duration-300 shadow-lg"
+      >
+        Hablemos
+      </a>
+    </div>
+  </section>
+
+</Layout>

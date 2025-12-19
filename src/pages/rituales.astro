@@ -3,20 +3,51 @@ import Layout from '../layouts/Layout.astro';
 import ServiceCard from '../components/cards/ServiceCard.astro';
 import ritualesData from '../data/rituales.json'; // Importamos los datos
 
+// --- DATOS DEL SERVICIO ---
+const serviceInfo = {
+  title: "Rituales Sagrados con Terapia de Sonido",
+  subtitle: "Ceremonias diseñadas para honrar los ciclos de la vida, elevar la vibración y conectar desde el alma.",
+  price: "$XXX.XXX COP", // PON TU PRECIO REAL AQUÍ
+  duration: "1 Hora y 30 Minutos",
+  whatsappMessage: "Hola Marce Anahata, me interesa la Terapia de Sonido. Quisiera agendar una sesión para experimentar la sanación vibracional."
+};
+
+const whatsappLink = `https://wa.me/573207329921?text=${encodeURIComponent(serviceInfo.whatsappMessage)}`; // CAMBIA EL NÚMERO
+
 ---
 
 <Layout 
   title="Rituales Sagrados" 
   description="Celebra momentos especiales con nuestros rituales de pareja, cumpleaños y baby blessing en Medellín. Conexión espiritual y terapia de sonido."
 >
-  <section class="relative py-20 px-4 bg-stone-100 text-center">
-    <div class="max-w-3xl mx-auto">
-      <h1 class="text-5xl md:text-6xl text-stone-800 mb-6">Rituales Sagrados</h1>
-      <p class="text-xl text-stone-600 font-light">
-        Ceremonias diseñadas para honrar los ciclos de la vida, elevar la vibración y conectar desde el alma.
+  <section class="relative h-[50vh] flex items-center justify-center overflow-hidden">
+    
+    <video 
+      class="absolute inset-0 w-full h-full object-cover z-0 opacity-60"
+      autoplay 
+      loop 
+      muted 
+      playsinline
+    >
+      <source src="/videos/rituales.mp4" type="video/mp4" />
+    </video>
+    
+    <div class="absolute inset-0 bg-white opacity-30 z-10"></div>
+
+    <div class="relative z-20 text-center text-[#243c5a] px-6 max-w-4xl mx-auto mt-20">
+      <span class="uppercase tracking-[0.2em] text-sm md:text-base mb-4 block text-[#5d5a8c] font-bold">Tu espacio de sanación</span>
+      
+      <h1 class="text-4xl md:text-6xl font-serif mb-6 leading-tight">
+        {serviceInfo.title}
+      </h1>
+      
+      <p class="text-lg md:text-xl font-light max-w-2xl mx-auto mb-8 opacity-90 text-[#243c5a]">
+        {serviceInfo.subtitle}
       </p>
+
     </div>
   </section>
+
 
   <section class="max-w-7xl mx-auto px-6 py-20 text-marce-base-1">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-12 text-marce-base-1">

@@ -30,5 +30,13 @@
     "imagen": "/images/ritual/ritual-cierre.webp",
     "duracion": "2 horas",
     "slug": "/ritual-cierre-apertura"
+  },
+  {
+    "id": "despedida",
+    "titulo": "Ritual de Despedida de Soltera",
+    "descripcion": "Un Círculo de Diosas para honrar a la novia, fortalecer lazos de amistad y sembrar intenciones de amor para su nueva etapa.",
+    "imagen": "/images/ritual/ritual-despedida-soltera.webp",
+    "duracion": "3 horas",
+    "slug": "/ritual-despedida-soltera"
   }
 ]

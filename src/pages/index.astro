@@ -6,10 +6,10 @@ import ReviewsSection from '../components/cards/ReviewsSection.astro';
 // Datos de servicios
 const serviciosHome = [
   {
-    titulo: "Clases y Talleres",
-    descripcion: "Kundalini Yoga y técnicas de meditación para calmar la mente y fortalecer el cuerpo.",
-    link: "/clases", 
-    imagen: "/images/home-yoga.webp"
+    titulo: "Terapia de Sonido",
+    descripcion: "Sesiones de sanación vibracional con Gongs y Cuencos para reducir el estrés y armonizar tu energía.",
+    link: "/terapia-sonido", // Slug creado anteriormente
+    imagen: "/images/sound-therapy-bg.jpg"
   },
   {
     titulo: "Rituales Sagrados",
@@ -20,8 +20,14 @@ const serviciosHome = [
   {
     titulo: "Bienestar Empresarial",
     descripcion: "Lleva el equilibrio a tu equipo de trabajo con pausas conscientes y talleres de manejo de estrés.",
-    link: "/empresas", 
+    link: "/bienestar-corporativo", 
     imagen: "/images/home-empresas.webp"
+  },
+  {
+    titulo: "Clases y Talleres",
+    descripcion: "Kundalini Yoga y técnicas de meditación para calmar la mente y fortalecer el cuerpo.",
+    link: "/clases", 
+    imagen: "/images/home-yoga.webp"
   }
 ];
 ---
@@ -98,15 +104,15 @@ const serviciosHome = [
         <p class="text-marce-base-3/70 max-w-xl mx-auto">Caminos diseñados para tu bienestar físico, mental y espiritual.</p>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-8">
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
         {serviciosHome.map((servicio) => (
-          <a href={servicio.link} class="group block bg-white p-6 shadow-sm hover:shadow-xl transition-all duration-300 rounded-2xl border border-transparent hover:border-marce-base-2/30">
-            <div class="h-48 bg-stone-200 mb-6 overflow-hidden rounded-xl">
+          <a href={servicio.link} class="group block bg-white p-6 shadow-sm hover:shadow-xl transition-all duration-300 rounded-2xl border border-transparent hover:border-marce-base-2/30 flex flex-col">
+            <div class="h-48 bg-stone-200 mb-6 overflow-hidden rounded-xl shrink-0">
               <img src={servicio.imagen} alt={servicio.titulo} class="w-full h-full object-cover group-hover:scale-110 transition duration-700" />
             </div>
-            <h3 class="text-2xl text-marce-base-3 mb-3 font-serif group-hover:text-marce-base-1 transition-colors">{servicio.titulo}</h3>
-            <p class="text-marce-base-3/70 leading-relaxed mb-4 font-light">{servicio.descripcion}</p>
-            <span class="text-sm font-semibold text-marce-base-1 group-hover:text-marce-base-2 transition-colors">Saber más &rarr;</span>
+            <h3 class="text-xl text-marce-base-3 mb-3 font-serif group-hover:text-marce-base-1 transition-colors">{servicio.titulo}</h3>
+            <p class="text-marce-base-3/70 leading-relaxed mb-4 font-light text-sm flex-grow">{servicio.descripcion}</p>
+            <span class="text-sm font-semibold text-marce-base-1 group-hover:text-marce-base-2 transition-colors mt-auto block">Saber más &rarr;</span>
           </a>
         ))}
       </div>

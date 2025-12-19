@@ -1,0 +1,309 @@
+---
+// src/pages/terapia-sonido.astro
+import Layout from '../layouts/Layout.astro';
+import ReviewsSection from '../components/cards/ReviewsSection.astro';
+
+// --- DATOS DEL SERVICIO ---
+const serviceInfo = {
+  title: "Terapia de Sonido: Medicina Vibracional",
+  subtitle: "Un viaje profundo hacia tu interior para restablecer la armonía celular y calmar el sistema nervioso a través de la resonancia.",
+  price: "$230.000 COP", // PON TU PRECIO REAL AQUÍ
+  duration: "2 Horas",
+  whatsappMessage: "Hola Marce Anahata, me interesa la Terapia de Sonido. Quisiera agendar una sesión para experimentar la sanación vibracional."
+};
+
+const whatsappLink = `https://wa.me/573207329921?text=${encodeURIComponent(serviceInfo.whatsappMessage)}`; // CAMBIA EL NÚMERO
+---
+
+<Layout title="Terapia de Sonido | Marce Anahata">
+  
+<section class="relative h-[70vh] flex items-center justify-center overflow-hidden">
+    
+    <video 
+      class="absolute inset-0 w-full h-full object-cover z-0 opacity-60"
+      autoplay 
+      loop 
+      muted 
+      playsinline
+    >
+      <source src="/videos/Video_de_Gong_Campanas_y_Cuencos.mp4" type="video/mp4" />
+    </video>
+    
+    <div class="absolute inset-0 bg-white opacity-30 z-10"></div>
+
+    <div class="relative z-20 text-center text-[#243c5a] px-6 max-w-4xl mx-auto mt-20">
+      <span class="uppercase tracking-[0.2em] text-sm md:text-base mb-4 block text-[#5d5a8c] font-bold">Sanación Cuántica</span>
+      
+      <h1 class="text-4xl md:text-6xl font-serif mb-6 leading-tight">
+        {serviceInfo.title}
+      </h1>
+      
+      <p class="text-lg md:text-xl font-light max-w-2xl mx-auto mb-8 opacity-90 text-[#243c5a]">
+        {serviceInfo.subtitle}
+      </p>
+      
+      <a 
+        href={whatsappLink}
+        target="_blank"
+        class="inline-block bg-[#6ed8d9] text-[#243c5a] px-8 py-4 rounded-full font-medium hover:bg-[#243c5a] hover:text-white transition-all duration-300 transform hover:-translate-y-1 shadow-lg"
+      >
+        Agendar mi Sesión
+      </a>
+    </div>
+  </section>
+
+  <section class="py-20 bg-stone-50 px-6">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div class="relative">
+        <div class="absolute -top-4 -left-4 w-full h-full border-2 border-[#5d5a8c]/20 rounded-2xl z-0"></div>
+        <img 
+          src="/images/terapia/terapa-sonido-landing2.webp" 
+          alt="Cuencos de cristal y vibración" 
+          class="rounded-2xl shadow-xl relative z-10 w-full h-[500px] object-cover"
+        />
+      </div>
+      <div>
+        <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-6">El sonido no solo se escucha, se siente en cada célula</h2>
+        <p class="text-[#243c5a]/80 mb-6 leading-relaxed">
+          Vivimos rodeados de "ruido" (externo y mental) que desajusta nuestra frecuencia natural, generando estrés, ansiedad y bloqueo emocional. La terapia de sonido no es una simple relajación; es una afinación biológica.
+        </p>
+        <p class="text-[#243c5a]/80 mb-8 leading-relaxed">
+          A través del principio de resonancia, las frecuencias puras de mis instrumentos penetran donde la mente analítica no llega, moviendo energía estancada y permitiendo que tu cuerpo recuerde su estado natural de salud y paz.
+        </p>
+        <ul class="space-y-4">
+          <li class="flex items-center gap-3 text-[#5d5a8c]">
+            <span class="text-xl">🧠</span> Ondas cerebrales Theta (Relajación profunda)
+          </li>
+          <li class="flex items-center gap-3 text-[#5d5a8c]">
+            <span class="text-xl">💎</span> Limpieza energética y emocional
+          </li>
+          <li class="flex items-center gap-3 text-[#5d5a8c]">
+            <span class="text-xl">✨</span> Reducción inmediata del estrés (Cortisol)
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-[#243c5a] text-white px-6">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-serif text-white/70">¿Cómo actúa la Terapia de Sonido?</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div class="text-center">
+          <div class="w-20 h-20 bg-[#6ed8d9]/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <span class="text-3xl">🧬</span>
+          </div>
+          <h3 class="text-lg font-bold text-[#6ed8d9] mb-3">A Nivel Físico</h3>
+          <p class="text-white/30 text-sm">
+            El sonido viaja por el agua de tu cuerpo, realizando un masaje celular que libera tensiones musculares y equilibra el sistema nervioso parasimpático.
+          </p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-20 h-20 bg-[#6ed8d9]/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <span class="text-3xl">🧠</span>
+          </div>
+          <h3 class="text-lg font-bold text-[#6ed8d9] mb-3">A Nivel Mental</h3>
+          <p class="text-white/30 text-sm">
+            Las frecuencias binaurales inducen estados de ondas cerebrales Theta y Delta, permitiendo una relajación profunda y claridad mental inmediata.
+          </p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-20 h-20 bg-[#6ed8d9]/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <span class="text-3xl">✨</span>
+          </div>
+          <h3 class="text-lg font-bold text-[#6ed8d9] mb-3">A Nivel Emocional</h3>
+          <p class="text-white/30 text-sm">
+            Facilita la liberación de bloqueos energéticos y emociones estancadas, tal como estudié en mi tesis sobre sintomatología psicológica.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white px-6">
+    <div class="max-w-4xl mx-auto text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-4">Tu Orquesta de Sanación</h2>
+      <p class="text-[#243c5a]/60">Una inmersión sonora con instrumentos de alta frecuencia seleccionados para ti.</p>
+    </div>
+
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-stone-50 p-8 rounded-xl text-center hover:shadow-md transition-shadow group border border-stone-100">
+        <div class="w-16 h-16 bg-[#5d5a8c]/10 group-hover:bg-[#6ed8d9]/20 transition-colors rounded-full flex items-center justify-center mx-auto mb-6 text-2xl">🌕</div>
+        <h3 class="text-xl font-serif text-[#243c5a] mb-3">2 Gongs Sinfónicos</h3>
+        <p class="text-sm text-[#243c5a]/70">El sonido del Gong es un "reset" para el sistema nervioso. Su vibración envolvente impacta el cuerpo físico disolviendo tensiones profundas.</p>
+      </div>
+      <div class="bg-stone-50 p-8 rounded-xl text-center hover:shadow-md transition-shadow group border border-stone-100">
+        <div class="w-16 h-16 bg-[#5d5a8c]/10 group-hover:bg-[#6ed8d9]/20 transition-colors rounded-full flex items-center justify-center mx-auto mb-6 text-2xl">🥣</div>
+        <h3 class="text-xl font-serif text-[#243c5a] mb-3">+10 Cuencos de Cristal</h3>
+        <p class="text-sm text-[#243c5a]/70">Hechos de cuarzo puro, cada uno afinado a un chakra específico. Su sonido cristalino aporta claridad, visión y elevación espiritual.</p>
+      </div>
+      <div class="bg-stone-50 p-8 rounded-xl text-center hover:shadow-md transition-shadow group border border-stone-100">
+        <div class="w-16 h-16 bg-[#5d5a8c]/10 group-hover:bg-[#6ed8d9]/20 transition-colors rounded-full flex items-center justify-center mx-auto mb-6 text-2xl">🔔</div>
+        <h3 class="text-xl font-serif text-[#243c5a] mb-3">Campanas y Sutiles</h3>
+        <p class="text-sm text-[#243c5a]/70">Koshi, Tingshas y otros elementos de viento que trabajan en el campo áurico para sellar la experiencia y armonizar la energía.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-stone-50 px-6 relative overflow-hidden">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+      
+      <div>
+        <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-6">¿Por qué elegir un Terapeuta de sonido Certificado?</h2>
+        <p class="text-[#243c5a]/80 mb-6 leading-relaxed">
+          El sonido es una herramienta poderosa que, mal utilizada, puede desequilibrar. Como terapeuta certificada internacionalmente, mi práctica no es improvisada; se basa en el estudio profundo de la física del sonido y la anatomía humana.
+        </p>
+        
+        <div class="bg-white p-6 rounded-xl border-l-4 border-[#5d5a8c] shadow-sm mb-8">
+          <h3 class="font-serif text-xl text-[#243c5a] mb-2">Mi Formación Académica</h3>
+          <p class="text-sm text-[#5d5a8c] mb-4 font-semibold uppercase tracking-wider">Instituto Internacional de Terapia de Sonido (España)</p>
+          <ul class="space-y-2 text-[#243c5a]/70 text-sm">
+            <li class="flex gap-2"><span class="text-[#6ed8d9]">✓</span> 110 Horas de formación especializada.</li>
+            <li class="flex gap-2"><span class="text-[#6ed8d9]">✓</span> Avalado por la Fundación Musicoterapia y Salud.</li>
+            <li class="flex gap-2"><span class="text-[#6ed8d9]">✓</span> Estudios en Sonido, Frecuencias y Cuerpo Humano</li>
+            <li class="flex gap-2"><span class="text-[#6ed8d9]">✓</span> Especialización en Gong y Kundalini Yoga.</li>
+          </ul>
+        </div>
+        
+        <p class="text-xs text-[#243c5a]/50 italic">
+          Certificación firmada por Vikrampal Sandes (<a href="https://vikrampal.es/sobre-mi/" target="_blank">ver biografia</a>).
+        </p>
+      </div>
+
+      <div class="relative">
+        <div class="absolute -inset-4 bg-[#6ed8d9]/20 rounded-2xl rotate-3 z-0"></div>
+        <img 
+          src="/images/terapia/terapia-vikrampal-gong.webp" 
+          alt="Certificado Internacional de Marcela Zuleta" 
+          class="relative z-10 w-full rounded-xl shadow-xl object-cover"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-stone-50 px-6 relative overflow-hidden">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+
+      <div class="relative">
+        <div class="absolute -inset-4 bg-[#6ed8d9]/20 rounded-2xl rotate-3 z-0"></div>
+        <img 
+          src="/images/terapia/terapia-nam-yoga.webp" 
+          alt="Marcela Zuleta - Instructora Certificada KRI" 
+          class="relative z-10 w-full rounded-xl shadow-xl object-cover"
+        />
+      </div>
+      
+      <div>
+        <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-6">¿Por qué practicar con una Instructora Certificada internacionalmente?</h2>
+        <p class="text-[#243c5a]/80 mb-6 leading-relaxed">
+          El Kundalini Yoga es una tecnología potente diseñada para transformar la química del cuerpo y la mente. Como instructora certificada internacionalmente, mi enseñanza no es improvisada; respeto la pureza del linaje para garantizar una práctica segura, precisa y profunda que realmente eleve tu conciencia.
+        </p>
+        
+        <div class="bg-white p-6 rounded-xl border-l-4 border-[#5d5a8c] shadow-sm mb-8">
+          <h3 class="font-serif text-xl text-[#243c5a] mb-2">Mi Formación Profesional</h3>
+          <p class="text-sm text-[#5d5a8c] mb-4 font-semibold uppercase tracking-wider">The Kundalini Research Institute (KRI)</p>
+          <ul class="space-y-2 text-[#243c5a]/70 text-sm">
+            <li class="flex gap-2">
+                <span class="text-[#6ed8d9]">✓</span> 
+                Certificación Internacional Nivel 1 (Instructor).
+            </li>
+            <li class="flex gap-2">
+                <span class="text-[#6ed8d9]">✓</span> 
+                Formación inmersiva de 1 año con retiros presenciales.
+            </li>
+            <li class="flex gap-2">
+                <span class="text-[#6ed8d9]">✓</span> 
+                Profundización en Anatomía Yóguica, Chakras y Pranayamas.
+            </li>
+            <li class="flex gap-2">
+                <span class="text-[#6ed8d9]">✓</span> 
+                Maestría en el poder del Mantra y la guía del estudiante.
+            </li>
+          </ul>
+        </div>
+        
+        <p class="text-xs text-[#243c5a]/50 italic">
+          Formada bajo la guía directa de la maestra Nam Nidhan Khalsa, pionera en Latinoamérica.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-serif text-[#243c5a]">Respaldo y Certificación</h2>
+      <p class="text-[#243c5a]/70 mt-2">Mi camino como docente está sostenido por estándares internacionales.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      
+      <div class="p-6 bg-stone-50 rounded-xl border border-stone-100 hover:shadow-lg transition-all">
+        <div class="text-4xl mb-4 text-[#5d5a8c]">🌐</div> <h3 class="text-lg font-bold text-[#243c5a] mb-2">Aval Internacional KRI</h3>
+        <p class="text-sm text-[#243c5a]/80">Certificada por The Kundalini Research Institute y la Fundación Musicoterapia y Salud, garantizando la enseñanza fiel del legado original.</p>
+      </div>
+
+      <div class="p-6 bg-stone-50 rounded-xl border border-stone-100 hover:shadow-lg transition-all">
+        <div class="text-4xl mb-4 text-[#5d5a8c]">🧘‍♀️</div> <h3 class="text-lg font-bold text-[#243c5a] mb-2">Linaje y Mentoría</h3>
+        <p class="text-sm text-[#243c5a]/80">Formada por Nam Nidhan Khalsa, referente mundial y pionera de estas enseñanzas en Latinoamérica. Y por Vikrampal Sandes, también referente mundial.</p>
+      </div>
+
+      <div class="p-6 bg-stone-50 rounded-xl border border-stone-100 hover:shadow-lg transition-all">
+        <div class="text-4xl mb-4 text-[#5d5a8c]">📚</div> <h3 class="text-lg font-bold text-[#243c5a] mb-2">Profundidad Técnica</h3>
+        <p class="text-sm text-[#243c5a]/80">Estudio riguroso de anatomía sutil, mantras, asanas y filosofía para una práctica segura y potente.</p>
+      </div>
+
+      <div class="p-6 bg-stone-50 rounded-xl border border-stone-100 hover:shadow-lg transition-all">
+        <div class="text-4xl mb-4 text-[#5d5a8c]">✨</div> <h3 class="text-lg font-bold text-[#243c5a] mb-2">Maestría Personal</h3>
+        <p class="text-sm text-[#243c5a]/80">Entrenamiento inmersivo en retiros enfocado en el autoconocimiento y el despertar de la conciencia.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+  <section class="py-20 bg-[#243c5a] text-white px-6 relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-64 h-64 bg-[#6ed8d9] rounded-full filter blur-[100px] opacity-10"></div>
+    <div class="absolute bottom-0 left-0 w-64 h-64 bg-[#5d5a8c] rounded-full filter blur-[100px] opacity-20"></div>
+
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+      <h2 class="text-3xl md:text-5xl font-serif mb-8">Regálate un momento de paz absoluta</h2>
+      
+      <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 md:p-12 inline-block max-w-2xl w-full">
+        <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-6 border-b border-white/10 pb-8">
+            <div class="text-center md:text-left">
+                <p class="text-[#6ed8d9] uppercase text-xs tracking-widest mb-1">Duración Sesión</p>
+                <p class="text-xl">{serviceInfo.duration}</p>
+            </div>
+            <div class="text-center md:text-right">
+                <p class="text-[#6ed8d9] uppercase text-xs tracking-widest mb-1">Inversión Personal</p>
+                <p class="text-3xl font-serif">{serviceInfo.price}</p>
+            </div>
+        </div>
+
+        <p class="mb-8 text-white/80 font-light italic">
+          "Cuando cambias tu vibración, cambias tu realidad."
+        </p>
+
+        <a 
+          href={whatsappLink}
+          target="_blank"
+          class="w-full block bg-white text-[#243c5a] py-4 rounded-xl font-bold hover:bg-[#6ed8d9] transition-colors shadow-lg"
+        >
+          Agendar por WhatsApp
+        </a>
+        <p class="mt-4 text-xs text-white/40">*Disponible presencial. Consulta por sesiones grupales o privadas. Se requiere reserva previa con el 50% para separar fecha.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="bg-white">
+    <ReviewsSection />
+  </div>
+
+</Layout>
