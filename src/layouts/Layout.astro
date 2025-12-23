@@ -9,8 +9,8 @@ interface Props {
 
 const { 
     title, 
-    description = "Centro de bienestar Marce Anahata en Envigado. Kundalini Yoga, Terapia de Sonido, Rituales Sagrados y Bienestar Corporativo.",
-    image = "/images/og-image.jpg" // Asegúrate de tener una imagen general en esta ruta
+    description = "Centro de bienestar Marce Anahata en El Poblado en Medellín. Kundalini Yoga, Terapia de Sonido, Rituales Sagrados y Bienestar Corporativo.",
+    image = "https://marceanahata.com/web/images/2022/10/14/post-instagram-marce-anahata-2.png" // Asegúrate de tener una imagen general en esta ruta
 } = Astro.props;
 
 // Schema.org para SEO Local (Negocio Local)
@@ -22,19 +22,19 @@ const schema = JSON.stringify({
   "description": description,
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Envigado", // Pon tu dirección exacta si la tienes pública
-    "addressLocality": "Medellín ",
+    "streetAddress": "Cl. 11A Sur #46-12, La Aguacatala", 
+    "addressLocality": "Medellín",
     "addressRegion": "Antioquia",
     "addressCountry": "CO"
   },
   "geo": {
     "@type": "GeoCoordinates",
-    "latitude": 6.1759, // Coordenadas aprox de Envigado (ajústalas a tu punto exacto)
-    "longitude": -75.5917
+    "latitude": 6.1955152, 
+    "longitude": -75.5779584
   },
   "url": "https://marceanahata.com",
-  "telephone": "+573000000000", // Tu número real
-  "priceRange": "$$"
+  "telephone": "+573207329921", // Tu número real
+  "priceRange": "70.000 - 500.000 COP"
 });
 ---
 
@@ -80,7 +80,8 @@ const schema = JSON.stringify({
                     
                     <a href="/clases" class="text-sm font-medium text-stone-600 hover:text-[#243c5a] transition-colors">Clases</a>
                     <a href="/terapia-sonido" class="text-sm font-medium text-stone-600 hover:text-[#243c5a] transition-colors">Terapia Sonido</a>
-                    <a href="/#rituales" class="text-sm font-medium text-stone-600 hover:text-[#243c5a] transition-colors">Rituales</a>
+                    <a href="/rituales" class="text-sm font-medium text-stone-600 hover:text-[#243c5a] transition-colors">Rituales</a>
+                    <a href="/bienestar-corporativo" class="text-sm font-medium text-stone-600 hover:text-[#243c5a] transition-colors">Bienestar Corporativo</a>
                     <a href="/sobre-mi" class="text-sm font-medium text-stone-600 hover:text-[#243c5a] transition-colors">Sobre Mí</a>
                     
                     <a href="/contacto" class="text-sm text-[#243c5a] font-bold border border-[#243c5a] px-5 py-2 rounded-full hover:bg-[#243c5a] hover:text-white transition-all shadow-sm hover:shadow-md">
@@ -97,7 +98,7 @@ const schema = JSON.stringify({
                         <a href="/clases" class="text-stone-700 hover:text-[#6ed8d9]">Clases de Yoga</a>
                         <a href="/terapia-sonido" class="text-stone-700 hover:text-[#6ed8d9]">Terapia de Sonido</a>
                         <a href="/rituales" class="text-stone-700 hover:text-[#6ed8d9]">Rituales</a>
-                        <a href="/bienestar-corporativo" class="text-stone-700 hover:text-[#6ed8d9]">Empresas</a>
+                        <a href="/bienestar-corporativo" class="text-stone-700 hover:text-[#6ed8d9]">Bienestar Corporativo</a>
                         <a href="/sobre-mi" class="text-stone-700 hover:text-[#6ed8d9]">Sobre Mi</a>
                         <hr class="border-stone-100">
                         <a href="/contacto" class="text-[#243c5a] font-bold text-center block">Contáctenos</a>
@@ -122,10 +123,10 @@ const schema = JSON.stringify({
                             Espacios sagrados para la transformación personal a través del Kundalini Yoga, el sonido y la conciencia.
                         </p>
                         <div class="flex gap-4">
-                            <a href="https://instagram.com/marceanahata" target="_blank" aria-label="Instagram" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#6ed8d9] hover:text-[#243c5a] transition-all">
+                            <a href="https://instagram.com/marce_anahata" target="_blank" aria-label="Instagram" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#6ed8d9] hover:text-[#243c5a] transition-all">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
                             </a>
-                            <a href="https://wa.me/573000000000" target="_blank" aria-label="WhatsApp" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#6ed8d9] hover:text-[#243c5a] transition-all">
+                            <a href="https://wa.me/573207329921" target="_blank" aria-label="WhatsApp" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#6ed8d9] hover:text-[#243c5a] transition-all">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
                             </a>
                         </div>
@@ -137,7 +138,6 @@ const schema = JSON.stringify({
                             <li><a href="/" class="hover:text-[#6ed8d9] transition-colors">Inicio</a></li>
                             <li><a href="/sobre-mi" class="hover:text-[#6ed8d9] transition-colors">Sobre Mí</a></li>
                             <li><a href="/contacto" class="hover:text-[#6ed8d9] transition-colors">Contacto y Ubicación</a></li>
-                            <li><a href="/privacidad" class="hover:text-[#6ed8d9] transition-colors">Política de Privacidad</a></li>
                         </ul>
                     </div>
 
@@ -147,7 +147,7 @@ const schema = JSON.stringify({
                             <li><a href="/clases" class="hover:text-[#6ed8d9] transition-colors">Clases de Yoga</a></li>
                             <li><a href="/terapia-sonido" class="hover:text-[#6ed8d9] transition-colors">Terapia de Sonido</a></li>
                             <li><a href="/bienestar-corporativo" class="hover:text-[#6ed8d9] transition-colors">Bienestar Corporativo</a></li>
-                            <li><a href="/#rituales" class="hover:text-[#6ed8d9] transition-colors">Rituales Sagrados</a></li>
+                            <li><a href="/rituales" class="hover:text-[#6ed8d9] transition-colors">Rituales Sagrados</a></li>
                         </ul>
                     </div>
 
@@ -156,15 +156,15 @@ const schema = JSON.stringify({
                         <ul class="space-y-4 text-sm">
                             <li class="flex items-start gap-3">
                                 <span class="text-[#6ed8d9] mt-1">📍</span>
-                                <span>Envigado, Antioquia<br><span class="opacity-60 text-xs">Atención con cita previa</span></span>
+                                <span>Cl. 11A Sur #46-12 Barrio La Aguacatala, El Poblado, Antioquia<br><span class="opacity-60 text-xs">Atención con cita previa</span></span>
                             </li>
                             <li class="flex items-center gap-3">
                                 <span class="text-[#6ed8d9]">📱</span>
-                                <a href="https://wa.me/573000000000" class="hover:text-white transition-colors">+57 300 000 0000</a>
+                                <a href="https://wa.me/573207329921" class="hover:text-white transition-colors">+57 320 732 9921</a>
                             </li>
                             <li class="flex items-center gap-3">
                                 <span class="text-[#6ed8d9]">✉️</span>
-                                <a href="mailto:hola@marceanahata.com" class="hover:text-white transition-colors">hola@marceanahata.com</a>
+                                <a href="mailto:hola@marceanahata.com" class="hover:text-white transition-colors">info@marceanahata.com</a>
                             </li>
                         </ul>
                     </div>
