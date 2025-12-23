@@ -1,0 +1,87 @@
+---
+// src/pages/404.astro
+import Layout from '../layouts/Layout.astro';
+
+// Definimos los metadatos específicos para esta página de error
+const title = "404 - Página no encontrada | Marce Anahata";
+const description = "Lo sentimos, la página que buscas no existe o se ha movido. Vuelve al inicio.";
+---
+
+<Layout title={title} description={description}>
+  <main class="not-found-container">
+    <div class="content-wrapper">
+      <h1 class="error-code">404</h1>
+      
+      <h2 class="error-title">¡Ups! Parece que te has perdido.</h2>
+      
+      <p class="error-text">
+        La página que estás buscando no existe, se ha movido o quizás nunca estuvo aquí. No te preocupes, ¡suele pasar!
+      </p>
+
+      <a href="/" class="home-button">
+        Volver al Inicio
+      </a>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  /* Estilos "scoped" solo para esta página */
+  .not-found-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Asegura que ocupe buena parte de la pantalla verticalmente */
+    min-height: 70vh; 
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .content-wrapper {
+    max-width: 600px;
+  }
+
+  .error-code {
+    font-size: 8rem;
+    font-weight: 900;
+    margin: 0;
+    /* Un color gris muy claro para que quede de fondo sutil */
+    color: #f1f5f9;
+    line-height: 1;
+    user-select: none; /* Evita que se seleccione el texto gigante */
+  }
+
+  .error-title {
+    font-size: 2rem;
+    margin-top: -2.5rem; /* Superpone un poco el título sobre el número gigante */
+    margin-bottom: 1rem;
+    font-weight: 700;
+    position: relative; /* Para que quede por encima del número gigante */
+    color: #1a1a1a; /* Ajusta a los colores de tu marca */
+  }
+
+  .error-text {
+    font-size: 1.125rem;
+    color: #666;
+    margin-bottom: 2.5rem;
+  }
+
+  /* Estilo básico para el botón.
+     Si ya tienes clases de botones globales en tu CSS (ej. Tailwind o CSS propio),
+     borra esto y usa tus clases en la etiqueta <a> de arriba. */
+  .home-button {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background-color: #1a1a1a; /* Color principal de tu marca */
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 4px;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+  }
+
+  .home-button:hover {
+    background-color: #333; /* Un poco más claro al pasar el mouse */
+    transform: translateY(-2px); /* Pequeño efecto de elevación */
+  }
+</style>

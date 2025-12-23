@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://marce-anahata-web.vercel.app/sitemap-index.xml
