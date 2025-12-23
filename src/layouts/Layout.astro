@@ -4,73 +4,180 @@ import '../styles/global.css';
 interface Props {
     title: string;
     description?: string;
+    image?: string; // Opcional: para personalizar la imagen al compartir
 }
 
-const { title, description = "Centro de bienestar Marce Anahata. Kundalini Yoga, Terapia de Sonido y Rituales en Medellín." } = Astro.props;
+const { 
+    title, 
+    description = "Centro de bienestar Marce Anahata en Envigado. Kundalini Yoga, Terapia de Sonido, Rituales Sagrados y Bienestar Corporativo.",
+    image = "/images/og-image.jpg" // Asegúrate de tener una imagen general en esta ruta
+} = Astro.props;
+
+// Schema.org para SEO Local (Negocio Local)
+const schema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "HealthAndBeautyBusiness",
+  "name": "Marce Anahata Centro de Bienestar",
+  "image": "https://marceanahata.com/images/logo.svg",
+  "description": description,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Envigado", // Pon tu dirección exacta si la tienes pública
+    "addressLocality": "Medellín ",
+    "addressRegion": "Antioquia",
+    "addressCountry": "CO"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 6.1759, // Coordenadas aprox de Envigado (ajústalas a tu punto exacto)
+    "longitude": -75.5917
+  },
+  "url": "https://marceanahata.com",
+  "telephone": "+573000000000", // Tu número real
+  "priceRange": "$$"
+});
 ---
 
 <!doctype html>
 <html lang="es" class="scroll-smooth">
     <head>
         <meta charset="UTF-8" />
-        <meta name="description" content={description} />
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="generator" content={Astro.generator} />
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Lato:wght@300;400&display=swap" rel="stylesheet">
         
         <title>{title} | Marce Anahata</title>
+        <meta name="description" content={description} />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href={Astro.url} />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={Astro.url} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={image} />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+        
+        <script type="application/ld+json" set:html={schema} />
     </head>
-    <body class="bg-stone-50 text-stone-800 font-sans">
+    <body class="bg-stone-50 text-stone-800 font-sans flex flex-col min-h-screen">
 
-    <!-- NAV FIXED -->
-    <nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm border-b z-50">
-    <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
-        <a href="/" class="flex items-center gap-3">
-        <img src="/images/logo.svg" alt="Marce Anahata" class="h-10 w-auto" />
-        <span class="flex flex-col leading-tight">
-            <span class="font-serif text-xl text-marce-base-1">MARCE ANAHATA</span>
-            <span class="text-xs text-marce-base-2 -mt-0.5">Centro de bienestar</span>
-        </span>
-        </a>
+        <nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm border-b border-stone-100 z-50 transition-all duration-300">
+            <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+                <a href="/" class="flex items-center gap-3 group">
+                    <img src="/images/logo.svg" alt="Logo Marce Anahata" class="h-10 w-auto group-hover:scale-105 transition-transform" />
+                    <span class="flex flex-col leading-tight">
+                        <span class="font-serif text-xl text-[#243c5a] group-hover:text-[#6ed8d9] transition-colors">MARCE ANAHATA</span>
+                        <span class="text-xs text-[#5d5a8c] -mt-0.5 tracking-wider">Centro de bienestar</span>
+                    </span>
+                </a>
 
-        <!-- Desktop -->
-        <div class="hidden md:flex gap-6 items-center">
-        <a href="/" class="text-sm text-stone-700 hover:text-marce-base-1">Home</a>
-        <a href="/rituales" class="text-sm text-stone-700 hover:text-marce-base-1">Rituales</a>
-        <a href="/terapia-sonido" class="text-sm text-stone-700 hover:text-marce-base-1">Terapias</a>
-        <a href="/#servicios" class="text-sm text-stone-700 hover:text-marce-base-1">Servicios</a>
-        <a href="/sobre-mi" class="text-sm text-stone-700 hover:text-marce-base-1">Sobre Mi</a>
-        <a href="/contacto" class="text-sm text-marce-base-1 font-semibold border border-marce-base-1 px-3 py-1 rounded hover:bg-marce-base-1/10">Contáctenos</a>
-        </div>
+                <div class="hidden md:flex gap-8 items-center">
+                    <a href="/" class="text-sm font-medium text-stone-600 hover:text-[#243c5a] transition-colors">Home</a>
+                    
+                    <a href="/clases" class="text-sm font-medium text-stone-600 hover:text-[#243c5a] transition-colors">Clases</a>
+                    <a href="/terapia-sonido" class="text-sm font-medium text-stone-600 hover:text-[#243c5a] transition-colors">Terapia Sonido</a>
+                    <a href="/#rituales" class="text-sm font-medium text-stone-600 hover:text-[#243c5a] transition-colors">Rituales</a>
+                    <a href="/sobre-mi" class="text-sm font-medium text-stone-600 hover:text-[#243c5a] transition-colors">Sobre Mí</a>
+                    
+                    <a href="/contacto" class="text-sm text-[#243c5a] font-bold border border-[#243c5a] px-5 py-2 rounded-full hover:bg-[#243c5a] hover:text-white transition-all shadow-sm hover:shadow-md">
+                        Contáctenos
+                    </a>
+                </div>
 
-        <!-- Mobile -->
-        <details class="md:hidden">
-        <summary class="cursor-pointer px-2 py-1">
-            <span class="sr-only">Abrir menú</span>
-            <svg class="w-6 h-6 text-stone-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"/></svg>
-        </summary>
-        <div class="px-4 pb-3 flex flex-col gap-2">
-            <a href="/" class="py-2 text-stone-700">Home</a>
-            <a href="/rituales" class="py-2 text-stone-700">Rituales</a>
-            <a href="/terapia-sonido" class="py-2 text-stone-700">Terapias</a>
-            <a href="/#servicios" class="py-2 text-stone-700">Servicios</a>
-            <a href="/sobre-mi" class="py-2 text-stone-700">Sobre Mi</a>
-            <a href="/contacto" class="py-2 text-marce-base-1 font-semibold">Contáctenos</a>
-        </div>
-        </details>
-    </div>
-    </nav>
+                <details class="md:hidden group relative">
+                    <summary class="cursor-pointer p-2 list-none">
+                        <svg class="w-7 h-7 text-[#243c5a]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
+                    </summary>
+                    <div class="absolute right-0 top-full mt-2 w-56 bg-white rounded-xl shadow-xl border border-stone-100 p-4 flex flex-col gap-3 z-50">
+                        <a href="/" class="text-stone-700 hover:text-[#6ed8d9]">Home</a>
+                        <a href="/clases" class="text-stone-700 hover:text-[#6ed8d9]">Clases de Yoga</a>
+                        <a href="/terapia-sonido" class="text-stone-700 hover:text-[#6ed8d9]">Terapia de Sonido</a>
+                        <a href="/rituales" class="text-stone-700 hover:text-[#6ed8d9]">Rituales</a>
+                        <a href="/bienestar-corporativo" class="text-stone-700 hover:text-[#6ed8d9]">Empresas</a>
+                        <a href="/sobre-mi" class="text-stone-700 hover:text-[#6ed8d9]">Sobre Mi</a>
+                        <hr class="border-stone-100">
+                        <a href="/contacto" class="text-[#243c5a] font-bold text-center block">Contáctenos</a>
+                    </div>
+                </details>
+            </div>
+        </nav>
 
-        <main class="min-h-screen pt-20">
+        <main class="flex-grow pt-20">
             <slot />
         </main>
+        
+        <footer class="bg-[#243c5a] text-stone-300 py-16 mt-auto border-t-4 border-[#6ed8d9]">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                    
+                    <div>
+                        <div class="flex items-center gap-2 mb-6">
+                            <span class="font-serif text-2xl text-white tracking-wide">MARCE ANAHATA</span>
+                        </div>
+                        <p class="text-sm leading-relaxed opacity-80 mb-6">
+                            Espacios sagrados para la transformación personal a través del Kundalini Yoga, el sonido y la conciencia.
+                        </p>
+                        <div class="flex gap-4">
+                            <a href="https://instagram.com/marceanahata" target="_blank" aria-label="Instagram" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#6ed8d9] hover:text-[#243c5a] transition-all">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                            </a>
+                            <a href="https://wa.me/573000000000" target="_blank" aria-label="WhatsApp" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#6ed8d9] hover:text-[#243c5a] transition-all">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                            </a>
+                        </div>
+                    </div>
 
-        <footer class="py-8 text-center text-sm text-stone-500 mt-20">
-            <p>© 2025 Marce Anahata - Bienestar Integral</p>
+                    <div>
+                        <h4 class="text-white font-serif text-lg mb-6">Explora</h4>
+                        <ul class="space-y-3 text-sm">
+                            <li><a href="/" class="hover:text-[#6ed8d9] transition-colors">Inicio</a></li>
+                            <li><a href="/sobre-mi" class="hover:text-[#6ed8d9] transition-colors">Sobre Mí</a></li>
+                            <li><a href="/contacto" class="hover:text-[#6ed8d9] transition-colors">Contacto y Ubicación</a></li>
+                            <li><a href="/privacidad" class="hover:text-[#6ed8d9] transition-colors">Política de Privacidad</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="text-white font-serif text-lg mb-6">Servicios</h4>
+                        <ul class="space-y-3 text-sm">
+                            <li><a href="/clases" class="hover:text-[#6ed8d9] transition-colors">Clases de Yoga</a></li>
+                            <li><a href="/terapia-sonido" class="hover:text-[#6ed8d9] transition-colors">Terapia de Sonido</a></li>
+                            <li><a href="/bienestar-corporativo" class="hover:text-[#6ed8d9] transition-colors">Bienestar Corporativo</a></li>
+                            <li><a href="/#rituales" class="hover:text-[#6ed8d9] transition-colors">Rituales Sagrados</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="text-white font-serif text-lg mb-6">Visítanos</h4>
+                        <ul class="space-y-4 text-sm">
+                            <li class="flex items-start gap-3">
+                                <span class="text-[#6ed8d9] mt-1">📍</span>
+                                <span>Envigado, Antioquia<br><span class="opacity-60 text-xs">Atención con cita previa</span></span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="text-[#6ed8d9]">📱</span>
+                                <a href="https://wa.me/573000000000" class="hover:text-white transition-colors">+57 300 000 0000</a>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="text-[#6ed8d9]">✉️</span>
+                                <a href="mailto:hola@marceanahata.com" class="hover:text-white transition-colors">hola@marceanahata.com</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div class="border-t border-white/10 pt-8 text-center text-xs opacity-50 flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p>© {new Date().getFullYear()} Marce Anahata. Todos los derechos reservados.</p>
+                    <p>Diseñado con consciencia.</p>
+                </div>
+            </div>
         </footer>
+
     </body>
 </html>
 
@@ -79,43 +186,29 @@ const { title, description = "Centro de bienestar Marce Anahata. Kundalini Yoga,
 	h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; }
 	body { font-family: 'Lato', sans-serif; }
 
-    /* =========================================
-       BOTÓN PERSONALIZADO (.btn-claro)
-       ========================================= */
+    /* Estilos globales para botones y utilidades */
     :root {
-      --color-btn-claro-bg: #5d5a8c;      /* Base 1 */
-      --color-btn-claro-hover: #6ed8d9;   /* Base 2 */
-      --color-btn-text: #6ed8d9;          /* Texto Cyan sobre fondo Violeta */
-      --color-btn-text-hover: #5d5a8c;    /* Texto Violeta sobre fondo Cyan */
-    }
-
-    .btn-claro {
-      display: inline-block;
-      padding: 0.75rem 1.5rem;
-      background-color: var(--color-btn-claro-bg);
-      color: var(--color-btn-text);
-      font-weight: 600;
-      text-align: center;
-      text-decoration: none;
-      border-radius: 0.5rem;
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease;
-    }
-
-    .btn-claro:hover {
-      background-color: var(--color-btn-claro-hover);
-      color: var(--color-btn-text-hover); /* Cambio el color del texto al hacer hover para contraste */
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
-    }
-
-    .btn-claro:active {
-      transform: translateY(1px);
+      --color-brand-dark: #243c5a;
+      --color-brand-violet: #5d5a8c;
+      --color-brand-cyan: #6ed8d9;
     }
     
-    /* Ajuste para el carrusel de reseñas */
     .swiper-pagination-bullet-active {
-        background-color: #5d5a8c !important; /* Base 1 */
+        background-color: var(--color-brand-violet) !important;
+    }
+    
+    /* Scrollbar personalizada sutil */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+        background: #f1f1f4;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: #d6d3d1; 
+        border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: #a8a29e; 
     }
 </style>
