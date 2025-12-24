@@ -112,25 +112,37 @@ const googleReviewsLink = "https://www.google.com/search?sca_esv=c581b398f00b64e
   import Swiper from 'swiper';
   import { Pagination, Autoplay } from 'swiper/modules';
 
-  const swiper = new Swiper('.reviews-carousel', {
-    modules: [Pagination, Autoplay],
-    slidesPerView: 1,
-    spaceBetween: 24,
-    loop: true,
-    grabCursor: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false,
-    },
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-      dynamicBullets: true,
-    },
-    breakpoints: {
-      640: { slidesPerView: 2, spaceBetween: 24 },
-      1024: { slidesPerView: 3, spaceBetween: 32 }
-    }
+  // Esperamos a que el DOM esté listo (buena práctica)
+  document.addEventListener('DOMContentLoaded', () => {
+    const swiper = new Swiper('.reviews-carousel', {
+      modules: [Pagination, Autoplay],
+      
+      // --- LA CLAVE PARA ELIMINAR EL REFLOW ---
+      cssMode: true, 
+      // ----------------------------------------
+
+      slidesPerView: 1,
+      spaceBetween: 24,
+      loop: true,
+      
+      // Nota: grabCursor no funciona igual en cssMode, pero la UX sigue siendo buena
+      
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+        // En cssMode ayuda pausar al pasar el mouse
+        pauseOnMouseEnter: true, 
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+        dynamicBullets: true,
+      },
+      breakpoints: {
+        640: { slidesPerView: 2, spaceBetween: 24 },
+        1024: { slidesPerView: 3, spaceBetween: 32 }
+      }
+    });
   });
 </script>
 
