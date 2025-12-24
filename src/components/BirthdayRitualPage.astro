@@ -1,7 +1,7 @@
 ---
 // src/pages/ritual-cumpleanos.astro (o el nombre que prefieras)
 import { Image } from 'astro:assets';
-import heroImage from '/images/ritual/ritual-cumpleanos.webp';
+import heroImage from '../assets/ritual/ritual-cumpleanos.webp';
 import reviewsData from '../data/reviews.json';
 
 // Filtramos las reseñas para mostrar solo las que mencionan "cumpleaños"
@@ -21,6 +21,8 @@ const whatsappLink = "https://wa.me/57XXXXXXXXXX?text=Hola,%20estoy%20interesado
         src={heroImage} 
         alt="Ritual de Cumpleaños Vuelta al Sol" 
         class="w-full h-full object-cover"
+        width={1920}
+        densities={[1.5, 2]}
       />
       <div class="absolute inset-0 bg-gradient-to-b from-[#243c5a]/40 via-[#243c5a]/20 to-stone-50"></div>
     </div>

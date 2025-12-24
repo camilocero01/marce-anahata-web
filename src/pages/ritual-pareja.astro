@@ -2,6 +2,9 @@
 // src/pages/ritual-pareja.astro
 import Layout from '../layouts/Layout.astro'; // Asegúrate de tener tu Layout base aquí
 import ReviewsSection from '../components/cards/ReviewsSection.astro'; // Reutilizamos tus reseñas si quieres
+import { Image } from 'astro:assets';
+import ritualParejaImg from '../assets/ritual/ritual-pareja.webp';
+import ritualParejaCacaoImg from '../assets/ritual/ritual-pareja-cacao.webp';
 
 // Datos del servicio (puedes editarlos aquí fácilmente)
 const serviceInfo = {
@@ -19,10 +22,12 @@ const whatsappLink = `https://wa.me/573207329921?text=${encodeURIComponent(servi
   
   <section class="relative h-[70vh] flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 z-0">
-      <img 
-        src="/images/ritual/ritual-pareja.webp" 
+      <Image 
+        src={ritualParejaImg} 
         alt="Pareja en meditación" 
         class="w-full h-full object-cover opacity-90"
+        width={1920}
+        densities={[1.5, 2]}
       />
       <div class="absolute inset-0 bg-[#243c5a]/40 mix-blend-multiply"></div>
     </div>
@@ -47,10 +52,13 @@ const whatsappLink = `https://wa.me/573207329921?text=${encodeURIComponent(servi
     <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
       <div class="order-2 md:order-1 relative">
         <div class="absolute -top-4 -left-4 w-full h-full border-2 border-[#5d5a8c]/20 rounded-2xl z-0"></div>
-        <img 
-          src="/images/ritual/ritual-pareja-cacao.webp" 
+        <Image 
+          src={ritualParejaCacaoImg} 
           alt="Manos unidas" 
           class="rounded-2xl shadow-xl relative z-10 w-full h-[500px] object-cover"
+          width={600}
+          height={500}
+          densities={[1.5, 2]}
         />
       </div>
       <div class="order-1 md:order-2">

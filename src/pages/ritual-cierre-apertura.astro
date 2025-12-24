@@ -2,6 +2,8 @@
 // src/pages/cierre-apertura.astro
 import Layout from '../layouts/Layout.astro';
 import ReviewsSection from '../components/cards/ReviewsSection.astro';
+import { Image } from 'astro:assets';
+import ritualCierreImg from '../assets/ritual/ritual-cierre.webp';
 
 // --- DATOS DEL SERVICIO ---
 const serviceInfo = {
@@ -19,10 +21,12 @@ const whatsappLink = `https://wa.me/573207329921?text=${encodeURIComponent(servi
   
   <section class="relative h-[70vh] flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 z-0">
-      <img 
-        src="/images/ritual/ritual-cierre.webp" 
+      <Image 
+        src={ritualCierreImg} 
         alt="Mujer en ritual de limpieza energética con humo" 
         class="w-full h-full object-cover opacity-90"
+        width={1920}
+        densities={[1.5, 2]}
       />
       <div class="absolute inset-0 bg-[#5d5a8c]/40 mix-blend-multiply"></div>
       <div class="absolute inset-0 bg-orange-100/10 mix-blend-overlay"></div>

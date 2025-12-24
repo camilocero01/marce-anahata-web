@@ -2,6 +2,9 @@
 // src/pages/sobre-mi.astro
 import Layout from '../layouts/Layout.astro';
 import ReviewsSection from '../components/cards/ReviewsSection.astro';
+import { Image } from 'astro:assets';
+import sobreMiImg from '../assets/sobre-mi/sobre-mi.webp';
+import sobreMiBioImg from '../assets/sobre-mi/sobre-mi-bio.webp';
 
 const whatsappLink = "https://wa.me/573207329921?text=Hola%20Marce%20Anahata,%20le%C3%AD%20tu%20historia%20y%20quisiera%20conocer%20m%C3%A1s%20sobre%20tus%20servicios.";
 ---
@@ -10,10 +13,12 @@ const whatsappLink = "https://wa.me/573207329921?text=Hola%20Marce%20Anahata,%20
   
   <section class="relative h-[60vh] flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 z-0">
-      <img 
-        src="/images/sobre-mi/sobre-mi.webp" 
+      <Image 
+        src={sobreMiImg} 
         alt="Marcela Zuleta Marín - Marce Anahata" 
         class="w-full h-full object-cover opacity-90"
+        width={1920}
+        densities={[1.5, 2]}
       />
       <div class="absolute inset-0 bg-[#243c5a]/40 mix-blend-multiply"></div>
     </div>
@@ -32,10 +37,13 @@ const whatsappLink = "https://wa.me/573207329921?text=Hola%20Marce%20Anahata,%20
       
       <div class="order-2 md:order-1 relative">
         <div class="absolute -top-4 -left-4 w-full h-full border-2 border-[#5d5a8c]/20 rounded-tl-[4rem] rounded-br-[4rem] z-0"></div>
-        <img 
-          src="/images/sobre-mi/sobre-mi-bio.webp" 
+        <Image 
+          src={sobreMiBioImg} 
           alt="Marce Anahata en sesión" 
           class="rounded-tl-[4rem] rounded-br-[4rem] shadow-xl relative z-10 w-full h-[600px] object-cover grayscale hover:grayscale-0 transition-all duration-700"
+          width={600}
+          height={600}
+          densities={[1.5, 2]}
         />
       </div>
 

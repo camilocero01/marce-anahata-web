@@ -2,6 +2,8 @@
 // src/pages/bienestar-corporativo.astro
 import Layout from '../layouts/Layout.astro';
 import ReviewsSection from '../components/cards/ReviewsSection.astro';
+import { Image } from 'astro:assets';
+import bienestarCorporativoImg from '../assets/corporativo/bienestar-corporativo-2.webp';
 
 // --- DATOS DEL SERVICIO ---
 const serviceInfo = {
@@ -49,10 +51,13 @@ const whatsappLink = `https://wa.me/573207329921?text=${encodeURIComponent(servi
     <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
       <div class="order-2 md:order-1 relative">
         <div class="absolute -top-4 -left-4 w-full h-full border-2 border-[#5d5a8c]/20 rounded-xl z-0"></div>
-        <img 
-          src="/images/corporativo/bienestar-corporativo-2.webp" 
+        <Image 
+          src={bienestarCorporativoImg} 
           alt="Pausa activa consciente en el trabajo" 
           class="rounded-xl shadow-xl relative z-10 w-full h-[400px] object-cover"
+          width={600}
+          height={400}
+          densities={[1.5, 2]}
         />
       </div>
       <div class="order-1 md:order-2">

@@ -2,6 +2,9 @@
 // src/pages/ritual-cumpleanos.astro
 import Layout from '../layouts/Layout.astro';
 import ReviewsSection from '../components/cards/ReviewsSection.astro';
+import { Image } from 'astro:assets';
+import ritualCumpleañosImg from '../assets/ritual/ritual-cumpleanos.webp';
+import ritualVueltaSolImg from '../assets/ritual/ritual-cumpleanos-vuelta-al-sol.webp';
 
 // --- DATOS DEL SERVICIO (PERSONALIZA AQUÍ) ---
 const serviceInfo = {
@@ -19,10 +22,12 @@ const whatsappLink = `https://wa.me/573207329921?text=${encodeURIComponent(servi
   
   <section class="relative h-[70vh] flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 z-0">
-      <img 
-        src="/images/ritual/ritual-cumpleanos.webp" 
+      <Image 
+        src={ritualCumpleañosImg} 
         alt="Celebración consciente de cumpleaños" 
         class="w-full h-full object-cover opacity-90"
+        width={1920}
+        densities={[1.5, 2]}
       />
       <div class="absolute inset-0 bg-[#243c5a]/40 mix-blend-multiply"></div>
     </div>
@@ -47,10 +52,13 @@ const whatsappLink = `https://wa.me/573207329921?text=${encodeURIComponent(servi
     <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
       <div class="relative">
         <div class="absolute -top-4 -left-4 w-full h-full border-2 border-[#6ed8d9]/30 rounded-2xl z-0"></div>
-        <img 
-          src="/images/ritual/ritual-cumpleanos-vuelta-al-sol.webp" 
+        <Image 
+          src={ritualVueltaSolImg} 
           alt="Mujer celebrando su luz interior" 
           class="rounded-2xl shadow-xl relative z-10 w-full h-[500px] object-cover"
+          width={600}
+          height={500}
+          densities={[1.5, 2]}
         />
       </div>
       <div>

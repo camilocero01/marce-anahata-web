@@ -2,6 +2,9 @@
 // src/pages/clases.astro
 import Layout from '../layouts/Layout.astro';
 import ReviewsSection from '../components/cards/ReviewsSection.astro';
+import { Image } from 'astro:assets';
+import clasesYogaImg from '../assets/clase/clases-yoga.webp';
+import claseYogaLandingImg from '../assets/clase/clase-yoga-landing.webp';
 
 // --- DATOS GENERALES ---
 const pageInfo = {
@@ -45,10 +48,12 @@ const offerings = [
   
   <section class="relative h-[60vh] md:h-[70vh] flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 z-0">
-      <img 
-        src="/images/clase/clases-yoga.webp" 
+      <Image 
+        src={clasesYogaImg} 
         alt="Práctica de Kundalini Yoga y meditación" 
         class="w-full h-full object-cover opacity-90"
+        width={1920}
+        densities={[1.5, 2]}
       />
       <div class="absolute inset-0 bg-[#243c5a]/30 mix-blend-multiply"></div>
       <div class="absolute inset-0 bg-stone-100/10 mix-blend-overlay"></div>
@@ -74,10 +79,13 @@ const offerings = [
     <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
       <div class="relative order-2 md:order-1">
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] bg-[#5d5a8c]/5 rounded-full z-0"></div>
-        <img 
-          src="/images/clase/clase-yoga-landing.webp" 
+        <Image 
+          src={claseYogaLandingImg} 
           alt="Maestra de yoga meditando" 
           class="rounded-lg shadow-xl relative z-10 w-full h-[500px] object-cover grayscale hover:grayscale-0 transition-all duration-700"
+          width={600}
+          height={500}
+          densities={[1.5, 2]}
         />
       </div>
       <div class="order-1 md:order-2">

@@ -2,6 +2,8 @@
 // src/pages/despedida-soltera.astro
 import Layout from '../layouts/Layout.astro';
 import ReviewsSection from '../components/cards/ReviewsSection.astro';
+import { Image } from 'astro:assets';
+import ritualDespedidaAmigasImg from '../assets/ritual/ritual-despedida-soltera-amigas.webp';
 
 // --- DATOS DEL SERVICIO ---
 const serviceInfo = {
@@ -49,10 +51,13 @@ const whatsappLink = `https://wa.me/573207329921?text=${encodeURIComponent(servi
   <section class="py-20 bg-[#fffbfb] px-6"> <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
       <div class="relative">
         <div class="absolute -top-4 -left-4 w-full h-full border-2 border-[#5d5a8c]/20 rounded-2xl z-0"></div>
-        <img 
-          src="/images/ritual/ritual-despedida-soltera-amigas.webp" 
+        <Image 
+          src={ritualDespedidaAmigasImg} 
           alt="Amigas unidas celebrando" 
           class="rounded-2xl shadow-xl relative z-10 w-full h-[500px] object-cover"
+          width={600}
+          height={500}
+          densities={[1.5, 2]}
         />
       </div>
       <div>

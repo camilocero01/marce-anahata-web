@@ -2,6 +2,13 @@
 // src/pages/index.astro
 import Layout from '../layouts/Layout.astro';
 import ReviewsSection from '../components/cards/ReviewsSection.astro';
+import { Image } from 'astro:assets';
+import terapiaSonidoImg from '../assets/terapia-sonido-2.webp';
+import ritualesImg from '../assets/ritual/rituales.webp';
+import bienestarcorporativoImg from '../assets/corporativo/bienestar-corporativo-3.webp';
+import homeYogaImg from '../assets/home-yoga.webp';
+import heroBgImg from '../assets/hero-bg.webp';
+import marcePerfilImg from '../assets/marce-perfil.webp';
 
 // Datos de servicios
 const serviciosHome = [
@@ -9,25 +16,25 @@ const serviciosHome = [
     titulo: "Terapia de Sonido",
     descripcion: "Sesiones de sanación vibracional con Gongs y Cuencos para reducir el estrés y armonizar tu energía.",
     link: "/terapia-sonido", 
-    imagen: "/images/terapia-sonido-2.webp"
+    imagen: terapiaSonidoImg
   },
   {
     titulo: "Rituales Sagrados",
     descripcion: "Ceremonias de paso: cumpleaños, parejas y baby blessing acompañados de sanación sonora.",
     link: "/rituales", 
-    imagen: "/images/ritual/rituales.webp"
+    imagen: ritualesImg
   },
   {
     titulo: "Bienestar Empresarial",
     descripcion: "Lleva el equilibrio a tu equipo de trabajo con pausas conscientes y talleres de manejo de estrés.",
     link: "/bienestar-corporativo", 
-    imagen: "/images/corporativo/bienestar-corporativo-3.webp"
+    imagen: bienestarcorporativoImg
   },
   {
     titulo: "Clases y Talleres",
     descripcion: "Kundalini Yoga y técnicas de meditación para calmar la mente y fortalecer el cuerpo.",
     link: "/clases", 
-    imagen: "/images/home-yoga.webp"
+    imagen: homeYogaImg
   }
 ];
 ---
@@ -45,7 +52,13 @@ const serviciosHome = [
         class="w-full h-full object-cover opacity-60"
       >
         <source src="/videos/hero-bg.mp4" type="video/mp4" />
-        <img src="/images/hero-bg.webp" alt="Fondo meditación" class="w-full h-full object-cover" />
+        <Image 
+          src={heroBgImg} 
+          alt="Fondo meditación" 
+          class="w-full h-full object-cover"
+          width={1920}
+          densities={[1.5, 2]}
+        />
       </video>
       <div class="absolute inset-0 bg-gradient-to-b from-stone-100/30 to-stone-100/90 z-10"></div>
     </div>
@@ -75,7 +88,13 @@ const serviciosHome = [
     <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-16">
       <div class="md:w-1/2">
         <div class="aspect-[4/5] bg-stone-100 rounded-2xl overflow-hidden relative shadow-xl border border-marce-base-2/30">
-           <img src="/images/marce-perfil.webp" alt="Marce Anahata" class="w-full h-full object-cover" />
+           <Image 
+             src={marcePerfilImg} 
+             alt="Marce Anahata" 
+             class="object-cover h-full w-full"
+             width={724}
+             densities={[1.5, 2]}
+           />
         </div>
       </div>
       <div class="md:w-1/2">
@@ -108,7 +127,14 @@ const serviciosHome = [
         {serviciosHome.map((servicio) => (
           <a href={servicio.link} class="group block bg-white p-6 shadow-sm hover:shadow-xl transition-all duration-300 rounded-2xl border border-transparent hover:border-marce-base-2/30 flex flex-col">
             <div class="h-48 bg-stone-200 mb-6 overflow-hidden rounded-xl shrink-0">
-              <img src={servicio.imagen} alt={servicio.titulo} class="w-full h-full object-cover group-hover:scale-110 transition duration-700" />
+              <Image 
+                src={servicio.imagen} 
+                alt={servicio.titulo} 
+                class="w-full h-full object-cover group-hover:scale-110 transition duration-700"
+                width={400}
+                height={300}
+                densities={[1.5, 2]}
+              />
             </div>
             <h3 class="text-xl text-marce-base-3 mb-3 font-serif group-hover:text-marce-base-1 transition-colors">{servicio.titulo}</h3>
             <p class="text-marce-base-3/70 leading-relaxed mb-4 font-light text-sm flex-grow">{servicio.descripcion}</p>
