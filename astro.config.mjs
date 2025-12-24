@@ -25,6 +25,6 @@ export default defineConfig({
   build: {
     // 'auto' inyecta estilos pequeños en el HTML y deja los grandes en archivos aparte.
     // 'always' inyecta TODO el CSS en el HTML (bueno para sitios pequeños).
-    inlineStylesheets: 'always', 
+    //inlineStylesheets: 'always', 
   }
 });
