@@ -193,7 +193,11 @@ const schema = JSON.stringify({
 <style is:global>
 	/* Fuentes */
 	h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; }
-	body { font-family: 'Lato', sans-serif; }
+	body {
+        font-family: 'Montserrat', sans-serif;
+        /* Esto muestra una fuente básica inmediatamente y cambia a la tuya cuando carga */
+        font-display: swap; 
+        }
 
     /* Estilos globales para botones y utilidades */
     :root {
