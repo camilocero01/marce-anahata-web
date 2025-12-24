@@ -18,7 +18,7 @@ border-marce-base-1
 :root {
   /* Definimos los colores como variables para que sean fáciles de cambiar luego */
   --color-btn-claro-bg: #5d5a8c;      /* El rojo intenso */
-  --color-btn-claro-hover: #6ed8d9;   /* El rojo más oscuro para cuando pasas el mouse */
+  --color-btn-claro-hover: #243c5a;   /* El rojo más oscuro para cuando pasas el mouse */
   --color-btn-text: #6ed8d9;          /* Texto blanco */
 }
 
