@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import '@fontsource/montserrat/400.css';
+import '@fontsource/montserrat/700.css';
 
 interface Props {
     title: string;
@@ -57,10 +59,9 @@ const schema = JSON.stringify({
         <meta property="og:description" content={description} />
         <meta property="og:image" content={image} />
 
-        <link rel="preconnect" href="https://fonts.googleapis.com">
+
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-        
+
         <script type="application/ld+json" set:html={schema} />
         <script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-N2S592YWN3"></script>
         <script type="text/partytown">
