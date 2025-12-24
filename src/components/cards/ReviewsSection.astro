@@ -112,41 +112,62 @@ const googleReviewsLink = "https://www.google.com/search?sca_esv=c581b398f00b64e
   import Swiper from 'swiper';
   import { Pagination, Autoplay } from 'swiper/modules';
 
-  // Esperar a que el navegador esté listo para animar
-  document.addEventListener('DOMContentLoaded', () => {
-    window.requestAnimationFrame(() => {
-      const swiper = new Swiper('.reviews-carousel', {
-        modules: [Pagination, Autoplay],
-        
-        // Mantener cssMode (es vital)
-        cssMode: true,
-        
-        slidesPerView: 1,
-        spaceBetween: 24,
-        loop: true,
-        
-        // ELIMINADO: grabCursor: true (Causa conflicto con cssMode)
-        
-        autoplay: {
-          delay: 5000,
-          disableOnInteraction: false,
-          pauseOnMouseEnter: true,
+  // Inicializar Swiper cuando el componente esté listo
+  const initSwiper = () => {
+    const swiper = new Swiper('.reviews-carousel', {
+      modules: [Pagination, Autoplay],
+      
+      // Modo de CSS deshabilitado para mejor rendimiento táctil
+      cssMode: false,
+      
+      // Configuración base para móvil
+      slidesPerView: 1,
+      spaceBetween: 24,
+      loop: true,
+      
+      // Habilitar gestos táctiles y grabCursor
+      grabCursor: true,
+      touchEventsTarget: 'container',
+      touchRatio: 1,
+      touchAngle: 45,
+      simulateTouch: true,
+      
+      // Autoplay configuración
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+      },
+      
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+        dynamicBullets: false,
+      },
+      
+      // Puntos de ruptura para responsive
+      breakpoints: {
+        640: { 
+          slidesPerView: 2, 
+          spaceBetween: 24 
         },
-        
-        pagination: {
-          el: '.swiper-pagination',
-          clickable: true,
-          // ELIMINADO: dynamicBullets: true (Culpable principal del reflow)
-          dynamicBullets: false, 
-        },
-        
-        breakpoints: {
-          640: { slidesPerView: 2, spaceBetween: 24 },
-          1024: { slidesPerView: 3, spaceBetween: 32 }
+        1024: { 
+          slidesPerView: 3, 
+          spaceBetween: 32 
         }
-      });
+      }
     });
-  });
+  };
+
+  // Inicializar cuando el DOM esté listo
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSwiper);
+  } else {
+    // Si el script se carga después de que DOMContentLoaded ha disparado
+    window.requestAnimationFrame(() => {
+      initSwiper();
+    });
+  }
 </script>
 
 <style is:global>
@@ -160,8 +181,24 @@ const googleReviewsLink = "https://www.google.com/search?sca_esv=c581b398f00b64e
     background-color: #5d5a8c !important;
     opacity: 0.3;
   }
+  
   .swiper-slide {
-    height: auto; /* Permite que todas las slides se estiren igual */
-    display: flex; /* Asegura que el contenido interno (tu tarjeta) pueda usar h-full */
+    height: auto;
+    display: flex;
+  }
+  
+  /* Mejorar experiencia táctil en móvil */
+  .reviews-carousel {
+    touch-action: pan-y;
+  }
+  
+  .swiper-wrapper {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  
+  .swiper-pagination {
+    position: static;
+    margin-top: 2rem;
   }
 </style>
