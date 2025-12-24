@@ -7,7 +7,7 @@ import 'swiper/css/pagination';
 const googleReviewsLink = "https://www.google.com/search?sca_esv=c581b398f00b64e5&q=Marce+Anahata+-+Centro+de+bienestar+Medell%C3%ADn&si=AMgyJEtREmoPL4P1I5IDCfuA8gybfVI2d5Uj7QMwYCZHKDZ-E8digRyuKFLuaq_GTmCUkL39iUOp2I4pUmF1uDhUV503YmVnTB23PfNQ4MOerXVzro1X_lmUuSqdl7xSBoOtlokEI3m4H7mnuTb5chGZQTWDBxvVJLo97qBQ_z8KL83eYwd9Z5M%3D&sa=X&ved=2ahUKEwj3q9znq8KRAxWGmLAFHbdkNWYQrrQLegQIHxAA&biw=1536&bih=826&dpr=1.25&zx=1765897501773&no_sw_cr=1"; 
 ---
 
-<section class="py-24 bg-stone-50 overflow-hidden">
+<section id="reviews" class="py-24 bg-stone-50 overflow-hidden">
   <div class="max-w-7xl mx-auto px-6 text-center mb-12 ">
     <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-6">Lo que dicen quienes han vibrado aquí</h2>
     <p class="text-[#243c5a]/70 max-w-2xl mx-auto">Testimonios reales de personas que han transformado su energía en nuestro centro.</p>
@@ -20,23 +20,23 @@ const googleReviewsLink = "https://www.google.com/search?sca_esv=c581b398f00b64e
         <div class="swiper-slide h-auto">
           <div class="bg-white p-8 rounded-2xl shadow-sm border border-marce-base-1 h-full flex flex-col hover:border-[#5d5a8c]/100 transition-colors relative group">
             
-            {review.link && (
-              <a 
-                href={review.link} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                title="Ir a Google Maps"
-                class="absolute top-6 right-6 text-xs font-medium text-stone hover:text-[#5d5a8c] hover:underline underline-offset-2 transition-colors"
-              >
-                Ver reseña
-              </a>
-            )}
             <div class="text-[#5d5a8c] mb-6 text-lg tracking-widest">
               {"★".repeat(review.estrellas)}
             </div>
             
             <blockquote class="text-lg text-[#243c5a] leading-relaxed italic mb-8 flex-grow font-light">
-              "{review.texto}"
+              "{review.texto}" 
+              {review.link && (
+                <a 
+                  href={review.link} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  title="Ir a Google Maps"
+                  class=" text-xs font-medium text-stone hover:text-[#5d5a8c] hover:underline underline-offset-2 transition-colors"
+                >
+                  Ver reseña..
+                </a>
+              )}
             </blockquote>
             
             <div class="mt-auto flex items-center border-t border-stone-100 pt-6">
