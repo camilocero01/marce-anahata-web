@@ -112,36 +112,39 @@ const googleReviewsLink = "https://www.google.com/search?sca_esv=c581b398f00b64e
   import Swiper from 'swiper';
   import { Pagination, Autoplay } from 'swiper/modules';
 
-  // Esperamos a que el DOM esté listo (buena práctica)
+  // Esperar a que el navegador esté listo para animar
   document.addEventListener('DOMContentLoaded', () => {
-    const swiper = new Swiper('.reviews-carousel', {
-      modules: [Pagination, Autoplay],
-      
-      // --- LA CLAVE PARA ELIMINAR EL REFLOW ---
-      cssMode: true, 
-      // ----------------------------------------
-
-      slidesPerView: 1,
-      spaceBetween: 24,
-      loop: true,
-      
-      // Nota: grabCursor no funciona igual en cssMode, pero la UX sigue siendo buena
-      
-      autoplay: {
-        delay: 5000,
-        disableOnInteraction: false,
-        // En cssMode ayuda pausar al pasar el mouse
-        pauseOnMouseEnter: true, 
-      },
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-        dynamicBullets: true,
-      },
-      breakpoints: {
-        640: { slidesPerView: 2, spaceBetween: 24 },
-        1024: { slidesPerView: 3, spaceBetween: 32 }
-      }
+    window.requestAnimationFrame(() => {
+      const swiper = new Swiper('.reviews-carousel', {
+        modules: [Pagination, Autoplay],
+        
+        // Mantener cssMode (es vital)
+        cssMode: true,
+        
+        slidesPerView: 1,
+        spaceBetween: 24,
+        loop: true,
+        
+        // ELIMINADO: grabCursor: true (Causa conflicto con cssMode)
+        
+        autoplay: {
+          delay: 5000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        },
+        
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+          // ELIMINADO: dynamicBullets: true (Culpable principal del reflow)
+          dynamicBullets: false, 
+        },
+        
+        breakpoints: {
+          640: { slidesPerView: 2, spaceBetween: 24 },
+          1024: { slidesPerView: 3, spaceBetween: 32 }
+        }
+      });
     });
   });
 </script>
@@ -156,5 +159,9 @@ const googleReviewsLink = "https://www.google.com/search?sca_esv=c581b398f00b64e
   .swiper-pagination-bullet {
     background-color: #5d5a8c !important;
     opacity: 0.3;
+  }
+  .swiper-slide {
+    height: auto; /* Permite que todas las slides se estiren igual */
+    display: flex; /* Asegura que el contenido interno (tu tarjeta) pueda usar h-full */
   }
 </style>
