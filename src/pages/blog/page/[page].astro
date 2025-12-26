@@ -1,0 +1,145 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import { getCollection } from 'astro:content';
+
+const PER_PAGE = 3;
+
+export async function getStaticPaths() {
+  const PER_PAGE = 3;
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  const totalPages = Math.max(1, Math.ceil(posts.length / PER_PAGE));
+  return Array.from({ length: totalPages }, (_, i) => ({ params: { page: String(i + 1) } }));
+}
+
+const { page } = Astro.params;
+const currentPage = Math.max(1, parseInt(page || '1', 10));
+
+const allPosts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
+
+const totalPages = Math.max(1, Math.ceil(allPosts.length / PER_PAGE));
+const start = (currentPage - 1) * PER_PAGE;
+const paginated = allPosts.slice(start, start + PER_PAGE);
+const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+
+const pageTitle = 'Blog';
+const pageDescription = 'Artículos de bienestar, yoga, rituales y salud holística.';
+const canonical = new URL(Astro.url).toString();
+const prevUrl = currentPage > 1 ? (currentPage === 2 ? '/blog' : `/blog/page/${currentPage - 1}`) : undefined;
+const nextUrl = currentPage < totalPages ? `/blog/page/${currentPage + 1}` : undefined;
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  name: `Blog | Marce Anahata`,
+  description: pageDescription,
+  url: canonical
+};
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <Fragment slot="head">
+    <link rel="canonical" href={canonical} />
+    {prevUrl && <link rel="prev" href={prevUrl} />}
+    {nextUrl && <link rel="next" href={nextUrl} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/images/social-preview.jpg" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </Fragment>
+  <main class="max-w-5xl mx-auto px-4 py-16">
+    <div class="text-center mb-12">
+      <h1 class="text-5xl font-serif text-[#243c5a] mb-4">Blog de Bienestar</h1>
+      <p class="text-stone-600 text-lg max-w-2xl mx-auto">Artículos sobre yoga, meditación, rituales y salud holística para tu transformación personal</p>
+      <p class="text-stone-500 text-sm mt-2">Página {currentPage} de {totalPages}</p>
+    </div>
+
+    {paginated.length === 0 ? (
+      <p class="text-center text-stone-500">No hay artículos publicados aún.</p>
+    ) : (
+      <div class="space-y-12">
+        {paginated.map((post, index) => {
+          const isLatest = (currentPage === 1) && index === 0;
+          return (
+            <article class={isLatest ? "featured-post" : "regular-post"}>
+              <article class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-stone-100 ${isLatest ? 'md:grid md:grid-cols-2 md:gap-6' : ''}">
+                {post.data.image && (
+                  <div class={`relative overflow-hidden ${isLatest ? 'h-full min-h-[300px]' : 'h-56'}`}>
+                    <a href={`/blog/${post.slug}`}>
+                      <img 
+                        src={post.data.image} 
+                        alt={post.data.title} 
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
+                        loading={isLatest ? "eager" : "lazy"} 
+                      />
+                    </a>
+                    {isLatest && (
+                      <div class="absolute top-4 left-4 bg-[#6ed8d9] text-white px-3 py-1 rounded-full text-xs font-semibold shadow-md">
+                        Más Reciente
+                      </div>
+                    )}
+                  </div>
+                )}
+                <div class="p-6 md:p-8 flex flex-col justify-center">
+                  <div class="flex items-center gap-3 mb-3 text-sm text-stone-500">
+                    <time datetime={post.data.pubDate.toISOString()}>
+                      {new Date(post.data.pubDate).toLocaleDateString('es-CO', { year: 'numeric', month: 'long', day: 'numeric' })}
+                    </time>
+                    <span>•</span>
+                    <span>{post.data.author || 'Marce Anahata'}</span>
+                  </div>
+                  
+                  <h2 class={`font-serif text-[#243c5a] group-hover:text-[#6ed8d9] transition-colors mb-3 ${isLatest ? 'text-3xl md:text-4xl' : 'text-2xl'}`}>
+                    <a href={`/blog/${post.slug}`} class="hover:text-[#6ed8d9] transition-colors">{post.data.title}</a>
+                  </h2>
+                  
+                  <p class={`text-stone-600 mb-4 ${isLatest ? 'text-lg leading-relaxed' : 'text-base'}`}>
+                    {post.data.description}
+                  </p>
+
+                  {post.data.tags && post.data.tags.length > 0 && (
+                    <div class="flex flex-wrap gap-2 mb-4">
+                      {post.data.tags.map(tag => (
+                        <a href={`/blog/tag/${encodeURIComponent(tag)}`} class="bg-[#6ed8d9]/20 text-[#243c5a] px-3 py-1 rounded-full text-xs font-medium hover:bg-[#6ed8d9]/30 transition-colors">
+                          #{tag}
+                        </a>
+                      ))}
+                    </div>
+                  )}
+
+                  <div class="flex items-center text-[#5d5a8c] font-medium text-sm group-hover:text-[#6ed8d9] transition-colors">
+                    <a href={`/blog/${post.slug}`} class="flex items-center">
+                      <span>Leer artículo</span>
+                      <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </article>
+            </article>
+          );
+        })}
+      </div>
+    )}
+
+    {totalPages > 1 && (
+      <nav class="mt-12 flex items-center justify-center gap-3">
+        <a href={prevUrl || '#'} aria-disabled={!prevUrl} class={`px-3 py-2 rounded-lg border ${prevUrl ? 'text-[#243c5a] border-stone-200 hover:bg-stone-50' : 'text-stone-300 border-stone-100 cursor-not-allowed'}`}>Anterior</a>
+        <ul class="flex items-center gap-2">
+          {pages.map((n) => {
+            const href = n === 1 ? '/blog' : `/blog/page/${n}`;
+            const isActive = n === currentPage;
+            return (
+              <li>
+                <a href={href} aria-current={isActive ? 'page' : undefined}
+                  class={`min-w-9 text-center px-3 py-2 rounded-lg border transition-colors ${isActive ? 'bg-[#243c5a] text-white border-[#243c5a]' : 'text-[#243c5a] border-stone-200 hover:bg-stone-50'}`}>
+                  {n}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+        <a href={nextUrl || '#'} aria-disabled={!nextUrl} class={`px-3 py-2 rounded-lg border ${nextUrl ? 'text-[#243c5a] border-stone-200 hover:bg-stone-50' : 'text-stone-300 border-stone-100 cursor-not-allowed'}`}>Siguiente</a>
+      </nav>
+    )}
+  </main>
+</Layout>

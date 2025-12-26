@@ -54,9 +54,18 @@ const jsonLd = {
         <p class="text-stone-600">{description}</p>
         <div class="mt-2 text-xs text-stone-500">
           <time datetime={publishedTime}>{new Date(data.pubDate).toLocaleDateString('es-CO', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
-          {data.tags?.length ? (
-            <span> • {data.tags.map((t, i) => (i ? ' · #' + t : '#' + t))}</span>
-          ) : null}
+            {data.tags?.length ? (
+              <span>
+                {' '}
+                •{' '}
+                {data.tags.map((t, i) => (
+                  <Fragment>
+                    {i ? ' · ' : ''}
+                    <a href={`/blog/tag/${encodeURIComponent(t)}`} class="text-[#243c5a] hover:text-[#6ed8d9]">#{t}</a>
+                  </Fragment>
+                ))}
+              </span>
+            ) : null}
         </div>
       </header>
 

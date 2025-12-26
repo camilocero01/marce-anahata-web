@@ -1,0 +1,102 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const PER_PAGE = 6;
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  const tagCounts = new Map<string, number>();
+  posts.forEach(p => (p.data.tags || []).forEach(t => tagCounts.set(t, (tagCounts.get(t) || 0) + 1)));
+  const paths: Array<{ params: { tag: string; page: string } }> = [];
+  for (const [t, count] of tagCounts.entries()) {
+    const totalPages = Math.max(1, Math.ceil(count / PER_PAGE));
+    for (let i = 1; i <= totalPages; i++) {
+      paths.push({ params: { tag: t, page: String(i) } });
+    }
+  }
+  return paths;
+}
+
+const { tag, page } = Astro.params;
+if (!tag) throw new Error('Tag no encontrado');
+const currentPage = Math.max(1, parseInt(page || '1', 10));
+const PER_PAGE = 6;
+
+const allPosts = (await getCollection('blog', ({ data }) => !data.draft))
+  .filter(p => (p.data.tags || []).includes(tag))
+  .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
+
+const totalPages = Math.max(1, Math.ceil(allPosts.length / PER_PAGE));
+const start = (currentPage - 1) * PER_PAGE;
+const paginated = allPosts.slice(start, start + PER_PAGE);
+
+const pageTitle = `Artículos sobre "${tag}"`;
+const pageDescription = `Artículos del blog relacionados con ${tag}. Página ${currentPage} de ${totalPages}.`;
+const canonical = new URL(Astro.url).toString();
+const prevUrl = currentPage > 1 ? (currentPage === 2 ? `/blog/tag/${encodeURIComponent(tag)}` : `/blog/tag/${encodeURIComponent(tag)}/page/${currentPage - 1}`) : undefined;
+const nextUrl = currentPage < totalPages ? `/blog/tag/${encodeURIComponent(tag)}/page/${currentPage + 1}` : undefined;
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <Fragment slot="head">
+    <link rel="canonical" href={canonical} />
+    {prevUrl && <link rel="prev" href={prevUrl} />}
+    {nextUrl && <link rel="next" href={nextUrl} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/images/social-preview.jpg" />
+  </Fragment>
+  <main class="max-w-5xl mx-auto px-4 py-16">
+    <div class="text-center mb-12">
+      <h1 class="text-4xl md:text-5xl font-serif text-[#243c5a] mb-4">{pageTitle}</h1>
+      <p class="text-stone-600 text-lg">{pageDescription}</p>
+      <div class="mt-6">
+        <a href="/blog/tag" class="text-sm text-[#243c5a] hover:underline">← Ver todos los tags</a>
+      </div>
+    </div>
+
+    {paginated.length === 0 ? (
+      <p class="text-center text-stone-500">No hay artículos con este tag.</p>
+    ) : (
+      <ul class="space-y-8">
+        {paginated.map(post => (
+          <li>
+            <article class="bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow p-6 border border-stone-100">
+              {post.data.image && <a href={`/blog/${post.slug}`}><img src={post.data.image} alt={post.data.title} class="w-full h-48 object-cover rounded-lg mb-4" loading="lazy" /></a>}
+              <h2 class="text-2xl font-serif text-[#243c5a] mb-2">
+                <a href={`/blog/${post.slug}`} class="group hover:text-[#6ed8d9] transition-colors">{post.data.title}</a>
+              </h2>
+              <p class="text-stone-600 mb-2">{post.data.description}</p>
+              <time class="text-xs text-stone-400">{new Date(post.data.pubDate).toLocaleDateString('es-CO', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+              {post.data.tags && <div class="mt-3 flex flex-wrap gap-2">
+                {post.data.tags.map(t => (
+                  <a href={`/blog/tag/${encodeURIComponent(t)}`} class="bg-[#6ed8d9]/20 text-[#243c5a] px-3 py-1 rounded-full text-xs font-medium hover:bg-[#6ed8d9]/30 transition-colors">#{t}</a>
+                ))}
+              </div>}
+            </article>
+          </li>
+        ))}
+      </ul>
+    )}
+
+    {totalPages > 1 && (
+      <nav class="mt-12 flex items-center justify-center gap-3">
+        <a href={prevUrl || '#'} aria-disabled={!prevUrl} class={`px-3 py-2 rounded-lg border ${prevUrl ? 'text-[#243c5a] border-stone-200 hover:bg-stone-50' : 'text-stone-300 border-stone-100 cursor-not-allowed'}`}>Anterior</a>
+        <ul class="flex items-center gap-2">
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => {
+            const href = n === 1 ? `/blog/tag/${encodeURIComponent(tag)}` : `/blog/tag/${encodeURIComponent(tag)}/page/${n}`;
+            const isActive = n === currentPage;
+            return (
+              <li>
+                <a href={href} aria-current={isActive ? 'page' : undefined}
+                  class={`min-w-9 text-center px-3 py-2 rounded-lg border transition-colors ${isActive ? 'bg-[#243c5a] text-white border-[#243c5a]' : 'text-[#243c5a] border-stone-200 hover:bg-stone-50'}`}>
+                  {n}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+        <a href={nextUrl || '#'} aria-disabled={!nextUrl} class={`px-3 py-2 rounded-lg border ${nextUrl ? 'text-[#243c5a] border-stone-200 hover:bg-stone-50' : 'text-stone-300 border-stone-100 cursor-not-allowed'}`}>Siguiente</a>
+      </nav>
+    )}
+  </main>
+</Layout>

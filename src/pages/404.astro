@@ -1,87 +1,44 @@
 ---
-// src/pages/404.astro
 import Layout from '../layouts/Layout.astro';
 
-// Definimos los metadatos específicos para esta página de error
-const title = "404 - Página no encontrada | Marce Anahata";
-const description = "Lo sentimos, la página que buscas no existe o se ha movido. Vuelve al inicio.";
+const title = "404 - Página en Silencio | Marce Anahata";
+const description = "Esta página está en un retiro de silencio. Respira profundo y vuelve al inicio.";
 ---
 
 <Layout title={title} description={description}>
-  <main class="not-found-container">
-    <div class="content-wrapper">
-      <h1 class="error-code">404</h1>
+  <main class="min-h-[80vh] flex items-center justify-center bg-[#fafaf9] px-4 relative overflow-hidden">
+    
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-tr from-[#6ed8d9] to-[#5d5a8c] rounded-full blur-[100px] opacity-20 pointer-events-none"></div>
+
+    <div class="text-center relative z-10 max-w-lg mx-auto">
       
-      <h2 class="error-title">¡Ups! Parece que te has perdido.</h2>
+      <h1 class="text-[10rem] md:text-[12rem] font-black text-[#243c5a]/5 leading-none select-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10">
+        404
+      </h1>
+
+      <div class="text-6xl mb-6 animate-pulse">
+        🧘‍♀️
+      </div>
       
-      <p class="error-text">
-        La página que estás buscando no existe, se ha movido o quizás nunca estuvo aquí. No te preocupes, ¡suele pasar!
+      <h2 class="text-3xl md:text-4xl font-serif font-bold text-[#243c5a] mb-4">
+        Esta página está en un retiro de silencio
+      </h2>
+      
+      <p class="text-stone-600 text-lg mb-8 leading-relaxed">
+        O quizás alcanzó el Nirvana y trascendió este plano digital.<br>
+        No te preocupes, perderse es parte del camino. Inhala profundo, exhala suavemente y volvamos a conectar.
       </p>
 
-      <a href="/" class="home-button">
-        Volver al Inicio
+      <a 
+        href="/" 
+        class="inline-flex items-center gap-2 bg-[#243c5a] text-white px-8 py-3 rounded-full font-medium hover:bg-[#5d5a8c] transition-all duration-300 hover:-translate-y-1 shadow-md hover:shadow-lg group"
+      >
+        <span>Volver al "Aquí y Ahora"</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
       </a>
+      
     </div>
   </main>
 </Layout>
-
-<style>
-  /* Estilos "scoped" solo para esta página */
-  .not-found-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* Asegura que ocupe buena parte de la pantalla verticalmente */
-    min-height: 70vh; 
-    padding: 2rem;
-    text-align: center;
-  }
-
-  .content-wrapper {
-    max-width: 600px;
-  }
-
-  .error-code {
-    font-size: 8rem;
-    font-weight: 900;
-    margin: 0;
-    /* Un color gris muy claro para que quede de fondo sutil */
-    color: #f1f5f9;
-    line-height: 1;
-    user-select: none; /* Evita que se seleccione el texto gigante */
-  }
-
-  .error-title {
-    font-size: 2rem;
-    margin-top: -2.5rem; /* Superpone un poco el título sobre el número gigante */
-    margin-bottom: 1rem;
-    font-weight: 700;
-    position: relative; /* Para que quede por encima del número gigante */
-    color: #1a1a1a; /* Ajusta a los colores de tu marca */
-  }
-
-  .error-text {
-    font-size: 1.125rem;
-    color: #666;
-    margin-bottom: 2.5rem;
-  }
-
-  /* Estilo básico para el botón.
-     Si ya tienes clases de botones globales en tu CSS (ej. Tailwind o CSS propio),
-     borra esto y usa tus clases en la etiqueta <a> de arriba. */
-  .home-button {
-    display: inline-block;
-    padding: 0.75rem 2rem;
-    background-color: #1a1a1a; /* Color principal de tu marca */
-    color: white;
-    text-decoration: none;
-    font-weight: 600;
-    border-radius: 4px;
-    transition: background-color 0.2s ease, transform 0.1s ease;
-  }
-
-  .home-button:hover {
-    background-color: #333; /* Un poco más claro al pasar el mouse */
-    transform: translateY(-2px); /* Pequeño efecto de elevación */
-  }
-</style>
