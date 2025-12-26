@@ -1,12 +1,12 @@
 ---
-title: "YOGA espiración consciente: una puerta al bienestar diario"
+title: "Respiración consciente: una puerta al bienestar diario"
 description: "Aprende una técnica simple de respiración consciente para reducir el estrés y mejorar tu claridad mental en minutos."
 pubDate: 2025-12-01
 updatedDate: 2025-12-10
 author: "Marce Anahata"
-tags: [ "yoga"]
-image: "/images/home-yoga.webp"
-ogImage: "/images/social-preview.jpg"
+tags: [ "respiración"]
+image: "/images/1-bienestar-respiracion.jpg"
+ogImage: "/images/1-bienestar-respiracion.jpg"
 draft: false
 ---
 

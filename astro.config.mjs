@@ -18,7 +18,8 @@ export default defineConfig({
   integrations: [
     sitemap({
       // Exclude low-value pages from sitemap
-      filter: (page) => !['/links', '/privacidad'].includes(page)
+      // The `page` parameter is a full URL, so compare by path endings
+      filter: (page) => !page.endsWith('/links') && !page.endsWith('/privacidad')
     }),
     partytown(),
     compress(),
