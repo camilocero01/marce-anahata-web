@@ -15,7 +15,14 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
 
-  integrations: [sitemap(), partytown(), compress(),  partytown({
+  integrations: [
+    sitemap({
+      // Exclude low-value pages from sitemap
+      filter: (page) => !['/links', '/privacidad'].includes(page)
+    }),
+    partytown(),
+    compress(),
+    partytown({
       config: {
         // ESTO ES LO CRUCIAL:
         // Le dice a Partytown que deje pasar los datos de Google al hilo principal
