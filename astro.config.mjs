@@ -15,7 +15,14 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
 
-  integrations: [sitemap(), partytown(), compress()],
+  integrations: [sitemap(), partytown(), compress(),  partytown({
+      config: {
+        // ESTO ES LO CRUCIAL:
+        // Le dice a Partytown que deje pasar los datos de Google al hilo principal
+        forward: ['dataLayer.push'],
+      },
+    })
+  ],
   site: 'https://marce-anahata-web.vercel.app', // Tu URL de producción
   // 'always' fuerza la barra al final (ej: /contacto/)
   // 'never' la quita (ej: /contacto) -> Recomendado para Vercel
