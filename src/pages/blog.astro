@@ -3,6 +3,16 @@ import Layout from "../layouts/Layout.astro";
 import { getCollection } from 'astro:content';
 const allPosts = (await getCollection('blog', ({ data }) => !data.draft))
   .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
+
+// Calculate tag counts
+const tagCounts = new Map<string, number>();
+allPosts.forEach(post => {
+  post.data.tags?.forEach(tag => {
+    tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1);
+  });
+});
+const sortedTags = Array.from(tagCounts.entries()).sort((a, b) => b[1] - a[1]);
+
 const PER_PAGE = 7;
 const currentPage = 1;
 const totalPages = Math.max(1, Math.ceil(allPosts.length / PER_PAGE));
@@ -154,6 +164,30 @@ const jsonLd = {
         )}
       </div>
     )}
+
+    {/* Tags Section - Mejor para SEO después del contenido */}
+    {sortedTags.length > 0 && (
+      <div class="mt-16 mb-12 bg-gradient-to-br from-[#6ed8d9]/10 to-[#5d5a8c]/10 rounded-2xl p-6 border border-stone-200">
+        <div class="flex items-center gap-2 mb-4">
+          <svg class="w-5 h-5 text-[#243c5a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
+          </svg>
+          <h2 class="text-xl font-serif text-[#243c5a]">Explora por Tema</h2>
+        </div>
+        <div class="flex flex-wrap gap-3">
+          {sortedTags.map(([tag, count]) => (
+            <a
+              href={`/blog/tag/${encodeURIComponent(tag)}`}
+              class="inline-flex items-center gap-2 bg-white hover:bg-[#6ed8d9] text-[#243c5a] hover:text-white px-4 py-2 rounded-full text-sm font-medium border border-stone-200 hover:border-[#6ed8d9] transition-all duration-200 shadow-sm hover:shadow-md"
+            >
+              <span>#{tag}</span>
+              <span class="bg-[#243c5a]/10 px-2 py-0.5 rounded-full text-xs font-bold">{count}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+
     {totalPages > 1 && (
       <nav class="mt-12 flex items-center justify-center gap-3">
         <ul class="flex items-center gap-2">

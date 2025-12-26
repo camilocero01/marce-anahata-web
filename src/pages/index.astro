@@ -3,12 +3,18 @@
 import Layout from '../layouts/Layout.astro';
 import ReviewsSection from '../components/cards/ReviewsSection.astro';
 import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
 import terapiaSonidoImg from '../assets/terapia-sonido-2.webp';
 import ritualesImg from '../assets/ritual/rituales.webp';
 import bienestarcorporativoImg from '../assets/corporativo/bienestar-corporativo-3.webp';
 import homeYogaImg from '../assets/home-yoga.webp';
 import heroBgImg from '../assets/hero-bg.webp';
 import marcePerfilImg from '../assets/marce-perfil.webp';
+
+// Obtener últimos 3 posts del blog
+const allPosts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime())
+  .slice(0, 3);
 
 // Datos de servicios
 const serviciosHome = [
@@ -146,5 +152,72 @@ const serviciosHome = [
   </section>
 
   <ReviewsSection />
+
+  <!-- Sección Blog - Últimos Posts -->
+  {allPosts.length > 0 && (
+    <section class="py-24 px-6 bg-white">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl text-marce-base-1 mb-4 font-serif">Artículos Recientes</h2>
+          <p class="text-marce-base-3/70 max-w-xl mx-auto mb-8">Consejos y reflexiones sobre bienestar, yoga y transformación personal.</p>
+          <a href="/blog" class="inline-flex items-center gap-2 text-marce-base-1 hover:text-marce-base-2 font-semibold transition-colors">
+            Ver todos los artículos
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          {allPosts.map(post => (
+            <article class="bg-stone-50 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-stone-200 hover:border-marce-base-2/30 flex flex-col group">
+              {post.data.image && (
+                <a href={`/blog/${post.slug}`} class="overflow-hidden h-48">
+                  <img
+                    src={post.data.image}
+                    alt={post.data.title}
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                </a>
+              )}
+              <div class="p-6 flex flex-col flex-grow">
+                <div class="text-sm text-marce-base-3/60 mb-3">
+                  {new Date(post.data.pubDate).toLocaleDateString('es-CO', { year: 'numeric', month: 'long', day: 'numeric' })}
+                </div>
+                <h3 class="text-xl text-marce-base-3 mb-3 font-serif group-hover:text-marce-base-1 transition-colors leading-tight">
+                  <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+                </h3>
+                <p class="text-marce-base-3/70 text-sm leading-relaxed mb-4 flex-grow">
+                  {post.data.description}
+                </p>
+                {post.data.tags && post.data.tags.length > 0 && (
+                  <div class="flex flex-wrap gap-2 mb-4">
+                    {post.data.tags.slice(0, 2).map(tag => (
+                      <span class="text-xs bg-marce-base-2/10 text-marce-base-1 px-2 py-1 rounded-full">
+                        #{tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+                <a href={`/blog/${post.slug}`} class="text-marce-base-1 font-semibold text-sm group-hover:text-marce-base-2 transition-colors inline-flex items-center gap-1 mt-auto">
+                  Leer más
+                  <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                  </svg>
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div class="mt-12 text-center">
+          <a href="/blog" class="inline-block px-8 py-4 bg-marce-base-1 text-white rounded-lg font-semibold hover:bg-marce-base-2 transition-colors duration-300 shadow-md hover:shadow-lg">
+            Explorar Todos los Artículos
+          </a>
+        </div>
+      </div>
+    </section>
+  )}
 
 </Layout>

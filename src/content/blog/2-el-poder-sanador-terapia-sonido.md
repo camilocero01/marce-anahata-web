@@ -1,8 +1,8 @@
 ---
 title: "El poder sanador de la vibración: Descubre la Terapia de Sonido"
 description: "Explora cómo las frecuencias de los cuencos y el sonido consciente pueden restaurar tu equilibrio interno, reducir el estrés y desbloquear emociones profundas."
-pubDate: 2025-12-26
-updatedDate: 2025-12-26
+pubDate: 2025-12-19
+updatedDate: 2025-12-19
 author: "Marce Anahata"
 tags: ["terapia de sonido", "bienestar", "meditación"]
 image: "/images/2-el-poder-sanador-terapia-sonido.jpg"
