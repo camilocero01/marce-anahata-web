@@ -1,44 +1,100 @@
 ---
+import Layout from "../layouts/Layout.astro";
 import { getCollection } from 'astro:content';
-// Use a const assertion so TypeScript recognizes the collection literal
-const posts = await getCollection('blog' as const);
+const posts = (await getCollection('blog')).filter(p => !p.data.draft);
+const pageTitle = 'Blog';
+const pageDescription = 'Artículos de bienestar, yoga, rituales y salud holística.';
+const canonical = new URL(Astro.url).toString();
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  name: `Blog | Marce Anahata`,
+  description: pageDescription,
+  url: canonical
+};
 ---
-<html lang="es">
-  <head>
-    <title>Blog | Marce Anahata</title>
-    <meta name="description" content="Artículos de bienestar, yoga, rituales y salud holística." />
-    <link rel="canonical" href="https://marceanahata.com/blog" />
+
+<Layout title={pageTitle} description={pageDescription}>
+  <Fragment slot="head">
+    <link rel="canonical" href={canonical} />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Blog | Marce Anahata" />
-    <meta property="og:description" content="Artículos de bienestar, yoga, rituales y salud holística." />
-    <meta property="og:url" content="https://marceanahata.com/blog" />
     <meta property="og:image" content="/images/social-preview.jpg" />
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Blog",
-      "name": "Blog | Marce Anahata",
-      "description": "Artículos de bienestar, yoga, rituales y salud holística.",
-      "url": "https://marceanahata.com/blog"
-    })} />
-  </head>
-  <body>
-    <main class="max-w-3xl mx-auto px-4 py-16">
-      <h1 class="text-4xl font-serif text-[#243c5a] mb-8">Blog</h1>
-      <ul class="space-y-8">
-        {posts.sort((a, b) => b.data.pubDate.localeCompare(a.data.pubDate)).map(post => (
-          <li>
-            <a href={`/blog/${post.slug}/`} class="block group">
-              <article class="bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow p-6 border border-stone-100">
-                {post.data.image && <img src={post.data.image} alt={post.data.title} class="w-full h-48 object-cover rounded-lg mb-4" loading="lazy" />}
-                <h2 class="text-2xl font-serif text-[#243c5a] group-hover:text-[#6ed8d9] mb-2">{post.data.title}</h2>
-                <p class="text-stone-600 mb-2">{post.data.description}</p>
-                <time class="text-xs text-stone-400">{new Date(post.data.pubDate).toLocaleDateString('es-CO', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
-                {post.data.tags && <div class="mt-2 flex flex-wrap gap-2">{post.data.tags.map(tag => <span class="bg-[#6ed8d9]/20 text-[#243c5a] px-2 py-0.5 rounded text-xs">#{tag}</span>)}</div>}
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </Fragment>
+  <main class="max-w-5xl mx-auto px-4 py-16">
+    <div class="text-center mb-12">
+      <h1 class="text-5xl font-serif text-[#243c5a] mb-4">Blog de Bienestar</h1>
+      <p class="text-stone-600 text-lg max-w-2xl mx-auto">Artículos sobre yoga, meditación, rituales y salud holística para tu transformación personal</p>
+    </div>
+
+    {posts.length === 0 ? (
+      <p class="text-center text-stone-500">No hay artículos publicados aún.</p>
+    ) : (
+      <div class="space-y-12">
+        {posts
+          .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime())
+          .map((post, index) => {
+            const isLatest = index === 0;
+            return (
+              <article class={isLatest ? "featured-post" : "regular-post"}>
+                <a href={`/blog/${post.slug}`} class="block group">
+                  <div class={`bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-stone-100 ${isLatest ? 'md:grid md:grid-cols-2 md:gap-6' : ''}`}>
+                    {post.data.image && (
+                      <div class={`relative overflow-hidden ${isLatest ? 'h-full min-h-[300px]' : 'h-56'}`}>
+                        <img 
+                          src={post.data.image} 
+                          alt={post.data.title} 
+                          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
+                          loading={isLatest ? "eager" : "lazy"} 
+                        />
+                        {isLatest && (
+                          <div class="absolute top-4 left-4 bg-[#6ed8d9] text-white px-3 py-1 rounded-full text-xs font-semibold shadow-md">
+                            Más Reciente
+                          </div>
+                        )}
+                      </div>
+                    )}
+                    <div class="p-6 md:p-8 flex flex-col justify-center">
+                      <div class="flex items-center gap-3 mb-3 text-sm text-stone-500">
+                        <time datetime={post.data.pubDate.toISOString()}>
+                          {new Date(post.data.pubDate).toLocaleDateString('es-CO', { year: 'numeric', month: 'long', day: 'numeric' })}
+                        </time>
+                        <span>•</span>
+                        <span>{post.data.author || 'Marce Anahata'}</span>
+                      </div>
+                      
+                      <h2 class={`font-serif text-[#243c5a] group-hover:text-[#6ed8d9] transition-colors mb-3 ${isLatest ? 'text-3xl md:text-4xl' : 'text-2xl'}`}>
+                        {post.data.title}
+                      </h2>
+                      
+                      <p class={`text-stone-600 mb-4 ${isLatest ? 'text-lg leading-relaxed' : 'text-base'}`}>
+                        {post.data.description}
+                      </p>
+
+                      {post.data.tags && post.data.tags.length > 0 && (
+                        <div class="flex flex-wrap gap-2 mb-4">
+                          {post.data.tags.map(tag => (
+                            <span class="bg-[#6ed8d9]/20 text-[#243c5a] px-3 py-1 rounded-full text-xs font-medium">
+                              #{tag}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+
+                      <div class="flex items-center text-[#5d5a8c] font-medium text-sm group-hover:text-[#6ed8d9] transition-colors">
+                        <span>Leer artículo</span>
+                        <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </a>
               </article>
-            </a>
-          </li>
-        ))}
-      </ul>
-    </main>
-  </body>
-</html>
+            );
+          })
+        }
+      </div>
+    )}
+  </main>
+</Layout>

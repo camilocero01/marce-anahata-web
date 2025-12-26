@@ -10,13 +10,15 @@ interface Props {
     description?: string;
     image?: string; 
     logo?: string; 
+    ogType?: string;
 }
 
 const { 
     title, 
     description = "Centro de bienestar Marce Anahata en El Poblado en Medellín - El Poblado. Kundalini Yoga, Terapia de Sonido, Rituales Sagrados y Bienestar Corporativo.",
     image = "https://marce-anahata-web.vercel.app/images/social-preview.jpg" ,
-    logo = "https://marce-anahata-web.vercel.app/images/marce-perfil.webp"
+    logo = "https://marce-anahata-web.vercel.app/images/marce-perfil.webp",
+    ogType = 'website'
     
 } = Astro.props;
 
@@ -58,12 +60,14 @@ const schema = JSON.stringify({
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href={Astro.url} />
 
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content={ogType} />
         <meta property="og:url" content={Astro.url} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta property="og:image" content={image} />
         <meta property="og:logo" content={logo} />
+
+        <slot name="head" />
 
 
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
