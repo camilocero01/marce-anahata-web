@@ -24,6 +24,7 @@ const jsonLd = {
 <Layout title={pageTitle} description={pageDescription}>
   <Fragment slot="head">
     <link rel="canonical" href={canonical} />
+    <link rel="alternate" type="application/rss+xml" title="Blog RSS" href="/rss.xml" />
     {totalPages > 1 && <link rel="next" href="/blog/page/2" />}
     <meta property="og:type" content="website" />
     <meta property="og:image" content="/images/social-preview.jpg" />
@@ -33,6 +34,16 @@ const jsonLd = {
     <div class="text-center mb-12">
       <h1 class="text-5xl font-serif text-[#243c5a] mb-4">Blog de Bienestar</h1>
       <p class="text-stone-600 text-lg max-w-2xl mx-auto">Artículos sobre yoga, meditación, rituales y salud holística para tu transformación personal</p>
+      <div class="mt-4">
+        <a href="/rss.xml" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm text-[#243c5a] hover:underline">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+            <path d="M5 5c7.732 0 14 6.268 14 14" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M5 12a7 7 0 0 1 7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <circle cx="6" cy="18" r="2" fill="currentColor" />
+          </svg>
+          <span>RSS del blog</span>
+        </a>
+      </div>
     </div>
 
     {posts.length === 0 ? (
