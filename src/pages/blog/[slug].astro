@@ -1,0 +1,60 @@
+---
+import { getEntryBySlug, getCollection } from 'astro:content';
+const { slug } = Astro.params;
+// Cast collection name to const and slug to string for correct typing
+const post = await getEntryBySlug('blog' as const, String(slug));
+// Required for static site generation: list all slugs
+export async function getStaticPaths() {
+  const posts = await getCollection('blog' as const);
+  return posts.map((p) => ({ params: { slug: p.slug } }));
+}
+if (!post) throw new Error('Post not found');
+// Render the markdown content to an Astro component
+const rendered = await post.render();
+const Content = rendered.Content;
+---
+<html lang="es">
+  <head>
+    <title>{post.data.title} | Marce Anahata</title>
+    <meta name="description" content={post.data.description} />
+    <link rel="canonical" href={`https://marceanahata.com/blog/${slug}/`} />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content={post.data.title} />
+    <meta property="og:description" content={post.data.description} />
+    <meta property="og:url" content={`https://marceanahata.com/blog/${slug}/`} />
+    <meta property="og:image" content={post.data.image || '/images/social-preview.jpg'} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={post.data.title} />
+    <meta name="twitter:description" content={post.data.description} />
+    <meta name="twitter:image" content={post.data.image || '/images/social-preview.jpg'} />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": post.data.title,
+      "description": post.data.description,
+      "datePublished": post.data.pubDate,
+      "dateModified": post.data.updatedDate || post.data.pubDate,
+      "image": post.data.image,
+      "author": { "@type": "Person", "name": post.data.author },
+      "mainEntityOfPage": { "@type": "WebPage", "@id": `https://marceanahata.com/blog/${slug}/` }
+    })} />
+  </head>
+  <body>
+    <main class="max-w-2xl mx-auto px-4 py-16">
+      <article>
+        <h1 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-4">{post.data.title}</h1>
+        <div class="flex items-center gap-4 mb-6">
+          <time class="text-xs text-stone-400">{new Date(post.data.pubDate).toLocaleDateString('es-CO', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+          {post.data.tags && <div class="flex flex-wrap gap-2">{post.data.tags.map(tag => <span class="bg-[#6ed8d9]/20 text-[#243c5a] px-2 py-0.5 rounded text-xs">#{tag}</span>)}</div>}
+        </div>
+        {post.data.image && <img src={post.data.image} alt={post.data.title} class="w-full h-64 object-cover rounded-lg mb-8" loading="lazy" />}
+        <div class="prose prose-stone max-w-none">
+          <Content />
+        </div>
+      </article>
+      <nav class="mt-12">
+        <a href="/blog" class="text-[#243c5a] hover:text-[#6ed8d9] underline">← Volver al blog</a>
+      </nav>
+    </main>
+  </body>
+</html>
