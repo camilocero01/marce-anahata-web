@@ -13,7 +13,7 @@ const whatsappLink = "https://wa.me/573207329921?text=Hola%20Marce%20Anahata,%20
 const sobreMiPosts = (await getCollection('blog', ({ data }) =>
   !data.draft && data.tags.includes('Marce Anahata')
 ))
-  .sort(() => Math.random() - 0.5)
+  .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime())
   .slice(0, 3);
 ---
 

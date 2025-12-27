@@ -20,7 +20,7 @@ const whatsappLinkGeneral = `https://wa.me/573207329921?text=${encodeURIComponen
 const yogaPosts = (await getCollection('blog', ({ data }) =>
   !data.draft && (data.tags.includes('yoga') || data.tags.includes('meditación'))
 ))
-  .sort(() => Math.random() - 0.5)
+  .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime())
   .slice(0, 3);
 
 // --- DEFINICIÓN DE LAS OFERTAS (Puedes editar esto fácilmente) ---
