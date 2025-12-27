@@ -3,6 +3,7 @@
 import Layout from '../layouts/Layout.astro';
 import ReviewsSection from '../components/cards/ReviewsSection.astro';
 import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
 import bienestarCorporativoImg from '../assets/corporativo/bienestar-corporativo-2.webp';
 
 // --- DATOS DEL SERVICIO ---
@@ -13,6 +14,13 @@ const serviceInfo = {
 };
 
 const whatsappLink = `https://wa.me/573207329921?text=${encodeURIComponent(serviceInfo.whatsappMessage)}`; // CAMBIA EL NÚMERO
+
+// 3 posts aleatorios con tags "burnout" o "bienestar corporativo"
+const bienestarPosts = (await getCollection('blog', ({ data }) =>
+  !data.draft && (data.tags.includes('burnout') || data.tags.includes('bienestar corporativo'))
+))
+  .sort(() => Math.random() - 0.5)
+  .slice(0, 3);
 ---
 
 <Layout title="Bienestar Corporativo | Marce Anahata">
@@ -236,6 +244,69 @@ const whatsappLink = `https://wa.me/573207329921?text=${encodeURIComponent(servi
     </div>
   </section>
 
+  {bienestarPosts.length > 0 && (
+    <section class="max-w-7xl mx-auto px-6 py-20 bg-white">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-serif text-marce-base-3 mb-4">Artículos sobre Bienestar Corporativo</h2>
+        <p class="text-stone-600 max-w-2xl mx-auto">Ideas y herramientas para prevenir el burnout y crear equipos más conscientes.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {bienestarPosts.map((post) => (
+          <article class="bg-stone-50 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 border border-stone-100 flex flex-col">
+            {post.data.image && (
+              <div class="h-48 overflow-hidden">
+                <img
+                  src={post.data.image}
+                  alt={post.data.title}
+                  class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                  loading="lazy"
+                />
+              </div>
+            )}
+            <div class="p-6 flex flex-col flex-grow">
+              <time class="text-xs text-stone-500 mb-2 uppercase tracking-wider">
+                {new Date(post.data.pubDate).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}
+              </time>
+              <h3 class="text-xl font-semibold text-marce-base-3 mb-3 leading-tight">
+                {post.data.title}
+              </h3>
+              <p class="text-stone-600 text-sm mb-4 flex-grow leading-relaxed">
+                {post.data.description}
+              </p>
+              <a
+                href={`/blog/${post.slug}`}
+                class="text-marce-base-1 font-semibold text-sm hover:text-marce-base-2 transition-colors inline-flex items-center gap-1"
+              >
+                Leer más
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div class="text-center mt-12">
+        <div class="flex flex-col md:flex-row gap-3 justify-center">
+          <a
+            href="/blog/tag/burnout"
+            class="inline-block px-6 py-3 border-2 border-marce-base-1 text-marce-base-1 rounded-lg hover:bg-marce-base-1 hover:text-white transition-all font-semibold"
+          >
+            Ver artículos sobre burnout
+          </a>
+          <a
+            href="/blog/tag/bienestar-corporativo"
+            class="inline-block px-6 py-3 border-2 border-marce-base-1 text-marce-base-1 rounded-lg hover:bg-marce-base-1 hover:text-white transition-all font-semibold"
+          >
+            Ver artículos de bienestar corporativo
+          </a>
+        </div>
+      </div>
+    </section>
+  )}
+
   <div style="background-color: #fcfcfc; border: 1px solid #e5e7eb; padding: 40px; max-width: 600px; margin: 0 auto; font-family: 'Georgia', serif; color: #243c5a; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-radius: 12px; position: relative; overflow: hidden;">
     
     <div style="position: absolute; top: 0; right: 0; width: 200px; height: 200px; background: radial-gradient(circle, rgba(110,216,217,0.2) 0%, rgba(255,255,255,0) 70%); border-radius: 50%;"></div>
@@ -289,5 +360,9 @@ const whatsappLink = `https://wa.me/573207329921?text=${encodeURIComponent(servi
         <p style="margin: 0;">Marce Anahata • Bienestar Corporativo Consciente</p>
     </div>
 </div>
+
+  <div class="bg-white">
+    <ReviewsSection />
+  </div>
 
 </Layout>
