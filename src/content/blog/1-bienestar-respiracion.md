@@ -4,7 +4,7 @@ description: "Aprende una técnica simple de respiración consciente para reduci
 pubDate: 2025-12-18
 updatedDate: 2025-12-18
 author: "Marce Anahata"
-tags: [ "respiración"]
+tags: [ "respiración","Marce Anahata","terapia de sonido"]
 image: "/images/1-bienestar-respiracion.jpg"
 ogImage: "/images/1-bienestar-respiracion.jpg"
 draft: false
