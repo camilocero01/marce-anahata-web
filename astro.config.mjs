@@ -9,6 +9,8 @@ import partytown from '@astrojs/partytown';
 
 import compress from 'astro-compress';
 
+import mdx from '@astrojs/mdx';
+
 // https://astro.build/config
 export default defineConfig({
   vite: {
@@ -16,6 +18,7 @@ export default defineConfig({
   },
 
   integrations: [
+    mdx(),
     sitemap({
       // Exclude low-value pages from sitemap
       // The `page` parameter is a full URL, so compare by path endings

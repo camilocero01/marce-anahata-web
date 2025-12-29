@@ -1,0 +1,141 @@
+---
+// src/components/ImageCarousel.astro
+import { Image } from 'astro:assets';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
+interface Props {
+  images: Array<{
+    src: string;
+    alt: string;
+    caption?: string;
+  }>;
+  id?: string;
+}
+
+const { images, id = 'carousel' } = Astro.props;
+const carouselId = `image-carousel-${id}`;
+---
+
+<div class={`swiper ${carouselId} rounded-2xl overflow-hidden shadow-lg my-8`}>
+  <div class="swiper-wrapper">
+    {images.map((img) => (
+      <div class="swiper-slide">
+        <div class="relative aspect-[16/10] bg-stone-100">
+          <img
+            src={img.src}
+            alt={img.alt}
+            class="w-full h-full object-cover"
+            loading="lazy"
+            width="1200"
+            height="750"
+          />
+          {img.caption && (
+            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
+              <p class="text-white text-sm md:text-base font-light italic">{img.caption}</p>
+            </div>
+          )}
+        </div>
+      </div>
+    ))}
+  </div>
+  
+  <div class={`swiper-button-next swiper-button-next-${id}`}></div>
+  <div class={`swiper-button-prev swiper-button-prev-${id}`}></div>
+  <div class={`swiper-pagination swiper-pagination-${id}`}></div>
+</div>
+
+<script>
+  import Swiper from 'swiper';
+  import { Navigation, Pagination, Autoplay, Keyboard } from 'swiper/modules';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('[class*="image-carousel-"]').forEach((el) => {
+      const carouselClass = Array.from(el.classList).find(c => c.startsWith('image-carousel-'));
+      if (!carouselClass) return;
+      
+      const id = carouselClass.replace('image-carousel-', '');
+      
+      new Swiper(`.${carouselClass}`, {
+        modules: [Navigation, Pagination, Autoplay, Keyboard],
+        
+        loop: true,
+        grabCursor: true,
+        keyboard: {
+          enabled: true,
+          onlyInViewport: true,
+        },
+        
+        autoplay: {
+          delay: 4000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        },
+        
+        pagination: {
+          el: `.swiper-pagination-${id}`,
+          clickable: true,
+          dynamicBullets: true,
+        },
+        
+        navigation: {
+          nextEl: `.swiper-button-next-${id}`,
+          prevEl: `.swiper-button-prev-${id}`,
+        },
+        
+        breakpoints: {
+          640: {
+            slidesPerView: 1,
+          },
+        }
+      });
+    });
+  });
+</script>
+
+<style is:global>
+  /* Botones de navegación */
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: #fff;
+    background: rgba(93, 90, 140, 0.8);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+  }
+  
+  .swiper-button-next:after,
+  .swiper-button-prev:after {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .swiper-button-next:hover,
+  .swiper-button-prev:hover {
+    background: rgba(93, 90, 140, 1);
+    transform: scale(1.1);
+  }
+  
+  /* Paginación */
+  .swiper-pagination-bullet {
+    background: #5d5a8c !important;
+    opacity: 0.4;
+    width: 10px;
+    height: 10px;
+  }
+  
+  .swiper-pagination-bullet-active {
+    opacity: 1 !important;
+    background: #5d5a8c !important;
+  }
+  
+  /* Responsive: ocultar flechas en móvil */
+  @media (max-width: 640px) {
+    .swiper-button-next,
+    .swiper-button-prev {
+      display: none;
+    }
+  }
+</style>
