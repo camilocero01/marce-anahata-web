@@ -97,6 +97,28 @@ Todos desde la raíz del proyecto:
 - Página 404 rediseñada con últimos 3 posts globales.
 - Página de detalle de blog muestra últimos 3 posts globales y excluye el actual.
 - Se revirtió la sección de servicios del home al diseño original (grid 4 columnas, CTA "Saber más →").
+- Instalado MDX para soportar componentes en posts
+- Creados 4 componentes reutilizables: ImageCarousel, ImageGallery, ReviewsSection, ServiceCard
+
+## 📚 Documentación de componentes
+
+Guías completas para cada componente reutilizable:
+
+| Componente | Descripción | Archivo |
+|------------|-------------|---------|
+| **ImageCarousel** | Carrusel de imágenes con autoplay, navegación y captions | [CAROUSEL-GUIDE.md](CAROUSEL-GUIDE.md) |
+| **ImageGallery** | Galería en grid con lightbox (ampliación al hacer clic) | [GALLERY-GUIDE.md](GALLERY-GUIDE.md) |
+| **ReviewsSection** | Carrusel de reseñas/testimonios con banderas y fotos de perfil | [REVIEWS-GUIDE.md](REVIEWS-GUIDE.md) |
+| **ServiceCard** | Tarjeta de servicio/ritual con imagen, descripción y CTA | [SERVICECARD-GUIDE.md](SERVICECARD-GUIDE.md) |
+
+Cada guía incluye:
+- Descripción detallada del componente
+- Props disponibles
+- Ejemplos de uso
+- Personalización de estilos
+- Buenas prácticas SEO
+- Troubleshooting completo
+- Casos de uso reales
 
 ## ❗ Troubleshooting
 
