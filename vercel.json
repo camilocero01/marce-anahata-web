@@ -45,5 +45,32 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/:path*/",
+      "destination": "/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/web",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/web/index.php/eventos-pasados/taller-renacer",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/web/index.php/eventos-pasados/encuentro-para-la-ansiedad-y-la-depresion",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/web/index.php/component/users/remind?Itemid=101",
+      "destination": "/blog",
+      "permanent": true
+    }
   ]
 }
