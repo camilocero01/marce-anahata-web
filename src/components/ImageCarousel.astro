@@ -1,9 +1,7 @@
 ---
 // src/components/ImageCarousel.astro
-import { Image } from 'astro:assets';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
+// Carrusel de imágenes optimizado para SEO sin dependencias pesadas
+// Usa HTML puro con CSS y JavaScript minimalista
 
 interface Props {
   images: Array<{
@@ -15,135 +13,331 @@ interface Props {
 }
 
 const { images, id = 'carousel' } = Astro.props;
-const carouselId = `image-carousel-${id}`;
+const carouselId = `carousel-${id}`;
+
+// Validar que hay imágenes
+if (!images || images.length === 0) {
+  throw new Error(`ImageCarousel: No images provided for carousel "${id}"`);
+}
+
+// Para SEO: crear schema.org ImageObject
+const imageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ImageGallery',
+  associatedMedia: images.map((img) => ({
+    '@type': 'ImageObject',
+    url: img.src,
+    name: img.alt,
+    description: img.caption || img.alt,
+  })),
+};
 ---
 
-<div class={`swiper ${carouselId} rounded-2xl overflow-hidden shadow-lg my-8`}>
-  <div class="swiper-wrapper">
-    {images.map((img) => (
-      <div class="swiper-slide">
-        <div class="relative aspect-[16/10] bg-stone-100">
+<div class="carousel-container" data-carousel-id={carouselId}>
+  {/* Schema.org markup para SEO */}
+  <script type="application/ld+json" set:html={JSON.stringify(imageSchema)} />
+
+  {/* Carrusel con fallback HTML puro */}
+  <div class="carousel-wrapper rounded-2xl overflow-hidden shadow-lg my-8">
+    <div class="carousel-track" role="region" aria-label={`Galería de imágenes: ${id}`}>
+      {images.map((img, idx) => (
+        <figure class="carousel-slide" data-slide-index={idx}>
           <img
             src={img.src}
             alt={img.alt}
-            class="w-full h-full object-cover"
-            loading="lazy"
+            class="carousel-image w-full h-full object-cover"
+            loading={idx === 0 ? 'eager' : 'lazy'}
             width="1200"
             height="750"
+            decoding="async"
           />
           {img.caption && (
-            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
-              <p class="text-white text-sm md:text-base font-light italic">{img.caption}</p>
-            </div>
+            <figcaption class="carousel-caption">
+              {img.caption}
+            </figcaption>
           )}
-        </div>
-      </div>
-    ))}
+        </figure>
+      ))}
+    </div>
+
+    {/* Controles de navegación (ocultos sin JS, funcionales con JS) */}
+    <div class="carousel-controls" aria-hidden="true">
+      <button
+        class="carousel-btn carousel-btn--prev"
+        data-carousel-id={carouselId}
+        aria-label="Imagen anterior"
+        type="button"
+      >
+        ‹
+      </button>
+      <button
+        class="carousel-btn carousel-btn--next"
+        data-carousel-id={carouselId}
+        aria-label="Siguiente imagen"
+        type="button"
+      >
+        ›
+      </button>
+    </div>
+
+    {/* Indicadores de paginación */}
+    <div class="carousel-pagination" role="tablist">
+      {images.map((_, idx) => (
+        <button
+          class={`carousel-dot ${idx === 0 ? 'carousel-dot--active' : ''}`}
+          data-carousel-id={carouselId}
+          data-slide-index={idx}
+          role="tab"
+          aria-label={`Ir a imagen ${idx + 1}`}
+          aria-selected={idx === 0}
+          type="button"
+        />
+      ))}
+    </div>
   </div>
-  
-  <div class={`swiper-button-next swiper-button-next-${id}`}></div>
-  <div class={`swiper-button-prev swiper-button-prev-${id}`}></div>
-  <div class={`swiper-pagination swiper-pagination-${id}`}></div>
 </div>
 
-<script>
-  import Swiper from 'swiper';
-  import { Navigation, Pagination, Autoplay, Keyboard } from 'swiper/modules';
+<style>
+  /* Estilos del carrusel */
+  .carousel-container {
+    width: 100%;
+  }
 
-  document.addEventListener('DOMContentLoaded', () => {
-    try {
-      document.querySelectorAll('[class*="image-carousel-"]').forEach((el) => {
-        try {
-          const carouselClass = Array.from(el.classList).find(c => c.startsWith('image-carousel-'));
-          if (!carouselClass) return;
+  .carousel-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background: #f5f5f4;
+  }
 
-          const id = carouselClass.replace('image-carousel-', '');
+  .carousel-track {
+    display: flex;
+    width: 100%;
+    transition: transform 0.3s ease-out;
+  }
 
-          // Inicializar Swiper con try/catch por cada instancia para aislar errores
-          try {
-            new Swiper(`.${carouselClass}`, {
-              modules: [Navigation, Pagination, Autoplay, Keyboard],
-              loop: true,
-              grabCursor: true,
-              keyboard: {
-                enabled: true,
-                onlyInViewport: true,
-              },
-              autoplay: {
-                delay: 4000,
-                disableOnInteraction: false,
-                pauseOnMouseEnter: true,
-              },
-              pagination: {
-                el: `.swiper-pagination-${id}`,
-                clickable: true,
-                dynamicBullets: true,
-              },
-              navigation: {
-                nextEl: `.swiper-button-next-${id}`,
-                prevEl: `.swiper-button-prev-${id}`,
-              },
-              breakpoints: {
-                640: {
-                  slidesPerView: 1,
-                },
-              }
-            });
-          } catch (initErr) {
-            console.error('ImageCarousel init error for', carouselClass, initErr);
-          }
-        } catch (instErr) {
-          console.warn('Skipping an ImageCarousel instance due to error', instErr);
-        }
-      });
-    } catch (err) {
-      console.error('ImageCarousel DOM initialization failed', err);
+  .carousel-slide {
+    flex: 0 0 100%;
+    position: relative;
+    aspect-ratio: 16 / 10;
+    margin: 0;
+  }
+
+  .carousel-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .carousel-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    color: white;
+    padding: 1.5rem 1rem;
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    font-style: italic;
+  }
+
+  @media (min-width: 768px) {
+    .carousel-caption {
+      font-size: 1rem;
+      padding: 1.5rem;
     }
-  });
-</script>
+  }
 
-<style is:global>
-  /* Botones de navegación */
-  .swiper-button-next,
-  .swiper-button-prev {
-    color: #fff;
+  /* Controles */
+  .carousel-controls {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+    padding: 0 1rem;
+    z-index: 10;
+  }
+
+  .carousel-btn {
+    pointer-events: all;
+    appearance: none;
+    border: none;
     background: rgba(93, 90, 140, 0.8);
+    color: white;
     width: 44px;
     height: 44px;
     border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
     transition: all 0.3s ease;
-  }
-  
-  .swiper-button-next:after,
-  .swiper-button-prev:after {
-    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-weight: bold;
   }
-  
-  .swiper-button-next:hover,
-  .swiper-button-prev:hover {
+
+  .carousel-btn:hover {
     background: rgba(93, 90, 140, 1);
     transform: scale(1.1);
   }
-  
+
+  .carousel-btn:active {
+    transform: scale(0.95);
+  }
+
   /* Paginación */
-  .swiper-pagination-bullet {
-    background: #5d5a8c !important;
-    opacity: 0.4;
+  .carousel-pagination {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    z-index: 10;
+  }
+
+  .carousel-dot {
+    appearance: none;
+    border: none;
+    background: rgba(93, 90, 140, 0.4);
     width: 10px;
     height: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
   }
-  
-  .swiper-pagination-bullet-active {
-    opacity: 1 !important;
-    background: #5d5a8c !important;
+
+  .carousel-dot:hover {
+    background: rgba(93, 90, 140, 0.6);
   }
-  
-  /* Responsive: ocultar flechas en móvil */
+
+  .carousel-dot--active {
+    background: #5d5a8c;
+    opacity: 1;
+  }
+
+  /* Responsive: ocultar botones en móvil */
   @media (max-width: 640px) {
-    .swiper-button-next,
-    .swiper-button-prev {
+    .carousel-btn {
       display: none;
     }
   }
+
+  /* Accesibilidad: outline para navegación por teclado */
+  .carousel-btn:focus,
+  .carousel-dot:focus {
+    outline: 2px solid #6ed8d9;
+    outline-offset: 2px;
+  }
 </style>
+
+<script>
+  // Script minimalista para carrusel - evita problemas de event listeners
+  class ImageCarousel {
+    constructor(containerId) {
+      this.container = document.querySelector(
+        `[data-carousel-id="${containerId}"]`
+      );
+      if (!this.container) return;
+
+      this.track = this.container.querySelector('.carousel-track');
+      this.slides = this.container.querySelectorAll('.carousel-slide');
+      this.dots = this.container.querySelectorAll('.carousel-dot');
+      this.buttons = this.container.querySelectorAll(
+        '.carousel-btn[data-carousel-id]'
+      );
+
+      this.currentIndex = 0;
+      this.slideCount = this.slides.length;
+
+      if (this.slideCount <= 1) return;
+
+      this.init();
+    }
+
+    init() {
+      // Click handlers con passive: true implícito en click
+      this.buttons.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          btn.classList.contains('carousel-btn--next')
+            ? this.next()
+            : this.prev();
+        });
+      });
+
+      this.dots.forEach((dot, idx) => {
+        dot.addEventListener('click', () => this.goTo(idx));
+      });
+
+      // Keyboard navigation (OPCIONAL, seguro)
+      this.container.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') this.prev();
+        if (e.key === 'ArrowRight') this.next();
+      });
+
+      // Auto-play opcional (comentado para evitar complejidad)
+      // this.autoplay();
+    }
+
+    goTo(index) {
+      this.currentIndex = Math.max(0, Math.min(index, this.slideCount - 1));
+      this.updateView();
+    }
+
+    next() {
+      this.currentIndex = (this.currentIndex + 1) % this.slideCount;
+      this.updateView();
+    }
+
+    prev() {
+      this.currentIndex =
+        (this.currentIndex - 1 + this.slideCount) % this.slideCount;
+      this.updateView();
+    }
+
+    updateView() {
+      const offset = -this.currentIndex * 100;
+      this.track.style.transform = `translateX(${offset}%)`;
+
+      // Actualizar dots
+      this.dots.forEach((dot, idx) => {
+        dot.classList.toggle('carousel-dot--active', idx === this.currentIndex);
+        dot.setAttribute('aria-selected', idx === this.currentIndex);
+      });
+
+      // Actualizar aria-live para screen readers
+      const currentSlide = this.slides[this.currentIndex];
+      currentSlide?.setAttribute('aria-live', 'polite');
+    }
+  }
+
+  // Inicializar carrusel cuando esté listo el DOM
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCarousels);
+  } else {
+    initCarousels();
+  }
+
+  function initCarousels() {
+    const containers = document.querySelectorAll('[data-carousel-id]');
+    containers.forEach((container) => {
+      const id = container.getAttribute('data-carousel-id');
+      if (id) {
+        try {
+          new ImageCarousel(id);
+        } catch (err) {
+          console.warn('Failed to initialize carousel', id, err);
+        }
+      }
+    });
+  }
+</script>
