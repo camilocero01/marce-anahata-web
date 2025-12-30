@@ -51,46 +51,54 @@ const carouselId = `image-carousel-${id}`;
   import { Navigation, Pagination, Autoplay, Keyboard } from 'swiper/modules';
 
   document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('[class*="image-carousel-"]').forEach((el) => {
-      const carouselClass = Array.from(el.classList).find(c => c.startsWith('image-carousel-'));
-      if (!carouselClass) return;
-      
-      const id = carouselClass.replace('image-carousel-', '');
-      
-      new Swiper(`.${carouselClass}`, {
-        modules: [Navigation, Pagination, Autoplay, Keyboard],
-        
-        loop: true,
-        grabCursor: true,
-        keyboard: {
-          enabled: true,
-          onlyInViewport: true,
-        },
-        
-        autoplay: {
-          delay: 4000,
-          disableOnInteraction: false,
-          pauseOnMouseEnter: true,
-        },
-        
-        pagination: {
-          el: `.swiper-pagination-${id}`,
-          clickable: true,
-          dynamicBullets: true,
-        },
-        
-        navigation: {
-          nextEl: `.swiper-button-next-${id}`,
-          prevEl: `.swiper-button-prev-${id}`,
-        },
-        
-        breakpoints: {
-          640: {
-            slidesPerView: 1,
-          },
+    try {
+      document.querySelectorAll('[class*="image-carousel-"]').forEach((el) => {
+        try {
+          const carouselClass = Array.from(el.classList).find(c => c.startsWith('image-carousel-'));
+          if (!carouselClass) return;
+
+          const id = carouselClass.replace('image-carousel-', '');
+
+          // Inicializar Swiper con try/catch por cada instancia para aislar errores
+          try {
+            new Swiper(`.${carouselClass}`, {
+              modules: [Navigation, Pagination, Autoplay, Keyboard],
+              loop: true,
+              grabCursor: true,
+              keyboard: {
+                enabled: true,
+                onlyInViewport: true,
+              },
+              autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+              },
+              pagination: {
+                el: `.swiper-pagination-${id}`,
+                clickable: true,
+                dynamicBullets: true,
+              },
+              navigation: {
+                nextEl: `.swiper-button-next-${id}`,
+                prevEl: `.swiper-button-prev-${id}`,
+              },
+              breakpoints: {
+                640: {
+                  slidesPerView: 1,
+                },
+              }
+            });
+          } catch (initErr) {
+            console.error('ImageCarousel init error for', carouselClass, initErr);
+          }
+        } catch (instErr) {
+          console.warn('Skipping an ImageCarousel instance due to error', instErr);
         }
       });
-    });
+    } catch (err) {
+      console.error('ImageCarousel DOM initialization failed', err);
+    }
   });
 </script>
 
