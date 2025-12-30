@@ -1,0 +1,77 @@
+---
+interface Props {
+  items: Array<{
+    label: string;
+    url?: string;
+  }>;
+}
+
+const { items } = Astro.props;
+
+// Construir el schema JSON-LD para breadcrumbs
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": items.map((item, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "name": item.label,
+    ...(item.url && { "item": `${Astro.site}${item.url}`.replace(/\/$/, '') })
+  }))
+};
+---
+
+<nav class="breadcrumbs mb-4">
+  <ol class="flex flex-wrap items-center gap-2 text-sm text-gray-600">
+    {items.map((item, index) => (
+      <li class="flex items-center gap-2">
+        {item.url ? (
+          <a 
+            href={item.url}
+            class="text-blue-600 hover:text-blue-800 hover:underline transition-colors"
+          >
+            {item.label}
+          </a>
+        ) : (
+          <span class="text-gray-800 font-medium">
+            {item.label}
+          </span>
+        )}
+        {index < items.length - 1 && (
+          <span class="text-gray-400">/</span>
+        )}
+      </li>
+    ))}
+  </ol>
+</nav>
+
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+<style>
+  .breadcrumbs ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .breadcrumbs li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .breadcrumbs a {
+    color: #2563eb;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .breadcrumbs a:hover {
+    color: #1d4ed8;
+    text-decoration: underline;
+  }
+
+  .breadcrumbs span:last-child {
+    display: none;
+  }
+</style>
