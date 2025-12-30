@@ -10,7 +10,7 @@ ogImage: "/images/experiencias/social-circulo.jpg"
 draft: false
 ---
 
-
+import ImageCarousel from '../../components/ImageCarousel.astro';
 import ImageGallery from '../../components/ImageGallery.astro'; 
 
 
@@ -22,11 +22,56 @@ Aunque las palabras a veces se quedan cortas para describir la energía que se m
 
 Todo comienza antes de que lleguen las participantes. Preparar el espacio es en sí mismo un acto sagrado.
 
+<ImageCarousel 
+  id="altar"
+  images={[
+    {
+      src: "/images/experiencias/detalle-altar-velas.webp",
+      alt: "Altar decorado con velas, flores blancas y elementos naturales para el círculo de mujeres",
+      caption: "Cada elemento tiene un propósito: las velas representan la luz interior, las flores la renovación"
+    },
+    {
+      src: "/images/experiencias/preparacion-espacio.webp",
+      alt: "Preparación del espacio ceremonial con cojines y mantas dispuestas en círculo",
+      caption: "El círculo permite que todas nos veamos de frente, sin jerarquías"
+    },
+    {
+      src: "/images/experiencias/incienso-ritual.webp",
+      alt: "Sahumerio de palo santo y salvia blanca para limpiar energéticamente el espacio",
+      caption: "Limpieza energética con palo santo antes de iniciar"
+    }
+  ]}
+/>
 
 ## La ceremonia
 
 Durante la meditación guiada, logramos un estado de paz profunda. Es hermoso ver cómo los rostros cambian desde que llegan (a veces con el estrés de la semana) hasta este momento de relajación total.
 
+<ImageCarousel 
+  id="ceremonia"
+  images={[
+    {
+      src: "/images/experiencias/meditacion-grupal.webp",
+      alt: "Participantes del círculo de mujeres en meditación profunda con los ojos cerrados",
+      caption: "Respiración consciente y conexión con el cuerpo"
+    },
+    {
+      src: "/images/experiencias/compartir-palabra.webp",
+      alt: "Mujer compartiendo su experiencia en el círculo sosteniendo un bastón de la palabra",
+      caption: "Cada voz es escuchada con presencia plena"
+    },
+    {
+      src: "/images/experiencias/abrazo-grupal-ritual.webp",
+      alt: "Participantes del círculo de mujeres abrazadas cerrando el ritual de cierre de año",
+      caption: "El abrazo final sella la energía de hermandad y contención"
+    },
+    {
+      src: "/images/experiencias/sonrisas-cierre.webp",
+      alt: "Rostros sonrientes y relajados de las participantes al finalizar el ritual",
+      caption: "Cuando salimos, ya no somos las mismas que entramos"
+    }
+  ]}
+/>
 
 ### Lo que compartieron después
 
