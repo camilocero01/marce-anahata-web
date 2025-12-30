@@ -49,7 +49,12 @@
   "redirects": [
     {
       "source": "/web",
-      "destination": "/",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/web/",
+      "destination": "/blog",
       "permanent": true
     },
     {

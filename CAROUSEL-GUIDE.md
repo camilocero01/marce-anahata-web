@@ -1,17 +1,18 @@
 # Guía de uso: Carrusel de imágenes en posts
 
-## Componente ImageCarousel
+## Componente ImageCarousel v2
 
-El componente `ImageCarousel.astro` permite incluir galerías de imágenes interactivas en tus posts de blog, optimizadas para SEO y rendimiento.
+El componente `ImageCarousel.astro` es un carrusel ligero y optimizado para SEO, construido con **vanilla JavaScript** (sin dependencias pesadas como Swiper). Ideal para galerías de imágenes en posts de blog.
 
 ### Características
 
-- ✅ **SEO optimizado**: Todos los alt texts y captions son indexables
+- ✅ **SEO optimizado**: Schema.org markup (ImageGallery type), HTML semántico con `<figure>` y `<figcaption>`
+- ✅ **Sin dependencias**: Vanilla JavaScript puro, sin bibliotecas externas
 - ✅ **Responsive**: Se adapta automáticamente a móvil, tablet y desktop
-- ✅ **Lazy loading**: Las imágenes solo cargan cuando son visibles
-- ✅ **Navegación múltiple**: Flechas, dots, teclado y gestos táctiles
-- ✅ **Autoplay inteligente**: Se pausa al interactuar o hacer hover
-- ✅ **Accesibilidad**: Navegable con teclado (flechas ← →)
+- ✅ **Lazy loading**: Todas las imágenes excepto la primera usan `loading="lazy"`
+- ✅ **Navegación**: Flechas laterales, dots de paginación, teclado (← →)
+- ✅ **Accesibilidad**: ARIA labels, roles semánticos, navegación con teclado
+- ✅ **Performance**: Sin event listeners no-pasivos, error-isolated con try/catch
 
 ### Cómo usarlo
 
@@ -151,9 +152,16 @@ caption: "Cada elemento tiene un propósito: las velas representan la luz interi
 
 Los usuarios pueden moverse por el carrusel de varias formas:
 
-- **Desktop**: Flechas laterales, dots, teclado (← →), arrastre con mouse
-- **Móvil/Tablet**: Swipe táctil, dots
-- **Autoplay**: Avanza automáticamente cada 4 segundos (se pausa al interactuar)
+- **Desktop**: 
+  - Botones de navegación (← →) en los laterales
+  - Dots de paginación en la parte inferior
+  - Teclado: Flechas izquierda/derecha (← →)
+- **Móvil/Tablet**: 
+  - Botones de navegación ocultos (solo dots visibles)
+  - Dots táctiles para saltar entre imágenes
+- **Transiciones suaves**: CSS transforms con `transform: translateX()` para rendimiento óptimo
+
+**Nota**: No hay autoplay ni gestos de swipe en esta versión para mejor performance y evitar warnings de event listeners.
 
 ### Personalización
 
@@ -163,10 +171,17 @@ Si necesitas modificar el estilo del carrusel, edita:
 src/components/ImageCarousel.astro
 ```
 
-Colores y estilos principales:
-- Botones: `background: rgba(93, 90, 140, 0.8)` (violeta marca)
-- Dots activos: `#5d5a8c` (violeta marca)
-- Transiciones: `duration-300` (Tailwind)
+**Estructura interna**:
+- **Schema.org JSON-LD**: `<script type="application/ld+json">` con ImageGallery markup
+- **HTML semántico**: `<figure>` + `<figcaption>` para cada imagen
+- **CSS**: Estilos inline con Tailwind classes
+- **JavaScript**: Clase `ImageCarousel` vanilla con métodos `goTo()`, `next()`, `prev()`
+
+**Colores y estilos principales**:
+- Botones: `background: rgba(93, 90, 140, 0.8)` (violeta marca) con hover
+- Dots activos: `bg-[#5d5a8c]` (violeta marca), inactivos: `bg-gray-300`
+- Transiciones: `transition-transform duration-500 ease-in-out`
+- Responsive: Botones ocultos en móvil (`sm:flex`), solo dots visibles
 
 ### Estructura de carpetas recomendada
 
@@ -186,13 +201,27 @@ public/
 **Solución**: Verifica que la ruta comience con `/images/` y que el archivo esté en `/public/images/`
 
 **Problema**: El carrusel no se mueve  
-**Solución**: Asegúrate de que `id` sea único en cada carrusel del mismo post
+**Solución**: Asegúrate de que `id` sea único en cada carrusel del mismo post. Verifica que hay al menos 2 imágenes en el array.
 
 **Problema**: Error al compilar  
-**Solución**: Verifica que el archivo sea `.mdx` (no `.md`) y que hayas importado el componente
+**Solución**: Verifica que el archivo sea `.mdx` (no `.md`) y que hayas importado el componente correctamente
 
 **Problema**: Imágenes muy pesadas  
-**Solución**: Comprime con https://squoosh.app/ o convierte a WebP
+**Solución**: Comprime con https://squoosh.app/ o convierte a WebP. Tamaño recomendado: 1200x750px, <200KB
+
+**Problema**: Página en blanco después de agregar el carrusel  
+**Solución**: Revisa la consola del navegador para errores JavaScript. Verifica que todos los objetos en el array `images` tengan `src` y `alt`.
+
+**Problema**: "Added non-passive event listener" warning  
+**Solución**: Esta versión NO usa touchstart listeners, solo click handlers (inherentemente pasivos). Si ves este warning, verifica que sea de otro script (como feedback.js de terceros).
+
+### Beneficios de esta versión
+
+✅ **Sin dependencias**: No requiere Swiper, lo que reduce el bundle size en ~80KB  
+✅ **SEO mejorado**: Schema.org markup hace que Google entienda mejor tu contenido  
+✅ **Performance**: Sin event listeners bloqueantes, mejor Core Web Vitals  
+✅ **Mantenibilidad**: Código vanilla simple de 200 líneas, fácil de personalizar  
+✅ **Estabilidad**: Error-isolated con try/catch, no rompe la página si algo falla
 
 ### Ejemplo real
 

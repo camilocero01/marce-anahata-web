@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # Sitemap — apuntar al dominio canónico
-Sitemap: https://www.marceanahata.com/sitemap-index.xml
+Sitemap: https://www.marceanahata.com/sitemap-0.xml
