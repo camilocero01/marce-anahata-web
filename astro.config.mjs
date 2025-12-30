@@ -33,7 +33,7 @@ export default defineConfig({
     }),
     compress()
   ],
-  site: 'https://marce-anahata-web.vercel.app', // Tu URL de producción
+  site: 'https://www.marceanahata.com', // URL de producción (usar dominio canonico)
   // 'always' fuerza la barra al final (ej: /contacto/)
   // 'never' la quita (ej: /contacto) -> Recomendado para Vercel
   trailingSlash: 'never', 

@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://marce-anahata-web.vercel.app/sitemap-index.xml
+# Sitemap — apuntar al dominio canónico
+Sitemap: https://www.marceanahata.com/sitemap-index.xml
