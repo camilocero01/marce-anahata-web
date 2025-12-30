@@ -4,7 +4,7 @@ description: "¿Sientes agotamiento a mitad del día? Descubre cómo pequeñas d
 pubDate: 2025-12-27
 updatedDate: 2025-12-27
 author: "Marce Anahata"
-tags: ["burnout", "bienestar laboral", "pausas activas"]
+tags: ["burnout", "bienestar corporativo", "pausas activas"]
 image: "/images/4-yoga-y-meditacion-para-tu-trabajo.jpg"
 ogImage: "/images/4-yoga-y-meditacion-para-tu-trabajo.jpg"
 draft: false

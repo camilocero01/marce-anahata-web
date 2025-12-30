@@ -4,7 +4,7 @@ description: "Explora cómo las frecuencias de los cuencos y el sonido conscient
 pubDate: 2025-12-19
 updatedDate: 2025-12-19
 author: "Marce Anahata"
-tags: ["terapia de sonido", "bienestar", "meditación"]
+tags: ["terapia de sonido", "bienestar", "meditación","yoga"]
 image: "/images/2-el-poder-sanador-terapia-sonido.jpg"
 ogImage: "/images/2-el-poder-sanador-terapia-sonido.jpg"
 draft: false
