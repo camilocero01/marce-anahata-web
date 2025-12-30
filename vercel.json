@@ -48,11 +48,6 @@
   ],
   "redirects": [
     {
-      "source": "/:path*/",
-      "destination": "/:path*",
-      "permanent": true
-    },
-    {
       "source": "/web",
       "destination": "/",
       "permanent": true
@@ -68,7 +63,14 @@
       "permanent": true
     },
     {
-      "source": "/web/index.php/component/users/remind?Itemid=101",
+      "source": "/web/index.php/component/users/remind",
+      "has": [
+        {
+          "type": "query",
+          "key": "Itemid",
+          "value": "101"
+        }
+      ],
       "destination": "/blog",
       "permanent": true
     }
