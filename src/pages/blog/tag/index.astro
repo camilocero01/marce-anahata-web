@@ -8,7 +8,7 @@ posts.forEach(p => (p.data.tags || []).forEach(t => tagCounts.set(t, (tagCounts.
 const tags = Array.from(tagCounts.entries()).sort((a, b) => b[1] - a[1]);
 
 const pageTitle = 'Tags del Blog';
-const pageDescription = 'Explora artículos por temas y etiquetas.';
+const pageDescription = 'Explora artículos sobre yoga, meditación, terapia de sonido, rituales sagrados y bienestar integral. Organiza el contenido por temas de kundalini yoga, sanación, mindfulness y transformación personal.';
 const canonical = new URL(Astro.url).toString();
 ---
 
@@ -21,7 +21,7 @@ const canonical = new URL(Astro.url).toString();
   <main class="max-w-5xl mx-auto px-4 py-16">
     <div class="text-center mb-12">
       <h1 class="text-4xl md:text-5xl font-serif text-[#243c5a] mb-4">Explora por Tags</h1>
-      <p class="text-stone-600 text-lg">Selecciona un tema para ver sus artículos.</p>
+      <p class="text-stone-600 text-lg">Descubre nuestros artículos sobre kundalini yoga, meditación, terapia de sonido, rituales sagrados y bienestar. Navega por categorías de mindfulness, sanación energética y transformación personal para encontrar exactamente lo que buscas.</p>
       <div class="mt-6">
         <a href="/blog" class="text-sm text-[#243c5a] hover:underline">← Volver al blog</a>
       </div>
