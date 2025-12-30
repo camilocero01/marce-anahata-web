@@ -46,7 +46,7 @@ const relatedPosts = primaryTag
       .slice(0, 3)
   : [];
 ---
-<Layout title={title} description={description} image={image} ogType="article">
+<Layout title={title} description={description} image={image} ogType="article" hideAuthorInTitle={true}>
   <Fragment slot="head">
     <link rel="canonical" href={canonical} />
     <meta property="article:published_time" content={publishedTime} />

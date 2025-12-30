@@ -19,8 +19,8 @@ const totalPages = Math.max(1, Math.ceil(allPosts.length / PER_PAGE));
 const posts = allPosts.slice(0, PER_PAGE);
 const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 const [featured, ...rest] = posts;
-const pageTitle = 'Blog';
-const pageDescription = 'Artículos de bienestar, yoga, rituales y salud holística.';
+const pageTitle = 'Artículos de Yoga, Meditación, Rituales y Bienestar Holístico | Blog';
+const pageDescription = 'Descubre artículos sobre kundalini yoga, meditación, terapia de sonido, rituales sagrados y bienestar integral. Guías y consejos para tu transformación personal.';
 const canonical = new URL(Astro.url).toString();
 const jsonLd = {
   "@context": "https://schema.org",

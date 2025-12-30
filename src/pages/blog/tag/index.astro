@@ -7,8 +7,8 @@ const tagCounts = new Map<string, number>();
 posts.forEach(p => (p.data.tags || []).forEach(t => tagCounts.set(t, (tagCounts.get(t) || 0) + 1)));
 const tags = Array.from(tagCounts.entries()).sort((a, b) => b[1] - a[1]);
 
-const pageTitle = 'Tags del Blog';
-const pageDescription = 'Explora artículos sobre yoga, meditación, terapia de sonido, rituales sagrados y bienestar integral. Organiza el contenido por temas de kundalini yoga, sanación, mindfulness y transformación personal.';
+const pageTitle = 'Categorías del Blog: Yoga, Meditación, Rituales y Bienestar';
+const pageDescription = 'Explora artículos sobre kundalini yoga, meditación, terapia de sonido, rituales sagrados y bienestar integral. Organiza el contenido por temas de kundalini yoga, sanación, mindfulness y transformación personal.';
 const canonical = new URL(Astro.url).toString();
 ---
 

@@ -17,6 +17,9 @@ const allPosts = (await getCollection('blog', ({ data }) => !data.draft))
   .slice(0, 3);
 
 // Datos de servicios
+const pageTitle = "Kundalini Yoga, Terapia de Sonido y Rituales Sagrados en Medellín";
+const pageDescription = "Centro de bienestar Marce Anahata: yoga, meditación, terapia sonora, rituales y bienestar corporativo. Transformación integral en El Poblado.";
+
 const serviciosHome = [
   {
     titulo: "Terapia de Sonido",
@@ -45,7 +48,7 @@ const serviciosHome = [
 ];
 ---
 
-<Layout title="Inicio" description="Marce Anahata: Centro de bienestar, Kundalini Yoga y Terapia de Sonido en Medellín - El Poblado.">
+<Layout title={pageTitle} description={pageDescription}>
   
   <section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
 

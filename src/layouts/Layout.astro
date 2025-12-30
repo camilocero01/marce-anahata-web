@@ -11,6 +11,7 @@ interface Props {
     image?: string; 
     logo?: string; 
     ogType?: string;
+    hideAuthorInTitle?: boolean;
 }
 
 const { 
@@ -18,9 +19,12 @@ const {
     description = "Centro de bienestar Marce Anahata en El Poblado en Medellín - El Poblado. Kundalini Yoga, Terapia de Sonido, Rituales Sagrados y Bienestar Corporativo.",
     image = "https://marce-anahata-web.vercel.app/images/social-preview.jpg" ,
     logo = "https://marce-anahata-web.vercel.app/images/marce-perfil.webp",
-    ogType = 'website'
+    ogType = 'website',
+    hideAuthorInTitle = false
     
 } = Astro.props;
+
+const finalTitle = hideAuthorInTitle ? title : `${title} | Marce Anahata`;
 
 // Schema.org para SEO Local (Negocio Local)
 const schema = JSON.stringify({
@@ -55,7 +59,7 @@ const schema = JSON.stringify({
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="generator" content={Astro.generator} />
         
-        <title>{title} | Marce Anahata</title>
+        <title>{finalTitle}</title>
         <meta name="description" content={description} />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href={Astro.url} />
