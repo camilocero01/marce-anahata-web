@@ -1,5 +1,6 @@
 ---
-title: "Pausa y Resetea: Cómo llevar el Yoga y la Meditación a tu jornada laboral"
+title: "Pausa y Resetea: Yoga en tu jornada laboral"
+seoTitle: "Pausa y Resetea: Cómo llevar el Yoga y la Meditación a tu jornada laboral"
 description: "¿Sientes agotamiento a mitad del día? Descubre cómo pequeñas dosis de yoga y mindfulness pueden transformar tu productividad y bienestar sin salir de la oficina."
 pubDate: 2025-12-27
 updatedDate: 2025-12-27

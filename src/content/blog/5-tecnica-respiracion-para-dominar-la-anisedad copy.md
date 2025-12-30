@@ -1,5 +1,6 @@
 ---
-title: "Sama Vritti: La técnica de respiración cuadrada para dominar la ansiedad"
+title: "Sama Vritti: Técnica de respiración cuadrada"
+seoTitle: "Sama Vritti: La técnica de respiración cuadrada para dominar la ansiedad"
 description: "Aprende paso a paso la respiración 4-4-4-4, una herramienta yóguica ancestral (y científica) para hackear tu sistema nervioso y recuperar la paz en segundos."
 pubDate: 2025-12-31
 updatedDate: 2025-12-31

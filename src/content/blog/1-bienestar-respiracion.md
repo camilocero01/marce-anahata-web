@@ -1,5 +1,6 @@
 ---
-title: "Respiración consciente: una puerta al bienestar diario"
+title: "Respiración consciente: una puerta al bienestar"
+seoTitle: "Respiración consciente: una puerta al bienestar diario"
 description: "Aprende una técnica simple de respiración consciente para reducir el estrés y mejorar tu claridad mental en minutos."
 pubDate: 2025-12-18
 updatedDate: 2025-12-18

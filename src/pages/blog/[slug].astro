@@ -14,6 +14,7 @@ const { post } = Astro.props;
 const { data } = post;
 const { Content } = await post.render();
 const title = data.title;
+const pageTitle = data.seoTitle || data.title;
 const description = data.description;
 const image = data.ogImage || data.image || '/images/social-preview.jpg';
 const url = new URL(Astro.url);
@@ -46,7 +47,7 @@ const relatedPosts = primaryTag
       .slice(0, 3)
   : [];
 ---
-<Layout title={title} description={description} image={image} ogType="article" hideAuthorInTitle={true}>
+<Layout title={pageTitle} description={description} image={image} ogType="article" hideAuthorInTitle={true}>
   <Fragment slot="head">
     <link rel="canonical" href={canonical} />
     <meta property="article:published_time" content={publishedTime} />
