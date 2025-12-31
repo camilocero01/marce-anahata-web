@@ -1,5 +1,26 @@
 User-agent: *
 Allow: /
+Disallow: /buscar
 
-# Sitemap — apuntar al dominio canónico
-Sitemap: https://www.marceanahata.com/sitemap-0.xml
+# Allow AI crawlers and search engines
+User-agent: GPTBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Sitemap location (canonical domain)
+Sitemap: https://marceanahata.com/sitemap.xml
+Sitemap: https://marceanahata.com/rss.xml

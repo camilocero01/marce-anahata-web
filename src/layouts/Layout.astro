@@ -40,6 +40,7 @@ const schema = JSON.stringify({
     "streetAddress": "Cl. 11A Sur #46-12, La Aguacatala",
     "addressLocality": "Medellín",
     "addressRegion": "Antioquia",
+    "postalCode": "050012",
     "addressCountry": "CO"
   },
   "geo": {
@@ -48,8 +49,40 @@ const schema = JSON.stringify({
     "longitude": -75.5779584
   },
   "url": "https://marceanahata.com",
-  "telephone": "+573207329921", // Tu número real
-  "priceRange": "70.000 - 500.000 COP"
+  "telephone": "+573207329921",
+  "email": "info@marceanahata.com",
+  "priceRange": "70000-500000 COP",
+  "areaServed": {
+    "@type": "City",
+    "name": "Medellín"
+  },
+  "knowsAbout": ["Kundalini Yoga", "Terapia de Sonido", "Meditación", "Rituales Sagrados", "Bienestar Corporativo"],
+  "sameAs": [
+    "https://instagram.com/marce_anahata",
+    "https://wa.me/573207329921"
+  ]
+});
+
+// Organization schema para visibilidad general
+const orgSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Marce Anahata",
+  "url": "https://marceanahata.com",
+  "logo": "https://marceanahata.com/favicon.svg",
+  "description": "Centro de bienestar integral con Kundalini Yoga, Terapia de Sonido, Rituales Sagrados y Bienestar Corporativo en Medellín.",
+  "foundingDate": "2020",
+  "foundingLocation": "Medellín, Colombia",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "Customer Support",
+    "telephone": "+573207329921",
+    "email": "info@marceanahata.com"
+  },
+  "sameAs": [
+    "https://instagram.com/marce_anahata",
+    "https://wa.me/573207329921"
+  ]
 });
 ---
 
@@ -89,6 +122,7 @@ const schema = JSON.stringify({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
         <script type="application/ld+json" set:html={schema} />
+        <script type="application/ld+json" set:html={orgSchema} />
 
         <!-- Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-N2S592YWN3"></script>
