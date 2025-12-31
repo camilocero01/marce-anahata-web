@@ -10,20 +10,20 @@ import Newsletter from '../components/Newsletter.astro';
 interface Props {
     title: string;
     description?: string;
-    image?: string; 
-    logo?: string; 
+    image?: string;
+    logo?: string;
     ogType?: string;
     hideAuthorInTitle?: boolean;
 }
 
-const { 
-    title, 
+const {
+    title,
     description = "Centro de bienestar Marce Anahata en El Poblado en Medellín - El Poblado. Kundalini Yoga, Terapia de Sonido, Rituales Sagrados y Bienestar Corporativo.",
     image = "https://marce-anahata-web.vercel.app/images/social-preview.jpg" ,
     logo = "https://marce-anahata-web.vercel.app/images/marce-perfil.webp",
     ogType = 'website',
     hideAuthorInTitle = false
-    
+
 } = Astro.props;
 
 const finalTitle = hideAuthorInTitle ? title : `${title} | Marce Anahata`;
@@ -37,14 +37,14 @@ const schema = JSON.stringify({
   "description": description,
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Cl. 11A Sur #46-12, La Aguacatala", 
+    "streetAddress": "Cl. 11A Sur #46-12, La Aguacatala",
     "addressLocality": "Medellín",
     "addressRegion": "Antioquia",
     "addressCountry": "CO"
   },
   "geo": {
     "@type": "GeoCoordinates",
-    "latitude": 6.1955152, 
+    "latitude": 6.1955152,
     "longitude": -75.5779584
   },
   "url": "https://marceanahata.com",
@@ -60,7 +60,7 @@ const schema = JSON.stringify({
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="generator" content={Astro.generator} />
-        
+
         <title>{finalTitle}</title>
         <meta name="description" content={description} />
         <meta name="robots" content="index, follow" />
@@ -80,7 +80,7 @@ const schema = JSON.stringify({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
         <script type="application/ld+json" set:html={schema} />
-        
+
         <!-- Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-N2S592YWN3"></script>
         <script is:inline>
@@ -95,6 +95,8 @@ const schema = JSON.stringify({
 
     </head>
     <body class="bg-stone-50 text-stone-800 font-sans flex flex-col min-h-screen">
+
+        <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
 
         <nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm border-b border-stone-100 z-50 transition-all duration-300">
             <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
@@ -161,22 +163,22 @@ const schema = JSON.stringify({
             </div>
         </nav>
 
-        <main class="flex-grow pt-20">
+        <main id="main-content" class="flex-grow pt-20">
             <slot />
         </main>
 
         <!-- Newsletter Section -->
         <section class="py-12 px-4 bg-gradient-to-b from-white to-stone-50">
-            <Newsletter 
+            <Newsletter
                 title="Recibe actualizaciones y eventos exclusivos"
                 description="Suscríbete a nuestro newsletter para recibir artículos nuevos, eventos especiales y ofertas exclusivas directamente en tu email."
             />
         </section>
-        
+
         <footer class="bg-[#243c5a] text-stone-100 py-16 border-t-4 border-[#6ed8d9]">
             <div class="max-w-7xl mx-auto px-6">
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-                    
+
                     <div>
                         <div class="flex items-center gap-2 mb-6">
                             <span class="font-serif text-2xl text-white tracking-wide">MARCE ANAHATA</span>
@@ -245,8 +247,39 @@ const schema = JSON.stringify({
                 </div>
             </div>
         </footer>
-        <a 
-        href="https://wa.me/573207329921?text=Hola%20Marce%20Anahata,%20estaba%20visitando%20tu%20sitio%20y%20me%20gustaría%20más%20información..." 
+
+        <div class="hidden md:block fixed bottom-24 right-6 z-50 w-72 rounded-2xl bg-white/95 shadow-2xl border border-stone-200/80 backdrop-blur">
+            <div class="px-4 py-3 border-b border-stone-200/70 flex items-center justify-between">
+                <div>
+                    <p class="text-sm font-semibold text-stone-800">Chatea por WhatsApp</p>
+                    <p class="text-xs text-stone-500">Respuesta en horario hábil</p>
+                </div>
+                <span aria-hidden="true" class="text-[#25D366] text-lg">●</span>
+            </div>
+            <div class="px-4 py-3">
+                <p class="text-xs font-semibold text-stone-700 uppercase tracking-wide mb-1">Horarios de atención</p>
+                <ul class="text-sm text-stone-600 space-y-1">
+                    <li>Lunes a Viernes: 8:00 - 18:00</li>
+                    <li>Sábado: 9:00 - 13:00</li>
+                    <li>Domingo y festivos: cerrado</li>
+                </ul>
+                <a
+                    href="https://wa.me/573207329921?text=Hola%20Marce%20Anahata,%20estaba%20visitando%20tu%20sitio%20y%20me%20gustaría%20más%20información..."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#25D366] px-3 py-2 text-white text-sm font-semibold shadow-md transition hover:shadow-lg hover:scale-[1.01]"
+                    aria-label="Abrir chat de WhatsApp"
+                >
+                    Iniciar chat
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.008-.57-.008-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <a
+        href="https://wa.me/573207329921?text=Hola%20Marce%20Anahata,%20estaba%20visitando%20tu%20sitio%20y%20me%20gustaría%20más%20información..."
         target="_blank"
         rel="noopener noreferrer"
         class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:scale-110 transition-transform duration-300 hover:shadow-xl flex items-center justify-center"
@@ -264,12 +297,12 @@ const schema = JSON.stringify({
 </html>
 
 <style is:global>
-	/* Fuentes */
-	h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; }
-	body {
+        /* Fuentes */
+        h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; }
+        body {
         font-family: 'Montserrat', sans-serif;
         /* Esto muestra una fuente básica inmediatamente y cambia a la tuya cuando carga */
-        font-display: swap; 
+        font-display: swap;
         }
 
     /* Estilos globales para botones y utilidades */
@@ -278,11 +311,30 @@ const schema = JSON.stringify({
       --color-brand-violet: #5d5a8c;
       --color-brand-cyan: #6ed8d9;
     }
-    
+
     .swiper-pagination-bullet-active {
         background-color: var(--color-brand-violet) !important;
     }
-    
+
+    /* Skip link for accessibility */
+    .skip-link {
+        position: fixed;
+        top: 12px;
+        left: 12px;
+        z-index: 60;
+        background: #243c5a;
+        color: #fff;
+        padding: 10px 14px;
+        border-radius: 999px;
+        transform: translateY(-150%);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        box-shadow: 0 10px 25px -10px rgba(0,0,0,0.35);
+    }
+    .skip-link:focus-visible {
+        transform: translateY(0);
+        outline: 3px solid #6ed8d9;
+    }
+
     /* Scrollbar personalizada sutil */
     ::-webkit-scrollbar {
         width: 8px;
@@ -291,10 +343,10 @@ const schema = JSON.stringify({
         background: #f1f1f4;
     }
     ::-webkit-scrollbar-thumb {
-        background: #d6d3d1; 
+        background: #d6d3d1;
         border-radius: 4px;
     }
     ::-webkit-scrollbar-thumb:hover {
-        background: #a8a29e; 
+        background: #a8a29e;
     }
 </style>
