@@ -1,78 +1,115 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Newsletter from '../components/Newsletter.astro';
 
 const faqs = [
   {
     question: "¿Qué es el Kundalini Yoga y para quién es recomendado?",
-    answer: "El Kundalini Yoga es una práctica ancestral que combina posturas físicas (asanas), técnicas de respiración (pranayama), mantras y meditación. Es recomendado para todas las personas, independientemente de su nivel de experiencia, edad o condición física. Es especialmente beneficioso para quienes buscan reducir el estrés, aumentar la energía vital, mejorar la concentración y conectar con su ser interior."
+    answer: "El Kundalini Yoga es una práctica ancestral que combina posturas físicas (asanas), técnicas de respiración (pranayama), mantras y meditación. Es recomendado para todas las personas, independientemente de su nivel de experiencia, edad o condición física. Es especialmente beneficioso para quienes buscan reducir el estrés, aumentar la energía vital, mejorar la concentración y conectar con su ser interior.",
+    link: "/clases",
+    linkText: "Descubre nuestras clases de Kundalini Yoga"
   },
   {
     question: "¿Necesito experiencia previa para asistir a las clases de yoga?",
-    answer: "No, no necesitas experiencia previa. Las clases están diseñadas para todos los niveles, desde principiantes hasta practicantes avanzados. Cada persona trabaja a su propio ritmo y se ofrecen modificaciones para adaptar las posturas según las necesidades individuales."
+    answer: "No, no necesitas experiencia previa. Las clases están diseñadas para todos los niveles, desde principiantes hasta practicantes avanzados. Cada persona trabaja a su propio ritmo y se ofrecen modificaciones para adaptar las posturas según las necesidades individuales.",
+    link: "/clases",
+    linkText: "Ver clases disponibles"
   },
   {
     question: "¿Qué debo llevar a mi primera clase de yoga?",
-    answer: "Te recomendamos traer ropa cómoda que te permita moverte libremente (preferiblemente en colores claros para Kundalini Yoga), una botella de agua, y si tienes, tu propia esterilla de yoga. Si no tienes esterilla, podemos proporcionarte una. También es recomendable venir con el estómago ligero, evitando comidas pesadas 2 horas antes de la clase."
+    answer: "Te recomendamos traer ropa cómoda que te permita moverte libremente (preferiblemente en colores claros para Kundalini Yoga), una botella de agua, y si tienes, tu propia esterilla de yoga. Si no tienes esterilla, podemos proporcionarte una. También es recomendable venir con el estómago ligero, evitando comidas pesadas 2 horas antes de la clase.",
+    link: "/clases",
+    linkText: "Información sobre nuestras clases"
   },
   {
     question: "¿Qué es la Terapia de Sonido y cómo funciona?",
-    answer: "La Terapia de Sonido es una técnica de sanación que utiliza las vibraciones sonoras de instrumentos como cuencos tibetanos, gongs, diapasones y la voz para restaurar el equilibrio físico, mental y emocional. Las frecuencias sonoras ayudan a reducir el estrés, mejorar el sueño, aliviar dolores y promover una profunda relajación. Funciona a nivel celular, armonizando las frecuencias naturales del cuerpo."
+    answer: "La Terapia de Sonido es una técnica de sanación que utiliza las vibraciones sonoras de instrumentos como cuencos tibetanos, gongs, diapasones y la voz para restaurar el equilibrio físico, mental y emocional. Las frecuencias sonoras ayudan a reducir el estrés, mejorar el sueño, aliviar dolores y promover una profunda relajación. Funciona a nivel celular, armonizando las frecuencias naturales del cuerpo.",
+    link: "/terapia-sonido",
+    linkText: "Conoce más sobre Terapia de Sonido"
   },
   {
     question: "¿Cuánto dura una sesión de Terapia de Sonido?",
-    answer: "Una sesión de Terapia de Sonido tiene una duración aproximada de 60 a 90 minutos. Esto incluye un breve tiempo inicial de preparación y conexión, la sesión de sonido propiamente dicha, y unos minutos finales para integrar la experiencia. Las sesiones grupales pueden variar ligeramente en duración."
+    answer: "Una sesión de Terapia de Sonido tiene una duración aproximada de 60 a 90 minutos. Esto incluye un breve tiempo inicial de preparación y conexión, la sesión de sonido propiamente dicha, y unos minutos finales para integrar la experiencia. Las sesiones grupales pueden variar ligeramente en duración.",
+    link: "/terapia-sonido",
+    linkText: "Ver sesiones disponibles"
   },
   {
     question: "¿Qué es un Baño de Gong?",
-    answer: "Un Baño de Gong es una experiencia de inmersión sonora donde te recuestas cómodamente mientras el sonido envolvente del gong crea ondas vibracionales que te \"bañan\". Es una experiencia profundamente relajante y transformadora que puede llevar a estados meditativos profundos, liberación emocional y sanación energética. No requiere ninguna experiencia previa y es apto para todos."
+    answer: "Un Baño de Gong es una experiencia de inmersión sonora donde te recuestas cómodamente mientras el sonido envolvente del gong crea ondas vibracionales que te \"bañan\". Es una experiencia profundamente relajante y transformadora que puede llevar a estados meditativos profundos, liberación emocional y sanación energética. No requiere ninguna experiencia previa y es apto para todos.",
+    link: "/terapia-sonido",
+    linkText: "Descubre el Baño de Gong"
   },
   {
     question: "¿Qué son los Rituales Sagrados y cuándo se recomiendan?",
-    answer: "Los Rituales Sagrados son ceremonias conscientes diseñadas para marcar momentos importantes de la vida, transiciones personales o celebraciones especiales. Ofrecemos rituales de cumpleaños (vuelta al sol), ceremonias de pareja, baby blessing, despedidas de soltera conscientes, y rituales de cierre y apertura de ciclos. Son recomendados cuando deseas honrar un momento significativo de manera profunda y espiritual."
+    answer: "Los Rituales Sagrados son ceremonias conscientes diseñadas para marcar momentos importantes de la vida, transiciones personales o celebraciones especiales. Ofrecemos rituales de cumpleaños (vuelta al sol), ceremonias de pareja, baby blessing, despedidas de soltera conscientes, y rituales de cierre y apertura de ciclos. Son recomendados cuando deseas honrar un momento significativo de manera profunda y espiritual.",
+    link: "/rituales",
+    linkText: "Explora nuestros rituales disponibles"
   },
   {
     question: "¿Puedo personalizar un Ritual para una ocasión especial?",
-    answer: "Sí, absolutamente. Cada ritual se puede personalizar según tus necesidades, intenciones y el tipo de celebración. Durante una consulta previa, conversamos sobre tus deseos y diseñamos juntas una ceremonia única y significativa que honre tu momento especial."
+    answer: "Sí, absolutamente. Cada ritual se puede personalizar según tus necesidades, intenciones y el tipo de celebración. Durante una consulta previa, conversamos sobre tus deseos y diseñamos juntas una ceremonia única y significativa que honre tu momento especial.",
+    link: "/rituales",
+    linkText: "Personaliza tu ritual"
   },
   {
     question: "¿Qué incluye el servicio de Bienestar Corporativo?",
-    answer: "El servicio de Bienestar Corporativo incluye talleres y programas diseñados específicamente para empresas, enfocados en reducir el estrés laboral, mejorar el ambiente de trabajo, aumentar la productividad y promover el bienestar integral de los equipos. Ofrecemos clases de yoga en oficina, sesiones de mindfulness, talleres de gestión del estrés, y baños de gong corporativos. Los programas se adaptan a las necesidades y horarios de cada empresa."
+    answer: "El servicio de Bienestar Corporativo incluye talleres y programas diseñados específicamente para empresas, enfocados en reducir el estrés laboral, mejorar el ambiente de trabajo, aumentar la productividad y promover el bienestar integral de los equipos. Ofrecemos clases de yoga en oficina, sesiones de mindfulness, talleres de gestión del estrés, y baños de gong corporativos. Los programas se adaptan a las necesidades y horarios de cada empresa.",
+    link: "/bienestar-corporativo",
+    linkText: "Conoce nuestros programas corporativos"
   },
   {
     question: "¿Cuántas personas pueden asistir a una clase grupal?",
-    answer: "Las clases grupales tienen un cupo limitado para garantizar atención personalizada y un espacio cómodo para todos. Generalmente, los grupos varían entre 6 y 15 personas, dependiendo del tipo de clase o taller. Para eventos especiales o corporativos, podemos adaptar el cupo según el espacio disponible."
+    answer: "Las clases grupales tienen un cupo limitado para garantizar atención personalizada y un espacio cómodo para todos. Generalmente, los grupos varían entre 6 y 15 personas, dependiendo del tipo de clase o taller. Para eventos especiales o corporativos, podemos adaptar el cupo según el espacio disponible.",
+    link: "/clases",
+    linkText: "Consulta disponibilidad de clases"
   },
   {
     question: "¿Ofrecen clases online o solo presenciales?",
-    answer: "Ofrecemos tanto clases presenciales en nuestro espacio en La Aguacatala, Medellín, como sesiones online para mayor comodidad. Las clases online son ideales si no puedes desplazarte o vives fuera de Medellín. Consulta nuestra programación actual para conocer las opciones disponibles."
+    answer: "Ofrecemos tanto clases presenciales en nuestro espacio en La Aguacatala, Medellín, como sesiones online para mayor comodidad. Las clases online son ideales si no puedes desplazarte o vives fuera de Medellín. Consulta nuestra programación actual para conocer las opciones disponibles.",
+    link: "/clases",
+    linkText: "Ver opciones de clases online y presenciales"
   },
   {
     question: "¿Cuál es el costo de las clases y sesiones?",
-    answer: "Los costos varían según el tipo de servicio: clases de yoga, sesiones individuales de terapia de sonido, rituales o programas corporativos. Ofrecemos paquetes y bonos con descuento para clases regulares. Te recomendamos contactarnos por WhatsApp (+57 320 732 9921) o correo electrónico para recibir información detallada de precios y promociones vigentes."
+    answer: "Los costos varían según el tipo de servicio: clases de yoga, sesiones individuales de terapia de sonido, rituales o programas corporativos. Ofrecemos paquetes y bonos con descuento para clases regulares. Te recomendamos contactarnos por WhatsApp (+57 320 732 9921) o correo electrónico para recibir información detallada de precios y promociones vigentes.",
+    link: "/contacto",
+    linkText: "Contáctanos para información de precios"
   },
   {
     question: "¿Cómo puedo agendar una cita o reservar una clase?",
-    answer: "Puedes agendar tu cita de tres formas: (1) Enviando un mensaje por WhatsApp al +57 320 732 9921, (2) Escribiendo un correo a info@marceanahata.com, o (3) Haciendo clic en cualquiera de los botones de contacto en nuestro sitio web. Te responderemos rápidamente para confirmar tu reserva y enviarte todos los detalles."
+    answer: "Puedes agendar tu cita de tres formas: (1) Enviando un mensaje por WhatsApp al +57 320 732 9921, (2) Escribiendo un correo a info@marceanahata.com, o (3) Haciendo clic en cualquiera de los botones de contacto en nuestro sitio web. Te responderemos rápidamente para confirmar tu reserva y enviarte todos los detalles.",
+    link: "/contacto",
+    linkText: "Ir a la página de contacto"
   },
   {
     question: "¿Dónde están ubicados y tienen parqueadero?",
-    answer: "Estamos ubicados en la Calle 11A Sur #46-12, Barrio La Aguacatala, en El Poblado, Medellín, Antioquia. La zona cuenta con opciones de parqueadero público cercanas. Te recomendamos llegar con unos minutos de anticipación para encontrar parqueo cómodamente. La atención es con cita previa."
+    answer: "Estamos ubicados en la Calle 11A Sur #46-12, Barrio La Aguacatala, en El Poblado, Medellín, Antioquia. La zona cuenta con opciones de parqueadero público cercanas. Te recomendamos llegar con unos minutos de anticipación para encontrar parqueo cómodamente. La atención es con cita previa.",
+    link: "/contacto",
+    linkText: "Ver ubicación e indicaciones"
   },
   {
     question: "¿Puedo asistir si estoy embarazada?",
-    answer: "Sí, tanto el Kundalini Yoga como la Terapia de Sonido pueden ser muy beneficiosos durante el embarazo. Sin embargo, es importante que nos informes sobre tu embarazo al momento de agendar para adaptar las prácticas según tu trimestre y necesidades específicas. Siempre recomendamos contar con la autorización de tu médico."
+    answer: "Sí, tanto el Kundalini Yoga como la Terapia de Sonido pueden ser muy beneficiosos durante el embarazo. Sin embargo, es importante que nos informes sobre tu embarazo al momento de agendar para adaptar las prácticas según tu trimestre y necesidades específicas. Siempre recomendamos contar con la autorización de tu médico.",
+    link: "/clases",
+    linkText: "Agendar clase especializada para embarazadas"
   },
   {
     question: "¿Qué métodos de pago aceptan?",
-    answer: "Aceptamos pagos en efectivo, transferencias bancarias y principales medios de pago electrónicos (Nequi, Daviplata, Bancolombia). Los detalles de pago se proporcionan al momento de confirmar tu reserva."
+    answer: "Aceptamos pagos en efectivo, transferencias bancarias y principales medios de pago electrónicos (Nequi, Daviplata, Bancolombia). Los detalles de pago se proporcionan al momento de confirmar tu reserva.",
+    link: "/contacto",
+    linkText: "Información de contacto y pago"
   },
   {
     question: "¿Tienen política de cancelación?",
-    answer: "Sí, entendemos que pueden surgir imprevistos. Te pedimos que canceles o reprogrames tu cita con al menos 24 horas de anticipación para permitir que otros puedan aprovechar el espacio. Las cancelaciones con menos de 24 horas de anticipación pueden estar sujetas a cargos según el tipo de servicio reservado."
+    answer: "Sí, entendemos que pueden surgir imprevistos. Te pedimos que canceles o reprogrames tu cita con al menos 24 horas de anticipación para permitir que otros puedan aprovechar el espacio. Las cancelaciones con menos de 24 horas de anticipación pueden estar sujetas a cargos según el tipo de servicio reservado.",
+    link: "/contacto",
+    linkText: "Conoce nuestras políticas"
   },
   {
     question: "¿Las sesiones son solo para adultos o también para niños?",
-    answer: "Ofrecemos tanto clases y sesiones para adultos como programas especiales para niños y familias. El Kundalini Yoga y la Terapia de Sonido pueden adaptarse para diferentes edades. Si estás interesada en traer a tus hijos, contáctanos para diseñar una experiencia apropiada para ellos."
+    answer: "Ofrecemos tanto clases y sesiones para adultos como programas especiales para niños y familias. El Kundalini Yoga y la Terapia de Sonido pueden adaptarse para diferentes edades. Si estás interesada en traer a tus hijos, contáctanos para diseñar una experiencia apropiada para ellos.",
+    link: "/contacto",
+    linkText: "Consulta programas para niños y familias"
   }
 ];
 
@@ -150,7 +187,18 @@ const faqSchema = JSON.stringify({
               </svg>
             </summary>
             <div class="px-6 pb-6 pt-2 text-stone-700 leading-relaxed border-t border-stone-100">
-              {faq.answer}
+              <p class="mb-4">{faq.answer}</p>
+              {faq.link && (
+                <a 
+                  href={faq.link}
+                  class="inline-flex items-center gap-2 text-[#6ed8d9] font-semibold hover:text-[#5ac5c6] transition-colors text-sm"
+                >
+                  {faq.linkText}
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                  </svg>
+                </a>
+              )}
             </div>
           </details>
         ))}

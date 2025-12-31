@@ -5,7 +5,7 @@ import '@fontsource/montserrat/700.css';
 import { Image } from 'astro:assets';
 import logoImg from '../assets/logo.svg';
 import CookieConsent from '../components/CookieConsent.astro';
-import CookieConsent from '../components/CookieConsent.astro';
+import Newsletter from '../components/Newsletter.astro';
 
 interface Props {
     title: string;
@@ -164,8 +164,16 @@ const schema = JSON.stringify({
         <main class="flex-grow pt-20">
             <slot />
         </main>
+
+        <!-- Newsletter Section -->
+        <section class="py-12 px-4 bg-gradient-to-b from-white to-stone-50">
+            <Newsletter 
+                title="Recibe actualizaciones y eventos exclusivos"
+                description="Suscríbete a nuestro newsletter para recibir artículos nuevos, eventos especiales y ofertas exclusivas directamente en tu email."
+            />
+        </section>
         
-        <footer class="bg-[#243c5a] text-stone-100 py-16 mt-auto border-t-4 border-[#6ed8d9]">
+        <footer class="bg-[#243c5a] text-stone-100 py-16 border-t-4 border-[#6ed8d9]">
             <div class="max-w-7xl mx-auto px-6">
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
                     
