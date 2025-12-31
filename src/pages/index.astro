@@ -154,6 +154,8 @@ const serviciosHome = [
     </div>
   </section>
 
+
+
   <ReviewsSection />
 
   <!-- Sección Blog - Últimos Posts -->
@@ -222,5 +224,44 @@ const serviciosHome = [
       </div>
     </section>
   )}
+
+  <!-- FAQ Preview Section -->
+  <section class="py-20 px-4 bg-gradient-to-b from-stone-50 to-white">
+    <div class="max-w-6xl mx-auto text-center">
+      <h2 class="text-3xl md:text-4xl font-serif font-bold text-[#243c5a] mb-4">
+        ¿Tienes preguntas?
+      </h2>
+      <p class="text-stone-600 mb-10 max-w-2xl mx-auto">
+        Encuentra respuestas a las dudas más comunes sobre nuestros servicios de yoga, terapia de sonido y rituales sagrados.
+      </p>
+      
+      <div class="grid md:grid-cols-3 gap-6 mb-10">
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-100 hover:border-[#6ed8d9]/30 transition-all">
+          <div class="text-3xl mb-3">🧘‍♀️</div>
+          <h3 class="font-semibold text-[#243c5a] mb-2">Sobre las Clases</h3>
+          <p class="text-sm text-stone-600">¿Necesito experiencia? ¿Qué llevar? ¿Horarios?</p>
+        </div>
+        
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-100 hover:border-[#6ed8d9]/30 transition-all">
+          <div class="text-3xl mb-3">🔔</div>
+          <h3 class="font-semibold text-[#243c5a] mb-2">Terapia de Sonido</h3>
+          <p class="text-sm text-stone-600">¿Cómo funciona? ¿Cuánto dura? ¿Para quién es?</p>
+        </div>
+        
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-100 hover:border-[#6ed8d9]/30 transition-all">
+          <div class="text-3xl mb-3">✨</div>
+          <h3 class="font-semibold text-[#243c5a] mb-2">Reservas y Precios</h3>
+          <p class="text-sm text-stone-600">¿Cómo agendar? ¿Costos? ¿Métodos de pago?</p>
+        </div>
+      </div>
+
+      <a 
+        href="/faq" 
+        class="inline-block px-8 py-3 bg-[#6ed8d9] text-[#243c5a] rounded-full font-semibold hover:bg-[#5ac5c6] transition-all shadow-md hover:shadow-lg"
+      >
+        Ver Todas las Preguntas Frecuentes
+      </a>
+    </div>
+  </section>
 
 </Layout>

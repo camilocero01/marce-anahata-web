@@ -1,0 +1,193 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const faqs = [
+  {
+    question: "¿Qué es el Kundalini Yoga y para quién es recomendado?",
+    answer: "El Kundalini Yoga es una práctica ancestral que combina posturas físicas (asanas), técnicas de respiración (pranayama), mantras y meditación. Es recomendado para todas las personas, independientemente de su nivel de experiencia, edad o condición física. Es especialmente beneficioso para quienes buscan reducir el estrés, aumentar la energía vital, mejorar la concentración y conectar con su ser interior."
+  },
+  {
+    question: "¿Necesito experiencia previa para asistir a las clases de yoga?",
+    answer: "No, no necesitas experiencia previa. Las clases están diseñadas para todos los niveles, desde principiantes hasta practicantes avanzados. Cada persona trabaja a su propio ritmo y se ofrecen modificaciones para adaptar las posturas según las necesidades individuales."
+  },
+  {
+    question: "¿Qué debo llevar a mi primera clase de yoga?",
+    answer: "Te recomendamos traer ropa cómoda que te permita moverte libremente (preferiblemente en colores claros para Kundalini Yoga), una botella de agua, y si tienes, tu propia esterilla de yoga. Si no tienes esterilla, podemos proporcionarte una. También es recomendable venir con el estómago ligero, evitando comidas pesadas 2 horas antes de la clase."
+  },
+  {
+    question: "¿Qué es la Terapia de Sonido y cómo funciona?",
+    answer: "La Terapia de Sonido es una técnica de sanación que utiliza las vibraciones sonoras de instrumentos como cuencos tibetanos, gongs, diapasones y la voz para restaurar el equilibrio físico, mental y emocional. Las frecuencias sonoras ayudan a reducir el estrés, mejorar el sueño, aliviar dolores y promover una profunda relajación. Funciona a nivel celular, armonizando las frecuencias naturales del cuerpo."
+  },
+  {
+    question: "¿Cuánto dura una sesión de Terapia de Sonido?",
+    answer: "Una sesión de Terapia de Sonido tiene una duración aproximada de 60 a 90 minutos. Esto incluye un breve tiempo inicial de preparación y conexión, la sesión de sonido propiamente dicha, y unos minutos finales para integrar la experiencia. Las sesiones grupales pueden variar ligeramente en duración."
+  },
+  {
+    question: "¿Qué es un Baño de Gong?",
+    answer: "Un Baño de Gong es una experiencia de inmersión sonora donde te recuestas cómodamente mientras el sonido envolvente del gong crea ondas vibracionales que te \"bañan\". Es una experiencia profundamente relajante y transformadora que puede llevar a estados meditativos profundos, liberación emocional y sanación energética. No requiere ninguna experiencia previa y es apto para todos."
+  },
+  {
+    question: "¿Qué son los Rituales Sagrados y cuándo se recomiendan?",
+    answer: "Los Rituales Sagrados son ceremonias conscientes diseñadas para marcar momentos importantes de la vida, transiciones personales o celebraciones especiales. Ofrecemos rituales de cumpleaños (vuelta al sol), ceremonias de pareja, baby blessing, despedidas de soltera conscientes, y rituales de cierre y apertura de ciclos. Son recomendados cuando deseas honrar un momento significativo de manera profunda y espiritual."
+  },
+  {
+    question: "¿Puedo personalizar un Ritual para una ocasión especial?",
+    answer: "Sí, absolutamente. Cada ritual se puede personalizar según tus necesidades, intenciones y el tipo de celebración. Durante una consulta previa, conversamos sobre tus deseos y diseñamos juntas una ceremonia única y significativa que honre tu momento especial."
+  },
+  {
+    question: "¿Qué incluye el servicio de Bienestar Corporativo?",
+    answer: "El servicio de Bienestar Corporativo incluye talleres y programas diseñados específicamente para empresas, enfocados en reducir el estrés laboral, mejorar el ambiente de trabajo, aumentar la productividad y promover el bienestar integral de los equipos. Ofrecemos clases de yoga en oficina, sesiones de mindfulness, talleres de gestión del estrés, y baños de gong corporativos. Los programas se adaptan a las necesidades y horarios de cada empresa."
+  },
+  {
+    question: "¿Cuántas personas pueden asistir a una clase grupal?",
+    answer: "Las clases grupales tienen un cupo limitado para garantizar atención personalizada y un espacio cómodo para todos. Generalmente, los grupos varían entre 6 y 15 personas, dependiendo del tipo de clase o taller. Para eventos especiales o corporativos, podemos adaptar el cupo según el espacio disponible."
+  },
+  {
+    question: "¿Ofrecen clases online o solo presenciales?",
+    answer: "Ofrecemos tanto clases presenciales en nuestro espacio en La Aguacatala, Medellín, como sesiones online para mayor comodidad. Las clases online son ideales si no puedes desplazarte o vives fuera de Medellín. Consulta nuestra programación actual para conocer las opciones disponibles."
+  },
+  {
+    question: "¿Cuál es el costo de las clases y sesiones?",
+    answer: "Los costos varían según el tipo de servicio: clases de yoga, sesiones individuales de terapia de sonido, rituales o programas corporativos. Ofrecemos paquetes y bonos con descuento para clases regulares. Te recomendamos contactarnos por WhatsApp (+57 320 732 9921) o correo electrónico para recibir información detallada de precios y promociones vigentes."
+  },
+  {
+    question: "¿Cómo puedo agendar una cita o reservar una clase?",
+    answer: "Puedes agendar tu cita de tres formas: (1) Enviando un mensaje por WhatsApp al +57 320 732 9921, (2) Escribiendo un correo a info@marceanahata.com, o (3) Haciendo clic en cualquiera de los botones de contacto en nuestro sitio web. Te responderemos rápidamente para confirmar tu reserva y enviarte todos los detalles."
+  },
+  {
+    question: "¿Dónde están ubicados y tienen parqueadero?",
+    answer: "Estamos ubicados en la Calle 11A Sur #46-12, Barrio La Aguacatala, en El Poblado, Medellín, Antioquia. La zona cuenta con opciones de parqueadero público cercanas. Te recomendamos llegar con unos minutos de anticipación para encontrar parqueo cómodamente. La atención es con cita previa."
+  },
+  {
+    question: "¿Puedo asistir si estoy embarazada?",
+    answer: "Sí, tanto el Kundalini Yoga como la Terapia de Sonido pueden ser muy beneficiosos durante el embarazo. Sin embargo, es importante que nos informes sobre tu embarazo al momento de agendar para adaptar las prácticas según tu trimestre y necesidades específicas. Siempre recomendamos contar con la autorización de tu médico."
+  },
+  {
+    question: "¿Qué métodos de pago aceptan?",
+    answer: "Aceptamos pagos en efectivo, transferencias bancarias y principales medios de pago electrónicos (Nequi, Daviplata, Bancolombia). Los detalles de pago se proporcionan al momento de confirmar tu reserva."
+  },
+  {
+    question: "¿Tienen política de cancelación?",
+    answer: "Sí, entendemos que pueden surgir imprevistos. Te pedimos que canceles o reprogrames tu cita con al menos 24 horas de anticipación para permitir que otros puedan aprovechar el espacio. Las cancelaciones con menos de 24 horas de anticipación pueden estar sujetas a cargos según el tipo de servicio reservado."
+  },
+  {
+    question: "¿Las sesiones son solo para adultos o también para niños?",
+    answer: "Ofrecemos tanto clases y sesiones para adultos como programas especiales para niños y familias. El Kundalini Yoga y la Terapia de Sonido pueden adaptarse para diferentes edades. Si estás interesada en traer a tus hijos, contáctanos para diseñar una experiencia apropiada para ellos."
+  }
+];
+
+// Schema.org para FAQ
+const faqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+});
+---
+
+<Layout 
+  title="Preguntas Frecuentes sobre Yoga, Terapia de Sonido y Rituales en Medellín"
+  description="Respuestas a las preguntas más frecuentes sobre nuestras clases de Kundalini Yoga, Terapia de Sonido, Rituales Sagrados y servicios de Bienestar Corporativo en Medellín. Encuentra toda la información que necesitas."
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={faqSchema} />
+  </Fragment>
+
+  <section class="bg-gradient-to-b from-stone-50 via-white to-stone-50 py-16 px-4">
+    <div class="max-w-4xl mx-auto">
+      
+      <!-- Header -->
+      <div class="text-center mb-16">
+        <h1 class="text-4xl md:text-5xl font-serif font-bold text-[#243c5a] mb-6">
+          Preguntas Frecuentes
+        </h1>
+        <p class="text-lg text-stone-600 leading-relaxed max-w-2xl mx-auto">
+          Encuentra respuestas a las dudas más comunes sobre nuestros servicios de Kundalini Yoga, 
+          Terapia de Sonido, Rituales Sagrados y Bienestar Corporativo.
+        </p>
+      </div>
+
+      <!-- CTA Contact -->
+      <div class="bg-gradient-to-r from-[#6ed8d9]/10 to-[#5d5a8c]/10 rounded-2xl p-8 mb-12 text-center border border-[#6ed8d9]/20">
+        <p class="text-stone-700 mb-4">
+          ¿No encuentras la respuesta que buscas?
+        </p>
+        <div class="flex flex-wrap gap-4 justify-center">
+          <a 
+            href="https://wa.me/573207329921?text=Hola%20Marce,%20tengo%20una%20pregunta%20sobre..." 
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-[#25D366] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#20BA5A] transition-all shadow-md hover:shadow-lg"
+          >
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+            </svg>
+            Escríbenos por WhatsApp
+          </a>
+          <a 
+            href="/contacto"
+            class="inline-flex items-center gap-2 bg-[#243c5a] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#1a2d42] transition-all shadow-md hover:shadow-lg"
+          >
+            Ver Información de Contacto
+          </a>
+        </div>
+      </div>
+
+      <!-- FAQ Accordion -->
+      <div class="space-y-4">
+        {faqs.map((faq, index) => (
+          <details class="group bg-white rounded-xl border-2 border-stone-100 hover:border-[#6ed8d9]/30 transition-all shadow-sm hover:shadow-md">
+            <summary class="cursor-pointer p-6 font-semibold text-[#243c5a] flex justify-between items-center list-none">
+              <span class="flex-1 pr-4 text-left">{faq.question}</span>
+              <svg class="w-5 h-5 text-[#6ed8d9] transition-transform group-open:rotate-180 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </summary>
+            <div class="px-6 pb-6 pt-2 text-stone-700 leading-relaxed border-t border-stone-100">
+              {faq.answer}
+            </div>
+          </details>
+        ))}
+      </div>
+
+      <!-- Bottom CTA -->
+      <div class="mt-16 text-center">
+        <h2 class="text-2xl font-serif font-bold text-[#243c5a] mb-4">
+          ¿Lista para comenzar tu viaje de transformación?
+        </h2>
+        <p class="text-stone-600 mb-6">
+          Explora nuestros servicios y encuentra el que mejor resuene contigo
+        </p>
+        <div class="flex flex-wrap gap-4 justify-center">
+          <a href="/clases" class="text-[#243c5a] border-2 border-[#243c5a] px-6 py-3 rounded-full font-semibold hover:bg-[#243c5a] hover:text-white transition-all">
+            Ver Clases de Yoga
+          </a>
+          <a href="/terapia-sonido" class="text-[#5d5a8c] border-2 border-[#5d5a8c] px-6 py-3 rounded-full font-semibold hover:bg-[#5d5a8c] hover:text-white transition-all">
+            Terapia de Sonido
+          </a>
+          <a href="/rituales" class="text-[#6ed8d9] border-2 border-[#6ed8d9] px-6 py-3 rounded-full font-semibold hover:bg-[#6ed8d9] hover:text-[#243c5a] transition-all">
+            Rituales Sagrados
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</Layout>
+
+<style>
+  details[open] summary {
+    color: #6ed8d9;
+  }
+  
+  /* Smooth animation for accordion */
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+</style>
