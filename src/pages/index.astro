@@ -50,6 +50,13 @@ const serviciosHome = [
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
+  <Fragment slot="head">
+    <meta property="og:locale" content="es_CO" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content="/images/social-preview.jpg" />
+  </Fragment>
   
   <section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
 

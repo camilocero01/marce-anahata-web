@@ -67,12 +67,21 @@ const schema = JSON.stringify({
         <link rel="canonical" href={Astro.url} />
         <link rel="sitemap" href="/sitemap-index.xml" />
 
+        <meta name="theme-color" content="#243c5a" />
+        <meta property="og:locale" content="es_CO" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={image} />
+
         <meta property="og:type" content={ogType} />
         <meta property="og:url" content={Astro.url} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta property="og:image" content={image} />
         <meta property="og:logo" content={logo} />
+
+        <link rel="alternate" type="application/rss+xml" title="Blog RSS" href="/rss.xml" />
 
         <slot name="head" />
 

@@ -38,6 +38,11 @@ const jsonLd = {
     {totalPages > 1 && <link rel="next" href="/blog/page/2" />}
     <meta property="og:type" content="website" />
     <meta property="og:image" content="/images/social-preview.jpg" />
+    <meta property="og:locale" content="es_CO" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content="/images/social-preview.jpg" />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </Fragment>
   <main class="max-w-5xl mx-auto px-4 py-16">
