@@ -34,50 +34,65 @@ Se ha implementado un sistema completo de captura de emails para que los usuario
 ## Integración Técnica
 
 ### Servicio: Formspree
-- **Endpoint**: https://formspree.io/f/xvgozygo
-- **Método**: POST
+- **Endpoint**: https://formspree.io/f/mgovwznp
+- **Método**: AJAX POST (sin redirección)
+- **Formato**: FormData (no JSON)
 - **Campos**:
   - `email`: Email del usuario
-  - `message`: "Newsletter subscription"
 
-### Funcionamiento
+### Funcionamiento (Sin Redirección Externa)
 1. Usuario ingresa email y hace clic en "Suscribirse"
 2. JavaScript valida el email (HTML5 validation)
-3. Se envía a Formspree via fetch
-4. Se reciben confirmaciones de suscripción en: **[TU EMAIL]**
-5. Usuario ve confirmación visual en el sitio
+3. Se envía a Formspree vía **AJAX/Fetch** (no POST tradicional)
+4. **El usuario permanece en el sitio** (no hay redirección a página "Thank You" externa)
+5. Se reciben confirmaciones de suscripción en tu cuenta Formspree
+6. Usuario ve confirmación visual en el sitio (10 segundos)
+
+### ⚠️ Importante: Por Qué AJAX
+- **Evita redirección externa**: Usuario no sale del sitio
+- **Mejor para SEO**: No interrumpe la sesión de navegación
+- **Mejor UX**: Experiencia fluida sin cambios de página
+- **Formato correcto**: Usa FormData en lugar de JSON (requerido por Formspree AJAX)
 
 ### Estados del Formulario
 - **Normal**: Listo para ingresar email
-- **Loading**: "Suscribiendo..." mientras se procesa
-- **Success**: "✓ ¡Gracias por suscribirte! Revisa tu email..."
-- **Error**: "✗ Hubo un error. Por favor, intenta de nuevo."
+- **Loading**: "Suscribiendo..." (botón deshabilitado)
+- **Success**: Mensaje personalizado de agradecimiento (10 segundos)
+- **Error**: "✗ Hubo un error. Por favor, verifica tu email..." (10 segundos)
 
 ## Beneficios para SEO
 
-1. **Engagement Mejorado**
+1. **Sin Redirección Externa (CRÍTICO)**
+   - ✅ Usuario **no sale del sitio** al suscribirse
+   - ✅ No interrumpe la sesión de Google Analytics
+   - ✅ No aumenta bounce rate
+   - ✅ Mantiene engagement metrics positivos
+
+2. **Engagement Mejorado**
    - Los usuarios pueden suscribirse directamente en cualquier página
    - Reduce el bounce rate al ofrecer valor adicional
+   - Experiencia fluida y profesional
 
-2. **Internal Linking**
+3. **Internal Linking**
    - Enlaces contextuales en FAQ
    - Mejora la estructura interna del sitio
 
-3. **Rich Snippets Potenciales**
+4. **Rich Snippets Potenciales**
    - Schema.org WebPageSchema
    - Mayor visibilidad en Google
 
-4. **Content Marketing**
+5. **Content Marketing**
    - Base de datos de suscriptores
    - Oportunidad para promover posts nuevos
    - Ventaja competitiva con email marketing
 
 ## Configuración de Email Destino
 
-**IMPORTANTE**: Actualmente está configurado para recibir emails en el Formspree account.
+**IMPORTANTE**: Actualmente está configurado con el endpoint: `https://formspree.io/f/mgovwznp`
 
 Para cambiar el email destino:
-1. Ir a https://formspree.io/f/xvgozygo
+1. Ir a https://formspree.io
+2. Acceder a tu formulario con ID `mgovwznp`
 2. Cambiar la configuración de email de destino
 3. Verificar el nuevo email
 4. Los nuevos emails se recibirán en la dirección configurada
@@ -119,9 +134,12 @@ Para cambiar el email destino:
 
 ✅ Build exitoso: 52 páginas generadas
 ✅ Componente funcional en todas las páginas
-✅ Formulario con validación
-✅ Integración con Formspree lista
+✅ Formulario con validación HTML5
+✅ Integración con Formspree AJAX (sin redirección externa)
 ✅ Responsive design para mobile y desktop
+✅ Mensajes de éxito/error con duración de 10 segundos
+✅ Formato FormData compatible con Formspree
+✅ Manejo de errores mejorado con logs en consola
 
 ## Cambios de Archivo
 
@@ -129,8 +147,27 @@ Para cambiar el email destino:
 - **Modificado**: `src/layouts/Layout.astro`
 - **Modificado**: `src/pages/index.astro`
 - **Modificado**: `src/pages/faq.astro`
+- **Documentación**: `NEWSLETTER_DOCUMENTATION.md`
+
+## Notas Técnicas
+
+### Por Qué FormData y No JSON
+Formspree AJAX requiere FormData en lugar de JSON para procesar correctamente las suscripciones. El uso de JSON causaba errores de validación.
+
+### Configuración del Timeout
+- **Mensajes**: 10 segundos de duración
+- **Razón**: Da tiempo suficiente para leer el mensaje personalizado de agradecimiento
+
+### Headers Correctos
+```javascript
+headers: {
+  'Accept': 'application/json'
+  // No incluir 'Content-Type', se establece automáticamente con FormData
+}
+```
 
 ---
 
 **Fecha de Implementación**: 31 Diciembre 2025
-**Estado**: ✅ Activo y funcional
+**Última Actualización**: 31 Diciembre 2025
+**Estado**: ✅ Activo, funcional y optimizado para SEO
