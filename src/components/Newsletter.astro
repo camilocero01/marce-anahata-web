@@ -113,14 +113,14 @@ const {
         if (response.ok) {
           // Success - stay on the page
           if (messageDiv) {
-            messageDiv.innerHTML = '✓ ¡Gracias por suscribirte! Hemos registrado tu correo electrónico, espera muy pronto .';
+            messageDiv.innerHTML = '✓ ¡Gracias por suscribirte! Me honra que me abras un espacio en tu bandeja de entrada. Ya estás en la lista para recibir mis nuevos artículos, reflexiones y las fechas exclusivas de los próximos eventos y talleres. Nos leemos pronto. Namasté. 🙏.';
             messageDiv.className = 'text-sm text-green-600 font-semibold mt-2';
           }
           
           // Reset form
           form.reset();
           
-          // Reset button after 5 seconds
+          // Reset button after 10 seconds
           if (submitBtn) {
             setTimeout(() => {
               submitBtn.disabled = false;
@@ -129,7 +129,7 @@ const {
                 messageDiv.textContent = '';
                 messageDiv.className = 'text-sm text-stone-500';
               }
-            }, 5000);
+            }, 10000);
           }
         } else {
           // Handle validation errors
@@ -152,13 +152,13 @@ const {
           submitBtn.textContent = originalText;
         }
 
-        // Clear message after 5 seconds
+        // Clear message after 10 seconds
         setTimeout(() => {
           if (messageDiv) {
             messageDiv.textContent = '';
             messageDiv.className = 'text-sm text-stone-500';
           }
-        }, 5000);
+        }, 10000);
       }
     });
   }
