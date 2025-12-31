@@ -53,6 +53,26 @@ const offerings = [
 ---
 
 <Layout title="Clases y Talleres | Marce Anahata" description="Clases de kundalini yoga presenciales y online en Medellín. Aprende técnicas de respiración consciente, meditación y kriyas para despertar tu energía vital.">
+  <Fragment slot="head">
+    <script type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://marceanahata.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Clases y Talleres",
+          "item": "https://marceanahata.com/clases"
+        }
+      ]
+    })}</script>
+  </Fragment>
   
   <section class="relative h-[60vh] md:h-[70vh] flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 z-0">

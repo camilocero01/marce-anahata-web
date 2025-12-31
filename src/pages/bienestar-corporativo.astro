@@ -24,6 +24,26 @@ const bienestarPosts = (await getCollection('blog', ({ data }) =>
 ---
 
 <Layout title="Bienestar Corporativo | Marce Anahata" description="Bienestar corporativo en Medellín: talleres de mindfulness, yoga y gestión emocional para equipos conscientes. Transforma el clima laboral de tu empresa.">
+  <Fragment slot="head">
+    <script type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://marceanahata.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Bienestar Corporativo",
+          "item": "https://marceanahata.com/bienestar-corporativo"
+        }
+      ]
+    })}</script>
+  </Fragment>
   
   <section class="relative h-[60vh] flex items-center justify-center overflow-hidden">
 

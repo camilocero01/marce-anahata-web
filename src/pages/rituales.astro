@@ -28,6 +28,26 @@ const ritualesPosts = (await getCollection('blog', ({ data }) =>
   title="Rituales Sagrados" 
   description="Celebra momentos especiales con nuestros rituales de pareja, cumpleaños y baby blessing en Medellín. Conexión espiritual y terapia de sonido."
 >
+  <Fragment slot="head">
+    <script type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://marceanahata.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Rituales Sagrados",
+          "item": "https://marceanahata.com/rituales"
+        }
+      ]
+    })}</script>
+  </Fragment>
   <section class="relative h-[50vh] flex items-center justify-center overflow-hidden">
     
     <video 

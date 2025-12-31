@@ -28,6 +28,26 @@ const sonidoPosts = (await getCollection('blog', ({ data }) =>
 ---
 
 <Layout title="Terapia de Sonido | Marce Anahata" description="Terapia de sonido en Medellín: medicina vibracional con gong y cuencos tibetanos para restablecer la armonía celular y calmar el sistema nervioso.">
+  <Fragment slot="head">
+    <script type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://marceanahata.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Terapia de Sonido",
+          "item": "https://marceanahata.com/terapia-sonido"
+        }
+      ]
+    })}</script>
+  </Fragment>
   
 <section class="relative h-[70vh] flex items-center justify-center overflow-hidden">
     
