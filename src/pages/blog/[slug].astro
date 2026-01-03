@@ -31,7 +31,8 @@ const breadcrumbItems = [
 const breadcrumbSchema = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
-  itemListElement: breadcrumbItems.map((item, index) => ({\n    '@type': 'ListItem',
+  itemListElement: breadcrumbItems.map((item, index) => ({
+    '@type': 'ListItem',
     position: index + 1,
     name: item.name,
     item: item.url
