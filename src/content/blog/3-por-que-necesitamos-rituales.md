@@ -1,6 +1,6 @@
 ---
 title: "¿Por qué necesitamos Rituales?"
-seoTitle: "¿Por qué necesitamos Rituales? El arte de hacer sagrado lo cotidiano"
+seoTitle: "Rituales Sagrados vs Rutinas: Cómo Cerrar Ciclos y Conectar con tu Alma"
 description: "Descubre la diferencia entre rutina y ritual, y cómo estos actos simbólicos pueden ayudarte a cerrar ciclos, celebrar la vida y conectar con tu esencia."
 pubDate: 2025-12-20
 updatedDate: 2025-12-20

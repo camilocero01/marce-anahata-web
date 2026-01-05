@@ -1,6 +1,6 @@
 ---
 title: "El poder sanador de la Terapia de Sonido"
-seoTitle: "El poder sanador de la vibración: Descubre la Terapia de Sonido"
+seoTitle: "Cómo la Terapia de Sonido con Gong Cura Estrés y Bloqueos Emocionales"
 description: "Explora cómo las frecuencias de los cuencos y el sonido consciente pueden restaurar tu equilibrio interno, reducir el estrés y desbloquear emociones profundas."
 pubDate: 2025-12-19
 updatedDate: 2025-12-19

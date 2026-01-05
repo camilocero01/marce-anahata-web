@@ -1,6 +1,6 @@
 ---
 title: "Beneficios de la Terapia del Sonido"
-seoTitle: "Descubre los Beneficios de la Terapia del Sonido en Tu Vida"
+seoTitle: "6 Beneficios Científicos de la Terapia del Sonido para Salud y Bienestar"
 description: "La terapia del sonido transforma vidas al aliviar el estrés y fomentar la sanación. Descubre sus beneficios físicos, emocionales y mentales para mejorar tu bienestar diario."
 pubDate: 2025-12-30
 updatedDate: 2025-12-30

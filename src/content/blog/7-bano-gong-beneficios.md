@@ -1,6 +1,6 @@
 ---
 title: "Baño de Gong: Viaje Transformador"
-seoTitle: "Descubre los Beneficios del Baño de Gong para tu Bienestar"
+seoTitle: "Qué es un Baño de Gong: Beneficios, Experiencia y Transformación Profunda"
 description: "Sumérgete en un viaje transformador con el baño de gong, una experiencia única que conecta mente, cuerpo y espíritu. Descubre cómo sus vibraciones sanadoras potencian tu bienestar integral."
 pubDate: 2025-12-30
 updatedDate: 2025-12-30
