@@ -23,8 +23,12 @@ export default defineConfig({
       // Exclude low-value pages from sitemap
       // The `page` parameter is a full URL, so compare by path endings
       filter: (page) => {
-        // Excluir páginas legales y de búsqueda
-        if (page.endsWith('/links') || page.endsWith('/privacidad')) return false;
+        // Excluir páginas para no afectar el SEO
+        if (page.endsWith('/links') 
+          || page.endsWith('/privacidad')
+          || page.endsWith('/buscar')
+          || page.endsWith('/404')
+        )  return false;
         // Excluir primera página de paginación (duplicados de páginas principales)
         if (page.endsWith('/blog/page/1')) return false;
         if (page.includes('/blog/tag/') && page.endsWith('/page/1')) return false;

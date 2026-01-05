@@ -1,0 +1,23 @@
+# llms.txt - AI crawler and LLM usage policy
+# Last-Updated: 2026-01-05
+
+User-agent: *
+Allow: /
+Disallow: /buscar
+Disallow: /privacidad
+Disallow: /links
+Disallow: /blog/page/1
+Disallow: /blog/tag/*/page/1
+
+# Usage policy
+# - Indexing: Allowed
+# - Training: Allowed
+# - Caching: Allowed
+# - Rate limits: Follow robots.txt crawl-delay if provided (none specified here)
+# - Respect robots.txt directives in addition to this file
+
+## About
+Owner: Marce Anahata
+Focus: Kundalini yoga, meditacion, baños de gong, terapia de sonido y rituales en Medellin
+Contact: info@marceanahata.com
+Audience: Bienestar personal y corporativo (rituales, clases, terapias)
