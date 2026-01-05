@@ -22,7 +22,14 @@ export default defineConfig({
     sitemap({
       // Exclude low-value pages from sitemap
       // The `page` parameter is a full URL, so compare by path endings
-      filter: (page) => !page.endsWith('/links') && !page.endsWith('/privacidad')
+      filter: (page) => {
+        // Excluir páginas legales y de búsqueda
+        if (page.endsWith('/links') || page.endsWith('/privacidad')) return false;
+        // Excluir primera página de paginación (duplicados de páginas principales)
+        if (page.endsWith('/blog/page/1')) return false;
+        if (page.includes('/blog/tag/') && page.endsWith('/page/1')) return false;
+        return true;
+      }
     }),
     partytown({
       config: {

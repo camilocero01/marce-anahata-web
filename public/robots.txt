@@ -22,5 +22,5 @@ User-agent: Bingbot
 Allow: /
 
 # Sitemap location (canonical domain)
-Sitemap: https://marceanahata.com/sitemap.xml
-Sitemap: https://marceanahata.com/rss.xml
+Sitemap: https://www.marceanahata.com/sitemap-index.xml
+Sitemap: https://www.marceanahata.com/rss.xml
