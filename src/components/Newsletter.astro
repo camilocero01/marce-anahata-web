@@ -72,9 +72,9 @@ const {
 
 <script>
   // Handle newsletter form submission with AJAX (no redirect)
-  const form = document.getElementById('newsletter-form');
+  const form = document.getElementById('newsletter-form') as HTMLFormElement;
   const messageDiv = document.getElementById('form-message');
-  const submitBtn = document.getElementById('newsletter-btn');
+  const submitBtn = document.getElementById('newsletter-btn') as HTMLButtonElement;
 
   if (form) {
     form.addEventListener('submit', async (e) => {
