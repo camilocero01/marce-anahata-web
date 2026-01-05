@@ -182,10 +182,14 @@ const orgSchema = JSON.stringify({
                 </div>
 
                 <details class="md:hidden group relative">
-                    <summary class="cursor-pointer p-2 list-none">
+                    <summary 
+                        class="cursor-pointer p-2 list-none"
+                        aria-label="Abrir menú de navegación"
+                        aria-expanded="false"
+                    >
                         <svg class="w-7 h-7 text-[#243c5a]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
                     </summary>
-                    <div class="absolute right-0 top-full mt-2 w-56 bg-white rounded-xl shadow-xl border border-stone-100 p-4 flex flex-col gap-3 z-50">
+                    <nav aria-label="Menú principal mobile" class="absolute right-0 top-full mt-2 w-56 bg-white rounded-xl shadow-xl border border-stone-100 p-4 flex flex-col gap-3 z-50">
                         <a href="/" class="text-stone-700 hover:text-[#6ed8d9]">Home</a>
                         <a href="/blog" class="text-stone-700 hover:text-[#6ed8d9]">Blog</a>
                         
@@ -204,8 +208,19 @@ const orgSchema = JSON.stringify({
                         <a href="/faq" class="text-stone-700 hover:text-[#6ed8d9]">Preguntas Frecuentes</a>
                         <hr class="border-stone-100">
                         <a href="/contacto" class="text-[#243c5a] font-bold text-center block">Contáctenos</a>
-                    </div>
+                    </nav>
                 </details>
+
+                <script is:inline>
+                    const details = document.querySelector('details');
+                    const summary = details?.querySelector('summary');
+                    
+                    if (details && summary) {
+                        details.addEventListener('toggle', () => {
+                            summary.setAttribute('aria-expanded', details.open ? 'true' : 'false');
+                        });
+                    }
+                </script>
             </div>
         </nav>
 
@@ -347,6 +362,7 @@ const orgSchema = JSON.stringify({
                 const panel = document.querySelector('[data-wa-panel]');
                 const closeBtn = document.querySelector('[data-wa-close]');
                 const storageKey = 'waHoursClosed';
+                let waLoaded = false;
 
                 const safeGet = () => {
                     try { return window.localStorage.getItem(storageKey); } catch (err) { return null; }
@@ -356,16 +372,36 @@ const orgSchema = JSON.stringify({
                     try { window.localStorage.setItem(storageKey, value); } catch (err) { /* ignore */ }
                 };
 
-                if (!panel || !closeBtn) return;
+                const showWAPanel = () => {
+                    if (!panel) return;
+                    if (safeGet() === '1') {
+                        panel.style.display = 'none';
+                    }
+                    waLoaded = true;
+                };
 
-                if (safeGet() === '1') {
-                    panel.style.display = 'none';
+                // Lazy load: Show widget only when user scrolls 30% or after 3s
+                let scrollListener = () => {
+                    if (window.scrollY > window.innerHeight * 0.3) {
+                        showWAPanel();
+                        window.removeEventListener('scroll', scrollListener);
+                    }
+                };
+
+                window.addEventListener('scroll', scrollListener, { passive: true });
+                setTimeout(() => {
+                    if (!waLoaded) {
+                        showWAPanel();
+                    }
+                }, 3000);
+
+                // Close button handler
+                if (closeBtn) {
+                    closeBtn.addEventListener('click', () => {
+                        if (panel) panel.style.display = 'none';
+                        safeSet('1');
+                    });
                 }
-
-                closeBtn.addEventListener('click', () => {
-                    panel.style.display = 'none';
-                    safeSet('1');
-                });
             })();
         </script>
 
