@@ -6,7 +6,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "lighthouse": "node scripts/lighthouse-audit.js",
+    "lighthouse:all": "node scripts/lighthouse-audit.js --all"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.13",
@@ -22,6 +24,8 @@
     "tailwindcss": "^4.1.18"
   },
   "devDependencies": {
-    "@tailwindcss/typography": "^0.5.19"
+    "@tailwindcss/typography": "^0.5.19",
+    "chrome-launcher": "^1.2.1",
+    "lighthouse": "^12.8.2"
   }
 }

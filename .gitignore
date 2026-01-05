@@ -25,3 +25,6 @@ pnpm-debug.log*
 
 .vercel
 .env*.local
+
+# lighthouse reports
+lighthouse-reports/
