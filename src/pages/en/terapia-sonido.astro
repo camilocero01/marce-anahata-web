@@ -1,0 +1,11 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { useTranslations } from '../../i18n/ui';
+
+const lang = 'en';
+const t = useTranslations(lang);
+---
+<Layout title="Sound Therapy" lang={lang}>
+  <h1>{t('nav.sound')}</h1>
+  <p>English content for Sound Therapy service page.</p>
+</Layout>

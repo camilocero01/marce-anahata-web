@@ -1,0 +1,25 @@
+---
+import { languages } from '../i18n/ui';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+let currentPath = Astro.url.pathname.replace(/^\/(en|es)\//, '');
+// Si estamos en cualquier sección del blog, redirigir a la raíz del blog del idioma destino
+if (
+  Astro.url.pathname.startsWith('/en/blog') ||
+  Astro.url.pathname.startsWith('/blog')
+) {
+  currentPath = 'blog';
+}
+---
+<ul class="flex gap-4">
+  {Object.entries(languages).map(([lang, label]) => (
+    <li>
+      <a 
+        href={getRelativeLocaleUrl(lang, currentPath)}
+        class="uppercase text-sm font-bold hover:underline"
+      >
+        {label}
+      </a>
+    </li>
+  ))}
+</ul>

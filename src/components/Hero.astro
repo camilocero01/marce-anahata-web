@@ -1,0 +1,8 @@
+---
+// Componente visual reutilizable para el hero
+const { title, ctaText } = Astro.props;
+---
+<section class="py-20 text-center">
+  <h1 class="text-5xl font-serif mb-6">{title}</h1>
+  <a href="#contacto" class="inline-block bg-[#6ed8d9] text-[#243c5a] px-8 py-4 rounded-full font-medium hover:bg-white transition-all duration-300">{ctaText}</a>
+</section>

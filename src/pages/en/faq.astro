@@ -1,0 +1,28 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { useTranslations } from '../../i18n/ui';
+const lang = 'en';
+const t = useTranslations(lang);
+---
+
+<Layout title="FAQ" lang={lang}>
+  <h1 class="text-3xl font-bold mb-4">{t('nav.faq')}</h1>
+  <div class="space-y-6">
+    <div>
+      <h2 class="text-xl font-semibold mb-2">What services do you offer?</h2>
+      <p>We offer Kundalini Yoga classes, Sound Therapy, Sacred Rituals, and Corporate Wellness programs. Please explore our Services section for more details.</p>
+    </div>
+    <div>
+      <h2 class="text-xl font-semibold mb-2">How can I book a session?</h2>
+      <p>You can contact us through the Contact page or WhatsApp to schedule your session. We recommend booking in advance.</p>
+    </div>
+    <div>
+      <h2 class="text-xl font-semibold mb-2">Are the classes suitable for beginners?</h2>
+      <p>Yes, our classes and therapies are designed for all levels, including beginners. Everyone is welcome!</p>
+    </div>
+    <div>
+      <h2 class="text-xl font-semibold mb-2">Where are you located?</h2>
+      <p>We are located in El Poblado, Medellín, Colombia. Please see our Visit Us section for the exact address and directions.</p>
+    </div>
+  </div>
+</Layout>

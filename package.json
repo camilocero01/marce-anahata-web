@@ -8,7 +8,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "lighthouse": "node scripts/lighthouse-audit.js",
-    "lighthouse:all": "node scripts/lighthouse-audit.js --all"
+    "lighthouse:all": "node scripts/lighthouse-audit.js --all",
+    "cms:proxy": "npx netlify-cms-proxy-server"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.13",

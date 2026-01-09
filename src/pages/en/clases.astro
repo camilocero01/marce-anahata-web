@@ -1,0 +1,11 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { useTranslations } from '../../i18n/ui';
+
+const lang = 'en';
+const t = useTranslations(lang);
+---
+<Layout title="Yoga Classes" lang={lang}>
+  <h1>{t('nav.yoga')}</h1>
+  <p>English content for Yoga Classes service page.</p>
+</Layout>

@@ -1,0 +1,11 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { useTranslations } from '../../i18n/ui';
+const lang = 'en';
+const t = useTranslations(lang);
+---
+
+<Layout title="About Me" lang={lang}>
+  <h1 class="text-3xl font-bold mb-4">{t('nav.aboutme')}</h1>
+  <p class="mb-4">Welcome! I'm Marce Anahata. This is the English version of my About Me page. (Add your English content here.)</p>
+</Layout>

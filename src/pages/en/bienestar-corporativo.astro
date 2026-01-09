@@ -1,0 +1,11 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { useTranslations } from '../../i18n/ui';
+
+const lang = 'en';
+const t = useTranslations(lang);
+---
+<Layout title="Corporate Wellness" lang={lang}>
+  <h1>{t('nav.corporate')}</h1>
+  <p>English content for Corporate Wellness service page.</p>
+</Layout>

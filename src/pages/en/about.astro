@@ -1,0 +1,14 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/Hero.astro';
+import { useTranslations } from '../../i18n/ui';
+
+const lang = 'en'; 
+const t = useTranslations(lang);
+---
+<Layout title="About Us" lang={lang}>
+  <Hero 
+    title={t('hero.title')}
+    ctaText={t('hero.cta')}
+  />
+</Layout>

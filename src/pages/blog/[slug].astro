@@ -4,13 +4,18 @@ import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft);
-  return posts.map((post) => ({
-    params: { slug: post.slug },
-    props: { post }
-  }));
+  // Detectar idioma por prefijo del slug
+  return posts.map((post) => {
+    const isEn = post.id.startsWith('en/');
+    const slug = isEn ? post.slug.replace(/^en\//, '') : post.slug;
+    return {
+      params: { slug },
+      props: { post, lang: isEn ? 'en' : 'es' }
+    };
+  });
 }
 
-const { post } = Astro.props;
+const { post, lang } = Astro.props;
 const { data } = post;
 const { Content } = await post.render();
 const title = data.title;
@@ -23,8 +28,8 @@ const publishedTime = new Date(data.pubDate).toISOString();
 const modifiedTime = data.updatedDate ? new Date(data.updatedDate).toISOString() : undefined;
 
 const breadcrumbItems = [
-  { name: 'Home', url: 'https://marceanahata.com' },
-  { name: 'Blog', url: 'https://marceanahata.com/blog' },
+  { name: 'Home', url: lang === 'en' ? 'https://marceanahata.com/en' : 'https://marceanahata.com' },
+  { name: 'Blog', url: lang === 'en' ? 'https://marceanahata.com/en/blog' : 'https://marceanahata.com/blog' },
   { name: title, url: canonical }
 ];
 
@@ -64,12 +69,12 @@ const relatedPosts = primaryTag
       .slice(0, 3)
   : [];
 ---
-<Layout title={pageTitle} description={description} image={image} ogType="article" hideAuthorInTitle={true}>
+<Layout title={pageTitle} description={description} image={image} lang={lang}>
   <Fragment slot="head">
     <link rel="canonical" href={canonical} />
     <meta property="article:published_time" content={publishedTime} />
     {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
-    <meta property="og:locale" content="es_CO" />
+    <meta property="og:locale" content={lang === 'en' ? 'en_US' : 'es_CO'} />
     <meta property="og:image:alt" content={title} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
@@ -80,37 +85,33 @@ const relatedPosts = primaryTag
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   </Fragment>
-  
   <main class="max-w-3xl mx-auto px-4 py-16">
-    <a href="/blog" class="text-sm text-[#243c5a] hover:underline">← Volver al blog</a>
+    <a href={lang === 'en' ? '/en/blog' : '/blog'} class="text-sm text-[#243c5a] hover:underline">← {lang === 'en' ? 'Back to blog' : 'Volver al blog'}</a>
     <article class="mt-6">
       <header class="mb-6">
         <h1 class="text-4xl font-serif text-[#243c5a] mb-2">{title}</h1>
         <p class="text-stone-600">{description}</p>
         <div class="mt-2 text-xs text-stone-500">
-          <time datetime={publishedTime}>{new Date(data.pubDate).toLocaleDateString('es-CO', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
-            {data.tags?.length ? (
-              <span>
-                {' '}
-                •{' '}
-                {data.tags.map((t, i) => (
-                  <Fragment>
-                    {i ? ' · ' : ''}
-                    <a href={`/blog/tag/${encodeURIComponent(t)}`} class="text-[#243c5a] hover:text-[#6ed8d9]">#{t}</a>
-                  </Fragment>
-                ))}
-              </span>
-            ) : null}
+          <time datetime={publishedTime}>{new Date(data.pubDate).toLocaleDateString(lang === 'en' ? 'en-US' : 'es-CO', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+          {data.tags?.length ? (
+            <span>
+              {' '}
+              •{' '}
+              {data.tags.map((t, i) => (
+                <Fragment>
+                  {i ? ' · ' : ''}
+                  <a href={lang === 'en' ? `/en/blog/tag/${encodeURIComponent(t)}` : `/blog/tag/${encodeURIComponent(t)}`} class="text-[#243c5a] hover:text-[#6ed8d9]">#{t}</a>
+                </Fragment>
+              ))}
+            </span>
+          ) : null}
         </div>
       </header>
-
       {image && <img src={image} alt={title} width="1200" height="630" class="w-full h-64 object-cover rounded-xl mb-8" loading="eager" />}
-
       <div class="article-content">
         <Content />
       </div>
     </article>
-
     {relatedPosts.length > 0 && (
       <section class="mt-16">
         <h2 class="text-2xl md:text-3xl font-serif text-[#243c5a] mb-6">También te podría interesar…</h2>

@@ -7,6 +7,12 @@ import logoImg from '../assets/logo.svg';
 import CookieConsent from '../components/CookieConsent.astro';
 import Newsletter from '../components/Newsletter.astro';
 import Analytics from '@vercel/analytics/astro';
+import LanguagePicker from '../components/LanguagePicker.astro';
+import { useTranslations } from '../i18n/ui';
+
+
+const langProp = (Astro.props.lang as string) || 'es';
+const t = useTranslations(langProp);
 
 interface Props {
     title: string;
@@ -15,6 +21,7 @@ interface Props {
     logo?: string;
     ogType?: string;
     hideAuthorInTitle?: boolean;
+    lang?: string;
 }
 
 const {
@@ -23,9 +30,9 @@ const {
     image = "https://marceanahata.com/images/social-preview.jpg" ,
     logo = "https://marceanahata.com/images/marce-perfil.webp",
     ogType = 'website',
-    hideAuthorInTitle = false
-
-} = Astro.props;
+    hideAuthorInTitle = false,
+    lang = 'es',
+} = Astro.props as Props;
 
 const finalTitle = hideAuthorInTitle ? title : `${title} | Marce Anahata`;
 
@@ -88,7 +95,7 @@ const orgSchema = JSON.stringify({
 ---
 
 <!doctype html>
-<html lang="es" class="scroll-smooth">
+<html lang={lang} class="scroll-smooth">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
@@ -147,7 +154,7 @@ const orgSchema = JSON.stringify({
 
         <nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm border-b border-stone-100 z-50 transition-all duration-300">
             <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
-                <a href="/" class="flex items-center gap-3 group">
+                <a href={lang === 'en' ? '/en/' : '/'} class="flex items-center gap-3 group">
                     <Image src={logoImg} alt="Logo Marce Anahata" class="h-10 w-auto group-hover:scale-105 transition-transform" width={40} />
                     <span class="flex flex-col leading-tight">
                         <span class="font-serif text-xl text-[#243c5a] group-hover:text-[#6ed8d9] transition-colors">MARCE ANAHATA</span>
@@ -156,30 +163,29 @@ const orgSchema = JSON.stringify({
                 </a>
 
                 <div class="hidden md:flex gap-8 items-center">
-                    <a href="/" class="text-sm font-medium text-stone-600 hover:text-[#243c5a] transition-colors">Home</a>
-                    <a href="/blog" class="text-sm font-medium text-stone-600 hover:text-[#243c5a] transition-colors">Blog</a>
-                    
+                    <a href={lang === 'en' ? '/en/' : '/'} class="text-sm font-medium text-stone-600 hover:text-[#243c5a] transition-colors">{t('nav.home')}</a>
+                    <a href={lang === 'en' ? '/en/blog' : '/blog'} class="text-sm font-medium text-stone-600 hover:text-[#243c5a] transition-colors">{t('nav.blog')}</a>
                     <!-- Dropdown Servicios -->
                     <div class="relative group">
                         <button class="text-sm font-medium text-stone-600 hover:text-[#243c5a] transition-colors flex items-center gap-1">
-                            Servicios
+                            {t('nav.services')}
                             <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                             </svg>
                         </button>
                         <div class="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-xl border border-stone-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                            <a href="/clases" class="block px-4 py-3 text-sm text-stone-700 hover:bg-stone-50 hover:text-[#243c5a] transition-colors first:rounded-t-lg">Clases de Yoga</a>
-                            <a href="/terapia-sonido" class="block px-4 py-3 text-sm text-stone-700 hover:bg-stone-50 hover:text-[#243c5a] transition-colors">Terapia de Sonido</a>
-                            <a href="/rituales" class="block px-4 py-3 text-sm text-stone-700 hover:bg-stone-50 hover:text-[#243c5a] transition-colors">Rituales Sagrados</a>
-                            <a href="/bienestar-corporativo" class="block px-4 py-3 text-sm text-stone-700 hover:bg-stone-50 hover:text-[#243c5a] transition-colors last:rounded-b-lg">Bienestar Corporativo</a>
+                            <a href={lang === 'en' ? '/en/clases' : '/clases'} class="block px-4 py-3 text-sm text-stone-700 hover:bg-stone-50 hover:text-[#243c5a] transition-colors first:rounded-t-lg">{t('nav.yoga')}</a>
+                            <a href={lang === 'en' ? '/en/terapia-sonido' : '/terapia-sonido'} class="block px-4 py-3 text-sm text-stone-700 hover:bg-stone-50 hover:text-[#243c5a] transition-colors">{t('nav.sound')}</a>
+                            <a href={lang === 'en' ? '/en/rituales' : '/rituales'} class="block px-4 py-3 text-sm text-stone-700 hover:bg-stone-50 hover:text-[#243c5a] transition-colors">{t('nav.rituals')}</a>
+                            <a href={lang === 'en' ? '/en/bienestar-corporativo' : '/bienestar-corporativo'} class="block px-4 py-3 text-sm text-stone-700 hover:bg-stone-50 hover:text-[#243c5a] transition-colors last:rounded-b-lg">{t('nav.corporate')}</a>
                         </div>
                     </div>
-                    
-                    <a href="/sobre-mi" class="text-sm font-medium text-stone-600 hover:text-[#243c5a] transition-colors">Sobre Mí</a>
-                    <a href="/faq" class="text-sm font-medium text-stone-600 hover:text-[#243c5a] transition-colors">FAQ</a>
-                    <a href="/contacto" class="text-sm text-[#243c5a] font-bold border border-[#243c5a] px-5 py-2 rounded-full hover:bg-[#243c5a] hover:text-white transition-all shadow-sm hover:shadow-md">
-                        Contáctenos
+                    <a href={lang === 'en' ? '/en/sobre-mi' : '/sobre-mi'} class="text-sm font-medium text-stone-600 hover:text-[#243c5a] transition-colors">{t('nav.aboutme')}</a>
+                    <a href={lang === 'en' ? '/en/faq' : '/faq'} class="text-sm font-medium text-stone-600 hover:text-[#243c5a] transition-colors">{t('nav.faq')}</a>
+                    <a href={lang === 'en' ? '/en/contacto' : '/contacto'} class="text-sm text-[#243c5a] font-bold border border-[#243c5a] px-5 py-2 rounded-full hover:bg-[#243c5a] hover:text-white transition-all shadow-sm hover:shadow-md">
+                        {t('nav.cta')}
                     </a>
+                    <LanguagePicker />
                 </div>
 
                 <details class="md:hidden group relative">
@@ -191,24 +197,23 @@ const orgSchema = JSON.stringify({
                         <svg class="w-7 h-7 text-[#243c5a]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
                     </summary>
                     <nav aria-label="Menú principal mobile" class="absolute right-0 top-full mt-2 w-56 bg-white rounded-xl shadow-xl border border-stone-100 p-4 flex flex-col gap-3 z-50">
-                        <a href="/" class="text-stone-700 hover:text-[#6ed8d9]">Home</a>
-                        <a href="/blog" class="text-stone-700 hover:text-[#6ed8d9]">Blog</a>
-                        
+                        <a href={lang === 'en' ? '/en/' : '/'} class="text-stone-700 hover:text-[#6ed8d9]">{t('nav.home')}</a>
+                        <a href={lang === 'en' ? '/en/blog' : '/blog'} class="text-stone-700 hover:text-[#6ed8d9]">{t('nav.blog')}</a>
                         <div class="border-t border-stone-100 pt-3">
-                            <p class="text-xs font-semibold text-stone-400 uppercase tracking-wide mb-2">Servicios</p>
-                            <div class="flex flex-col gap-2 pl-2">
-                                <a href="/clases" class="text-stone-700 hover:text-[#6ed8d9]">Clases de Yoga</a>
-                                <a href="/terapia-sonido" class="text-stone-700 hover:text-[#6ed8d9]">Terapia de Sonido</a>
-                                <a href="/rituales" class="text-stone-700 hover:text-[#6ed8d9]">Rituales Sagrados</a>
-                                <a href="/bienestar-corporativo" class="text-stone-700 hover:text-[#6ed8d9]">Bienestar Corporativo</a>
-                            </div>
-                        </div>
-                        
-                        <hr class="border-stone-100">
-                        <a href="/sobre-mi" class="text-stone-700 hover:text-[#6ed8d9]">Sobre Mí</a>
-                        <a href="/faq" class="text-stone-700 hover:text-[#6ed8d9]">Preguntas Frecuentes</a>
-                        <hr class="border-stone-100">
-                        <a href="/contacto" class="text-[#243c5a] font-bold text-center block">Contáctenos</a>
+        <p class="text-xs font-semibold text-stone-400 uppercase tracking-wide mb-2">{t('nav.services')}</p>
+        <div class="flex flex-col gap-2 pl-2">
+            <a href={lang === 'en' ? '/en/clases' : '/clases'} class="text-stone-700 hover:text-[#6ed8d9]">{t('nav.yoga')}</a>
+            <a href={lang === 'en' ? '/en/terapia-sonido' : '/terapia-sonido'} class="text-stone-700 hover:text-[#6ed8d9]">{t('nav.sound')}</a>
+            <a href={lang === 'en' ? '/en/rituales' : '/rituales'} class="text-stone-700 hover:text-[#6ed8d9]">{t('nav.rituals')}</a>
+            <a href={lang === 'en' ? '/en/bienestar-corporativo' : '/bienestar-corporativo'} class="text-stone-700 hover:text-[#6ed8d9]">{t('nav.corporate')}</a>
+        </div>
+    </div>
+    <hr class="border-stone-100">
+    <a href={lang === 'en' ? '/en/sobre-mi' : '/sobre-mi'} class="text-stone-700 hover:text-[#6ed8d9]">{t('nav.aboutme')}</a>
+    <a href={lang === 'en' ? '/en/faq' : '/faq'} class="text-stone-700 hover:text-[#6ed8d9]">{t('nav.faq')}</a>
+    <hr class="border-stone-100">
+    <a href={lang === 'en' ? '/en/contacto' : '/contacto'} class="text-[#243c5a] font-bold text-center block">{t('nav.cta')}</a>
+    <div class="mt-2"><LanguagePicker /></div>
                     </nav>
                 </details>
 
@@ -259,32 +264,32 @@ const orgSchema = JSON.stringify({
                     </div>
 
                     <div>
-                        <h3 class="text-white font-serif text-lg mb-6">Explora</h3>
+                        <h3 class="text-white font-serif text-lg mb-6">{t('footer.explore')}</h3>
                         <ul class="space-y-3 text-sm">
-                            <li><a href="/" class="hover:text-[#6ed8d9] transition-colors">Inicio</a></li>
-                            <li><a href="/blog" class="hover:text-[#6ed8d9] transition-colors">Blog</a></li>
-                            <li><a href="/sobre-mi" class="hover:text-[#6ed8d9] transition-colors">Sobre Mí</a></li>
-                            <li><a href="/faq" class="hover:text-[#6ed8d9] transition-colors">Preguntas Frecuentes</a></li>
-                            <li><a href="/contacto" class="hover:text-[#6ed8d9] transition-colors">Contacto y Ubicación</a></li>
+                            <li><a href={lang === 'en' ? '/en/' : '/'} class="hover:text-[#6ed8d9] transition-colors">{t('nav.home')}</a></li>
+                            <li><a href={lang === 'en' ? '/en/blog' : '/blog'} class="hover:text-[#6ed8d9] transition-colors">{t('nav.blog')}</a></li>
+                            <li><a href={lang === 'en' ? '/en/sobre-mi' : '/sobre-mi'} class="hover:text-[#6ed8d9] transition-colors">{t('nav.aboutme')}</a></li>
+                            <li><a href={lang === 'en' ? '/en/faq' : '/faq'} class="hover:text-[#6ed8d9] transition-colors">{t('nav.faq')}</a></li>
+                            <li><a href={lang === 'en' ? '/en/contacto' : '/contacto'} class="hover:text-[#6ed8d9] transition-colors">{t('footer.contact')}</a></li>
                         </ul>
                     </div>
 
                     <div>
-                        <h3 class="text-white font-serif text-lg mb-6">Servicios</h3>
+                        <h3 class="text-white font-serif text-lg mb-6">{t('footer.services')}</h3>
                         <ul class="space-y-3 text-sm">
-                            <li><a href="/clases" class="hover:text-[#6ed8d9] transition-colors">Clases de Yoga</a></li>
-                            <li><a href="/terapia-sonido" class="hover:text-[#6ed8d9] transition-colors">Terapia de Sonido</a></li>
-                            <li><a href="/bienestar-corporativo" class="hover:text-[#6ed8d9] transition-colors">Bienestar Corporativo</a></li>
-                            <li><a href="/rituales" class="hover:text-[#6ed8d9] transition-colors">Rituales Sagrados</a></li>
+                            <li><a href={lang === 'en' ? '/en/clases' : '/clases'} class="hover:text-[#6ed8d9] transition-colors">{t('nav.yoga')}</a></li>
+                            <li><a href={lang === 'en' ? '/en/terapia-sonido' : '/terapia-sonido'} class="hover:text-[#6ed8d9] transition-colors">{t('nav.sound')}</a></li>
+                            <li><a href={lang === 'en' ? '/en/bienestar-corporativo' : '/bienestar-corporativo'} class="hover:text-[#6ed8d9] transition-colors">{t('nav.corporate')}</a></li>
+                            <li><a href={lang === 'en' ? '/en/rituales' : '/rituales'} class="hover:text-[#6ed8d9] transition-colors">{t('nav.rituals')}</a></li>
                         </ul>
                     </div>
 
                     <div>
-                        <h3 class="text-white font-serif text-lg mb-6">Visítanos</h3>
+                        <h3 class="text-white font-serif text-lg mb-6">{t('footer.visit')}</h3>
                         <ul class="space-y-4 text-sm">
                             <li class="flex items-start gap-3">
                                 <span class="text-[#6ed8d9] mt-1">📍</span>
-                                <span>Cl. 11A Sur #46-12 Barrio La Aguacatala, El Poblado, Antioquia<br><span class="text-stone-400 text-xs">Atención con cita previa</span></span>
+                                <span>{t('footer.address')}<br><span class="text-stone-400 text-xs">Atención con cita previa</span></span>
                             </li>
                             <li class="flex items-center gap-3">
                                 <span class="text-[#6ed8d9]">📱</span>
@@ -399,73 +404,8 @@ const orgSchema = JSON.stringify({
                 // Close button handler
                 if (closeBtn) {
                     closeBtn.addEventListener('click', () => {
-                        if (panel) panel.style.display = 'none';
-                        safeSet('1');
+                        // removed unfinished if statement
                     });
                 }
             })();
         </script>
-
-        <!-- Cookie Consent Banner -->
-        <CookieConsent />
-
-        <!-- vercel analyticsr -->
-        <Analytics />
-
-    </body>
-</html>
-
-<style is:global>
-        /* Fuentes */
-        h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; }
-        body {
-        font-family: 'Montserrat', sans-serif;
-        /* Esto muestra una fuente básica inmediatamente y cambia a la tuya cuando carga */
-        font-display: swap;
-        }
-
-    /* Estilos globales para botones y utilidades */
-    :root {
-      --color-brand-dark: #243c5a;
-      --color-brand-violet: #5d5a8c;
-      --color-brand-cyan: #6ed8d9;
-    }
-
-    .swiper-pagination-bullet-active {
-        background-color: var(--color-brand-violet) !important;
-    }
-
-    /* Skip link for accessibility */
-    .skip-link {
-        position: fixed;
-        top: 12px;
-        left: 12px;
-        z-index: 60;
-        background: #243c5a;
-        color: #fff;
-        padding: 10px 14px;
-        border-radius: 999px;
-        transform: translateY(-150%);
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-        box-shadow: 0 10px 25px -10px rgba(0,0,0,0.35);
-    }
-    .skip-link:focus-visible {
-        transform: translateY(0);
-        outline: 3px solid #6ed8d9;
-    }
-
-    /* Scrollbar personalizada sutil */
-    ::-webkit-scrollbar {
-        width: 8px;
-    }
-    ::-webkit-scrollbar-track {
-        background: #f1f1f4;
-    }
-    ::-webkit-scrollbar-thumb {
-        background: #d6d3d1;
-        border-radius: 4px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-        background: #a8a29e;
-    }
-</style>

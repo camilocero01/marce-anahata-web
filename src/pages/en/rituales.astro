@@ -1,0 +1,11 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { useTranslations } from '../../i18n/ui';
+
+const lang = 'en';
+const t = useTranslations(lang);
+---
+<Layout title="Sacred Rituals" lang={lang}>
+  <h1>{t('nav.rituals')}</h1>
+  <p>English content for Sacred Rituals service page.</p>
+</Layout>

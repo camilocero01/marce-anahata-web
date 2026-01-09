@@ -13,6 +13,15 @@ import mdx from '@astrojs/mdx';
 
 // https://astro.build/config
 export default defineConfig({
+  i18n: {
+    defaultLocale: 'es',
+    locales: ['es', 'en'],
+    routing: {
+      prefixDefaultLocale: false,
+      redirectToDefaultLocale: true
+    },
+    localized404: true
+  },
   vite: {
     plugins: [tailwindcss()]
   },
@@ -47,7 +56,7 @@ export default defineConfig({
   site: 'https://www.marceanahata.com', // URL de producción (usar dominio canonico)
   // 'always' fuerza la barra al final (ej: /contacto/)
   // 'never' la quita (ej: /contacto) -> Recomendado para Vercel
-  trailingSlash: 'never', 
+  trailingSlash: 'ignore', 
   prefetch: true, // Habilita la estrategia por defecto (hover)
   compressHTML: true,
 });
