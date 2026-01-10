@@ -10,8 +10,8 @@ import sobreMiBioImg from '../assets/sobre-mi/sobre-mi-bio.webp';
 const whatsappLink = "https://wa.me/573207329921?text=Hola%20Marce%20Anahata,%20le%C3%AD%20tu%20historia%20y%20quisiera%20conocer%20m%C3%A1s%20sobre%20tus%20servicios.";
 
 // 3 posts aleatorios con tag "Marce Anahata"
-const sobreMiPosts = (await getCollection('blog', ({ data }) =>
-  !data.draft && data.tags.includes('Marce Anahata')
+const sobreMiPosts = (await getCollection('blog', ({ data, slug }) =>
+  !data.draft && !slug.startsWith('en/') && data.tags.includes('Marce Anahata')
 ))
   .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime())
   .slice(0, 3);
@@ -259,7 +259,7 @@ const sobreMiPosts = (await getCollection('blog', ({ data }) =>
       </a>
     </div>
   </section>
-xxx
+
   {sobreMiPosts.length > 0 && (
     <section class="max-w-7xl mx-auto px-6 py-20 bg-white">
       <div class="text-center mb-12">

@@ -20,8 +20,8 @@ const serviceInfo = {
 const whatsappLink = `https://wa.me/573207329921?text=${encodeURIComponent(serviceInfo.whatsappMessage)}`; // CAMBIA EL NÚMERO
 
 // 3 posts aleatorios con tag "terapia de sonido"
-const sonidoPosts = (await getCollection('blog', ({ data }) =>
-  !data.draft && data.tags.includes('terapia de sonido')
+const sonidoPosts = (await getCollection('blog', ({ data, slug }) =>
+  !data.draft && !slug.startsWith('en/') && data.tags.includes('terapia de sonido')
 ))
   .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime())
   .slice(0, 3);

@@ -17,8 +17,8 @@ const pageInfo = {
 const whatsappLinkGeneral = `https://wa.me/573207329921?text=${encodeURIComponent(pageInfo.whatsappMessageGeneral)}`; // CAMBIA TU NÚMERO AQUÍ
 
 // 3 posts aleatorios con tags "yoga" o "meditación"
-const yogaPosts = (await getCollection('blog', ({ data }) =>
-  !data.draft && (data.tags.includes('yoga') || data.tags.includes('meditación'))
+const yogaPosts = (await getCollection('blog', ({ data, slug }) =>
+  !data.draft && !slug.startsWith('en/') && (data.tags.includes('yoga') || data.tags.includes('meditación'))
 ))
   .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime())
   .slice(0, 3);

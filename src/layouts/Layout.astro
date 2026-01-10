@@ -6,6 +6,7 @@ import { Image } from 'astro:assets';
 import logoImg from '../assets/logo.svg';
 import CookieConsent from '../components/CookieConsent.astro';
 import Newsletter from '../components/Newsletter.astro';
+import NewsletterEN from '../components/NewsletterEN.astro';
 import Analytics from '@vercel/analytics/astro';
 import LanguagePicker from '../components/LanguagePicker.astro';
 import { useTranslations } from '../i18n/ui';
@@ -236,10 +237,17 @@ const orgSchema = JSON.stringify({
 
         <!-- Newsletter Section -->
         <section class="py-12 px-4 bg-gradient-to-b from-white to-stone-50">
-            <Newsletter
-                title="Recibe actualizaciones y eventos exclusivos"
-                description="Suscríbete a nuestro newsletter para recibir artículos nuevos, eventos especiales y ofertas exclusivas directamente en tu email."
-            />
+            {langProp === 'en' ? (
+                <NewsletterEN
+                    title="Stay Updated on Yoga, Meditation & Wellness"
+                    description="Receive exclusive tips, new blog articles, and be the first to know about our special events and promotions."
+                />
+            ) : (
+                <Newsletter
+                    title="Recibe actualizaciones y eventos exclusivos"
+                    description="Suscríbete a nuestro newsletter para recibir artículos nuevos, eventos especiales y ofertas exclusivas directamente en tu email."
+                />
+            )}
         </section>
 
         <footer class="bg-[#243c5a] text-stone-100 py-16 border-t-4 border-[#6ed8d9]">
