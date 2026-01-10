@@ -19,8 +19,7 @@ export default defineConfig({
     routing: {
       prefixDefaultLocale: false,
       redirectToDefaultLocale: true
-    },
-    localized404: true
+    }
   },
   vite: {
     plugins: [tailwindcss()]

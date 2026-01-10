@@ -72,7 +72,7 @@ const {
 </style>
 
 <script>
-  const form = document.getElementById('newsletter-form-en');
+  const form = document.getElementById('newsletter-form-en') as HTMLFormElement | null;
   const messageDiv = document.getElementById('form-message-en');
   const submitBtn = document.getElementById('newsletter-btn-en');
 
@@ -80,12 +80,12 @@ const {
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      const emailInput = form.querySelector('input[name="email"]');
-      const email = emailInput.value;
+      const emailInput = form.querySelector('input[name="email"]') as HTMLInputElement | null;
+      const email = emailInput?.value || '';
       const originalText = submitBtn?.textContent || 'Subscribe';
 
       if (submitBtn) {
-        submitBtn.disabled = true;
+        (submitBtn as HTMLButtonElement).disabled = true;
         submitBtn.textContent = 'Subscribing...';
       }
       if (messageDiv) {
@@ -113,11 +113,11 @@ const {
             messageDiv.className = 'text-sm text-green-600 font-semibold mt-2';
           }
           
-          form.reset();
+          (form as HTMLFormElement).reset();
           
           if (submitBtn) {
             setTimeout(() => {
-              submitBtn.disabled = false;
+              (submitBtn as HTMLButtonElement).disabled = false;
               submitBtn.textContent = originalText;
               if (messageDiv) {
                 messageDiv.textContent = '';
@@ -128,7 +128,7 @@ const {
         } else {
           const errors = data.errors || [];
           const errorMessage = errors.length > 0 
-            ? errors.map(err => err.message).join(', ')
+            ? errors.map((err: any) => err.message).join(', ')
             : 'Error processing subscription';
           throw new Error(errorMessage);
         }
@@ -141,7 +141,7 @@ const {
         }
         
         if (submitBtn) {
-          submitBtn.disabled = false;
+          (submitBtn as HTMLButtonElement).disabled = false;
           submitBtn.textContent = originalText;
         }
 

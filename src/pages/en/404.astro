@@ -44,7 +44,7 @@ const latestPosts = (await getCollection('blog', ({ data, slug }) => !data.draft
         <h2 class="text-xl font-bold mb-4 text-[#243c5a]">Latest Articles</h2>
         <div class="grid md:grid-cols-3 gap-6">
           {latestPosts.map((post) => (
-            <a href={`/en/blog/${post.slug.replace(/^en\//, '')}`} class="block group" key={post.slug}>
+            <a href={`/en/blog/${post.slug.replace(/^en\//, '')}`} class="block group">
               <article class="border border-stone-200 rounded-lg p-4 hover:shadow-lg transition-shadow">
                 <h3 class="text-lg font-semibold text-[#243c5a] group-hover:text-[#6ed8d9] transition-colors mb-2">{post.data.title}</h3>
                 <p class="text-sm text-stone-600 line-clamp-2">{post.data.description}</p>

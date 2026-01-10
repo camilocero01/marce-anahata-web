@@ -2,7 +2,7 @@
 import Layout from "../../../../layouts/Layout.astro";
 import { getCollection } from 'astro:content';
 
-const posts = await getCollection('blog', ({ data }) => !data.draft && data.lang !== 'es');
+const posts = await getCollection('blog', ({ slug }) => slug.startsWith('en/'));
 const tagCounts = new Map<string, number>();
 posts.forEach(p => (p.data.tags || []).forEach(t => tagCounts.set(t, (tagCounts.get(t) || 0) + 1)));
 const tags = Array.from(tagCounts.entries()).sort((a, b) => b[1] - a[1]);

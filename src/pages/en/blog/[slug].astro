@@ -119,7 +119,7 @@ const relatedPosts = primaryTag
         <h2 class="text-2xl font-serif text-[#243c5a] mb-6">Related Articles</h2>
         <div class="grid gap-6 md:grid-cols-3">
           {relatedPosts.map((rp) => (
-            <a href={`/en/blog/${rp.slug.replace(/^en\//, '')}`} class="block group" key={rp.slug}>
+            <a href={`/en/blog/${rp.slug.replace(/^en\//, '')}`} class="block group">
               <article class="border border-stone-200 rounded-lg p-4 hover:shadow-lg transition-shadow">
                 <h3 class="text-lg font-semibold text-[#243c5a] group-hover:text-[#6ed8d9] transition-colors mb-2">{rp.data.title}</h3>
                 <p class="text-sm text-stone-600 line-clamp-2">{rp.data.description}</p>
