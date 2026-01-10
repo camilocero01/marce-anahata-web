@@ -13,9 +13,11 @@ import heroBgImg from '../../assets/hero-bg.webp';
 import marcePerfilImg from '../../assets/marce-perfil.webp';
 
 // Get latest 3 blog posts in English
-const allPosts = (await getCollection('blog', ({ data, slug }) => !data.draft && slug.startsWith('en/')))
-  .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime())
-  .slice(0, 3);
+// TEMPORARILY DISABLED FOR PRODUCTION
+// const allPosts = (await getCollection('blog', ({ data, slug }) => !data.draft && slug.startsWith('en/')))
+//   .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime())
+//   .slice(0, 3);
+const allPosts = [];
 
 // Page metadata
 const pageTitle = "Kundalini Yoga and Sound Therapy in Medellín";
