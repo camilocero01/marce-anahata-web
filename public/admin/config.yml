@@ -5,30 +5,42 @@ backend:
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
 collections:
-  - name: "blog"
-    label: "Blog Posts"
+  - name: "blog-es"
+    label: "Blog (Español)"
+    label_singular: "Post en Español"
     folder: "src/content/blog"
+    create: true
+    slug: "{{slug}}"
+    filter: { field: "lang", value: "es" }
+    fields:
+      - { label: "Título", name: "title", widget: "string" }
+      - { label: "Título SEO", name: "seoTitle", widget: "string", required: false }
+      - { label: "Descripción", name: "description", widget: "text" }
+      - { label: "Fecha de Publicación", name: "pubDate", widget: "datetime" }
+      - { label: "Fecha de Actualización", name: "updatedDate", widget: "datetime", required: false }
+      - { label: "Autor", name: "author", widget: "string", default: "Marce Anahata" }
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+      - { label: "Imagen Principal", name: "image", widget: "image", required: false }
+      - { label: "Imagen OG", name: "ogImage", widget: "image", required: false }
+      - { label: "Borrador", name: "draft", widget: "boolean", default: false }
+      - { label: "Idioma", name: "lang", widget: "hidden", default: "es" }
+      - { label: "Contenido", name: "body", widget: "markdown" }
+
+  - name: "blog-en"
+    label: "Blog (English)"
+    label_singular: "Post in English"
+    folder: "src/content/blog/en"
     create: true
     slug: "{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Description", name: "description", widget: "string" }
-      - { label: "Date", name: "pubDate", widget: "datetime" }
+      - { label: "SEO Title", name: "seoTitle", widget: "string", required: false }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Published Date", name: "pubDate", widget: "datetime" }
+      - { label: "Updated Date", name: "updatedDate", widget: "datetime", required: false }
+      - { label: "Author", name: "author", widget: "string", default: "Marce Anahata" }
       - { label: "Tags", name: "tags", widget: "list", required: false }
-      - { label: "Image", name: "image", widget: "image", required: false }
-      - { label: "Body", name: "body", widget: "markdown" }
-  - name: "pages"
-    label: "Pages"
-    files:
-      - label: "About"
-        name: "about"
-        file: "src/content/pages/about.md"
-        fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Body", name: "body", widget: "markdown" }
-      - label: "Contact"
-        name: "contact"
-        file: "src/content/pages/contact.md"
-        fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "Featured Image", name: "image", widget: "image", required: false }
+      - { label: "OG Image", name: "ogImage", widget: "image", required: false }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false }
+      - { label: "Content", name: "body", widget: "markdown" }
