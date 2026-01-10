@@ -1,11 +1,228 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { useTranslations } from '../../i18n/ui';
+import ReviewsSection from '../../components/cards/ReviewsSection.astro';
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import ritualCumpleanosImg from '../../assets/ritual/ritual-cumpleanos.webp';
+import ritualVueltaSolImg from '../../assets/ritual/ritual-cumpleanos-vuelta-al-sol.webp';
 
-const lang = 'en';
-const t = useTranslations(lang);
+// --- SERVICE DATA ---
+const serviceInfo = {
+  title: "Birthday Ritual: Your New Solar Return",
+  subtitle: "Celebrate your life, honor the cycle that closes, and plant intentional seeds for your next year.",
+  price: "$230.000 COP", // Update with your real price
+  duration: "2 Hours",
+  whatsappMessage: "Hi Marce Anahata, my birthday is coming up! I want to celebrate with the Solar Return Ritual. Please share more details.",
+};
+
+const whatsappLink = `https://wa.me/573207329921?text=${encodeURIComponent(serviceInfo.whatsappMessage)}`;
+
+// TEMPORARILY DISABLED FOR PRODUCTION
+// const ritualPosts = (await getCollection('blog', ({ data, slug }) =>
+//   slug.startsWith('en/') && !data.draft && data.tags.includes('rituales')
+// ))
+//   .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime())
+//   .slice(0, 3);
+const ritualPosts = [];
 ---
-<Layout title="Birthday Ritual" lang={lang}>
-  <h1>Birthday Ritual</h1>
-  <p>English content for Birthday Ritual service page.</p>
+
+<Layout title="Birthday Ritual | Marce Anahata" description="Birthday ritual in Medellín: celebrate your solar return with a sacred ceremony. Honor your cycle, express gratitude, and set clear intentions for the year ahead." lang="en">
+  <Fragment slot="head">
+    <script type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://marceanahata.com/en" },
+        { "@type": "ListItem", "position": 2, "name": "Rituals", "item": "https://marceanahata.com/en/rituales" },
+        { "@type": "ListItem", "position": 3, "name": "Birthday Ritual", "item": "https://marceanahata.com/en/ritual-cumpleanos" }
+      ]
+    })}</script>
+    <meta property="og:locale" content="en_US" />
+  </Fragment>
+  
+  <section class="relative h-[70vh] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <Image 
+        src={ritualCumpleanosImg} 
+        alt="Mindful birthday celebration" 
+        class="w-full h-full object-cover opacity-90"
+        width={1920}
+        densities={[1.5, 2]}
+      />
+      <div class="absolute inset-0 bg-[#243c5a]/40 mix-blend-multiply"></div>
+    </div>
+
+    <div class="relative z-10 text-center text-white px-6 max-w-4xl mx-auto mt-20">
+      <span class="uppercase tracking-[0.2em] text-sm md:text-base mb-4 block text-[#6ed8d9]">Conscious Celebration</span>
+      <h1 class="text-4xl md:text-6xl font-serif mb-6 leading-tight">{serviceInfo.title}</h1>
+      <p class="text-lg md:text-xl font-light max-w-2xl mx-auto mb-8 opacity-90">
+        {serviceInfo.subtitle}
+      </p>
+      <a 
+        href={whatsappLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-block bg-[#6ed8d9] text-[#243c5a] px-8 py-4 rounded-full font-medium hover:bg-white transition-all duration-300 transform hover:-translate-y-1 shadow-lg"
+      >
+        Book my celebration
+      </a>
+    </div>
+  </section>
+
+  <section class="py-20 bg-stone-50 px-6">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div class="relative">
+        <div class="absolute -top-4 -left-4 w-full h-full border-2 border-[#6ed8d9]/30 rounded-2xl z-0"></div>
+        <Image 
+          src={ritualVueltaSolImg} 
+          alt="Woman celebrating her inner light" 
+          class="rounded-2xl shadow-xl relative z-10 w-full h-[500px] object-cover"
+          width={600}
+          height={500}
+          densities={[1.5, 2]}
+        />
+      </div>
+      <div>
+        <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-6">More than another year — a rebirth</h2>
+        <p class="text-[#243c5a]/80 mb-6 leading-relaxed">
+          Your birthday is your personal energetic portal. The Sun returns to its exact position from your birth, opening a powerful window for manifestation.
+        </p>
+        <p class="text-[#243c5a]/80 mb-8 leading-relaxed">
+          We often celebrate outwardly and forget to celebrate inwardly. This ritual is a gift to your soul, a sacred space to honor your path and consciously design who you want to become in this new cycle.
+        </p>
+        <ul class="space-y-4">
+          <li class="flex items-center gap-3 text-[#5d5a8c]">
+            <span class="text-xl">🎂</span> Gratitude for what you lived
+          </li>
+          <li class="flex items-center gap-3 text-[#5d5a8c]">
+            <span class="text-xl">✨</span> Uplifting your vibration
+          </li>
+          <li class="flex items-center gap-3 text-[#5d5a8c]">
+            <span class="text-xl">🎯</span> Laser clarity on purpose
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white px-6">
+    <div class="max-w-4xl mx-auto text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-4">The stages of your ceremony</h2>
+      <p class="text-[#243c5a]/60">A flow designed to release the past and embrace the future.</p>
+    </div>
+
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-stone-50 p-8 rounded-xl text-center hover:shadow-md transition-shadow group">
+        <div class="w-16 h-16 bg-[#5d5a8c]/10 group-hover:bg-[#6ed8d9]/20 transition-colors rounded-full flex items-center justify-center mx-auto mb-6 text-2xl">🍂</div>
+        <h3 class="text-xl font-serif text-[#243c5a] mb-3">Cleansing & Closure</h3>
+        <p class="text-sm text-[#243c5a]/70">Through smudging and meditation, we release the weight of the year that ends so you step light into the new one.</p>
+      </div>
+      <div class="bg-stone-50 p-8 rounded-xl text-center hover:shadow-md transition-shadow group">
+        <div class="w-16 h-16 bg-[#5d5a8c]/10 group-hover:bg-[#6ed8d9]/20 transition-colors rounded-full flex items-center justify-center mx-auto mb-6 text-2xl">⚡</div>
+        <h3 class="text-xl font-serif text-[#243c5a] mb-3">Birthday Kriya</h3>
+        <p class="text-sm text-[#243c5a]/70">A special Kundalini Yoga practice to reset your electromagnetic field and raise your vitality.</p>
+      </div>
+      <div class="bg-stone-50 p-8 rounded-xl text-center hover:shadow-md transition-shadow group">
+        <div class="w-16 h-16 bg-[#5d5a8c]/10 group-hover:bg-[#6ed8d9]/20 transition-colors rounded-full flex items-center justify-center mx-auto mb-6 text-2xl">🌱</div>
+        <h3 class="text-xl font-serif text-[#243c5a] mb-3">Intention Planting</h3>
+        <p class="text-sm text-[#243c5a]/70">Mental and sonic projection (mantra) to manifest your deepest desires for this new year of life.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-[#5d5a8c] text-white px-6 relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-72 h-72 bg-[#6ed8d9] rounded-full filter blur-[120px] opacity-20"></div>
+    <div class="absolute bottom-0 left-0 w-72 h-72 bg-[#243c5a] rounded-full filter blur-[120px] opacity-30"></div>
+
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+      <h2 class="text-3xl md:text-5xl font-serif mb-8">Give yourself the beginning you deserve</h2>
+      
+      <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8 md:p-12 inline-block max-w-2xl w-full">
+        <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-6 border-b border-white/10 pb-8">
+            <div class="text-center md:text-left">
+                <p class="text-[#6ed8d9] uppercase text-xs tracking-widest mb-1">Approx. duration</p>
+                <p class="text-xl">{serviceInfo.duration}</p>
+            </div>
+            <div class="text-center md:text-right">
+                <p class="text-[#6ed8d9] uppercase text-xs tracking-widest mb-1">Investment</p>
+                <p class="text-3xl font-serif">{serviceInfo.price}</p>
+            </div>
+        </div>
+
+        <p class="mb-8 text-white/90 font-light italic">
+          "Your birth was the Universe's gift to the world. A conscious celebration is your gift back to the Universe."
+        </p>
+
+        <a 
+          href={whatsappLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-full block bg-[#6ed8d9] text-[#243c5a] py-4 rounded-xl font-bold hover:bg-white transition-colors shadow-lg"
+        >
+          Book my birthday ritual
+        </a>
+        <p class="mt-4 text-xs text-white/50">*Available solo or with your loved ones (ask for group rate). A 50% deposit is required to reserve the date.</p>
+      </div>
+    </div>
+  </section>
+
+  {ritualPosts.length > 0 && (
+    <section class="max-w-7xl mx-auto px-6 py-20 bg-stone-50">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-serif text-marce-base-3 mb-4">Ritual articles</h2>
+        <p class="text-stone-600 max-w-2xl mx-auto">Deepen into the art of rituals and discover how they can transform your life.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {ritualPosts.map((post) => (
+          <article class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 border border-stone-100 flex flex-col">
+            {post.data.image && (
+              <div class="h-48 overflow-hidden">
+                <img
+                  src={post.data.image}
+                  alt={post.data.title}
+                  class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                  loading="lazy"
+                />
+              </div>
+            )}
+            <div class="p-6 flex flex-col flex-grow">
+              <time class="text-xs text-stone-500 mb-2 uppercase tracking-wider">
+                {new Date(post.data.pubDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+              </time>
+              <h3 class="text-xl font-semibold text-marce-base-3 mb-3 leading-tight">
+                {post.data.title}
+              </h3>
+              <p class="text-stone-600 text-sm mb-4 flex-grow leading-relaxed">
+                {post.data.description}
+              </p>
+              <a
+                href={`/en/blog/${post.slug.replace(/^en\//, '')}`}
+                class="text-marce-base-1 font-semibold text-sm hover:text-marce-base-2 transition-colors inline-flex items-center gap-1"
+              >
+                Read more
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div class="text-center mt-12">
+        <a
+          href="/en/blog/tag/rituales"
+          class="inline-block px-6 py-3 border-2 border-marce-base-1 text-marce-base-1 rounded-lg hover:bg-marce-base-1 hover:text-white transition-all font-semibold"
+        >
+          See all ritual articles
+        </a>
+      </div>
+    </section>
+  )}
+
+  <div class="bg-stone-50">
+    <ReviewsSection lang="en" />
+  </div>
+
 </Layout>

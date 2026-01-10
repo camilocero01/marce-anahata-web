@@ -1,11 +1,388 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { useTranslations } from '../../i18n/ui';
+import ReviewsSection from '../../components/cards/ReviewsSection.astro';
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import bienestarCorporativoImg from '../../assets/corporativo/bienestar-corporativo-2.webp';
 
-const lang = 'en';
-const t = useTranslations(lang);
+// --- SERVICE DATA ---
+const serviceInfo = {
+  title: "Corporate Wellness: Conscious Teams",
+  subtitle: "Transform workplace culture by bringing mindfulness, yoga, and emotional management tools to the heart of your company.",
+  whatsappMessage: "Hi Marce Anahata, I'm interested in a wellness workshop quote for my company. I'd like to discuss customized options."
+};
+
+const whatsappLink = `https://wa.me/573207329921?text=${encodeURIComponent(serviceInfo.whatsappMessage)}`;
+
+// 3 English posts tagged "burnout" or "bienestar corporativo" (kept tag for compatibility)
+// TEMPORARILY DISABLED FOR PRODUCTION
+// const bienestarPosts = (await getCollection('blog', ({ data, slug }) =>
+//   slug.startsWith('en/') && !data.draft && (data.tags.includes('burnout') || data.tags.includes('bienestar corporativo'))
+// ))
+//   .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime())
+//   .slice(0, 3);
+const bienestarPosts = [];
 ---
-<Layout title="Corporate Wellness" lang={lang}>
-  <h1>{t('nav.corporate')}</h1>
-  <p>English content for Corporate Wellness service page.</p>
+
+<Layout 
+  title="Corporate Wellness | Marce Anahata"
+  description="Corporate wellness in Medellín: mindfulness, yoga, and emotional management workshops for conscious teams. Transform your company's work climate."
+  lang="en"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://marceanahata.com/en" },
+        { "@type": "ListItem", "position": 2, "name": "Corporate Wellness", "item": "https://marceanahata.com/en/bienestar-corporativo" }
+      ]
+    })}</script>
+    <meta property="og:locale" content="en_US" />
+  </Fragment>
+  
+  <section class="relative h-[60vh] flex items-center justify-center overflow-hidden">
+
+    <video 
+      class="absolute inset-0 w-full h-full object-cover z-0 opacity-90"
+      autoplay 
+      loop 
+      muted 
+      playsinline
+      preload="metadata"
+      poster="/images/bienestar-corporativo-poster.webp"
+    >
+      <source src="/videos/bienestar-corporativo.mp4" type="video/mp4" />
+    </video>
+    
+    <div class="absolute inset-0 bg-black opacity-30 z-10"></div>
+
+    <div class="relative z-10 text-center text-white px-6 max-w-5xl mx-auto mt-16">
+      <span class="uppercase tracking-[0.2em] text-sm md:text-base mb-4 block text-[#6ed8d9] font-bold">Integration & Conscious Leadership</span>
+      <h1 class="text-3xl md:text-6xl font-serif mb-6 leading-tight">{serviceInfo.title}</h1>
+      <p class="text-lg md:text-xl font-light max-w-3xl mx-auto mb-8 opacity-95 text-stone-100">
+        {serviceInfo.subtitle}
+      </p>
+      <a 
+        href={whatsappLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-block bg-[#6ed8d9] text-[#243c5a] px-8 py-4 rounded-full font-bold hover:bg-white transition-all duration-300 transform hover:-translate-y-1 shadow-lg"
+      >
+        Request Proposal for My Company
+      </a>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white px-6">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+      <div class="order-2 md:order-1 relative">
+        <div class="absolute -top-4 -left-4 w-full h-full border-2 border-[#5d5a8c]/20 rounded-xl z-0"></div>
+        <Image 
+          src={bienestarCorporativoImg} 
+          alt="Conscious active break at work" 
+          class="rounded-xl shadow-xl relative z-10 w-full h-[400px] object-cover"
+          width={600}
+          height={400}
+          densities={[1.5, 2]}
+        />
+      </div>
+      <div class="order-1 md:order-2">
+        <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-6">Beyond the traditional "Active Break"</h2>
+        <p class="text-[#243c5a]/80 mb-6 leading-relaxed text-lg">
+          Workplace stress and team disconnection are the biggest enemies of productivity. My workshops aren't just a moment of relaxation; they're practical trainings for life.
+        </p>
+        <p class="text-[#243c5a]/80 mb-8 leading-relaxed text-lg">
+          We bring the technology of <strong>Yoga, Conscious Breathing, and Sound Therapy</strong> to the corporate environment to give your collaborators real tools they can use at their desks to manage anxiety, improve focus, and communicate with empathy.
+        </p>
+        <p class="text-[#243c5a]/80 mb-6 leading-relaxed text-lg">
+          We host at <strong>my wellness center in Medellín - El Poblado</strong> or travel throughout the metro area and surroundings.
+        </p>
+        
+        <div class="grid grid-cols-2 gap-4">
+            <div class="flex items-center gap-2 text-[#5d5a8c] font-medium">
+                <span class="text-[#6ed8d9] text-xl">✓</span> Burnout Reduction
+            </div>
+            <div class="flex items-center gap-2 text-[#5d5a8c] font-medium">
+                <span class="text-[#6ed8d9] text-xl">✓</span> Team Cohesion
+            </div>
+            <div class="flex items-center gap-2 text-[#5d5a8c] font-medium">
+                <span class="text-[#6ed8d9] text-xl">✓</span> Empathic Communication
+            </div>
+            <div class="flex items-center gap-2 text-[#5d5a8c] font-medium">
+                <span class="text-[#6ed8d9] text-xl">✓</span> Mental Focus
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 bg-stone-50 px-6">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-12">
+        <span class="text-[#5d5a8c] font-bold tracking-widest uppercase text-sm">Immersive Experience</span>
+        <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mt-2 mb-4">Sample Agenda: "Connection and Vitality"</h2>
+        <p class="text-[#243c5a]/70">
+            A half-day (4-hour) integration model designed to reconnect the team from the root.
+            <br><em>*Agendas are customized for each company's needs.</em>
+        </p>
+      </div>
+
+      <div class="relative border-l-2 border-[#5d5a8c]/20 ml-4 md:ml-0 space-y-8 pl-8 md:pl-0">
+        
+        <div class="relative md:grid md:grid-cols-12 md:gap-8 items-start group">
+            <div class="hidden md:block md:col-span-3 text-right">
+                <span class="text-xl font-bold text-[#5d5a8c] block">08:00 AM</span>
+                <span class="text-xs text-[#243c5a]/50 uppercase tracking-wide">15 Minutes</span>
+            </div>
+            <div class="absolute -left-[39px] md:left-[24.5%] top-1 w-5 h-5 rounded-full border-4 border-white bg-[#6ed8d9] shadow-sm z-10 group-hover:scale-125 transition-transform"></div>
+            
+            <div class="md:col-span-9 bg-white p-6 rounded-xl shadow-sm border border-stone-100 group-hover:shadow-md transition-shadow">
+                <div class="md:hidden mb-2 flex items-baseline gap-2">
+                    <span class="text-lg font-bold text-[#5d5a8c]">08:00 AM</span>
+                    <span class="text-xs text-[#243c5a]/50 uppercase">15 Minutes</span>
+                </div>
+                <h3 class="text-lg font-bold text-[#243c5a] mb-2">Energetic Start and Value Message</h3>
+                <p class="text-[#243c5a]/80 text-sm">Conscious icebreaker and alignment of purpose with leadership message about the team's human value.</p>
+            </div>
+        </div>
+
+        <div class="relative md:grid md:grid-cols-12 md:gap-8 items-start group">
+            <div class="hidden md:block md:col-span-3 text-right">
+                <span class="text-xl font-bold text-[#5d5a8c] block">08:15 AM</span>
+                <span class="text-xs text-[#243c5a]/50 uppercase tracking-wide">60 Minutes</span>
+            </div>
+            <div class="absolute -left-[39px] md:left-[24.5%] top-1 w-5 h-5 rounded-full border-4 border-white bg-[#5d5a8c] shadow-sm z-10 group-hover:scale-125 transition-transform"></div>
+            
+            <div class="md:col-span-9 bg-white p-6 rounded-xl shadow-sm border border-stone-100 group-hover:shadow-md transition-shadow">
+                 <div class="md:hidden mb-2 flex items-baseline gap-2">
+                    <span class="text-lg font-bold text-[#5d5a8c]">08:15 AM</span>
+                    <span class="text-xs text-[#243c5a]/50 uppercase">60 Minutes</span>
+                </div>
+                <h3 class="text-lg font-bold text-[#243c5a] mb-2">Yoga Flow: Focus and Joy</h3>
+                <p class="text-[#243c5a]/80 text-sm">Dynamic yet accessible sequence (no prior experience needed) to awaken vitality, correct desk posture, and oxygenate the brain.</p>
+            </div>
+        </div>
+
+        <div class="relative md:grid md:grid-cols-12 md:gap-8 items-start group">
+            <div class="hidden md:block md:col-span-3 text-right">
+                <span class="text-xl font-bold text-[#5d5a8c] block">09:15 AM</span>
+                <span class="text-xs text-[#243c5a]/50 uppercase tracking-wide">45 Minutes</span>
+            </div>
+            <div class="absolute -left-[39px] md:left-[24.5%] top-1 w-5 h-5 rounded-full border-4 border-white bg-[#6ed8d9] shadow-sm z-10 group-hover:scale-125 transition-transform"></div>
+            
+            <div class="md:col-span-9 bg-white p-6 rounded-xl shadow-sm border border-stone-100 group-hover:shadow-md transition-shadow">
+                <div class="md:hidden mb-2 flex items-baseline gap-2">
+                    <span class="text-lg font-bold text-[#5d5a8c]">09:15 AM</span>
+                    <span class="text-xs text-[#243c5a]/50 uppercase">45 Minutes</span>
+                </div>
+                <h3 class="text-lg font-bold text-[#243c5a] mb-2">Soft Skills: Active Listening and Empathy</h3>
+                <p class="text-[#243c5a]/80 text-sm">Communication dynamic using sound as an anchor. We practice "conscious pauses" before reacting, improving the quality of workplace relationships.</p>
+            </div>
+        </div>
+
+         <div class="relative md:grid md:grid-cols-12 md:gap-8 items-start group">
+            <div class="hidden md:block md:col-span-3 text-right">
+                <span class="text-xl font-bold text-[#5d5a8c] block">10:00 AM</span>
+                <span class="text-xs text-[#243c5a]/50 uppercase tracking-wide">15 Minutes</span>
+            </div>
+            <div class="absolute -left-[39px] md:left-[24.5%] top-1 w-5 h-5 rounded-full border-4 border-white bg-amber-400 shadow-sm z-10 group-hover:scale-125 transition-transform"></div>
+            
+            <div class="md:col-span-9 bg-amber-50 p-6 rounded-xl shadow-sm border border-amber-100">
+                <div class="md:hidden mb-2 flex items-baseline gap-2">
+                    <span class="text-lg font-bold text-[#5d5a8c]">10:00 AM</span>
+                    <span class="text-xs text-[#243c5a]/50 uppercase">15 Minutes</span>
+                </div>
+                <h3 class="text-lg font-bold text-[#243c5a] mb-2">Nutrition and Recharge Break</h3>
+                <p class="text-[#243c5a]/80 text-sm">Healthy snack with energizing breathing exercises (Breath of Fire) to return to work with a clear mind.</p>
+            </div>
+        </div>
+
+         <div class="relative md:grid md:grid-cols-12 md:gap-8 items-start group">
+            <div class="hidden md:block md:col-span-3 text-right">
+                <span class="text-xl font-bold text-[#5d5a8c] block">10:15 AM</span>
+                <span class="text-xs text-[#243c5a]/50 uppercase tracking-wide">60 Minutes</span>
+            </div>
+            <div class="absolute -left-[39px] md:left-[24.5%] top-1 w-5 h-5 rounded-full border-4 border-white bg-[#5d5a8c] shadow-sm z-10 group-hover:scale-125 transition-transform"></div>
+            
+            <div class="md:col-span-9 bg-white p-6 rounded-xl shadow-sm border border-stone-100 group-hover:shadow-md transition-shadow relative overflow-hidden">
+                <div class="absolute top-0 right-0 bg-[#6ed8d9] text-[#243c5a] text-xs font-bold px-3 py-1 rounded-bl-lg">Most requested!</div>
+                <div class="md:hidden mb-2 flex items-baseline gap-2">
+                    <span class="text-lg font-bold text-[#5d5a8c]">10:15 AM</span>
+                    <span class="text-xs text-[#243c5a]/50 uppercase">60 Minutes</span>
+                </div>
+                <h3 class="text-lg font-bold text-[#243c5a] mb-2">Workshop: Anti-Stress Survival Kit</h3>
+                <p class="text-[#243c5a]/80 text-sm mb-3">Delivery of 5 practical daily tools:</p>
+                <ul class="text-xs text-[#243c5a]/70 grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <li class="flex gap-2">🔹 Desk Micro-Meditation.</li>
+                    <li class="flex gap-2">🔹 3 emergency breaths.</li>
+                    <li class="flex gap-2">🔹 Chair yoga for the back.</li>
+                    <li class="flex gap-2">🔹 Express sound healing for anxiety.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="relative md:grid md:grid-cols-12 md:gap-8 items-start group">
+            <div class="hidden md:block md:col-span-3 text-right">
+                <span class="text-xl font-bold text-[#5d5a8c] block">11:15 AM</span>
+                <span class="text-xs text-[#243c5a]/50 uppercase tracking-wide">45 Minutes</span>
+            </div>
+            <div class="absolute -left-[39px] md:left-[24.5%] top-1 w-5 h-5 rounded-full border-4 border-white bg-[#6ed8d9] shadow-sm z-10 group-hover:scale-125 transition-transform"></div>
+            
+            <div class="md:col-span-9 bg-white p-6 rounded-xl shadow-sm border border-stone-100 group-hover:shadow-md transition-shadow">
+                <div class="md:hidden mb-2 flex items-baseline gap-2">
+                    <span class="text-lg font-bold text-[#5d5a8c]">11:15 AM</span>
+                    <span class="text-xs text-[#243c5a]/50 uppercase">45 Minutes</span>
+                </div>
+                <h3 class="text-lg font-bold text-[#243c5a] mb-2">Sound Integration and Closing</h3>
+                <p class="text-[#243c5a]/80 text-sm">Final gratitude meditation supported by crystal bowls to set intentions. Space closing and delivery of reminders/gifts.</p>
+            </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-[#243c5a] text-white px-6 relative overflow-hidden">
+    <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+      <h2 class="text-3xl md:text-5xl font-serif mb-6">Invest in your company's most valuable asset: Its People</h2>
+      <p class="text-stone-300 text-lg mb-10 leading-relaxed max-w-2xl mx-auto">
+        Let's design a tailor-made experience aligned with your organization's goals (leadership, stress management, integration).
+      </p>
+      
+      <div class="flex flex-col md:flex-row gap-4 justify-center">
+          <a 
+            href={whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="bg-[#6ed8d9] text-[#243c5a] px-8 py-4 rounded-full font-bold hover:bg-white transition-all duration-300 shadow-lg"
+          >
+            Request Corporate Workshop Quote
+          </a>
+      </div>
+    </div>
+  </section>
+
+  {bienestarPosts.length > 0 && (
+    <section class="max-w-7xl mx-auto px-6 py-20 bg-white">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-serif text-marce-base-3 mb-4">Articles on Corporate Wellness</h2>
+        <p class="text-stone-600 max-w-2xl mx-auto">Ideas and tools to prevent burnout and build more conscious teams.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {bienestarPosts.map((post) => (
+          <article class="bg-stone-50 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 border border-stone-100 flex flex-col">
+            {post.data.image && (
+              <div class="h-48 overflow-hidden">
+                <img
+                  src={post.data.image}
+                  alt={post.data.title}
+                  class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                  loading="lazy"
+                />
+              </div>
+            )}
+            <div class="p-6 flex flex-col flex-grow">
+              <time class="text-xs text-stone-500 mb-2 uppercase tracking-wider">
+                {new Date(post.data.pubDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+              </time>
+              <h3 class="text-xl font-semibold text-marce-base-3 mb-3 leading-tight">
+                {post.data.title}
+              </h3>
+              <p class="text-stone-600 text-sm mb-4 flex-grow leading-relaxed">
+                {post.data.description}
+              </p>
+              <a
+                href={`/en/blog/${post.slug.replace('en/', '')}`}
+                class="text-marce-base-1 font-semibold text-sm hover:text-marce-base-2 transition-colors inline-flex items-center gap-1"
+              >
+                Read more
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div class="text-center mt-12">
+        <div class="flex flex-col md:flex-row gap-3 justify-center">
+          <a
+            href="/en/blog/tag/burnout"
+            class="inline-block px-6 py-3 border-2 border-marce-base-1 text-marce-base-1 rounded-lg hover:bg-marce-base-1 hover:text-white transition-all font-semibold"
+          >
+            See burnout articles
+          </a>
+          <a
+            href="/en/blog/tag/bienestar%20corporativo"
+            class="inline-block px-6 py-3 border-2 border-marce-base-1 text-marce-base-1 rounded-lg hover:bg-marce-base-1 hover:text-white transition-all font-semibold"
+          >
+            See corporate wellness articles
+          </a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <div style="background-color: #fcfcfc; border: 1px solid #e5e7eb; padding: 40px; max-width: 600px; margin: 0 auto; font-family: 'Georgia', serif; color: #243c5a; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-radius: 12px; position: relative; overflow: hidden;">
+    
+    <div style="position: absolute; top: 0; right: 0; width: 200px; height: 200px; background: radial-gradient(circle, rgba(110,216,217,0.2) 0%, rgba(255,255,255,0) 70%); border-radius: 50%;"></div>
+    
+    <div style="text-align: center; margin-bottom: 30px; position: relative; z-index: 10;">
+        <h2 style="color: #243c5a; font-size: 24px; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 2px;">Rescue Sheet</h2>
+        <h3 style="font-family: sans-serif; font-size: 14px; color: #5d5a8c; font-weight: bold; text-transform: uppercase;">Wellness and Vitality at Your Desk</h3>
+        <p style="font-style: italic; color: #666; font-size: 14px; margin-top: 15px; border-bottom: 1px solid #eee; padding-bottom: 15px;">"Your energy is your greatest asset. Take 3 minutes to reset your life force."</p>
+    </div>
+
+    <div style="font-family: sans-serif; font-size: 13px; line-height: 1.5; position: relative; z-index: 10;">
+        
+        <div style="margin-bottom: 20px; display: flex; align-items: start; gap: 15px;">
+            <div style="background: #eefbfb; color: #243c5a; min-width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px;">🌬️</div>
+            <div>
+                <strong style="color: #5d5a8c; display: block; margin-bottom: 4px;">1. Rescue Breath (Sitali)</strong>
+                <p style="margin: 0; color: #555;"><strong>For:</strong> Frustration or mental heat.<br>
+                <strong>How:</strong> Make a "tube" with your tongue or purse lips like using a straw. Inhale deeply through the mouth (feel the cool air) and exhale softly through the nose.<br>
+                <em>Effect: Cools the nervous system in 1 minute.</em></p>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 20px; display: flex; align-items: start; gap: 15px;">
+            <div style="background: #eefbfb; color: #243c5a; min-width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px;">🧘</div>
+            <div>
+                <strong style="color: #5d5a8c; display: block; margin-bottom: 4px;">2. Chair Yoga (Cat-Cow)</strong>
+                <p style="margin: 0; color: #555;"><strong>For:</strong> Releasing the back and creativity.<br>
+                <strong>How:</strong> Feet grounded. Inhale bringing chest forward (look up). Exhale rounding the back (look at the navel). Repeat 5 times.<br>
+                <em>Effect: Unlocks the spine.</em></p>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 20px; display: flex; align-items: start; gap: 15px;">
+            <div style="background: #eefbfb; color: #243c5a; min-width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px;">🎶</div>
+            <div>
+                <strong style="color: #5d5a8c; display: block; margin-bottom: 4px;">3. Sound Cut (Bee)</strong>
+                <p style="margin: 0; color: #555;"><strong>For:</strong> Clearing mental noise and regaining focus.<br>
+                <strong>How:</strong> Cover ears with index fingers. Inhale and on the exhale make a constant "Mmmmmm" sound.<br>
+                <em>Effect: The vibration instantly clears anxiety.</em></p>
+            </div>
+        </div>
+
+        <div style="background-color: #f0fdfd; padding: 15px; border-radius: 8px; border-left: 4px solid #6ed8d9; text-align: center;">
+            <strong style="color: #243c5a; display: block; margin-bottom: 5px;">✨ 4. Abundance Decree</strong>
+            <p style="margin: 0; font-style: italic; font-weight: 500; color: #444;">"My mind is clear, my body is at peace, and my work flows in abundance and harmony."</p>
+        </div>
+
+    </div>
+
+    <div style="margin-top: 30px; text-align: center; font-size: 11px; color: #999; border-top: 1px solid #eee; padding-top: 15px;">
+        <p style="margin: 0;">Marce Anahata • Conscious Corporate Wellness</p>
+    </div>
+</div>
+
+  <div class="bg-white">
+    <ReviewsSection lang="en" />
+  </div>
+
 </Layout>

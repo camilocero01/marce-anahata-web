@@ -1,11 +1,187 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { useTranslations } from '../../i18n/ui';
+import ServiceCard from '../../components/cards/ServiceCard.astro';
+import ReviewsSection from '../../components/cards/ReviewsSection.astro';
+import ritualesData from '../../data/rituales.json';
+import { getCollection } from 'astro:content';
 
-const lang = 'en';
-const t = useTranslations(lang);
+// --- PAGE DATA ---
+const pageInfo = {
+  title: "Sacred Rituals with Sound Therapy in Medellín - El Poblado",
+  subtitle: "Ceremonies to honor life cycles, elevate your vibration, and connect soul-to-soul.",
+  whatsappMessage: "Hi Marce Anahata, I'm interested in a ritual. Can you share availability and pricing?",
+};
+
+const whatsappLink = `https://wa.me/573207329921?text=${encodeURIComponent(pageInfo.whatsappMessage)}`;
+
+// English-facing ritual cards
+const rituals = ritualesData.map((ritual) => {
+  const translations = {
+    pareja: {
+      titulo: "Couple Ritual: Sacred Connection",
+      descripcion: "A ceremony to reconnect hearts, heal bonds, and elevate the vibration of love.",
+    },
+    cumpleanos: {
+      titulo: "Birthday Ritual (Solar Return)",
+      descripcion: "Celebrate your life, honor the cycle that closes, and plant intentions for the year ahead.",
+    },
+    babybless: {
+      titulo: "Baby Blessing",
+      descripcion: "We welcome the new soul and bless the mother in her sacred transition to motherhood.",
+    },
+    'fin-ano': {
+      titulo: "Closure & Opening Ritual",
+      descripcion: "Energetic cleansing to release the old and manifest clear intentions for the next chapter.",
+    },
+    despedida: {
+      titulo: "Bachelorette Ritual (Goddess Circle)",
+      descripcion: "A conscious celebration to honor the bride, weave sisterhood, and shower her with blessings.",
+    },
+  };
+
+  const translated = translations[ritual.id] ?? {};
+  return {
+    ...ritual,
+    titulo: translated.titulo ?? ritual.titulo,
+    descripcion: translated.descripcion ?? ritual.descripcion,
+    duracion: ritual.duracion.replace('Horas', 'Hours').replace('Hora', 'Hour'),
+    slug: `/en${ritual.slug}`,
+  };
+});
+
+// Latest English posts tagged "rituales"
+// TEMPORARILY DISABLED FOR PRODUCTION
+// const ritualPosts = (await getCollection('blog', ({ data, slug }) =>
+//   slug.startsWith('en/') && !data.draft && data.tags.includes('rituales')
+// ))
+//   .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime())
+//   .slice(0, 3);
+const ritualPosts = [];
 ---
-<Layout title="Sacred Rituals" lang={lang}>
-  <h1>{t('nav.rituals')}</h1>
-  <p>English content for Sacred Rituals service page.</p>
+
+<Layout 
+  title="Sacred Rituals | Marce Anahata" 
+  description="Sacred rituals in Medellín: couple ceremonies, birthday solar return, baby blessing, bachelorette, and closure-opening rituals with sound therapy."
+  lang="en"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://marceanahata.com/en" },
+        { "@type": "ListItem", "position": 2, "name": "Rituals", "item": "https://marceanahata.com/en/rituales" }
+      ]
+    })}</script>
+    <meta property="og:locale" content="en_US" />
+  </Fragment>
+
+  <section class="relative h-[50vh] flex items-center justify-center overflow-hidden">
+    <video 
+      class="absolute inset-0 w-full h-full object-cover z-0 opacity-60"
+      autoplay 
+      loop 
+      muted 
+      playsinline
+    >
+      <source src="/videos/rituales.mp4" type="video/mp4" />
+    </video>
+    
+    <div class="absolute inset-0 bg-white opacity-30 z-10"></div>
+
+    <div class="relative z-20 text-center text-[#243c5a] px-6 max-w-4xl mx-auto mt-20">
+      <span class="uppercase tracking-[0.2em] text-sm md:text-base mb-4 block text-[#5d5a8c] font-bold">Your sacred space</span>
+      
+      <h1 class="text-4xl md:text-6xl font-serif mb-6 leading-tight">
+        {pageInfo.title}
+      </h1>
+      
+      <p class="text-lg md:text-xl font-light max-w-2xl mx-auto mb-8 opacity-90 text-[#243c5a]">
+        {pageInfo.subtitle}
+      </p>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-6 py-20 text-marce-base-1">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-12 text-marce-base-1">
+      {rituals.map((ritual) => (
+        <ServiceCard 
+          titulo={ritual.titulo}
+          descripcion={ritual.descripcion}
+          imagen={ritual.imagen}
+          duracion={ritual.duracion}
+          link={ritual.slug}
+        />
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-[#243c5a] text-white px-6 relative overflow-hidden py-20 text-center">
+    <h2 class="text-3xl mb-4">Need a custom ritual?</h2>
+    <p class="mb-8 font-light text-stone-300">We craft the perfect experience for your intention and needs.</p>
+    <div class="flex items-center justify-center gap-4">
+      <a href="/en/contacto" class="bg-stone-100 text-stone-900 py-3 px-8 rounded-sm hover:bg-stone-200 transition">Contact me</a>
+      <a href={whatsappLink} target="_blank" rel="noopener noreferrer" class="py-3 px-8 border border-white/40 rounded-sm hover:bg-white hover:text-[#243c5a] transition">Chat on WhatsApp</a>
+    </div>
+  </section>
+
+  {ritualPosts.length > 0 && (
+    <section class="max-w-7xl mx-auto px-6 py-20 bg-stone-50">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-serif text-marce-base-3 mb-4">Ritual articles</h2>
+        <p class="text-stone-600 max-w-2xl mx-auto">Deepen into the art of rituals and discover how they can transform your life.</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {ritualPosts.map((post) => (
+          <article class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 border border-stone-100 flex flex-col">
+            {post.data.image && (
+              <div class="h-48 overflow-hidden">
+                <img 
+                  src={post.data.image} 
+                  alt={post.data.title} 
+                  class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                  loading="lazy"
+                />
+              </div>
+            )}
+            <div class="p-6 flex flex-col flex-grow">
+              <time class="text-xs text-stone-500 mb-2 uppercase tracking-wider">
+                {new Date(post.data.pubDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+              </time>
+              <h3 class="text-xl font-semibold text-marce-base-3 mb-3 leading-tight">
+                {post.data.title}
+              </h3>
+              <p class="text-stone-600 text-sm mb-4 flex-grow leading-relaxed">
+                {post.data.description}
+              </p>
+              <a 
+                href={`/en/blog/${post.slug.replace(/^en\//, '')}`} 
+                class="text-marce-base-1 font-semibold text-sm hover:text-marce-base-2 transition-colors inline-flex items-center gap-1"
+              >
+                Read more
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+      
+      <div class="text-center mt-12">
+        <a 
+          href="/en/blog/tag/rituales" 
+          class="inline-block px-6 py-3 border-2 border-marce-base-1 text-marce-base-1 rounded-lg hover:bg-marce-base-1 hover:text-white transition-all font-semibold"
+        >
+          See all ritual articles
+        </a>
+      </div>
+    </section>
+  )}
+
+  <div class="bg-stone-50">
+    <ReviewsSection lang="en" />
+  </div>
+
 </Layout>

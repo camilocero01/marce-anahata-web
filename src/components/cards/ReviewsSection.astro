@@ -4,13 +4,36 @@ import reviewsData from '../../data/reviews.json';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
+interface Props {
+  lang?: 'es' | 'en';
+}
+
+const { lang = 'es' } = Astro.props;
+
+const translations = {
+  es: {
+    title: "Lo que dicen quienes han vibrado aquí",
+    subtitle: "Testimonios reales de personas que han transformado su energía en nuestro centro.",
+    readMore: "Ver reseña..",
+    readAllReviews: "Leer todas las reseñas en Google"
+  },
+  en: {
+    title: "What people who have vibrated here say",
+    subtitle: "Real testimonials from people who have transformed their energy at our center.",
+    readMore: "Read review..",
+    readAllReviews: "Read all reviews on Google"
+  }
+};
+
+const t = translations[lang];
+
 const googleReviewsLink = "https://www.google.com/search?sca_esv=c581b398f00b64e5&q=Marce+Anahata+-+Centro+de+bienestar+Medell%C3%ADn&si=AMgyJEtREmoPL4P1I5IDCfuA8gybfVI2d5Uj7QMwYCZHKDZ-E8digRyuKFLuaq_GTmCUkL39iUOp2I4pUmF1uDhUV503YmVnTB23PfNQ4MOerXVzro1X_lmUuSqdl7xSBoOtlokEI3m4H7mnuTb5chGZQTWDBxvVJLo97qBQ_z8KL83eYwd9Z5M%3D&sa=X&ved=2ahUKEwj3q9znq8KRAxWGmLAFHbdkNWYQrrQLegQIHxAA&biw=1536&bih=826&dpr=1.25&zx=1765897501773&no_sw_cr=1"; 
 ---
 
 <section id="reviews" class="py-24 bg-stone-50 overflow-hidden">
-  <div class="max-w-7xl mx-auto px-6 text-center mb-12 ">
-    <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-6">Lo que dicen quienes han vibrado aquí</h2>
-    <p class="text-[#243c5a]/70 max-w-2xl mx-auto">Testimonios reales de personas que han transformado su energía en nuestro centro.</p>
+  <div class="max-w-7xl mx-auto px-6 text-center mb-12">
+    <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-6">{t.title}</h2>
+    <p class="text-[#243c5a]/70 max-w-2xl mx-auto">{t.subtitle}</p>
   </div>
 
   <div class="swiper reviews-carousel px-6 md:px-0 mb-12">
@@ -31,10 +54,10 @@ const googleReviewsLink = "https://www.google.com/search?sca_esv=c581b398f00b64e
                   href={review.link} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  title="Ir a Google Maps"
+                  title={lang === 'es' ? 'Ir a Google Maps' : 'Go to Google Maps'}
                   class=" text-xs font-medium text-stone hover:text-[#5d5a8c] hover:underline underline-offset-2 transition-colors"
                 >
-                  Ver reseña..
+                  {t.readMore}
                 </a>
               )}
             </blockquote>
@@ -101,7 +124,7 @@ const googleReviewsLink = "https://www.google.com/search?sca_esv=c581b398f00b64e
         <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.26.81-.58z" fill="#FBBC05"/>
         <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
       </svg>
-      <span class="font-medium">Leer todas las reseñas en Google</span>
+      <span class="font-medium">{t.readAllReviews}</span>
       <span class="text-stone-400 group-hover:translate-x-1 transition-transform">→</span>
     </a>
   </div>

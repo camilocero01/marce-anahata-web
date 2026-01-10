@@ -1,11 +1,407 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { useTranslations } from '../../i18n/ui';
+import ReviewsSection from '../../components/cards/ReviewsSection.astro';
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import terapiaSonidoImg from '../../assets/terapia/terapa-sonido-landing2.webp';
+import terapiaGongImg from '../../assets/terapia/terapia-vikrampal-gong.webp';
+import terapiaNamYogaImg from '../../assets/terapia/terapia-nam-yoga.webp';
 
-const lang = 'en';
-const t = useTranslations(lang);
+// --- SERVICE DATA ---
+const serviceInfo = {
+  title: "Sound Therapy: Vibrational Medicine",
+  subtitle: "In Medellín - El Poblado, experience a deep journey inward to restore cellular harmony and calm the nervous system through resonance.",
+  price: "$230,000 COP",
+  duration: "2 Hours",
+  whatsappMessage: "Hi Marce Anahata, I'm interested in Sound Therapy. I'd like to book a session to experience vibrational healing."
+};
+
+const whatsappLink = `https://wa.me/573207329921?text=${encodeURIComponent(serviceInfo.whatsappMessage)}`;
+
+// 3 English posts with tag "terapia de sonido" (kept tag for compatibility)
+// TEMPORARILY DISABLED FOR PRODUCTION
+// const sonidoPosts = (await getCollection('blog', ({ data, slug }) =>
+//   slug.startsWith('en/') && !data.draft && data.tags.includes('terapia de sonido')
+// ))
+//   .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime())
+//   .slice(0, 3);
+const sonidoPosts = [];
 ---
-<Layout title="Sound Therapy" lang={lang}>
-  <h1>{t('nav.sound')}</h1>
-  <p>English content for Sound Therapy service page.</p>
+
+<Layout 
+  title="Sound Therapy | Marce Anahata"
+  description="Sound therapy in Medellín: vibrational medicine with gong and Tibetan bowls to restore cellular harmony and calm the nervous system."
+  lang="en"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://marceanahata.com/en" },
+        { "@type": "ListItem", "position": 2, "name": "Sound Therapy", "item": "https://marceanahata.com/en/terapia-sonido" }
+      ]
+    })}</script>
+    <meta property="og:locale" content="en_US" />
+  </Fragment>
+  
+<section class="relative h-[70vh] flex items-center justify-center overflow-hidden">
+    
+    <video 
+      class="absolute inset-0 w-full h-full object-cover z-0 opacity-60"
+      autoplay 
+      loop 
+      muted 
+      playsinline
+      preload="metadata"
+      poster="/images/terapia-sonido-poster.webp"
+    >
+      <source src="/videos/Video_de_Gong_Campanas_y_Cuencos.mp4" type="video/mp4" />
+    </video>
+    
+    <div class="absolute inset-0 bg-white opacity-30 z-10"></div>
+
+    <div class="relative z-20 text-center text-[#243c5a] px-6 max-w-4xl mx-auto mt-20">
+      <span class="uppercase tracking-[0.2em] text-sm md:text-base mb-4 block text-[#5d5a8c] font-bold">Quantum Healing</span>
+      
+      <h1 class="text-4xl md:text-6xl font-serif mb-6 leading-tight">
+        {serviceInfo.title}
+      </h1>
+      
+      <p class="text-lg md:text-xl font-light max-w-2xl mx-auto mb-8 opacity-90 text-[#243c5a]">
+        {serviceInfo.subtitle}
+      </p>
+      
+      <a 
+        href={whatsappLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-block bg-[#6ed8d9] text-[#243c5a] px-8 py-4 rounded-full font-medium hover:bg-[#243c5a] hover:text-white transition-all duration-300 transform hover:-translate-y-1 shadow-lg"
+      >
+        Book My Session
+      </a>
+    </div>
+  </section>
+
+  <section class="py-20 bg-stone-50 px-6">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div class="relative">
+        <div class="absolute -top-4 -left-4 w-full h-full border-2 border-[#5d5a8c]/20 rounded-2xl z-0"></div>
+        <Image 
+          src={terapiaSonidoImg} 
+          alt="Crystal bowls and vibration" 
+          class="rounded-2xl shadow-xl relative z-10 w-full h-[500px] object-cover"
+          width={600}
+          height={500}
+          densities={[1.5, 2]}
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+      <div>
+        <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-6">Sound is not only heard, it is felt in every cell</h2>
+        <p class="text-[#243c5a]/80 mb-6 leading-relaxed">
+          We live surrounded by "noise" (external and mental) that disrupts our natural frequency, generating stress, anxiety, and emotional blockage. Sound therapy is not simple relaxation; it's a biological tuning.
+        </p>
+        <p class="text-[#243c5a]/80 mb-8 leading-relaxed">
+          Through the principle of resonance, the pure frequencies of my instruments reach where the analytical mind cannot, moving stagnant energy and allowing your body to remember its natural state of health and peace.
+        </p>
+        <ul class="space-y-4">
+          <li class="flex items-center gap-3 text-[#5d5a8c]">
+            <span class="text-xl">🧠</span> Theta brain waves (Deep relaxation)
+          </li>
+          <li class="flex items-center gap-3 text-[#5d5a8c]">
+            <span class="text-xl">💎</span> Energetic and emotional cleansing
+          </li>
+          <li class="flex items-center gap-3 text-[#5d5a8c]">
+            <span class="text-xl">✨</span> Immediate stress reduction (Cortisol)
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-[#243c5a] text-white px-6">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-serif text-white/70">How does Sound Therapy work?</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div class="text-center">
+          <div class="w-20 h-20 bg-[#6ed8d9]/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <span class="text-3xl">🧬</span>
+          </div>
+          <h3 class="text-lg font-bold text-[#6ed8d9] mb-3">Physical Level</h3>
+          <p class="text-white/30 text-sm">
+            Sound travels through the water in your body, creating a cellular massage that releases muscular tension and balances the parasympathetic nervous system.
+          </p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-20 h-20 bg-[#6ed8d9]/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <span class="text-3xl">🧠</span>
+          </div>
+          <h3 class="text-lg font-bold text-[#6ed8d9] mb-3">Mental Level</h3>
+          <p class="text-white/30 text-sm">
+            Binaural frequencies induce Theta and Delta brain states, allowing deep relaxation and immediate mental clarity.
+          </p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-20 h-20 bg-[#6ed8d9]/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <span class="text-3xl">✨</span>
+          </div>
+          <h3 class="text-lg font-bold text-[#6ed8d9] mb-3">Emotional Level</h3>
+          <p class="text-white/30 text-sm">
+            Facilitates the release of energetic blockages and stagnant emotions, as I explored in my thesis on psychological symptoms.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white px-6">
+    <div class="max-w-4xl mx-auto text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-4">Your Healing Orchestra</h2>
+      <p class="text-[#243c5a]/60">A sound immersion with high-frequency instruments selected just for you.</p>
+    </div>
+
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-stone-50 p-8 rounded-xl text-center hover:shadow-md transition-shadow group border border-stone-100">
+        <div class="w-16 h-16 bg-[#5d5a8c]/10 group-hover:bg-[#6ed8d9]/20 transition-colors rounded-full flex items-center justify-center mx-auto mb-6 text-2xl">🌕</div>
+        <h3 class="text-xl font-serif text-[#243c5a] mb-3">2 Symphonic Gongs</h3>
+        <p class="text-sm text-[#243c5a]/70">The sound of the Gong is a "reset" for the nervous system. Its enveloping vibration impacts the physical body dissolving deep tensions.</p>
+      </div>
+      <div class="bg-stone-50 p-8 rounded-xl text-center hover:shadow-md transition-shadow group border border-stone-100">
+        <div class="w-16 h-16 bg-[#5d5a8c]/10 group-hover:bg-[#6ed8d9]/20 transition-colors rounded-full flex items-center justify-center mx-auto mb-6 text-2xl">🥣</div>
+        <h3 class="text-xl font-serif text-[#243c5a] mb-3">10+ Crystal Bowls</h3>
+        <p class="text-sm text-[#243c5a]/70">Made of pure quartz, each tuned to a specific chakra. Their crystalline sound brings clarity, vision, and spiritual elevation.</p>
+      </div>
+      <div class="bg-stone-50 p-8 rounded-xl text-center hover:shadow-md transition-shadow group border border-stone-100">
+        <div class="w-16 h-16 bg-[#5d5a8c]/10 group-hover:bg-[#6ed8d9]/20 transition-colors rounded-full flex items-center justify-center mx-auto mb-6 text-2xl">🔔</div>
+        <h3 class="text-xl font-serif text-[#243c5a] mb-3">Chimes and Subtle Sounds</h3>
+        <p class="text-sm text-[#243c5a]/70">Koshi, Tingshas, and other wind elements that work in the auric field to seal the experience and harmonize energy.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-stone-50 px-6 relative overflow-hidden">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+      
+      <div>
+        <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-6">Why choose a Certified Sound Therapist?</h2>
+        <p class="text-[#243c5a]/80 mb-6 leading-relaxed">
+          Sound is a powerful tool that, if misused, can unbalance. As an internationally certified therapist, my practice is not improvised; it is based on in-depth study of the physics of sound and human anatomy.
+        </p>
+        
+        <div class="bg-white p-6 rounded-xl border-l-4 border-[#5d5a8c] shadow-sm mb-8">
+          <h3 class="font-serif text-xl text-[#243c5a] mb-2">My Academic Training</h3>
+          <p class="text-sm text-[#5d5a8c] mb-4 font-semibold uppercase tracking-wider">International Sound Therapy Institute (Spain)</p>
+          <ul class="space-y-2 text-[#243c5a]/70 text-sm">
+            <li class="flex gap-2"><span class="text-[#6ed8d9]">✓</span> 110 hours of specialized training.</li>
+            <li class="flex gap-2"><span class="text-[#6ed8d9]">✓</span> Endorsed by the Music Therapy and Health Foundation.</li>
+            <li class="flex gap-2"><span class="text-[#6ed8d9]">✓</span> Studies in Sound, Frequencies, and the Human Body.</li>
+            <li class="flex gap-2"><span class="text-[#6ed8d9]">✓</span> Specialization in Gong and Kundalini Yoga.</li>
+          </ul>
+        </div>
+        
+        <p class="text-xs text-[#243c5a]/50 italic">
+          Certification signed by Vikrampal Sandes (<a href="https://vikrampal.es/sobre-mi/" target="_blank" rel="noopener noreferrer">see biography</a>).
+        </p>
+      </div>
+
+      <div class="relative">
+        <div class="absolute -inset-4 bg-[#6ed8d9]/20 rounded-2xl rotate-3 z-0"></div>
+        <Image 
+          src={terapiaGongImg} 
+          alt="International certificate of Marcela Zuleta" 
+          class="relative z-10 w-full rounded-xl shadow-xl object-cover"
+          width={600}
+          height={500}
+          densities={[1.5, 2]}
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-stone-50 px-6 relative overflow-hidden">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+
+      <div class="relative">
+        <div class="absolute -inset-4 bg-[#6ed8d9]/20 rounded-2xl rotate-3 z-0"></div>
+        <Image 
+          src={terapiaNamYogaImg} 
+          alt="Marcela Zuleta - Certified KRI Instructor" 
+          class="relative z-10 w-full rounded-xl shadow-xl object-cover"
+          width={600}
+          height={500}
+          densities={[1.5, 2]}
+        />
+      </div>
+      
+      <div>
+        <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-6">Why practice with an internationally Certified Instructor?</h2>
+        <p class="text-[#243c5a]/80 mb-6 leading-relaxed">
+          Kundalini Yoga is a powerful technology designed to transform the body's and mind's chemistry. As an internationally certified instructor, my teaching is not improvised; I honor the purity of the lineage to ensure a safe, precise, and deep practice that truly elevates consciousness.
+        </p>
+        
+        <div class="bg-white p-6 rounded-xl border-l-4 border-[#5d5a8c] shadow-sm mb-8">
+          <h3 class="font-serif text-xl text-[#243c5a] mb-2">My Professional Training</h3>
+          <p class="text-sm text-[#5d5a8c] mb-4 font-semibold uppercase tracking-wider">The Kundalini Research Institute (KRI)</p>
+          <ul class="space-y-2 text-[#243c5a]/70 text-sm">
+            <li class="flex gap-2">
+                <span class="text-[#6ed8d9]">✓</span> 
+                International Certification Level 1 (Instructor).
+            </li>
+            <li class="flex gap-2">
+                <span class="text-[#6ed8d9]">✓</span> 
+                One-year immersive training with in-person retreats.
+            </li>
+            <li class="flex gap-2">
+                <span class="text-[#6ed8d9]">✓</span> 
+                Deep dive into Yogic Anatomy, Chakras, and Pranayamas.
+            </li>
+            <li class="flex gap-2">
+                <span class="text-[#6ed8d9]">✓</span> 
+                Mastery of the power of Mantra and student guidance.
+            </li>
+          </ul>
+        </div>
+        
+        <p class="text-xs text-[#243c5a]/50 italic">
+          Trained under the direct guidance of master Nam Nidhan Khalsa, pioneer in Latin America (<a href="https://namnidhankhalsa.com/quienes-somos/" target="_blank" rel="noopener noreferrer">see biography</a>).
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-serif text-[#243c5a]">Support and Certification</h2>
+      <p class="text-[#243c5a]/70 mt-2">My path as a teacher is backed by international standards.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      
+      <div class="p-6 bg-stone-50 rounded-xl border border-stone-100 hover:shadow-lg transition-all">
+        <div class="text-4xl mb-4 text-[#5d5a8c]">🌐</div> <h3 class="text-lg font-bold text-[#243c5a] mb-2">International KRI Endorsement</h3>
+        <p class="text-sm text-[#243c5a]/80">Certified by The Kundalini Research Institute and the Music Therapy and Health Foundation, guaranteeing faithful teaching of the original legacy.</p>
+      </div>
+
+      <div class="p-6 bg-stone-50 rounded-xl border border-stone-100 hover:shadow-lg transition-all">
+        <div class="text-4xl mb-4 text-[#5d5a8c]">🧘‍♀️</div> <h3 class="text-lg font-bold text-[#243c5a] mb-2">Lineage and Mentorship</h3>
+        <p class="text-sm text-[#243c5a]/80">Trained by Nam Nidhan Khalsa, a global reference and pioneer of these teachings in Latin America, and by Vikrampal Sandes, also a global reference.</p>
+      </div>
+
+      <div class="p-6 bg-stone-50 rounded-xl border border-stone-100 hover:shadow-lg transition-all">
+        <div class="text-4xl mb-4 text-[#5d5a8c]">📚</div> <h3 class="text-lg font-bold text-[#243c5a] mb-2">Technical Depth</h3>
+        <p class="text-sm text-[#243c5a]/80">Rigorous study of subtle anatomy, mantras, asanas, and philosophy for a safe and powerful practice.</p>
+      </div>
+
+      <div class="p-6 bg-stone-50 rounded-xl border border-stone-100 hover:shadow-lg transition-all">
+        <div class="text-4xl mb-4 text-[#5d5a8c]">✨</div> <h3 class="text-lg font-bold text-[#243c5a] mb-2">Personal Mastery</h3>
+        <p class="text-sm text-[#243c5a]/80">Immersive retreat training focused on self-knowledge and awakening consciousness.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+  <section class="py-20 bg-[#243c5a] text-white px-6 relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-64 h-64 bg-[#6ed8d9] rounded-full filter blur-[100px] opacity-10"></div>
+    <div class="absolute bottom-0 left-0 w-64 h-64 bg-[#5d5a8c] rounded-full filter blur-[100px] opacity-20"></div>
+
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+      <h2 class="text-3xl md:text-5xl font-serif mb-8">Give yourself a moment of absolute peace</h2>
+      
+      <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 md:p-12 inline-block max-w-2xl w-full">
+        <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-6 border-b border-white/10 pb-8">
+            <div class="text-center md:text-left">
+                <p class="text-[#6ed8d9] uppercase text-xs tracking-widest mb-1">Session Duration</p>
+                <p class="text-xl">{serviceInfo.duration}</p>
+            </div>
+            <div class="text-center md:text-right">
+                <p class="text-[#6ed8d9] uppercase text-xs tracking-widest mb-1">Personal Investment</p>
+                <p class="text-3xl font-serif">{serviceInfo.price}</p>
+            </div>
+        </div>
+
+        <p class="mb-8 text-white/80 font-light italic">
+          "When you change your vibration, you change your reality."
+        </p>
+
+        <a 
+          href={whatsappLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-full block bg-white text-[#243c5a] py-4 rounded-xl font-bold hover:bg-[#6ed8d9] transition-colors shadow-lg"
+        >
+          Book via WhatsApp
+        </a>
+        <p class="mt-4 text-xs text-white/40">*Available in person. Ask about group or private sessions. Reservation required with 50% to hold the date.</p>
+      </div>
+    </div>
+  </section>
+
+  {sonidoPosts.length > 0 && (
+    <section class="max-w-7xl mx-auto px-6 py-20 bg-white">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-serif text-marce-base-3 mb-4">Articles on Sound Therapy</h2>
+        <p class="text-stone-600 max-w-2xl mx-auto">Explore more about vibrational medicine and sound practices for well-being.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {sonidoPosts.map((post) => (
+          <article class="bg-stone-50 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 border border-stone-100 flex flex-col">
+            {post.data.image && (
+              <div class="h-48 overflow-hidden">
+                <img
+                  src={post.data.image}
+                  alt={post.data.title}
+                  class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                  loading="lazy"
+                />
+              </div>
+            )}
+            <div class="p-6 flex flex-col flex-grow">
+              <time class="text-xs text-stone-500 mb-2 uppercase tracking-wider">
+                {new Date(post.data.pubDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+              </time>
+              <h3 class="text-xl font-semibold text-marce-base-3 mb-3 leading-tight">
+                {post.data.title}
+              </h3>
+              <p class="text-stone-600 text-sm mb-4 flex-grow leading-relaxed">
+                {post.data.description}
+              </p>
+              <a
+                href={`/en/blog/${post.slug.replace('en/', '')}`}
+                class="text-marce-base-1 font-semibold text-sm hover:text-marce-base-2 transition-colors inline-flex items-center gap-1"
+              >
+                Read more
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div class="text-center mt-12">
+        <a
+          href="/en/blog/tag/terapia%20de%20sonido"
+          class="inline-block px-6 py-3 border-2 border-marce-base-1 text-marce-base-1 rounded-lg hover:bg-marce-base-1 hover:text-white transition-all font-semibold"
+        >
+          See all sound therapy articles
+        </a>
+      </div>
+    </section>
+  )}
+
+  <div class="bg-white">
+    <ReviewsSection lang="en" />
+  </div>
+
 </Layout>
