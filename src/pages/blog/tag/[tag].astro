@@ -3,7 +3,7 @@ import Layout from "../../../layouts/Layout.astro";
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  const posts = await getCollection('blog', ({ data, slug }) => !data.draft && !slug.startsWith('en/'));
   const tagSet = new Set<string>();
   posts.forEach(p => (p.data.tags || []).forEach(t => tagSet.add(t)));
   return Array.from(tagSet).map(tag => ({ params: { tag } }));
@@ -12,7 +12,7 @@ export async function getStaticPaths() {
 const { tag } = Astro.params;
 if (!tag) throw new Error('Tag no encontrado');
 
-const allPosts = (await getCollection('blog', ({ data }) => !data.draft))
+const allPosts = (await getCollection('blog', ({ data, slug }) => !data.draft && !slug.startsWith('en/')))
   .filter(p => (p.data.tags || []).includes(tag))
   .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
 const PER_PAGE = 7;

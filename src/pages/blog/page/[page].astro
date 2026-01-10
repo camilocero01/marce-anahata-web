@@ -6,7 +6,7 @@ const PER_PAGE = 7;
 
 export async function getStaticPaths() {
   const PER_PAGE = 7;
-  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  const posts = await getCollection('blog', ({ data, slug }) => !data.draft && !slug.startsWith('en/'));
   const totalPages = Math.max(1, Math.ceil(posts.length / PER_PAGE));
   return Array.from({ length: totalPages }, (_, i) => ({ params: { page: String(i + 1) } }));
 }
@@ -14,7 +14,7 @@ export async function getStaticPaths() {
 const { page } = Astro.params;
 const currentPage = Math.max(1, parseInt(page || '1', 10));
 
-const allPosts = (await getCollection('blog', ({ data }) => !data.draft))
+const allPosts = (await getCollection('blog', ({ data, slug }) => !data.draft && !slug.startsWith('en/')))
   .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
 
 const totalPages = Math.max(1, Math.ceil(allPosts.length / PER_PAGE));

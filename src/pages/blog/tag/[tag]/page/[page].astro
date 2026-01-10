@@ -4,7 +4,7 @@ import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
   const PER_PAGE = 7;
-  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  const posts = await getCollection('blog', ({ data, slug }) => !data.draft && !slug.startsWith('en/'));
   const tagCounts = new Map<string, number>();
   posts.forEach(p => (p.data.tags || []).forEach(t => tagCounts.set(t, (tagCounts.get(t) || 0) + 1)));
   const paths: Array<{ params: { tag: string; page: string } }> = [];
@@ -22,7 +22,7 @@ if (!tag) throw new Error('Tag no encontrado');
 const currentPage = Math.max(1, parseInt(page || '1', 10));
 const PER_PAGE = 6;
 
-const allPosts = (await getCollection('blog', ({ data }) => !data.draft))
+const allPosts = (await getCollection('blog', ({ data, slug }) => !data.draft && !slug.startsWith('en/')))
   .filter(p => (p.data.tags || []).includes(tag))
   .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
 
