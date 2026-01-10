@@ -12,7 +12,7 @@ export async function getStaticPaths() {
 
 export async function GET({ params, site }) {
   const { tag } = params;
-  const posts = (await getCollection('blog', ({ data, slug }) => !data.draft && slug.startsWith('en/') ))
+  const posts = (await getCollection('blog', ({ data, slug }) => !data.draft && slug.startsWith('en/')))
     .filter((p) => (p.data.tags || []).includes(tag))
     .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
 
@@ -25,8 +25,8 @@ export async function GET({ params, site }) {
   }));
 
   return rss({
-    title: `Posts about "${tag}" | Marce Anahata (EN)` ,
-    description: `Feed of English articles related to ${tag}.`,
+    title: `Articles about "${tag}" | Marce Anahata`,
+    description: `Feed of articles related to ${tag}.`,
     site,
     items,
     stylesheet: true,

@@ -1,0 +1,94 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog', ({ data, slug }) => data.draft !== true && slug.startsWith('en/'));
+const sortedPosts = posts.sort((a, b) => (b.data.pubDate?.valueOf?.() ?? 0) - (a.data.pubDate?.valueOf?.() ?? 0));
+const query = (Astro.url.searchParams.get('q') || '').trim();
+const normalizedQuery = query.toLowerCase();
+const filtered = normalizedQuery
+  ? sortedPosts.filter((post) => {
+      const haystack = [
+        post.data.title,
+        post.data.description,
+        ...(post.data.tags || []),
+      ]
+        .filter(Boolean)
+        .join(' ')
+        .toLowerCase();
+      return haystack.includes(normalizedQuery);
+    })
+  : sortedPosts;
+
+const title = query ? `Results for "${query}"` : 'Blog Search';
+const description = 'Search for articles, guides, and rituals on Marce Anahata\'s blog.';
+---
+
+<Layout title={title} description={description} ogType="article" hideAuthorInTitle={true} lang="en">
+  <Fragment slot="head">
+    <meta name="robots" content="noindex, follow" />
+    <meta property="og:locale" content="en_US" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://marceanahata.com/images/social-preview.jpg" />
+  </Fragment>
+  <section class="max-w-5xl mx-auto px-6 py-16">
+    <div class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+      <div>
+        <p class="text-sm uppercase tracking-wide text-[#5d5a8c] font-semibold">Blog</p>
+        <h1 class="text-3xl md:text-4xl font-serif text-[#243c5a]">Blog Search</h1>
+        <p class="text-stone-600 mt-2">Find articles by title, description, or tags.</p>
+      </div>
+      <form method="get" class="w-full md:w-80" role="search" aria-label="Search blog">
+        <label class="sr-only" for="q">Search</label>
+        <div class="relative">
+          <input
+            id="q"
+            name="q"
+            type="search"
+            inputmode="search"
+            placeholder="e.g.: sound, yoga, ritual"
+            value={query}
+            class="w-full rounded-full border border-stone-200 bg-white/90 px-4 py-3 pr-12 shadow-sm focus:border-[#6ed8d9] focus:ring-2 focus:ring-[#6ed8d9]/30 transition"
+          />
+          <button type="submit" class="absolute inset-y-0 right-2 px-3 text-sm font-semibold text-white bg-[#243c5a] rounded-full hover:bg-[#5d5a8c] transition">
+            Search
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div class="mt-10">
+      <p class="text-sm text-stone-500">{filtered.length} result{filtered.length === 1 ? '' : 's'}</p>
+      {filtered.length === 0 && (
+        <p class="mt-4 text-stone-600">No matches found. Try another keyword.</p>
+      )}
+      <ul class="mt-6 space-y-6">
+        {filtered.map((post) => (
+          <li class="p-5 bg-white rounded-2xl border border-stone-200/70 shadow-sm hover:shadow-md transition" data-slug={post.slug}>
+            <div class="flex flex-col gap-3">
+              <div class="flex items-center gap-3 text-xs text-stone-500">
+                {post.data.pubDate && <span>{post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</span>}
+                {post.data.tags?.length ? <span class="hidden md:inline">•</span> : null}
+                {post.data.tags?.length ? (
+                  <span class="flex flex-wrap gap-2">
+                    {post.data.tags.map((tag) => (
+                      <span class="px-2 py-1 rounded-full bg-stone-100 text-stone-600" aria-label={`Tag ${tag}`}>
+                        {tag}
+                      </span>
+                    ))}
+                  </span>
+                ) : null}
+              </div>
+              <a class="group" href={`/en/blog/${post.slug.replace(/^en\//, '')}`}>
+                <h2 class="text-xl font-semibold text-[#243c5a] group-hover:text-[#6ed8d9] transition-colors">{post.data.title}</h2>
+                <p class="text-stone-600 mt-2 line-clamp-2">{post.data.description}</p>
+              </a>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</Layout>

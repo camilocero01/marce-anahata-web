@@ -1,40 +1,41 @@
 ---
-import Layout from "../../../../layouts/Layout.astro";
+import Layout from "../../../../../../layouts/Layout.astro";
 import { getCollection } from 'astro:content';
-
-const PER_PAGE = 7;
 
 export async function getStaticPaths() {
   const PER_PAGE = 7;
-  const posts = await getCollection('blog', ({ data, slug }) => !data.draft && slug.startsWith('en/'));
-  const totalPages = Math.max(1, Math.ceil(posts.length / PER_PAGE));
-  return Array.from({ length: totalPages }, (_, i) => ({ params: { page: String(i + 1) } }));
+  const posts = await getCollection('blog', ({ data }) => !data.draft && data.lang !== 'es');
+  const tagCounts = new Map<string, number>();
+  posts.forEach(p => (p.data.tags || []).forEach(t => tagCounts.set(t, (tagCounts.get(t) || 0) + 1)));
+  const paths: Array<{ params: { tag: string; page: string } }> = [];
+  for (const [t, count] of tagCounts.entries()) {
+    const totalPages = Math.max(1, Math.ceil(count / PER_PAGE));
+    for (let i = 1; i <= totalPages; i++) {
+      paths.push({ params: { tag: t, page: String(i) } });
+    }
+  }
+  return paths;
 }
 
-const { page } = Astro.params;
+const { tag, page } = Astro.params;
+if (!tag) throw new Error('Tag not found');
 const currentPage = Math.max(1, parseInt(page || '1', 10));
+const PER_PAGE = 6;
 
-const allPosts = (await getCollection('blog', ({ data, slug }) => !data.draft && slug.startsWith('en/')))
+const allPosts = (await getCollection('blog', ({ data }) => !data.draft && data.lang !== 'es'))
+  .filter(p => (p.data.tags || []).includes(tag))
   .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
 
 const totalPages = Math.max(1, Math.ceil(allPosts.length / PER_PAGE));
 const start = (currentPage - 1) * PER_PAGE;
 const paginated = allPosts.slice(start, start + PER_PAGE);
-const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 const [featured, ...rest] = paginated;
 
-const pageTitle = 'Blog';
-const pageDescription = 'Articles on wellness, yoga, rituals and holistic health.';
+const pageTitle = `Articles about "${tag}"`;
+const pageDescription = `Blog articles related to ${tag}. Page ${currentPage} of ${totalPages}.`;
 const canonical = new URL(Astro.url).toString();
-const prevUrl = currentPage > 1 ? (currentPage === 2 ? '/en/blog' : `/en/blog/page/${currentPage - 1}`) : undefined;
-const nextUrl = currentPage < totalPages ? `/en/blog/page/${currentPage + 1}` : undefined;
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Blog",
-  name: `Blog | Marce Anahata`,
-  description: pageDescription,
-  url: canonical
-};
+const prevUrl = currentPage > 1 ? (currentPage === 2 ? `/en/blog/tag/${encodeURIComponent(tag)}` : `/en/blog/tag/${encodeURIComponent(tag)}/page/${currentPage - 1}`) : undefined;
+const nextUrl = currentPage < totalPages ? `/en/blog/tag/${encodeURIComponent(tag)}/page/${currentPage + 1}` : undefined;
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
@@ -42,36 +43,36 @@ const jsonLd = {
     <link rel="canonical" href={canonical} />
     {prevUrl && <link rel="prev" href={prevUrl} />}
     {nextUrl && <link rel="next" href={nextUrl} />}
+    <link rel="alternate" type="application/rss+xml" title={`RSS for ${tag}`} href={`/en/blog/tag/${encodeURIComponent(tag)}/rss.xml`} />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="/images/social-preview.jpg" />
-    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </Fragment>
   <main class="max-w-5xl mx-auto px-4 py-16">
     <div class="text-center mb-12">
-      <h1 class="text-5xl font-serif text-[#243c5a] mb-4">Wellness Blog</h1>
-      <p class="text-stone-600 text-lg max-w-2xl mx-auto">Articles on yoga, meditation, rituals and holistic health for your personal transformation</p>
-      <p class="text-stone-500 text-sm mt-2">Page {currentPage} of {totalPages}</p>
-      <div class="mt-4">
-        <a href="/en/blog/rss.xml" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm text-[#243c5a] hover:underline">
+      <h1 class="text-4xl md:text-5xl font-serif text-[#243c5a] mb-4">{pageTitle}</h1>
+      <p class="text-stone-600 text-lg">{pageDescription}</p>
+      <div class="mt-6 flex items-center justify-center gap-4">
+        <a href="/en/blog/tag" class="text-sm text-[#243c5a] hover:underline">← View all tags</a>
+        <a href={`/en/blog/tag/${encodeURIComponent(tag)}/rss.xml`} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm text-[#243c5a] hover:underline">
           <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
             <path d="M5 5c7.732 0 14 6.268 14 14" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
             <path d="M5 12a7 7 0 0 1 7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
             <circle cx="6" cy="18" r="2" fill="currentColor" />
           </svg>
-          <span>Blog RSS</span>
+          <span>RSS for this tag</span>
         </a>
       </div>
     </div>
 
     {paginated.length === 0 ? (
-      <p class="text-center text-stone-500">No articles published yet.</p>
+      <p class="text-center text-stone-500">No articles with this tag.</p>
     ) : (
       <div class="space-y-12">
         {featured && (
           <article class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-stone-100 md:grid md:grid-cols-2 md:gap-6">
             {featured.data.image && (
               <div class="relative overflow-hidden h-full min-h-[300px]">
-                <a href={`/en/blog/${featured.slug.replace(/^en\//, '')}`}>
+                <a href={`/en/blog/${featured.slug}`}>
                   <img
                     src={featured.data.image}
                     alt={featured.data.title}
@@ -95,22 +96,20 @@ const jsonLd = {
                 <span>{featured.data.author || 'Marce Anahata'}</span>
               </div>
               <h2 class="font-serif text-[#243c5a] group-hover:text-[#6ed8d9] transition-colors mb-3 text-3xl md:text-4xl">
-                <a href={`/en/blog/${featured.slug.replace(/^en\//, '')}`} class="hover:text-[#6ed8d9] transition-colors">{featured.data.title}</a>
+                <a href={`/en/blog/${featured.slug}`} class="hover:text-[#6ed8d9] transition-colors">{featured.data.title}</a>
               </h2>
               <p class="text-stone-600 mb-4 text-lg leading-relaxed">
                 {featured.data.description}
               </p>
               {featured.data.tags && featured.data.tags.length > 0 && (
                 <div class="flex flex-wrap gap-2 mb-4">
-                  {featured.data.tags.map(tag => (
-                    <a href={`/en/blog/tag/${encodeURIComponent(tag)}`} class="bg-[#6ed8d9]/20 text-[#243c5a] px-3 py-1 rounded-full text-xs font-medium hover:bg-[#6ed8d9]/30 transition-colors">
-                      #{tag}
-                    </a>
+                  {featured.data.tags.map(t => (
+                    <a href={`/en/blog/tag/${encodeURIComponent(t)}`} class="bg-[#6ed8d9]/20 text-[#243c5a] px-3 py-1 rounded-full text-xs font-medium hover:bg-[#6ed8d9]/30 transition-colors">#{t}</a>
                   ))}
                 </div>
               )}
               <div class="flex items-center text-[#5d5a8c] font-medium text-sm group-hover:text-[#6ed8d9] transition-colors">
-                <a href={`/en/blog/${featured.slug.replace(/^en\//, '')}`} class="flex items-center">
+                <a href={`/en/blog/${featured.slug}`} class="flex items-center">
                   <span>Read article</span>
                   <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
@@ -126,7 +125,7 @@ const jsonLd = {
             {rest.map(post => (
               <article class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-stone-100">
                 {post.data.image && (
-                  <a href={`/en/blog/${post.slug.replace(/^en\//, '')}`}>
+                  <a href={`/en/blog/${post.slug}`}>
                     <img
                       src={post.data.image}
                       alt={post.data.title}
@@ -144,22 +143,22 @@ const jsonLd = {
                     <span>{post.data.author || 'Marce Anahata'}</span>
                   </div>
                   <h3 class="font-serif text-[#243c5a] group-hover:text-[#6ed8d9] transition-colors mb-3 text-2xl">
-                    <a href={`/en/blog/${post.slug.replace(/^en\//, '')}`} class="hover:text-[#6ed8d9] transition-colors">{post.data.title}</a>
+                    <a href={`/en/blog/${post.slug}`} class="hover:text-[#6ed8d9] transition-colors">{post.data.title}</a>
                   </h3>
                   <p class="text-stone-600 mb-4 text-base">
                     {post.data.description}
                   </p>
                   {post.data.tags && post.data.tags.length > 0 && (
                     <div class="flex flex-wrap gap-2 mb-4">
-                      {post.data.tags.map(tag => (
-                        <a href={`/en/blog/tag/${encodeURIComponent(tag)}`} class="bg-[#6ed8d9]/20 text-[#243c5a] px-3 py-1 rounded-full text-xs font-medium hover:bg-[#6ed8d9]/30 transition-colors">
-                          #{tag}
+                      {post.data.tags.map(t => (
+                        <a href={`/en/blog/tag/${encodeURIComponent(t)}`} class="bg-[#6ed8d9]/20 text-[#243c5a] px-3 py-1 rounded-full text-xs font-medium hover:bg-[#6ed8d9]/30 transition-colors">
+                          #{t}
                         </a>
                       ))}
                     </div>
                   )}
                   <div class="flex items-center text-[#5d5a8c] font-medium text-sm group-hover:text-[#6ed8d9] transition-colors">
-                    <a href={`/en/blog/${post.slug.replace(/^en\//, '')}`} class="flex items-center">
+                    <a href={`/en/blog/${post.slug}`} class="flex items-center">
                       <span>Read article</span>
                       <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
@@ -180,7 +179,7 @@ const jsonLd = {
           pageNum === currentPage ? (
             <span class="px-4 py-2 rounded-lg bg-[#6ed8d9] text-white font-medium">{pageNum}</span>
           ) : (
-            <a href={pageNum === 1 ? '/en/blog' : `/en/blog/page/${pageNum}`} class="px-4 py-2 rounded-lg border border-stone-200 text-[#243c5a] hover:bg-stone-50 transition-colors">
+            <a href={pageNum === 1 ? `/en/blog/tag/${encodeURIComponent(tag)}` : `/en/blog/tag/${encodeURIComponent(tag)}/page/${pageNum}`} class="px-4 py-2 rounded-lg border border-stone-200 text-[#243c5a] hover:bg-stone-50 transition-colors">
               {pageNum}
             </a>
           )

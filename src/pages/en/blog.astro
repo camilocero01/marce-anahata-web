@@ -1,19 +1,26 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import Layout from "../../layouts/Layout.astro";
 import { getCollection } from 'astro:content';
-import { useTranslations } from '../../i18n/ui';
-const lang = 'en';
-const t = useTranslations(lang);
+
+const allPosts = (await getCollection('blog', ({ data, slug }) => !data.draft && slug.startsWith('en/')))
+  .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
+
+// Calculate tag counts
+const tagCounts = new Map<string, number>();
+allPosts.forEach(post => {
+  post.data.tags?.forEach(tag => {
+    tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1);
+  });
+});
+const sortedTags = Array.from(tagCounts.entries()).sort((a, b) => b[1] - a[1]);
 
 const PER_PAGE = 7;
-const allPosts = (await getCollection('blog', ({ data, slug }) => !data.draft && slug.startsWith('en/')))
-  .sort((a, b) => new Date(b.data.pubDate || b.data.date).getTime() - new Date(a.data.pubDate || a.data.date).getTime());
 const currentPage = 1;
 const totalPages = Math.max(1, Math.ceil(allPosts.length / PER_PAGE));
 const posts = allPosts.slice(0, PER_PAGE);
 const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 const [featured, ...rest] = posts;
-const pageTitle = 'Blog';
+const pageTitle = 'Yoga, Meditation, Rituals & Holistic Wellness Articles | Blog';
 const pageDescription = 'Discover articles about kundalini yoga, meditation, sound therapy, sacred rituals, and holistic wellness. Guides and tips for your personal transformation.';
 const canonical = new URL(Astro.url).toString();
 
@@ -35,41 +42,208 @@ const breadcrumbSchema = {
     }
   ]
 };
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  name: `Blog | Marce Anahata`,
+  description: pageDescription,
+  url: canonical
+};
 ---
 
-<Layout title={pageTitle} description={pageDescription} lang={lang}>
-  <head>
-    <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
+<Layout title={pageTitle} description={pageDescription} lang="en">
+  <Fragment slot="head">
     <link rel="canonical" href={canonical} />
-  </head>
-  <h1 class="text-3xl font-bold mb-4">{t('nav.blog')}</h1>
-  <div class="mb-4 flex items-center gap-4">
-    <p>{pageDescription}</p>
-    <a href="/en/blog/rss.xml" class="text-[#243c5a] underline text-sm" target="_blank" rel="noopener">RSS</a>
-  </div>
-  <div class="space-y-8">
-    {posts.length === 0 && <p>No blog posts found.</p>}
-    {posts.map(post => (
-      <article class="border-b pb-6 mb-6" key={post.id}>
-        <h2 class="text-2xl font-semibold mb-2">
-          <a href={`/en/blog/${post.slug.replace(/^en\//, '')}`} class="hover:underline text-[#243c5a]">{post.data.title}</a>
-        </h2>
-        <p class="text-stone-600 mb-2">{post.data.description}</p>
-        <p class="text-xs text-stone-400">{new Date(post.data.pubDate || post.data.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
-      </article>
-    ))}
-  </div>
-  {totalPages > 1 && (
-    <nav class="flex gap-2 mt-8 justify-center" aria-label="Pagination">
-      {pages.map(page => (
-        <a
-          href={page === 1 ? '/en/blog' : `/en/blog/page/${page}`}
-          class="px-3 py-1 rounded-full border text-sm font-medium transition-colors hover:bg-[#243c5a] hover:text-white"
-          style={page === currentPage ? 'background:#243c5a;color:white;' : ''}
-        >
-          {page}
+    <link rel="alternate" type="application/rss+xml" title="Blog RSS" href="/en/blog/rss.xml" />
+    {totalPages > 1 && <link rel="next" href="/en/blog/page/2" />}
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://marceanahata.com/images/social-preview.jpg" />
+    <meta property="og:locale" content="en_US" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content="https://marceanahata.com/images/social-preview.jpg" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+  <main class="max-w-5xl mx-auto px-4 py-16">
+    <div class="text-center mb-12">
+      <h1 class="text-5xl font-serif text-[#243c5a] mb-4">Wellness Blog</h1>
+      <p class="text-stone-600 text-lg max-w-2xl mx-auto">Articles on yoga, meditation, rituals, and holistic health for your personal transformation</p>
+      <div class="mt-4">
+        <a href="/en/blog/rss.xml" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm text-[#243c5a] hover:underline">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+            <path d="M5 5c7.732 0 14 6.268 14 14" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M5 12a7 7 0 0 1 7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <circle cx="6" cy="18" r="2" fill="currentColor" />
+          </svg>
+          <span>Blog RSS Feed</span>
         </a>
-      ))}
-    </nav>
-  )}
+        <a href="/en/buscar" class="inline-flex items-center gap-2 ml-4 text-sm text-[#5d5a8c] hover:text-[#243c5a] font-medium">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+            <circle cx="11" cy="11" r="7" stroke-width="2" />
+            <line x1="16.65" y1="16.65" x2="21" y2="21" stroke-width="2" stroke-linecap="round" />
+          </svg>
+          <span>Search the blog</span>
+        </a>
+      </div>
+    </div>
+
+    {posts.length === 0 ? (
+      <p class="text-center text-stone-500">No articles published yet.</p>
+    ) : (
+      <div class="space-y-12">
+        {featured && (
+          <article class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-stone-100 md:grid md:grid-cols-2 md:gap-6">
+            {featured.data.image && (
+              <div class="relative overflow-hidden h-full min-h-[300px]">
+                <a href={`/en/blog/${featured.slug.replace(/^en\//, '')}`}>
+                  <img
+                    src={featured.data.image}
+                    alt={featured.data.title}
+                    width="800"
+                    height="600"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="eager"
+                  />
+                </a>
+                <div class="absolute top-4 left-4 bg-[#6ed8d9] text-white px-3 py-1 rounded-full text-xs font-semibold shadow-md">
+                  Latest
+                </div>
+              </div>
+            )}
+            <div class="p-6 md:p-8 flex flex-col justify-center">
+              <div class="flex items-center gap-3 mb-3 text-sm text-stone-500">
+                <time datetime={featured.data.pubDate.toISOString()}>
+                  {new Date(featured.data.pubDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                </time>
+                <span>•</span>
+                <span>{featured.data.author || 'Marce Anahata'}</span>
+              </div>
+              <h2 class="font-serif text-[#243c5a] group-hover:text-[#6ed8d9] transition-colors mb-3 text-3xl md:text-4xl">
+                <a href={`/en/blog/${featured.slug.replace(/^en\//, '')}`} class="hover:text-[#6ed8d9] transition-colors">{featured.data.title}</a>
+              </h2>
+              <p class="text-stone-600 mb-4 text-lg leading-relaxed">
+                {featured.data.description}
+              </p>
+              {featured.data.tags && featured.data.tags.length > 0 && (
+                <div class="flex flex-wrap gap-2 mb-4">
+                  {featured.data.tags.map(tag => (
+                    <a href={`/en/blog/tag/${encodeURIComponent(tag)}`} class="bg-[#6ed8d9]/20 text-[#243c5a] px-3 py-1 rounded-full text-xs font-medium hover:bg-[#6ed8d9]/30 transition-colors">
+                      #{tag}
+                    </a>
+                  ))}
+                </div>
+              )}
+              <div class="flex items-center text-[#5d5a8c] font-medium text-sm group-hover:text-[#6ed8d9] transition-colors">
+                <a href={`/en/blog/${featured.slug.replace(/^en\//, '')}`} class="flex items-center">
+                  <span>Read article</span>
+                  <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+        )}
+
+        {rest.length > 0 && (
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {rest.map(post => (
+              <article class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-stone-100">
+                {post.data.image && (
+                  <a href={`/en/blog/${post.slug.replace(/^en\//, '')}`}>
+                    <img
+                      src={post.data.image}
+                      alt={post.data.title}
+                      width="400"
+                      height="300"
+                      class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"
+                      loading="lazy"
+                    />
+                  </a>
+                )}
+                <div class="p-6 flex flex-col justify-center">
+                  <div class="flex items-center gap-3 mb-3 text-sm text-stone-500">
+                    <time datetime={post.data.pubDate.toISOString()}>
+                      {new Date(post.data.pubDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                    </time>
+                    <span>•</span>
+                    <span>{post.data.author || 'Marce Anahata'}</span>
+                  </div>
+                  <h3 class="font-serif text-[#243c5a] group-hover:text-[#6ed8d9] transition-colors mb-3 text-2xl">
+                    <a href={`/en/blog/${post.slug.replace(/^en\//, '')}`} class="hover:text-[#6ed8d9] transition-colors">{post.data.title}</a>
+                  </h3>
+                  <p class="text-stone-600 mb-4 text-base">
+                    {post.data.description}
+                  </p>
+                  {post.data.tags && post.data.tags.length > 0 && (
+                    <div class="flex flex-wrap gap-2 mb-4">
+                      {post.data.tags.map(tag => (
+                        <a href={`/en/blog/tag/${encodeURIComponent(tag)}`} class="bg-[#6ed8d9]/20 text-[#243c5a] px-3 py-1 rounded-full text-xs font-medium hover:bg-[#6ed8d9]/30 transition-colors">
+                          #{tag}
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                  <div class="flex items-center text-[#5d5a8c] font-medium text-sm group-hover:text-[#6ed8d9] transition-colors">
+                    <a href={`/en/blog/${post.slug.replace(/^en\//, '')}`} class="flex items-center">
+                      <span>Read article</span>
+                      <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        )}
+      </div>
+    )}
+
+    {/* Tags Section - Better for SEO after content */}
+    {sortedTags.length > 0 && (
+      <div class="mt-16 mb-12 bg-gradient-to-br from-[#6ed8d9]/10 to-[#5d5a8c]/10 rounded-2xl p-6 border border-stone-200">
+        <div class="flex items-center gap-2 mb-4">
+          <svg class="w-5 h-5 text-[#243c5a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
+          </svg>
+          <h2 class="text-xl font-serif text-[#243c5a]">Explore by Topic</h2>
+        </div>
+        <div class="flex flex-wrap gap-3">
+          {sortedTags.map(([tag, count]) => (
+            <a
+              href={`/en/blog/tag/${encodeURIComponent(tag)}`}
+              class="inline-flex items-center gap-2 bg-white hover:bg-[#6ed8d9] text-[#243c5a] hover:text-white px-4 py-2 rounded-full text-sm font-medium border border-stone-200 hover:border-[#6ed8d9] transition-all duration-200 shadow-sm hover:shadow-md"
+            >
+              <span>#{tag}</span>
+              <span class="bg-[#243c5a]/10 px-2 py-0.5 rounded-full text-xs font-bold">{count}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+
+    {totalPages > 1 && (
+      <nav class="mt-12 flex items-center justify-center gap-3">
+        <ul class="flex items-center gap-2">
+          {pages.map((n) => {
+            const href = n === 1 ? '/en/blog' : `/en/blog/page/${n}`;
+            const isActive = n === currentPage;
+            return (
+              <li>
+                <a href={href} aria-current={isActive ? 'page' : undefined}
+                  class={`min-w-9 text-center px-3 py-2 rounded-lg border transition-colors ${isActive ? 'bg-[#243c5a] text-white border-[#243c5a]' : 'text-[#243c5a] border-stone-200 hover:bg-stone-50'}`}>
+                  {n}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+        <a href="/en/blog/page/2" class="px-3 py-2 rounded-lg border text-[#243c5a] border-stone-200 hover:bg-stone-50">Next</a>
+      </nav>
+    )}
+  </main>
 </Layout>
