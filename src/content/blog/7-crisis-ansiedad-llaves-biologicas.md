@@ -6,7 +6,7 @@ pubDate: 2026-01-15
 updatedDate: 2026-01-15
 author: "Marce Anahata"
 tags: ["ansiedad", "movimiento somático", "sistema nervioso", "arcángeles", "bienestar medellín", "terapia holística"]
-image: "/images/blog/7-crisis-ansiedad.jpg"
+image: "/images/blog/7-crisis-ansiedad-2.jpg"
 ogImage: "/images/blog/7-crisis-ansiedad.jpg"
 draft: false
 ---
@@ -15,7 +15,7 @@ draft: false
 
 Primero, respira. Quiero que sepas algo fundamental: una crisis de ansiedad no es una debilidad de tu carácter. Es tu sistema nervioso atrapado en una respuesta biológica de supervivencia. Es energía intensa buscando una salida.
 
-En nuestro centro de bienestar **Marce Anahata en Medellín**, entendemos que para sanar la mente, debemos involucrar al cuerpo. No basta con "pensar positivo" cuando la biología del miedo se ha activado.
+En nuestro centro de bienestar **Marce Anahata**, entendemos que para sanar la mente, debemos involucrar al cuerpo. No basta con "pensar positivo" cuando la biología del miedo se ha activado.
 
 En este video, te comparto 4 "Llaves Biológicas de Luz". Son ejercicios de movimiento somático diseñados específicamente para apagar la alarma de tu sistema simpático (alerta/huida) y activar tu sistema parasimpático (calma/seguridad). Vamos a transmutar ese miedo en fuerza vital.
 
@@ -25,7 +25,7 @@ En este video, te comparto 4 "Llaves Biológicas de Luz". Son ejercicios de movi
   <video 
     controls 
     preload="metadata" 
-    poster="/images/blog/7-crisis-ansiedad.jpg" 
+    poster="/images/blog/7-crisis-ansiedad-2.jpg" 
     width="100%" 
     height="auto" 
     style="border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);"
@@ -35,7 +35,7 @@ En este video, te comparto 4 "Llaves Biológicas de Luz". Son ejercicios de movi
   </video>
   <p class="text-sm text-center mt-3 italic text-stone-600">
     ¿Te sirvió esta herramienta? 
-    <a href="https://instagram.com/marce_anahata" target="_blank" rel="noopener noreferrer" class="font-semibold text-marce-base-1 hover:underline">
+    <a href="https://www.instagram.com/p/DTYxt7iku9a/" target="_blank" rel="noopener noreferrer" class="font-semibold text-marce-base-1 hover:underline">
       Guarda este video en Instagram para tenerlo siempre a mano 💬
     </a>
   </p>
@@ -82,7 +82,7 @@ En nuestro santuario en Medellín, te ofrecemos experiencias diseñadas para res
 * **[Terapia de Sonido (Sound Healing)](/servicios/terapia-sonido):** Sumérgete en un baño de frecuencias sanadoras. Los cuencos tibetanos y gong trabajan directamente sobre tu sistema nervioso autónomo, induciendo estados profundos de relajación que a la mente le cuesta alcanzar por sí sola.
 * **[Clases de Movimiento Consciente y Yoga](/servicios/clases):** Aprende a habitar tu cuerpo de forma amable y constante, construyendo resiliencia para los momentos difíciles en comunidad.
 
-No tienes que transitar esto sola. Tu paz es tu poder.
+No tienes que transitar esto solo. Tu paz es tú poder.
 
 ---
 *Descargo de responsabilidad: Estas herramientas son prácticas de bienestar complementarias. Si sufres de crisis de ansiedad severas o recurrentes, por favor busca siempre el acompañamiento de un profesional de la salud mental.*
@@ -94,7 +94,7 @@ No tienes que transitar esto sola. Tu paz es tu poder.
   "name": "Cómo salir de una crisis de ansiedad: 4 Llaves Biológicas de Luz",
   "description": "4 ejercicios de movimiento somático para regular el sistema nervioso simpático y parasimpático durante una crisis de ansiedad. Descarga tensión, enraiza y oxigena el cuerpo.",
   "thumbnailUrl": [
-    "https://marceanahata.com/images/blog/7-crisis-ansiedad.jpg"
+    "https://marceanahata.com/images/blog/7-crisis-ansiedad-2.jpg"
    ],
   "uploadDate": "2026-01-15T08:00:00-05:00",
   "duration": "PT1M30S", "contentUrl": "https://marceanahata.com.com/videos/7-crisis-ansiedad.mp4",
