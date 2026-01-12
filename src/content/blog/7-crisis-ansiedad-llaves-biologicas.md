@@ -79,8 +79,8 @@ Estas llaves son herramientas de emergencia maravillosas para el día a día. Si
 
 En nuestro santuario en Medellín, te ofrecemos experiencias diseñadas para resetear tu sistema desde la raíz, sin que tengas que hacer el esfuerzo tú sola:
 
-* **[Terapia de Sonido (Sound Healing)](/servicios/terapia-sonido):** Sumérgete en un baño de frecuencias sanadoras. Los cuencos tibetanos y gong trabajan directamente sobre tu sistema nervioso autónomo, induciendo estados profundos de relajación que a la mente le cuesta alcanzar por sí sola.
-* **[Clases de Movimiento Consciente y Yoga](/servicios/clases):** Aprende a habitar tu cuerpo de forma amable y constante, construyendo resiliencia para los momentos difíciles en comunidad.
+* **[Terapia de Sonido (Sound Healing)](/terapia-sonido):** Sumérgete en un baño de frecuencias sanadoras. Los cuencos tibetanos y gong trabajan directamente sobre tu sistema nervioso autónomo, induciendo estados profundos de relajación que a la mente le cuesta alcanzar por sí sola.
+* **[Clases de Movimiento Consciente y Yoga](/clases):** Aprende a habitar tu cuerpo de forma amable y constante, construyendo resiliencia para los momentos difíciles en comunidad.
 
 No tienes que transitar esto solo. Tu paz es tú poder.
 
