@@ -6,7 +6,7 @@ pubDate: 2026-01-15
 updatedDate: 2026-01-15
 author: "Marce Anahata"
 tags: ["ansiedad", "movimiento somático", "sistema nervioso", "arcángeles", "bienestar medellín", "terapia holística"]
-image: "/images/blog/7-crisis-ansiedad-2.jpg"
+image: "/images/blog/7-crisis-ansiedad-3.jpg"
 ogImage: "/images/blog/7-crisis-ansiedad.jpg"
 draft: false
 ---
@@ -25,7 +25,7 @@ En este video, te comparto 4 "Llaves Biológicas de Luz". Son ejercicios de movi
   <video 
     controls 
     preload="metadata" 
-    poster="/images/blog/7-crisis-ansiedad-2.jpg" 
+    poster="/images/blog/7-crisis-ansiedad-3.jpg" 
     width="100%" 
     height="auto" 
     style="border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);"
@@ -94,10 +94,10 @@ No tienes que transitar esto solo. Tu paz es tú poder.
   "name": "Cómo salir de una crisis de ansiedad: 4 Llaves Biológicas de Luz",
   "description": "4 ejercicios de movimiento somático para regular el sistema nervioso simpático y parasimpático durante una crisis de ansiedad. Descarga tensión, enraiza y oxigena el cuerpo.",
   "thumbnailUrl": [
-    "https://marceanahata.com/images/blog/7-crisis-ansiedad-2.jpg"
+    "https://marceanahata.com/images/blog/7-crisis-ansiedad-3.jpg"
    ],
   "uploadDate": "2026-01-15T08:00:00-05:00",
-  "duration": "PT1M30S", "contentUrl": "https://marceanahata.com.com/videos/7-crisis-ansiedad.mp4",
+  "duration": "PT1M30S", "contentUrl": "https://marceanahata.com/videos/7-crisis-ansiedad.mp4",
   "embedUrl": "https://instagram.com/marce_anahata",
   "publisher": {
     "@type": "Organization",

@@ -7,7 +7,7 @@ updatedDate: 2026-01-15
 author: "Marce Anahata"
 tags: ["anxiety", "somatic movement", "nervous system", "archangels", "wellness medellín", "holistic therapy"]
 image: "/images/blog/7-crisis-ansiedad-2.jpg"
-ogImage: "/images/blog/7-crisis-ansiedad.jpg"
+ogImage: "/images/blog/7-crisis-ansiedad-1.jpg"
 draft: false
 ---
 
@@ -94,7 +94,7 @@ You don't have to go through this alone. Your peace is your power.
   "name": "How to Exit an Anxiety Crisis: 4 Biological Keys of Light",
   "description": "4 somatic movement exercises to regulate the sympathetic and parasympathetic nervous system during an anxiety crisis. Release tension, ground, and oxygenate the body.",
   "thumbnailUrl": [
-    "https://marceanahata.com/images/blog/7-crisis-ansiedad.jpg"
+    "https://marceanahata.com/images/blog/7-crisis-ansiedad-1.jpg"
    ],
   "uploadDate": "2026-01-15T08:00:00-05:00",
   "duration": "PT1M30S",
