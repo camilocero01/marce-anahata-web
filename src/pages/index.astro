@@ -47,15 +47,25 @@ const serviciosHome = [
     imagen: homeYogaImg
   }
 ];
+
+const siteOrigin = 'https://marceanahata.com';
+const ogImage = `${siteOrigin}/images/social-preview.jpg`;
+const url = new URL(Astro.url);
+const canonical = url.toString();
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
   <Fragment slot="head">
+    <link rel="canonical" href={canonical} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:image" content={ogImage} />
     <meta property="og:locale" content="es_CO" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={pageDescription} />
-    <meta name="twitter:image" content="/images/social-preview.jpg" />
+    <meta name="twitter:image" content={ogImage} />
   </Fragment>
   
   <section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
