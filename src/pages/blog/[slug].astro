@@ -25,7 +25,11 @@ const siteOrigin = 'https://marceanahata.com';
 const image = data.ogImage || data.image || '/images/social-preview.jpg';
 const absoluteImage = image.startsWith('http') ? image : `${siteOrigin}${image}`;
 const url = new URL(Astro.url);
-const canonical = data.canonical || url.toString();
+let canonical = data.canonical || url.toString();
+// Ensure trailing slash for consistency with Astro's trailing slash behavior
+if (!canonical.endsWith('/')) {
+  canonical = canonical + '/';
+}
 const publishedTime = new Date(data.pubDate).toISOString();
 const modifiedTime = data.updatedDate ? new Date(data.updatedDate).toISOString() : undefined;
 
