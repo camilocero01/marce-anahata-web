@@ -7,7 +7,7 @@ updatedDate: 2026-01-15
 author: "Marce Anahata"
 tags: ["ansiedad", "movimiento somático", "sistema nervioso", "arcángeles", "bienestar medellín", "terapia holística"]
 image: "/images/blog/7-crisis-ansiedad-3.jpg"
-ogImage: "/images/blog/7-crisis-ansiedad.jpg"
+ogImage: "/images/blog/7-crisis-ansiedad-1.jpg"
 draft: false
 ---
 
