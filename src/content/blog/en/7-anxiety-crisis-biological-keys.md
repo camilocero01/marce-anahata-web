@@ -8,7 +8,7 @@ author: "Marce Anahata"
 tags: ["anxiety", "somatic movement", "nervous system", "archangels", "wellness medellín", "holistic therapy"]
 image: "/images/blog/7-crisis-ansiedad-2.jpg"
 ogImage: "/images/blog/7-crisis-ansiedad-1.jpg"
-draft: false
+draft: true
 ---
 
 Does it feel like your mind has entered "short circuit" mode? ⚡️🧠
