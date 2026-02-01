@@ -1,0 +1,482 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+// Obtener posts relacionados con tarifas, precios o bienestar
+const tariffPosts = (await getCollection('blog', ({ data, slug }) => 
+  !data.draft && !slug.startsWith('en/') && (
+    data.tags.includes('bienestar') || 
+    data.tags.includes('yoga') || 
+    data.tags.includes('meditación')
+  )
+))
+  .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime())
+  .slice(0, 3);
+
+const tarifas = {
+  grupales: [
+    {
+      descripcion: 'Clase individual',
+      cantidad: 1,
+      total: '$66,000',
+      individual: '$66,000'
+    },
+    {
+      descripcion: 'Ticketera x 4 clases',
+      cantidad: 4,
+      total: '$245,000',
+      individual: '$61,250',
+      highlight: true
+    },
+    {
+      descripcion: 'Ticketera x 8 clases',
+      cantidad: 8,
+      total: '$368,000',
+      individual: '$46,000'
+    },
+    {
+      descripcion: 'Ticketera x 12 clases',
+      cantidad: 12,
+      total: '$520,000',
+      individual: '$43,333'
+    }
+  ],
+  personalizadas: [
+    {
+      descripcion: 'Clase individual',
+      cantidad: 1,
+      total: '$138,000',
+      individual: '$138,000'
+    },
+    {
+      descripcion: 'Ticketera x 4 clases',
+      cantidad: 4,
+      total: '$508,000',
+      individual: '$127,000'
+    },
+    {
+      descripcion: 'Ticketera x 8 clases (1 clase gratis)',
+      cantidad: 8,
+      total: '$930,000',
+      individual: '$116,250'
+    }
+  ],
+  grupalPersonalizada: [
+    {
+      descripcion: 'Clase individual',
+      cantidad: 1,
+      total: '$97,000',
+      individual: '$97,000'
+    },
+    {
+      descripcion: 'Ticketera x 4 clases',
+      cantidad: 4,
+      total: '$370,000',
+      individual: '$92,500'
+    },
+    {
+      descripcion: 'Ticketera x 8 clases (1 clase gratis)',
+      cantidad: 8,
+      total: '$645,000',
+      individual: '$80,625'
+    }
+  ],
+  rituales: [
+    {
+      descripcion: '1 persona',
+      cantidad: 1,
+      total: '$230,000',
+      individual: '$230,000'
+    },
+    {
+      descripcion: '1 persona con brunch',
+      cantidad: 1,
+      total: '$275,000',
+      individual: '$275,000'
+    },
+    {
+      descripcion: '2-5 personas',
+      cantidad: 1,
+      total: '$138,000',
+      individual: '$138,000'
+    },
+    {
+      descripcion: '6 personas en adelante',
+      cantidad: 1,
+      total: '$105,000',
+      individual: '$105,000'
+    }
+  ],
+  consultas: [
+    {
+      descripcion: 'Consulta individual',
+      cantidad: 1,
+      total: '$230,000',
+      individual: '$230,000'
+    },
+    {
+      descripcion: 'Paquete x 4 consultas',
+      cantidad: 4,
+      total: '$880,000',
+      individual: '$220,000'
+    }
+  ],
+  fuera: [
+    {
+      descripcion: 'Clase personalizada fuera del centro (Poblado y alrededores)',
+      cantidad: 1,
+      total: '$230,000',
+      individual: '$230,000'
+    },
+    {
+      descripcion: 'Ticketera x 4 clases',
+      cantidad: 4,
+      total: '$800,000',
+      individual: '$200,000'
+    },
+    {
+      descripcion: 'Ticketera x 8 clases (1 clase gratis)',
+      cantidad: 8,
+      total: '$1,500,000',
+      individual: '$187,500'
+    },
+    {
+      descripcion: 'Clase personalizada grupal fuera (3+ personas) x 4 clases',
+      cantidad: 4,
+      total: '$505,000',
+      individual: '$126,250'
+    },
+    {
+      descripcion: 'Clase personalizada grupal fuera (3+ personas) x 8 clases (1 gratis)',
+      cantidad: 8,
+      total: '$925,000',
+      individual: '$115,625'
+    }
+  ]
+};
+---
+
+<Layout
+  title="Tarifas 2026 | Marce Anahata Centro de Bienestar en Medellín"
+  description="Conoce nuestras tarifas para 2026: clases de yoga, rituales sagrados, consultas terapéuticas y bienestar corporativo. Precios transparentes y planes flexibles en Medellín."
+>
+  <Fragment slot="head">
+    <script type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://marceanahata.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Tarifas",
+          "item": "https://marceanahata.com/tarifas"
+        }
+      ]
+    })}</script>
+  </Fragment>
+
+  <!-- Hero Section -->
+  <section class="relative h-[50vh] flex items-center justify-center overflow-hidden">
+    
+    <div 
+      class="absolute inset-0 w-full h-full z-0 opacity-40"
+      style="background: linear-gradient(135deg, var(--color-marce-base-1) 0%, var(--color-marce-base-2) 100%)"
+    ></div>
+    
+    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10"></div>
+
+    <div class="relative z-20 text-center text-white px-6 max-w-4xl mx-auto">
+      <span class="uppercase tracking-[0.2em] text-sm md:text-base mb-4 block font-bold text-stone-100">Acceso a tu bienestar</span>
+      
+      <h1 class="text-4xl md:text-6xl font-serif mb-6 leading-tight">
+        Tarifas 2026
+      </h1>
+      
+      <p class="text-lg md:text-xl font-light max-w-2xl mx-auto opacity-95">
+        Planes flexibles y accesibles diseñados para acompañarte en tu transformación personal
+      </p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="max-w-7xl mx-auto px-6 py-20">
+    
+    <!-- Clases Yoga Grupales -->
+    <div class="mb-28">
+      <div class="mb-10">
+        <h2 class="text-3xl md:text-4xl font-serif text-marce-base-3 mb-3">
+          🧘 Clases de Yoga Grupal
+        </h2>
+        <p class="text-stone-600 text-lg">Horarios definidos en nuestro centro de bienestar</p>
+      </div>
+      <div class="overflow-x-auto rounded-xl shadow-md border border-stone-200 mb-16">
+        <table class="w-full">
+          <thead>
+            <tr class="bg-marce-base-3 text-white">
+              <th class="px-6 py-4 text-left font-semibold">Descripción</th>
+              <th class="px-6 py-4 text-right font-semibold">Valor Total</th>
+              <th class="px-6 py-4 text-right font-semibold">Valor x Clase</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tarifas.grupales.map((tarifa, index) => (
+              <tr class={`border-b border-stone-200 hover:bg-marce-base-2/5 transition-colors ${tarifa.highlight ? 'bg-marce-base-2/10' : index % 2 === 0 ? 'bg-white' : 'bg-stone-50'}`}>
+                <td class="px-6 py-4 font-medium text-marce-base-3">{tarifa.descripcion}</td>
+                <td class="px-6 py-4 text-right text-marce-base-3 font-semibold">{tarifa.total}</td>
+                <td class="px-6 py-4 text-right text-marce-base-2 font-bold">{tarifa.individual}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Clases Personalizadas -->
+    <div class="mb-28">
+      <div class="mb-10">
+        <h2 class="text-3xl md:text-4xl font-serif text-marce-base-3 mb-3">
+          ✨ Clases Personalizadas
+        </h2>
+        <p class="text-stone-600 text-lg">Sesiones uno a uno adaptadas a tus necesidades</p>
+      </div>
+      <div class="overflow-x-auto rounded-xl shadow-md border border-stone-200 mb-16">
+        <table class="w-full">
+          <thead>
+            <tr class="bg-marce-base-3 text-white">
+              <th class="px-6 py-4 text-left font-semibold">Descripción</th>
+              <th class="px-6 py-4 text-right font-semibold">Valor Total</th>
+              <th class="px-6 py-4 text-right font-semibold">Valor x Clase</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tarifas.personalizadas.map((tarifa, index) => (
+              <tr class={`border-b border-stone-200 hover:bg-marce-base-2/5 transition-colors ${index % 2 === 0 ? 'bg-white' : 'bg-stone-50'}`}>
+                <td class="px-6 py-4 font-medium text-marce-base-3">{tarifa.descripcion}</td>
+                <td class="px-6 py-4 text-right text-marce-base-3 font-semibold">{tarifa.total}</td>
+                <td class="px-6 py-4 text-right text-marce-base-2 font-bold">{tarifa.individual}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Clases Personalizadas Grupal -->
+    <div class="mb-28">
+      <div class="mb-10">
+        <h2 class="text-3xl md:text-4xl font-serif text-marce-base-3 mb-3">
+          👥 Clases Personalizadas Grupal
+        </h2>
+        <p class="text-stone-600 text-lg">Para grupos de 3 personas o más</p>
+      </div>
+      <div class="overflow-x-auto rounded-xl shadow-md border border-stone-200 mb-16">
+        <table class="w-full">
+          <thead>
+            <tr class="bg-marce-base-3 text-white">
+              <th class="px-6 py-4 text-left font-semibold">Descripción</th>
+              <th class="px-6 py-4 text-right font-semibold">Valor Total</th>
+              <th class="px-6 py-4 text-right font-semibold">Valor x Persona/Clase</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tarifas.grupalPersonalizada.map((tarifa, index) => (
+              <tr class={`border-b border-stone-200 hover:bg-marce-base-2/5 transition-colors ${index % 2 === 0 ? 'bg-white' : 'bg-stone-50'}`}>
+                <td class="px-6 py-4 font-medium text-marce-base-3">{tarifa.descripcion}</td>
+                <td class="px-6 py-4 text-right text-marce-base-3 font-semibold">{tarifa.total}</td>
+                <td class="px-6 py-4 text-right text-marce-base-2 font-bold">{tarifa.individual}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Rituales -->
+    <div class="mb-28">
+      <div class="mb-10">
+        <h2 class="text-3xl md:text-4xl font-serif text-marce-base-3 mb-3">
+          🕯️ Rituales Sagrados
+        </h2>
+        <p class="text-stone-600 text-lg">Ceremonias conscientemente diseñadas para tus momentos especiales</p>
+      </div>
+      <div class="overflow-x-auto rounded-xl shadow-md border border-stone-200 mb-16">
+        <table class="w-full">
+          <thead>
+            <tr class="bg-marce-base-3 text-white">
+              <th class="px-6 py-4 text-left font-semibold">Descripción</th>
+              <th class="px-6 py-4 text-right font-semibold">Valor</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tarifas.rituales.map((tarifa, index) => (
+              <tr class={`border-b border-stone-200 hover:bg-marce-base-2/5 transition-colors ${index % 2 === 0 ? 'bg-white' : 'bg-stone-50'}`}>
+                <td class="px-6 py-4 font-medium text-marce-base-3">{tarifa.descripcion}</td>
+                <td class="px-6 py-4 text-right text-marce-base-2 font-bold text-lg">{tarifa.total}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Consultas Terapéuticas -->
+    <div class="mb-28">
+      <div class="mb-10">
+        <h2 class="text-3xl md:text-4xl font-serif text-marce-base-3 mb-3">
+          💬 Consultas Terapéuticas
+        </h2>
+        <p class="text-stone-600 text-lg">Sesiones de terapia de sonido y acompañamiento holístico</p>
+      </div>
+      <div class="overflow-x-auto rounded-xl shadow-md border border-stone-200 mb-16">
+        <table class="w-full">
+          <thead>
+            <tr class="bg-marce-base-3 text-white">
+              <th class="px-6 py-4 text-left font-semibold">Descripción</th>
+              <th class="px-6 py-4 text-right font-semibold">Valor Total</th>
+              <th class="px-6 py-4 text-right font-semibold">Valor x Sesión</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tarifas.consultas.map((tarifa, index) => (
+              <tr class={`border-b border-stone-200 hover:bg-marce-base-2/5 transition-colors ${index % 2 === 0 ? 'bg-white' : 'bg-stone-50'}`}>
+                <td class="px-6 py-4 font-medium text-marce-base-3">{tarifa.descripcion}</td>
+                <td class="px-6 py-4 text-right text-marce-base-3 font-semibold">{tarifa.total}</td>
+                <td class="px-6 py-4 text-right text-marce-base-2 font-bold">{tarifa.individual}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Clases Fuera del Centro -->
+    <div class="mb-28">
+      <div class="mb-10">
+        <h2 class="text-3xl md:text-4xl font-serif text-marce-base-3 mb-3">
+          🌍 Clases Fuera del Centro
+        </h2>
+        <p class="text-stone-600 text-lg">En Poblado y alrededores (zonas fuera pueden tener costo adicional)</p>
+      </div>
+      <div class="overflow-x-auto rounded-xl shadow-md border border-stone-200 mb-16">
+        <table class="w-full">
+          <thead>
+            <tr class="bg-marce-base-3 text-white">
+              <th class="px-6 py-4 text-left font-semibold">Descripción</th>
+              <th class="px-6 py-4 text-right font-semibold">Valor Total</th>
+              <th class="px-6 py-4 text-right font-semibold">Valor x Clase</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tarifas.fuera.map((tarifa, index) => (
+              <tr class={`border-b border-stone-200 hover:bg-marce-base-2/5 transition-colors ${index % 2 === 0 ? 'bg-white' : 'bg-stone-50'}`}>
+                <td class="px-6 py-4 font-medium text-marce-base-3 text-sm">{tarifa.descripcion}</td>
+                <td class="px-6 py-4 text-right text-marce-base-3 font-semibold">{tarifa.total}</td>
+                <td class="px-6 py-4 text-right text-marce-base-2 font-bold">{tarifa.individual}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Info Box -->
+  <section class="bg-marce-base-1/5 px-6 py-16">
+    <div class="max-w-7xl mx-auto">
+      <h3 class="text-2xl md:text-3xl font-serif text-marce-base-3 mb-8">📌 Información Importante</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="flex gap-4">
+          <span class="text-marce-base-2 font-bold text-2xl flex-shrink-0">✓</span>
+          <p class="text-stone-700">Las ticketeras tienen validez determinada desde la fecha de compra</p>
+        </div>
+        <div class="flex gap-4">
+          <span class="text-marce-base-2 font-bold text-2xl flex-shrink-0">✓</span>
+          <p class="text-stone-700">Las clases incluidas en paquetes son transferibles dentro del grupo familiar</p>
+        </div>
+        <div class="flex gap-4">
+          <span class="text-marce-base-2 font-bold text-2xl flex-shrink-0">✓</span>
+          <p class="text-stone-700">Aceptamos pagos en efectivo y transferencia bancaria</p>
+        </div>
+        <div class="flex gap-4">
+          <span class="text-marce-base-2 font-bold text-2xl flex-shrink-0">✓</span>
+          <p class="text-stone-700">Consulta por promociones especiales para bienestar corporativo y grupos</p>
+        </div>
+        <div class="flex gap-4">
+          <span class="text-marce-base-2 font-bold text-2xl flex-shrink-0">✓</span>
+          <p class="text-stone-700">Política de cancelación: 24 horas de anticipación para cambios</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="bg-marce-base-3 text-white px-6 relative overflow-hidden py-20 text-center">
+    <h2 class="text-3xl md:text-4xl font-serif mb-4">¿Listo para comenzar tu transformación?</h2>
+    <p class="mb-8 font-light text-stone-200 max-w-2xl mx-auto text-lg">Elige el plan que mejor resuene contigo y agendar tu primera sesión</p>
+    <a href="https://wa.me/573207329921?text=Hola%20Marce%20Anahata%2C%20estoy%20interesad%40%20en%20tus%20servicios%20y%20me%20gustaría%20conocer%20m%C3%A1s%20sobre%20las%20tarifas." target="_blank" rel="noopener noreferrer" class="inline-block bg-white text-marce-base-3 py-3 px-8 rounded-lg hover:bg-stone-100 transition font-semibold">Contáctame por WhatsApp</a>
+  </section>
+
+  <!-- Blog Posts Section -->
+  {tariffPosts.length > 0 && (
+    <section class="max-w-7xl mx-auto px-6 py-20 bg-stone-50">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-serif text-marce-base-3 mb-4">Artículos sobre Bienestar</h2>
+        <p class="text-stone-600 max-w-2xl mx-auto">Profundiza en las prácticas que transforman vidas</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {tariffPosts.map((post) => (
+          <article class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 border border-stone-100 flex flex-col">
+            {post.data.image && (
+              <div class="h-48 overflow-hidden">
+                <img 
+                  src={post.data.image} 
+                  alt={post.data.title} 
+                  class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                  loading="lazy"
+                />
+              </div>
+            )}
+            <div class="p-6 flex flex-col flex-grow">
+              <time class="text-xs text-stone-500 mb-2 uppercase tracking-wider">
+                {new Date(post.data.pubDate).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}
+              </time>
+              <h3 class="text-xl font-semibold text-marce-base-3 mb-3 leading-tight">
+                {post.data.title}
+              </h3>
+              <p class="text-stone-600 text-sm mb-4 flex-grow leading-relaxed">
+                {post.data.description}
+              </p>
+              <a 
+                href={`/blog/${post.slug}`} 
+                class="text-marce-base-1 font-semibold text-sm hover:text-marce-base-2 transition-colors inline-flex items-center gap-1"
+              >
+                Leer más 
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+      
+      <div class="text-center mt-12">
+        <a 
+          href="/blog" 
+          class="inline-block px-6 py-3 border-2 border-marce-base-1 text-marce-base-1 rounded-lg hover:bg-marce-base-1 hover:text-white transition-all font-semibold"
+        >
+          Ver todos los artículos
+        </a>
+      </div>
+    </section>
+  )}
+
+</Layout>

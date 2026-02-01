@@ -57,7 +57,7 @@ const galleryId = `image-gallery-${id}`;
     type="button"
     class="absolute top-4 right-4 text-white hover:text-[#6ed8d9] transition-colors p-2 z-10"
     aria-label="Cerrar galería"
-    data-close-lightbox={galleryId}
+    data-close-lightbox={`image-gallery-${id}`}
   >
     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -68,7 +68,7 @@ const galleryId = `image-gallery-${id}`;
     type="button"
     class="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-[#6ed8d9] transition-colors p-3 bg-black/50 rounded-full disabled:opacity-30 disabled:cursor-not-allowed"
     aria-label="Imagen anterior"
-    data-prev-lightbox={galleryId}
+    data-prev-lightbox={`image-gallery-${id}`}
   >
     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
@@ -79,7 +79,7 @@ const galleryId = `image-gallery-${id}`;
     type="button"
     class="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-[#6ed8d9] transition-colors p-3 bg-black/50 rounded-full disabled:opacity-30 disabled:cursor-not-allowed"
     aria-label="Imagen siguiente"
-    data-next-lightbox={galleryId}
+    data-next-lightbox={`image-gallery-${id}`}
   >
     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
@@ -116,9 +116,9 @@ const galleryId = `image-gallery-${id}`;
       const lightboxImg = document.getElementById(`lightbox-img-${galleryClass}`) as HTMLImageElement;
       const lightboxCaption = document.getElementById(`lightbox-caption-${galleryClass}`);
       const lightboxCounter = document.getElementById(`lightbox-counter-${galleryClass}`);
-      const closeBtn = document.querySelector(`[data-close-lightbox="${galleryId}"]`);
-      const prevBtn = document.querySelector(`[data-prev-lightbox="${galleryId}"]`) as HTMLButtonElement;
-      const nextBtn = document.querySelector(`[data-next-lightbox="${galleryId}"]`) as HTMLButtonElement;
+      const closeBtn = document.querySelector(`[data-close-lightbox="${galleryClass}"]`);
+      const prevBtn = document.querySelector(`[data-prev-lightbox="${galleryClass}"]`) as HTMLButtonElement;
+      const nextBtn = document.querySelector(`[data-next-lightbox="${galleryClass}"]`) as HTMLButtonElement;
       
       if (!lightbox || !lightboxImg) return;
       
