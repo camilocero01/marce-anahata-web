@@ -19,45 +19,26 @@
 
 ## 🚀 PRIORIDAD INMEDIATA (Semana 1-2)
 
-### 1. **Google Search Console - Enviar Sitemap** ⏰ 5 min
+### 1. **Google Search Console - Enviar Sitemap** ✅ HECHO
 **Impacto:** Alto - Indexación rápida de todas las páginas  
-**Estado:** ⏳ Pendiente
-```
-1. Search Console → Sitemaps
-2. Click "Add a new sitemap"
-3. Ingresa: sitemap-index.xml
-4. Verifica en Coverage después de 24-48h
-```
+**Estado:** ✅ Completado
+- Sitemap enviado
+- Próximo: Revisar Coverage report en 24-48h
+- Monitorear Performance report (CTR, impresiones)
 
-### 2. **Google My Business (Local SEO)** ⏰ 30 min
+### 2. **Google My Business (Local SEO)** ✅ ACTIVO
 **Impacto:** Crítico - Aparecerás en Maps y recomendaciones locales  
-**Estado:** ⏳ Pendiente
-```
-Datos a registrar:
-- Nombre: Marce Anahata Centro de Bienestar
-- Categorías: Wellness Center, Yoga Instructor, Meditation Center
-- Ubicación: Cl. 11A Sur #46-12, La Aguacatala, Medellín
-- Teléfono: +57 320 732 9921
-- Horarios: L-V 8-18, S 9-13, D Cerrado
-- Foto del espacio y equipo
-```
+**Estado:** ✅ Active desde 2022 (4 años)
+- Próximo: Actualizar fotos y horarios
+- Responder reseñas regularmente
+- Publicar 1 post/mes de eventos
 
-### 3. **Optimizar Performance (LCP: 4.3s → <2.5s)** ✅ COMPLETO
-**Impacto:** Medio-Alto - Mejora ranking y UX  
-**Estado:** ✅ Completado (+17 pts en Performance score)
-
-**Optimizaciones implementadas:**
-- ✅ Preload crítico: `/images/social-preview-wa.jpg`
-- ✅ Font preloading (Montserrat 400/700)
-- ✅ Hero video formato WEBM (30% más pequeño)
-- ✅ Lazy-load imágenes de servicios
-- ✅ Inline critical CSS en `<head>`
-- ✅ fetchpriority="high" en hero image
-
-**Resultados:**
-- Performance: 73 → 90/100 (+17 pts)
-- LCP: 4.3s → 3.0s (-30%)
-- TBT: 350ms → 130ms (-63%)
+### 3. **Deploy a Producción** ✅ COMPLETADO
+**Impacto:** Crítico - Cambios en vivo
+**Estado:** ✅ Producción actualizada (Feb 2)
+- Performance: 90/100
+- SEO: 100/100
+- Accessibility: 96/100
 
 ---
 
@@ -67,51 +48,48 @@ Datos a registrar:
 **Impacto:** Alto - Tráfico orgánico a largo plazo  
 **Tiempo:** 8-10 horas
 
+## 📈 PRIORIDAD ALTA (Semana 2-4) - FOCUS INMEDIATO
+
+### 4. **Contenido de Blog - Expandir Keywords Locales** ⏰ 8-10 horas
+**Impacto:** CRÍTICO - Tráfico orgánico a largo plazo  
+**Estado:** ⏳ Próxima acción
+
 **Posts recomendados (1500+ palabras cada uno):**
-1. "Kundalini Yoga en Medellín: Guía completa para principiantes"
-   - Keywords: yoga kundalini medellín, yoga el poblado
-   
-2. "Estrés Laboral en Colombia: Soluciones de Bienestar Corporativo"
-   - Keywords: bienestar corporativo medellín, burnout trabajo
-   
-3. "Terapia de Sonido: Beneficios Científicos y Aplicaciones"
-   - Keywords: terapia de sonido medellín, sanación vibracional
 
-**Estructura SEO por post:**
-```markdown
-# H1 Principal (1 keyword primaria)
-## H2 Secciones (keywords secundarias)
-- Párrafos 100-150 palabras
-- Listas con viñetas
-- 1-2 imágenes optimizadas con alt text
-- Call-to-action (WhatsApp, email)
-- Meta description: 155-160 caracteres con CTA
-```
+#### Post 1: "Kundalini Yoga en Medellín: Guía Completa para Principiantes"
+- Keywords: yoga kundalini medellín, clases yoga el poblado
+- Meta: "Descubre Kundalini Yoga en Medellín. Beneficios, posturas básicas y dónde practicar en El Poblado."
+- Secciones: Qué es, Beneficios, Posturas básicas, Dónde practicar, FAQ
 
-### 5. **Directorios Locales Colombianos (Link Building)**
+#### Post 2: "Estrés Laboral en Colombia: Soluciones de Bienestar Corporativo"
+- Keywords: bienestar corporativo medellín, burnout trabajo
+- Meta: "Burnout laboral afecta 60% de empleados. Descubre soluciones de bienestar empresarial."
+- Secciones: Estadísticas, Síntomas, Impacto, Soluciones, Case studies
+
+#### Post 3: "Terapia de Sonido Gong: Beneficios Científicos en Medellín"
+- Keywords: terapia de sonido medellín, sanación vibracional
+- Meta: "Terapia gong: frecuencias vibratorias para reducir estrés. Sesiones en Medellín."
+- Secciones: Ciencia, Beneficios, Vs otras terapias, Testimonios
+
+**Timeline propuesto:**
+- Post 1 (Yoga): Feb 9
+- Post 2 (Corporativo): Feb 16
+- Post 3 (Terapia): Feb 23
+
+### 5. **Directorios Locales Colombianos (Link Building)** ⏰ 2-3 horas
 **Impacto:** Medio - Referencia local y autoridad de dominio  
-**Tiempo:** 2-3 horas
+**Estado:** ⏳ Próxima acción
 
-Registrarse en (GRATIS):
-- ✅ Google My Business
+**Registrarse GRATUITAMENTE en:**
+- ✅ Google My Business (Activo)
 - [ ] Jamyo (directorio servicios Colombia)
+- [ ] Yoga Alliance (directorio yoga)
 - [ ] TripAdvisor (wellness/spas)
-- [ ] LinkedIn (bienestar corporativo B2B)
-- [ ] Instagram Business (ya tienes @marce_anahata)
+- [ ] LinkedIn (bienestar corporativo)
+- ✅ Instagram Business (@marce_anahata)
 - [ ] Directorio Medellín turismo
 
-**Beneficio:** Más visibilidad local + señales de confianza para Google
-
-### 6. **Optimizar Imágenes - WebP + Lazy Loading**
-**Impacto:** Medio - Reduce peso página y LCP  
-**Tiempo:** 1-2 horas
-
-```
-Identificar imágenes >100KB en:
-- Hero images (convertir a WebP)
-- Blog posts (añadir loading="lazy")
-- Reviews images (optimizar tamaño)
-```
+**Beneficio:** Cada directorio = 1 backlink + credibilidad local
 
 ---
 

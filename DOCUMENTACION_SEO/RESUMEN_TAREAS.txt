@@ -1,0 +1,224 @@
+================================================================================
+                    🎯 MARCE ANAHATA - SEO PLAN 2026
+                           STATUS: FASE 2 LISTO
+================================================================================
+
+📊 ESTADO ACTUAL (2 de Febrero)
+────────────────────────────────────────────────────────────────────────────
+✅ Sitemap enviado a Google Search Console
+✅ Google My Business activo (4 años)
+✅ Performance Lighthouse: 90/100 (TARGET MET)
+✅ SEO Lighthouse: 100/100 
+✅ Hreflang bilingual implementado
+✅ OG tags mejorados
+✅ Deploy a producción: COMPLETADO
+
+📈 PROYECCIÓN (12 MESES)
+────────────────────────────────────────────────────────────────────────────
+Visitantes/mes:      200 → 1000-2000 (+500-900%)
+Keywords top 10:     10 → 50+ (5x)
+Backlinks:          1-2 → 25+ (12x)
+Leads/mes:          5-10 → 50+ (5-10x)
+Ingresos:           +$10-20M COP/mes
+
+🚀 TAREAS INMEDIATAS (SEMANA 1)
+════════════════════════════════════════════════════════════════════════════
+
+TAREA 1: Jamyo.co (15 minutos)
+─────────────────────────────
+URL: https://jamyo.co
+Acción: Registrarse como profesional wellness
+Resultado: +1 backlink (DA 45+), +20 visitantes/mes
+
+TAREA 2: Yoga Alliance (20 minutos)
+────────────────────────────────────
+URL: https://www.yogaalliance.org
+Acción: Crear perfil de maestro certificado
+Resultado: +1 backlink (DA 72+), +30 visitantes/mes
+
+TAREA 3: Google My Business (10 minutos)
+──────────────────────────────────────────
+URL: https://business.google.com
+Acción: Actualizar fotos y datos
+Resultado: Mejor visibilidad en Google Maps
+
+⏱️ TIEMPO TOTAL: 45 minutos
+✅ RESULTADO: +2 backlinks + 70 visitantes/mes
+
+════════════════════════════════════════════════════════════════════════════
+
+📅 CRONOGRAMA FEBRERO-ABRIL 2026
+────────────────────────────────────────────────────────────────────────────
+
+SEMANA 1 (Feb 1-2)    →  Directorios 1-3 (45 min)
+                           ✓ Jamyo, Yoga Alliance, GMB
+
+SEMANA 2-3 (Feb 9)    →  Post #1: Kundalini Yoga (5 h)
+                           ✓ 1800 palabras
+                           ✓ 3+ links internos
+                           ✓ CTA a WhatsApp
+
+SEMANA 3 (Feb 16)     →  Directorios 2-3 (1.25 h)
+                           ✓ TripAdvisor, LinkedIn, Medellín Turismo
+
+SEMANA 4 (Feb 23)     →  Post #2: Bienestar Corporativo (6 h)
+                           ✓ 2000 palabras
+                           ✓ Estadísticas corporativas
+                           ✓ Case studies
+
+SEMANA 5 (Feb 9)      →  Post #3: Terapia Sonido (5 h)
+                           ✓ 1800 palabras
+                           ✓ Estudios científicos
+                           ✓ 7 beneficios principales
+
+SEMANA 6 (Mar 9)      →  Instagram Optimization (2 h)
+                           ✓ 5 reels educativos
+                           ✓ 3 posts con hashtags
+                           ✓ Engagement diario
+
+════════════════════════════════════════════════════════════════════════════
+
+📊 MÉTRICAS ESPERADAS
+────────────────────────────────────────────────────────────────────────────
+
+MES 1 (FEBRERO)
+├─ Directorios: 6/7 registrados
+├─ Blog posts: 1/3 publicados  
+├─ Backlinks nuevos: +3
+├─ Tráfico: +150-200 visitantes
+├─ Keywords top 10: 5-10 nuevas
+└─ Leads: 2-3 vía WhatsApp
+
+MES 2 (MARZO)
+├─ Directorios: 7/7 optimizados
+├─ Blog posts: 2/3 publicados
+├─ Backlinks: +6 total
+├─ Tráfico: +300-400 visitantes
+├─ Keywords top 10: 15-20 nuevas
+├─ Leads: 5-8 vía WhatsApp
+└─ Instagram: +50-100 followers
+
+MES 3 (ABRIL)
+├─ Directorios: 7/7 con reviews
+├─ Blog posts: 3/3 publicados
+├─ Backlinks: +6 confirmados
+├─ Tráfico: +500-600 visitantes
+├─ Keywords top 10: 25-30 nuevas
+├─ Leads: 10-15 vía WhatsApp
+└─ Instagram: +150-200 followers
+
+════════════════════════════════════════════════════════════════════════════
+
+📄 DOCUMENTOS CREADOS
+────────────────────────────────────────────────────────────────────────────
+
+1. CONTENT_PLAN_3POSTS.md
+   → 3 blog posts con outlines completos, keywords, meta descriptions
+
+2. DIRECTORIOS_LOCALES_PLAN.md
+   → 7 directorios con instrucciones paso a paso, DA, timeline
+
+3. FASE_2_CONTENT_STRATEGY.md
+   → Estrategia detallada con cronograma semana por semana
+
+4. GUIA_REDACCION_BLOG_POSTS.md
+   → Guía paso a paso para escribir los 3 posts SEO-optimizados
+
+5. RESUMEN_EJECUTIVO_FASE_2.md
+   → Resumen ejecutivo con todas las métricas y timeline
+
+6. QUICK_START_SEMANA_1.md
+   → Guía rápida para las 3 tareas inmediatas (45 min)
+
+════════════════════════════════════════════════════════════════════════════
+
+💰 ROI PROYECTADO
+────────────────────────────────────────────────────────────────────────────
+
+Actividad          │ Tiempo  │ Costo │ Beneficio      │ ROI
+───────────────────┼─────────┼───────┼────────────────┼─────
+Directorios (6)    │ 3 horas │ $0    │ +70 visitas    │ ∞
+Blog Post 1        │ 5 horas │ $0    │ +150 visitas   │ ∞
+Blog Post 2        │ 6 horas │ $0    │ +150 visitas   │ ∞
+Blog Post 3        │ 5 horas │ $0    │ +150 visitas   │ ∞
+Instagram Opt.     │ 2 horas │ $0    │ +50-100 visitas│ ∞
+───────────────────┼─────────┼───────┼────────────────┼─────
+TOTAL FASE 2       │21 horas │ $0    │ +450-600 vis/mes│ ∞
+
+════════════════════════════════════════════════════════════════════════════
+
+✅ CHECKLIST INICIO RÁPIDO
+────────────────────────────────────────────────────────────────────────────
+
+SEMANA 1:
+  [ ] Leer QUICK_START_SEMANA_1.md (5 min)
+  [ ] Registrarse en Jamyo.co (15 min)
+  [ ] Registrarse en Yoga Alliance (20 min)
+  [ ] Actualizar Google My Business (10 min)
+  
+  ✓ TOTAL: 45 minutos
+
+SEMANA 2-3:
+  [ ] Leer GUIA_REDACCION_BLOG_POSTS.md (10 min)
+  [ ] Escribir Post #1 (4-5 horas)
+  [ ] Publicar Post #1 (Viernes 9 Feb)
+
+SEMANA 3:
+  [ ] Registrarse en TripAdvisor (20 min)
+  [ ] Contactar Medellín Turismo (15 min)
+  [ ] Crear LinkedIn company page (30 min)
+
+SEMANA 4:
+  [ ] Escribir Post #2 (5-6 horas)
+  [ ] Publicar Post #2 (Viernes 16 Feb)
+
+SEMANA 5:
+  [ ] Escribir Post #3 (4-5 horas)
+  [ ] Publicar Post #3 (Viernes 23 Feb)
+
+SEMANA 6:
+  [ ] Optimizar Instagram bio (10 min)
+  [ ] Crear 5 reels educativos (1.5 horas)
+  [ ] Publicar 3 posts con hashtags (30 min)
+  [ ] Engagement diario 10 min/día
+
+════════════════════════════════════════════════════════════════════════════
+
+🚀 PRÓXIMA ACCIÓN
+────────────────────────────────────────────────────────────────────────────
+
+ESTA SEMANA (antes del viernes):
+
+1. Abre https://jamyo.co
+2. Abre https://www.yogaalliance.org
+3. Abre https://business.google.com
+
+Tiempo total: 45 minutos máximo
+
+Resultado: +2 backlinks + 70 visitantes/mes
+
+════════════════════════════════════════════════════════════════════════════
+
+📞 CONTACTO & RECURSOS
+────────────────────────────────────────────────────────────────────────────
+
+Tu Sitio:            https://marceanahata.com
+Google Search Console: https://search.google.com/search-console
+Google My Business:   https://business.google.com
+Jamyo:              https://jamyo.co
+Yoga Alliance:      https://www.yogaalliance.org
+TripAdvisor:        https://www.tripadvisor.com
+LinkedIn:           https://www.linkedin.com
+
+WhatsApp Directo:   +57 320 732 9921
+Email:              info@marceanahata.com
+
+════════════════════════════════════════════════════════════════════════════
+
+Fecha: 2 de febrero de 2026
+Estado: FASE 2 LISTA PARA EJECUTAR
+Próxima Revisión: 16 de febrero (después Post #1 + directorios)
+
+¡ADELANTE! 🚀
+
+════════════════════════════════════════════════════════════════════════════
