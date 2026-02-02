@@ -57,12 +57,12 @@ const jsonLd = {
     <link rel="alternate" type="application/rss+xml" title="Blog RSS" href="/rss.xml" />
     {totalPages > 1 && <link rel="next" href="/blog/page/2" />}
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="/images/social-preview.jpg" />
+    <meta property="og:image" content="https://www.marceanahata.com/images/social-preview-wa.jpg" />
     <meta property="og:locale" content="es_CO" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={pageDescription} />
-    <meta name="twitter:image" content="/images/social-preview.jpg" />
+    <meta name="twitter:image" content="https://www.marceanahata.com/images/social-preview-wa.jpg" />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   </Fragment>

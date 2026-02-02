@@ -39,7 +39,7 @@ const jsonLd = {
     <link rel="alternate" type="application/rss+xml" title={`RSS de ${tag}`} href={`/blog/tag/${encodeURIComponent(tag)}/rss.xml`} />
     {totalPages > 1 && <link rel="next" href={`/blog/tag/${encodeURIComponent(tag)}/page/2`} />}
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="/images/social-preview.jpg" />
+    <meta property="og:image" content="https://www.marceanahata.com/images/social-preview-wa.jpg" />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </Fragment>
 
