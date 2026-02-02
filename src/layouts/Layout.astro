@@ -28,15 +28,15 @@ interface Props {
 const {
     title,
     description = "Centro de bienestar Marce Anahata en El Poblado en Medellín - El Poblado. Kundalini Yoga, Terapia de Sonido, Rituales Sagrados y Bienestar Corporativo.",
-    image = "https://marceanahata.com/images/social-preview.jpg" ,
-    logo = "https://marceanahata.com/images/marce-perfil.webp",
+    image = "/images/social-preview.jpg" ,
+    logo = "/images/marce-perfil.webp",
     ogType = 'website',
     hideAuthorInTitle = false,
     lang = 'es',
 } = Astro.props as Props;
 
 const finalTitle = hideAuthorInTitle ? title : `${title} | Marce Anahata`;
-const siteUrl = Astro.site ?? new URL('https://marceanahata.com');
+const siteUrl = Astro.site ?? new URL('https://www.marceanahata.com');
 const resolvedImage = image?.startsWith('http') ? image : new URL(image, siteUrl).toString();
 const resolvedLogo = logo?.startsWith('http') ? logo : new URL(logo, siteUrl).toString();
 
@@ -44,8 +44,8 @@ const resolvedLogo = logo?.startsWith('http') ? logo : new URL(logo, siteUrl).to
 const schema = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "HealthAndBeautyBusiness",
-  "name": "Marce Anahata Centro de Bienestar",
-  "image": "https://marceanahata.com/images/social-preview.jpg",
+    "name": "Marce Anahata Centro de Bienestar",
+    "image": resolvedImage,
   "description": description,
   "address": {
     "@type": "PostalAddress",
@@ -60,7 +60,7 @@ const schema = JSON.stringify({
     "latitude": 6.1955152,
     "longitude": -75.5779584
   },
-  "url": "https://marceanahata.com",
+    "url": siteUrl.toString(),
   "telephone": "+573207329921",
   "email": "info@marceanahata.com",
   "priceRange": "70000-500000 COP",
@@ -69,19 +69,19 @@ const schema = JSON.stringify({
     "name": "Medellín"
   },
   "knowsAbout": ["Kundalini Yoga", "Terapia de Sonido", "Meditación", "Rituales Sagrados", "Bienestar Corporativo"],
-  "sameAs": [
-    "https://instagram.com/marce_anahata",
-    "https://wa.me/573207329921"
-  ]
+    "sameAs": [
+        "https://instagram.com/marce_anahata",
+        "https://wa.me/573207329921"
+    ]
 });
 
 // Organization schema para visibilidad general
 const orgSchema = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "Organization",
-  "name": "Marce Anahata",
-  "url": "https://marceanahata.com",
-    "logo": "https://marceanahata.com/favicon.png",
+    "name": "Marce Anahata",
+    "url": siteUrl.toString(),
+        "logo": new URL('/favicon.png', siteUrl).toString(),
   "description": "Centro de bienestar integral con Kundalini Yoga, Terapia de Sonido, Rituales Sagrados y Bienestar Corporativo en Medellín.",
   "foundingDate": "2020",
   "foundingLocation": "Medellín, Colombia",
