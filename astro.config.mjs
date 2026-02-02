@@ -32,10 +32,15 @@ export default defineConfig({
       // The `page` parameter is a full URL, so compare by path endings
       filter: (page) => {
         // Excluir páginas para no afectar el SEO
-        if (page.endsWith('/links') 
+        if ( page.endsWith('/admin')
+          || page.endsWith('/links') 
           || page.endsWith('/privacidad')
           || page.endsWith('/buscar')
           || page.endsWith('/404')
+          || page.endsWith('/en/links')
+          || page.endsWith('/en/privacidad')
+          || page.endsWith('/en/buscar')
+          || page.endsWith('/en/404')
         )  return false;
         // Excluir primera página de paginación (duplicados de páginas principales)
         if (page.endsWith('/blog/page/1')) return false;
