@@ -71,7 +71,10 @@ const ogImage = '/images/social-preview-wa.jpg';
           alt="Fondo meditación" 
           class="w-full h-full object-cover"
           width={1920}
+          height={1080}
           densities={[1.5, 2]}
+          loading="eager"
+          fetchpriority="high"
         />
       </video>
       <div class="absolute inset-0 bg-gradient-to-b from-stone-100/30 to-stone-100/90 z-10"></div>

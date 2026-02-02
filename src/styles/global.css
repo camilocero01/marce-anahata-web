@@ -1,5 +1,44 @@
 @import "tailwindcss";
 
+/* =========================================
+   Critical CSS: Above-the-fold optimization
+   ========================================= */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #fafaf8;
+  color: #292524;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Hero section critical styles */
+.text-marce-base-1 {
+  color: #5d5a8c;
+}
+
+.text-marce-base-3 {
+  color: #243c5a;
+}
+
+/* Skip link for accessibility */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #243c5a;
+  color: white;
+  padding: 8px 12px;
+  text-decoration: none;
+  z-index: 100;
+  border-radius: 0 0 4px 0;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
 @theme {
   --color-marce-base-1: #5d5a8c;
   --color-marce-base-2: #6ed8d9;

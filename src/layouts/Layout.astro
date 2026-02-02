@@ -159,6 +159,11 @@ const orgSchema = JSON.stringify({
         <meta property="og:locale" content="es_CO" />
         {resolvedEnUrl && <meta property="og:locale:alternate" content="en_US" />}
         <meta property="fb:app_id" content="1234567890" />
+
+        <!-- Performance: Preload critical resources -->
+        <link rel="preload" as="image" href="/images/social-preview-wa.jpg" fetchpriority="high" />
+        <link rel="preload" as="font" type="font/woff2" href="/fonts/montserrat-400.woff2" crossorigin />
+        <link rel="preload" as="font" type="font/woff2" href="/fonts/montserrat-700.woff2" crossorigin />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
