@@ -12,8 +12,8 @@ import homeYogaImg from '../assets/home-yoga.webp';
 import heroBgImg from '../assets/hero-bg.webp';
 import marcePerfilImg from '../assets/marce-perfil.webp';
 
-// Obtener últimos 3 posts del blog
-const allPosts = (await getCollection('blog', ({ data }) => !data.draft))
+// Obtener últimos 3 posts del blog (solo español)
+const allPosts = (await getCollection('blog', ({ data, slug }) => !data.draft && !slug.startsWith('en/')))
   .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime())
   .slice(0, 3);
 
