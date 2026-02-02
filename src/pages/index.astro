@@ -65,6 +65,7 @@ const ogImage = '/images/social-preview-wa.jpg';
         poster="/images/hero-bg-poster.webp"
         class="w-full h-full object-cover opacity-60"
       >
+        <source src="/videos/hero-bg.webm" type="video/webm" />
         <source src="/videos/hero-bg.mp4" type="video/mp4" />
         <Image 
           src={heroBgImg} 
@@ -151,6 +152,7 @@ const ogImage = '/images/social-preview-wa.jpg';
                 width={400}
                 height={300}
                 densities={[1.5, 2]}
+                loading="lazy"
               />
             </div>
             <h3 class="text-xl text-marce-base-3 mb-3 font-serif group-hover:text-marce-base-1 transition-colors">{servicio.titulo}</h3>
