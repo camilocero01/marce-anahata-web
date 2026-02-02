@@ -1,0 +1,431 @@
+---
+// Event Registration Form Component - English Version
+// Based on EventRegistration.astro with Formspree
+export interface Props {
+  eventTitle?: string;
+  eventDate?: string;
+  eventDescription?: string;
+  formId?: string; // Formspree ID for the event
+  paymentLabel?: string; // Label for the payment confirmation field
+}
+
+const {
+  eventTitle = "Event Registration",
+  eventDate = "",
+  eventDescription = "Complete the form to reserve your place",
+  formId = "mgovwznp", // Default uses same as newsletter, change per event
+  paymentLabel = "The event investment will be <strong>$120.000 COP</strong>. I understand that completing this form is a pre-registration, my spot is reserved with payment of 50% of the total corresponding to <strong>$60.000 COP</strong> to savings account No. <strong>935-972725-35</strong> at Bancolombia in the name of <strong>Marcela Zuleta cc 32297153</strong>. Once payment is made, send receipt via <a href=\"https://wa.me/573207329921?text=Hello%20Marce%20Anahata%2C%20I%20am%20sending%20payment%20confirmation%20for%20the%20Gong%20Bath%20on%20February%2013%2C%202026.\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-[#6ed8d9] hover:text-[#5ac5c6] font-semibold underline\">👉here</a> to confirm. The remaining amount must be paid 2 days before the event."
+} = Astro.props;
+---
+
+<div class="event-registration-section">
+  <div class="max-w-2xl mx-auto">
+    <h3 class="font-serif font-bold text-[#243c5a] mb-2 text-2xl md:text-3xl">
+      {eventTitle}
+    </h3>
+    {eventDate && (
+      <p class="text-sm text-[#6ed8d9] font-semibold mb-4">
+        📅 {eventDate}
+      </p>
+    )}
+    {eventDate && (
+      <p class="text-sm text-[#6ed8d9] font-semibold mb-4">
+        💰 Your investment will be <strong>$120.000 COP</strong>. I understand that completing this form is a pre-registration, my spot is reserved with payment of 50% of the total corresponding to <strong>$60.000 COP</strong>
+      </p>
+    )}
+    {eventDescription && (
+      <p class="text-stone-600 mb-6">
+        {eventDescription}
+      </p>
+    )}
+    
+    <form 
+      id="event-registration-form"
+      class="space-y-4 mb-6"
+      aria-label="Event registration form"
+    >
+      <!-- Full name -->
+      <div>
+        <label for="full-name" class="block text-sm font-medium text-[#243c5a] mb-2">
+          Full name *
+        </label>
+        <input 
+          type="text" 
+          id="full-name"
+          name="full_name"
+          placeholder="Your name"
+          required
+          class="w-full px-4 py-3 rounded-lg border-2 border-stone-200 focus:border-[#6ed8d9] focus:outline-none placeholder:text-stone-400 transition-colors"
+          aria-label="Full name"
+        />
+      </div>
+
+      <!-- Email address -->
+      <div>
+        <label for="email" class="block text-sm font-medium text-[#243c5a] mb-2">
+          Email address *
+        </label>
+        <input 
+          type="email" 
+          id="email"
+          name="email"
+          placeholder="your@email.com"
+          required
+          class="w-full px-4 py-3 rounded-lg border-2 border-stone-200 focus:border-[#6ed8d9] focus:outline-none placeholder:text-stone-400 transition-colors"
+          aria-label="Email address"
+        />
+      </div>
+
+      <!-- City and Country -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label for="city" class="block text-sm font-medium text-[#243c5a] mb-2">
+            City *
+          </label>
+          <input 
+            type="text" 
+            id="city"
+            name="city"
+            placeholder="Medellín"
+            required
+            class="w-full px-4 py-3 rounded-lg border-2 border-stone-200 focus:border-[#6ed8d9] focus:outline-none placeholder:text-stone-400 transition-colors"
+            aria-label="City of residence"
+          />
+        </div>
+        <div>
+          <label for="country" class="block text-sm font-medium text-[#243c5a] mb-2">
+            Country *
+          </label>
+          <input 
+            type="text" 
+            id="country"
+            name="country"
+            placeholder="Colombia"
+            required
+            class="w-full px-4 py-3 rounded-lg border-2 border-stone-200 focus:border-[#6ed8d9] focus:outline-none placeholder:text-stone-400 transition-colors"
+            aria-label="Country of residence"
+          />
+        </div>
+      </div>
+
+      <!-- Phone/WhatsApp -->
+      <div>
+        <label for="phone" class="block text-sm font-medium text-[#243c5a] mb-2">
+          Phone/WhatsApp *
+        </label>
+        <input 
+          type="tel" 
+          id="phone"
+          name="phone"
+          placeholder="+57 300 123 4567"
+          required
+          class="w-full px-4 py-3 rounded-lg border-2 border-stone-200 focus:border-[#6ed8d9] focus:outline-none placeholder:text-stone-400 transition-colors"
+          aria-label="Phone or WhatsApp"
+        />
+      </div>
+      
+      <!-- How did you find out about the event? -->
+      <div>
+        <label for="source" class="block text-sm font-medium text-[#243c5a] mb-2">
+          How did you find out about the event? *
+        </label>
+        <select 
+          id="source"
+          name="source"
+          required
+          class="w-full px-4 py-3 rounded-lg border-2 border-stone-200 focus:border-[#6ed8d9] focus:outline-none transition-colors bg-white"
+          aria-label="How did you find out about the event"
+        >
+          <option value="">-- Select an option --</option>
+          <option value="instagram">Instagram</option>
+          <option value="recommendation">Recommendation</option>
+          <option value="marce-anahata">Directly from Marce Anahata</option>
+          <option value="search-engines">Search engine like Google, Bing, etc</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+
+      <!-- Separator: WELLNESS AND CARE -->
+      <div class="pt-4 pb-2">
+        <h4 class="font-serif font-semibold text-[#243c5a] text-lg border-b-2 border-[#6ed8d9]/30 pb-2">
+          💛 Wellness and Care
+        </h4>
+      </div>
+
+      <!-- Have you participated before in sound therapy or gong bath -->
+      <div>
+        <label for="first-time" class="block text-sm font-medium text-[#243c5a] mb-2">
+          Have you participated before in a gong bath or sound therapy session? *
+        </label>
+        <select 
+          id="first-time"
+          name="first_time"
+          required
+          class="w-full px-4 py-3 rounded-lg border-2 border-stone-200 focus:border-[#6ed8d9] focus:outline-none transition-colors bg-white"
+          aria-label="First time in sound therapy"
+        >
+          <option value="">-- Select an option --</option>
+          <option value="no">Yes, I have participated before</option>
+          <option value="yes">No, this is my first time</option>
+        </select>
+      </div>
+
+      <!-- Health conditions -->
+      <div>
+        <label for="medical-conditions" class="block text-sm font-medium text-[#243c5a] mb-2">
+          Do you have any health conditions we should be aware of?
+          <span class="text-stone-500 text-xs block mt-1">(E.g: pregnancy, pacemaker, epilepsy, severe anxiety, migraines, etc.) - Confidential information</span>
+        </label>
+        <textarea 
+          id="medical-conditions"
+          name="medical_conditions"
+          placeholder="Briefly describe any relevant conditions..."
+          rows="3"
+          class="w-full px-4 py-3 rounded-lg border-2 border-stone-200 focus:border-[#6ed8d9] focus:outline-none placeholder:text-stone-400 transition-colors resize-none"
+          aria-label="Health conditions"
+        ></textarea>
+      </div>
+
+      <!-- Something to share -->
+      <div>
+        <label for="share-info" class="block text-sm font-medium text-[#243c5a] mb-2">
+          Is there anything you'd like to share to help us support you better during the session?
+          <span class="text-stone-500 text-xs block mt-1">(Intention, emotional state, expectations – optional)</span>
+        </label>
+        <textarea 
+          id="share-info"
+          name="share_info"
+          placeholder="Share what you feel is necessary..."
+          rows="3"
+          class="w-full px-4 py-3 rounded-lg border-2 border-stone-200 focus:border-[#6ed8d9] focus:outline-none placeholder:text-stone-400 transition-colors resize-none"
+          aria-label="Additional information"
+        ></textarea>
+      </div>
+
+      <!-- What would you like to work on? -->
+      <div>
+        <label for="intention" class="block text-sm font-medium text-[#243c5a] mb-2">
+          What would you like to work on or receive in this session?
+          <span class="text-stone-500 text-xs"> (optional)</span>
+        </label>
+        <select 
+          id="intention"
+          name="intention"
+          class="w-full px-4 py-3 rounded-lg border-2 border-stone-200 focus:border-[#6ed8d9] focus:outline-none transition-colors bg-white"
+        >
+          <option value="">-- Select an option --</option>
+          <option value="relaxation">Relaxation / Rest</option>
+          <option value="emotional-release">Emotional release</option>
+          <option value="mental-clarity">Mental clarity</option>
+          <option value="energetic-balance">Energetic balance</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+
+      <!-- Separator: CONSENT -->
+      <div class="pt-4 pb-2">
+        <h4 class="font-serif font-semibold text-[#243c5a] text-lg border-b-2 border-[#6ed8d9]/30 pb-2">
+          ✓ Consent and Responsibility
+        </h4>
+      </div>
+
+      <!-- Important notice about complementary nature -->
+      <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded mb-4">
+        <p class="text-sm text-blue-900 font-semibold mb-2">⚕️ Important: Nature of this experience</p>
+        <p class="text-xs text-blue-800 leading-relaxed">
+          The gong bath is a <strong>complementary wellness and relaxation experience</strong>. It is not a medical or psychological treatment, and <strong>does not replace, substitute, or serve as an alternative to</strong> any medical, psychological, therapeutic, or pharmaceutical treatment prescribed by health professionals. If you have a diagnosed medical condition, take medications, or are under medical care, continue with your treatment and consult your healthcare professional before participating.
+        </p>
+      </div>
+
+      <!-- Consent 1 -->
+      <div class="flex items-start gap-3">
+        <input 
+          type="checkbox" 
+          id="consent-1"
+          name="consent_voluntary"
+          required
+          class="mt-1 w-4 h-4 rounded border-2 border-stone-200 focus:border-[#6ed8d9] focus:outline-none transition-colors cursor-pointer"
+        />
+        <label for="consent-1" class="text-sm text-stone-700 cursor-pointer">
+          I accept to participate voluntarily and consciously in the gong bath session. *
+        </label>
+      </div>
+
+      <!-- Consent 2 -->
+      <div class="flex items-start gap-3">
+        <input 
+          type="checkbox" 
+          id="consent-2"
+          name="consent_complementary"
+          required
+          class="mt-1 w-4 h-4 rounded border-2 border-stone-200 focus:border-[#6ed8d9] focus:outline-none transition-colors cursor-pointer"
+        />
+        <label for="consent-2" class="text-sm text-stone-700 cursor-pointer">
+          I understand that the gong bath is a <strong>complementary wellness experience</strong> and that it <strong>does not replace</strong> any medical, psychological, therapeutic, or pharmaceutical treatment prescribed by health professionals. *
+        </label>
+      </div>
+
+      <!-- Consent 3 -->
+      <div class="flex items-start gap-3">
+        <input 
+          type="checkbox" 
+          id="consent-3"
+          name="consent_responsibility"
+          required
+          class="mt-1 w-4 h-4 rounded border-2 border-stone-200 focus:border-[#6ed8d9] focus:outline-none transition-colors cursor-pointer"
+        />
+        <label for="consent-3" class="text-sm text-stone-700 cursor-pointer">
+          I take responsibility for my health. If I am under medical, psychological, or therapeutic treatment, I will continue with it. Marce Anahata is not responsible for any reactions or effects related to my participation. *
+        </label>
+      </div>
+
+      <!-- Payment confirmation -->
+      <div class="flex items-start gap-3 bg-amber-50 p-4 rounded-lg border border-amber-200">
+        <input 
+          type="checkbox" 
+          id="payment-confirmation"
+          name="payment_confirmation"
+          required
+          class="mt-1 w-4 h-4 rounded border-2 border-stone-200 focus:border-[#6ed8d9] focus:outline-none transition-colors cursor-pointer flex-shrink-0"
+        />
+        <label for="payment-confirmation" class="text-sm text-stone-700 cursor-pointer" set:html={paymentLabel + ' *'} />
+      </div>
+
+      <!-- Newsletter opt-in -->
+      <div class="flex items-start gap-3 bg-[#6ed8d9]/5 p-4 rounded-lg border border-[#6ed8d9]/20">
+        <input 
+          type="checkbox" 
+          id="newsletter"
+          name="newsletter"
+          class="mt-1 w-4 h-4 rounded border-2 border-stone-200 focus:border-[#6ed8d9] focus:outline-none transition-colors cursor-pointer"
+        />
+        <label for="newsletter" class="text-sm text-stone-700 cursor-pointer">
+          I want to receive information about future wellness events and sessions.
+        </label>
+      </div>
+
+      <!-- Submit button -->
+      <button 
+        type="submit"
+        id="registration-btn"
+        class="w-full px-6 py-3 bg-[#6ed8d9] text-[#243c5a] rounded-lg font-semibold hover:bg-[#5ac5c6] transition-all shadow-md hover:shadow-lg"
+      >
+        Reserve my spot
+      </button>
+    </form>
+
+    <div id="form-message" class="text-sm text-stone-500" role="status" aria-live="polite"></div>
+
+    <p class="text-xs text-stone-400 mt-4">
+      You will receive a confirmation via email and WhatsApp with attendance details.
+    </p>
+  </div>
+</div>
+
+<style>
+  .event-registration-section {
+    padding: 2.5rem 2rem;
+    background: linear-gradient(135deg, rgba(110, 216, 217, 0.08) 0%, rgba(93, 90, 140, 0.05) 100%);
+    border-radius: 1rem;
+    border: 2px solid rgba(110, 216, 217, 0.2);
+    margin: 2rem 0;
+  }
+
+  input[type="checkbox"] {
+    cursor: pointer;
+  }
+
+  input[type="checkbox"]:checked {
+    background-color: #6ed8d9;
+    border-color: #6ed8d9;
+  }
+</style>
+
+<script define:vars={{formId}}>
+  // Handle event registration form submission
+  const form = document.getElementById('event-registration-form');
+  const messageDiv = document.getElementById('form-message');
+  const submitBtn = document.getElementById('registration-btn');
+
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      const originalText = submitBtn?.textContent || 'Reserve my spot';
+
+      // Show loading state
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Reserving...';
+      }
+      if (messageDiv) {
+        messageDiv.textContent = '';
+        messageDiv.className = 'text-sm text-stone-500';
+      }
+
+      try {
+        // Send to Formspree via AJAX
+        const response = await fetch(`https://formspree.io/f/${formId}`, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          // Success - stay on the page
+          if (messageDiv) {
+            messageDiv.innerHTML = '✓ Thank you for your registration! We have received your reservation. You will soon receive a confirmation email with the event details. See you on February 13. 🙏✨';
+            messageDiv.className = 'text-sm text-green-600 font-semibold mt-4 p-3 bg-green-50 rounded-lg';
+          }
+          
+          // Reset form
+          form.reset();
+          
+          // Reset button after 15 seconds
+          if (submitBtn) {
+            setTimeout(() => {
+              submitBtn.disabled = false;
+              submitBtn.textContent = originalText;
+              if (messageDiv) {
+                messageDiv.textContent = '';
+                messageDiv.className = 'text-sm text-stone-500';
+              }
+            }, 15000);
+          }
+        } else {
+          // Handle validation errors
+          const errors = data.errors || [];
+          const errorMessage = errors.length > 0 
+            ? errors.map((err) => err.message).join(', ')
+            : 'Error processing registration';
+          throw new Error(errorMessage);
+        }
+      } catch (error) {
+        console.error('Registration error:', error);
+        
+        if (messageDiv) {
+          messageDiv.innerHTML = '✗ There was an error. Please check your information and try again, or contact us via WhatsApp at +57 320 7329921.';
+          messageDiv.className = 'text-sm text-red-600 font-semibold mt-4 p-3 bg-red-50 rounded-lg';
+        }
+        
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalText;
+        }
+
+        // Clear message after 15 seconds
+        setTimeout(() => {
+          if (messageDiv) {
+            messageDiv.textContent = '';
+            messageDiv.className = 'text-sm text-stone-500';
+          }
+        }, 15000);
+      }
+    });
+  }
+</script>
