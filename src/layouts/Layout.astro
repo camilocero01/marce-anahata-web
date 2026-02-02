@@ -40,6 +40,44 @@ const siteUrl = Astro.site ?? new URL('https://www.marceanahata.com');
 const resolvedImage = image?.startsWith('http') ? image : new URL(image, siteUrl).toString();
 const resolvedLogo = logo?.startsWith('http') ? logo : new URL(logo, siteUrl).toString();
 
+const normalizedPath = Astro.url.pathname !== '/' && Astro.url.pathname.endsWith('/')
+    ? Astro.url.pathname.slice(0, -1)
+    : Astro.url.pathname;
+const isEnPath = normalizedPath.startsWith('/en');
+const baseEsPath = isEnPath ? normalizedPath.replace(/^\/en/, '') || '/' : normalizedPath || '/';
+
+const enPathOverrides: Record<string, string> = {
+    '/': '/en/',
+    '/nosotros': '/en/about',
+    '/sobre-mi': '/en/sobre-mi',
+    '/clases': '/en/clases',
+    '/terapia-sonido': '/en/terapia-sonido',
+    '/rituales': '/en/rituales',
+    '/bienestar-corporativo': '/en/bienestar-corporativo',
+    '/contacto': '/en/contacto',
+    '/faq': '/en/faq',
+    '/tarifas': '/en/tarifas',
+    '/buscar': '/en/buscar',
+    '/blog': '/en/blog',
+    '/ritual-baby-blessing': '/en/ritual-baby-blessing',
+    '/ritual-cierre-apertura': '/en/ritual-cierre-apertura',
+    '/ritual-cumpleanos': '/en/ritual-cumpleanos',
+    '/ritual-despedida-soltera': '/en/ritual-despedida-soltera',
+    '/ritual-pareja': '/en/ritual-pareja',
+};
+
+const getEnPath = (path: string) => {
+    if (enPathOverrides[path]) return enPathOverrides[path];
+    if (path.startsWith('/blog/')) return `/en${path}`;
+    if (path.startsWith('/ritual-')) return `/en${path}`;
+    return null;
+};
+
+const resolvedEsPath = isEnPath ? baseEsPath : normalizedPath || '/';
+const resolvedEnPath = isEnPath ? normalizedPath : getEnPath(baseEsPath);
+const resolvedEsUrl = new URL(resolvedEsPath, siteUrl).toString();
+const resolvedEnUrl = resolvedEnPath ? new URL(resolvedEnPath, siteUrl).toString() : null;
+
 // Schema.org para SEO Local (Negocio Local)
 const schema = JSON.stringify({
   "@context": "https://schema.org",
@@ -113,9 +151,13 @@ const orgSchema = JSON.stringify({
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href={Astro.url} />
         <link rel="sitemap" href="/sitemap-index.xml" />
+        <link rel="alternate" hreflang="es-CO" href={resolvedEsUrl} />
+        {resolvedEnUrl && <link rel="alternate" hreflang="en" href={resolvedEnUrl} />}
+        <link rel="alternate" hreflang="x-default" href={resolvedEsUrl} />
 
         <meta name="theme-color" content="#243c5a" />
         <meta property="og:locale" content="es_CO" />
+        {resolvedEnUrl && <meta property="og:locale:alternate" content="en_US" />}
         <meta property="fb:app_id" content="1234567890" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={title} />
@@ -132,6 +174,7 @@ const orgSchema = JSON.stringify({
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="634" />
         <meta property="og:image:type" content="image/jpeg" />
+        <meta property="og:image:alt" content={title} />
         <meta property="og:logo" content={resolvedLogo} />
 
         <link rel="alternate" type="application/rss+xml" title="Blog RSS" href="/rss.xml" />
