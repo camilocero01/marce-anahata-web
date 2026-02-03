@@ -79,6 +79,8 @@ const sonidoPosts = (await getCollection('blog', ({ data, slug }) =>
       <a 
         href={whatsappLink}
         target="_blank"
+        data-event="whatsapp_click"
+        data-label="Sound Therapy Hero CTA"
         class="inline-block bg-[#6ed8d9] text-[#243c5a] px-8 py-4 rounded-full font-medium hover:bg-[#243c5a] hover:text-white transition-all duration-300 transform hover:-translate-y-1 shadow-lg"
       >
         Agendar mi Sesión
@@ -338,6 +340,8 @@ const sonidoPosts = (await getCollection('blog', ({ data, slug }) =>
         <a 
           href={whatsappLink}
           target="_blank"
+          data-event="whatsapp_click"
+          data-label="Sound Therapy CTA Final"
           class="w-full block bg-white text-[#243c5a] py-4 rounded-xl font-bold hover:bg-[#6ed8d9] transition-colors shadow-lg"
         >
           Agendar por WhatsApp

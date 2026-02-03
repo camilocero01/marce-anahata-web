@@ -49,7 +49,7 @@ const whatsappLink = `https://wa.me/573207329921?text=${encodeURIComponent(servi
       <span class="uppercase tracking-[0.2em] text-sm md:text-base mb-4 block text-[#6ed8d9] font-medium">Tribu y Ritual</span>
       <h1 class="text-4xl md:text-6xl font-serif mb-6 leading-tight drop-shadow-sm">{serviceInfo.title}</h1>
       <p class="text-lg md:text-xl font-light max-w-2xl mx-auto mb-8 opacity-95 text-stone-50 leading-relaxed">{serviceInfo.subtitle}</p>
-      <a href={whatsappLink} target="_blank" class="inline-block bg-[#6ed8d9] text-[#243c5a] px-8 py-4 rounded-full font-bold hover:bg-white transition-all duration-300 transform hover:-translate-y-1 shadow-lg">
+      <a href={whatsappLink} target="_blank" data-event="whatsapp_click" data-label="Women Circle Hero CTA" class="inline-block bg-[#6ed8d9] text-[#243c5a] px-8 py-4 rounded-full font-bold hover:bg-white transition-all duration-300 transform hover:-translate-y-1 shadow-lg">
         Consultar Próximo Encuentro
       </a>
       <p class="mt-3 text-stone-200/80 text-sm">{serviceInfo.frequency} · Duración {serviceInfo.duration}</p>
@@ -83,7 +83,7 @@ const whatsappLink = `https://wa.me/573207329921?text=${encodeURIComponent(servi
             <li class="flex items-center gap-2 text-sm"><span class="text-[#6ed8d9]">✓</span> Ritual guiado y journaling</li>
             <li class="flex items-center gap-2 text-sm"><span class="text-[#6ed8d9]">✓</span> Cierre con sonido y integración</li>
           </ul>
-          <a href={whatsappLink} target="_blank" class="mt-6 inline-block w-full text-center py-3 rounded-lg border-2 border-[#243c5a] text-[#243c5a] font-semibold hover:bg-[#243c5a] hover:text-white transition-colors">
+          <a href={whatsappLink} target="_blank" data-event="whatsapp_click" data-label="Women Circle Reserve Spot CTA" class="mt-6 inline-block w-full text-center py-3 rounded-lg border-2 border-[#243c5a] text-[#243c5a] font-semibold hover:bg-[#243c5a] hover:text-white transition-colors">
             Reservar mi cupo
           </a>
         </div>
@@ -124,7 +124,7 @@ const whatsappLink = `https://wa.me/573207329921?text=${encodeURIComponent(servi
       <p class="text-white/80 text-lg mb-10 leading-relaxed max-w-2xl mx-auto">
         Los cupos son limitados para cuidar el tejido del círculo. Escríbeme para enviarte fecha, detalles e inversión.
       </p>
-      <a href={whatsappLink} target="_blank" class="inline-flex items-center gap-3 bg-white text-[#243c5a] px-8 py-4 rounded-full font-bold hover:bg-[#6ed8d9] transition-all duration-300 shadow-lg hover:shadow-[#6ed8d9]/20">
+      <a href={whatsappLink} target="_blank" data-event="whatsapp_click" data-label="Women Circle Contact CTA" class="inline-flex items-center gap-3 bg-white text-[#243c5a] px-8 py-4 rounded-full font-bold hover:bg-[#6ed8d9] transition-all duration-300 shadow-lg hover:shadow-[#6ed8d9]/20">
         Contactar por WhatsApp
       </a>
       <p class="mt-6 text-sm text-[#6ed8d9]/80 font-light tracking-wider">Respuesta rápida · Medellín – El Poblado</p>

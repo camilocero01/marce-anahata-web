@@ -61,8 +61,8 @@ const ritualPosts: any[] = [];
       <a 
         href={whatsappLink}
         target="_blank"
-        rel="noopener noreferrer"
-        class="inline-block bg-[#6ed8d9] text-[#243c5a] px-8 py-4 rounded-full font-medium hover:bg-white transition-all duration-300 transform hover:-translate-y-1 shadow-lg"
+        rel="noopener noreferrer"        data-event="whatsapp_click"
+        data-label="Birthday Ritual Hero CTA"        class="inline-block bg-[#6ed8d9] text-[#243c5a] px-8 py-4 rounded-full font-medium hover:bg-white transition-all duration-300 transform hover:-translate-y-1 shadow-lg"
       >
         Book my celebration
       </a>
@@ -164,6 +164,8 @@ const ritualPosts: any[] = [];
             href={whatsappLink}
             target="_blank"
             rel="noopener noreferrer"
+            data-event="whatsapp_click"
+            data-label="Birthday Ritual CTA Final"
             class="w-full block bg-[#6ed8d9] text-[#243c5a] py-4 rounded-xl font-bold hover:bg-white transition-colors shadow-lg"
           >
             Book my birthday ritual

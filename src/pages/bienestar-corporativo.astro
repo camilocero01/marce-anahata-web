@@ -70,6 +70,8 @@ const bienestarPosts = (await getCollection('blog', ({ data, slug }) =>
       <a 
         href={whatsappLink}
         target="_blank"
+        data-event="whatsapp_click"
+        data-label="Corporate Wellness Hero CTA"
         class="inline-block bg-[#6ed8d9] text-[#243c5a] px-8 py-4 rounded-full font-bold hover:bg-white transition-all duration-300 transform hover:-translate-y-1 shadow-lg"
       >
         Solicitar Propuesta para mi Empresa
@@ -258,6 +260,8 @@ const bienestarPosts = (await getCollection('blog', ({ data, slug }) =>
           <a 
             href={whatsappLink}
             target="_blank"
+            data-event="whatsapp_click"
+            data-label="Corporate Wellness CTA Final"
             class="bg-[#6ed8d9] text-[#243c5a] px-8 py-4 rounded-full font-bold hover:bg-white transition-all duration-300 shadow-lg"
           >
             Cotizar Taller Corporativo

@@ -49,6 +49,8 @@ const ritualesPosts = (await getCollection('blog', ({ data, slug }) =>
       <a 
         href={whatsappLink}
         target="_blank"
+        data-event="whatsapp_click"
+        data-label="Baby Blessing Hero CTA"
         class="inline-block bg-[#6ed8d9] text-[#243c5a] px-8 py-4 rounded-full font-medium hover:bg-[#5d5a8c] hover:text-white transition-all duration-300 transform hover:-translate-y-1 shadow-lg"
       >
         Planear mi Ceremonia
@@ -149,6 +151,8 @@ const ritualesPosts = (await getCollection('blog', ({ data, slug }) =>
           <a 
             href={whatsappLink}
             target="_blank"
+            data-event="whatsapp_click"
+            data-label="Baby Blessing CTA Final"
             class="w-full block bg-white/20 text-white py-4 rounded-xl font-bold hover:bg-white/40 transition-colors backdrop-blur-sm shadow-md"
           >
             Consultar disponibilidad por WhatsApp

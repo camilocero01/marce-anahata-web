@@ -253,6 +253,8 @@ const sobreMiPosts = (await getCollection('blog', ({ data, slug }) =>
       <a 
         href={whatsappLink}
         target="_blank"
+        data-event="whatsapp_click"
+        data-label="About Page - Let's Talk CTA"
         class="inline-block bg-white text-[#243c5a] px-10 py-4 rounded-full font-bold hover:bg-[#6ed8d9] transition-all duration-300 shadow-lg"
       >
         Hablemos

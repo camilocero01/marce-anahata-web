@@ -61,8 +61,8 @@ const ritualPosts: any[] = [];
       <a 
         href={whatsappLink}
         target="_blank"
-        rel="noopener noreferrer"
-        class="inline-block bg-[#6ed8d9] text-[#243c5a] px-8 py-4 rounded-full font-medium hover:bg-[#5d5a8c] hover:text-white transition-all duration-300 transform hover:-translate-y-1 shadow-lg"
+        rel="noopener noreferrer"        data-event="whatsapp_click"
+        data-label="Baby Blessing Hero CTA"        class="inline-block bg-[#6ed8d9] text-[#243c5a] px-8 py-4 rounded-full font-medium hover:bg-[#5d5a8c] hover:text-white transition-all duration-300 transform hover:-translate-y-1 shadow-lg"
       >
         Plan my ceremony
       </a>
@@ -164,6 +164,8 @@ const ritualPosts: any[] = [];
             href={whatsappLink}
             target="_blank"
             rel="noopener noreferrer"
+            data-event="whatsapp_click"
+            data-label="Baby Blessing CTA Final"
             class="w-full block bg-stone-100 text-[#243c5a] py-4 rounded-xl font-bold hover:bg-[#6ed8d9] transition-colors shadow-md"
           >
             Check availability on WhatsApp
