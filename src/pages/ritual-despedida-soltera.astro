@@ -10,7 +10,7 @@ import ritualDespedidaAmigasImg from '../assets/ritual/ritual-despedida-soltera-
 const serviceInfo = {
   title: "Ritual de Despedida de Soltera: Círculo de Diosas",
   subtitle: "Una celebración sagrada para honrar a la novia, tejer lazos de sororidad y llenarla de bendiciones antes de su gran día.",
-  price: "$120.000 COP", // PON TU PRECIO REAL (O "Consultar según # de asistentes")
+  price: "$138.000 COP", // PON TU PRECIO REAL (O "Consultar según # de asistentes")
   duration: "2 a 3 Horas",
   whatsappMessage: "Hola Marce Anahata, quiero organizar una Despedida de Soltera Consciente para una amiga. Quisiera conocer los detalles y disponibilidad."
 };
@@ -139,13 +139,21 @@ const ritualesPosts = (await getCollection('blog', ({ data, slug }) =>
           "Las amigas son la familia que elegimos. Honrarlas en círculo es medicina pura."
         </p>
 
-        <a 
-          href={whatsappLink}
-          target="_blank"
-          class="w-full block bg-[#6ed8d9] text-[#243c5a] py-4 rounded-xl font-bold hover:bg-white transition-colors shadow-lg"
-        >
-          Cotizar Ritual para mi Grupo
-        </a>
+        <div class="flex flex-col gap-3">
+          <a 
+            href="/tarifas#rituales"
+            class="w-full block bg-[#6ed8d9] text-[#243c5a] py-4 rounded-xl font-bold hover:bg-white transition-colors"
+          >
+            Ver Precios
+          </a>
+          <a 
+            href={whatsappLink}
+            target="_blank"
+            class="w-full block bg-white/20 text-white py-4 rounded-xl font-bold hover:bg-white/40 transition-colors shadow-lg backdrop-blur-sm"
+          >
+            Cotizar Ritual para mi Grupo
+          </a>
+        </div>
         <p class="mt-4 text-xs text-white/50">*El valor puede ajustarse según el número de asistentes y si se incluyen kits de regalo. Se requiere reserva previa con el 50% para separar fecha</p>
       </div>
     </div>

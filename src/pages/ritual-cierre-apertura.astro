@@ -138,13 +138,21 @@ const ritualesPosts = (await getCollection('blog', ({ data, slug }) =>
           "La claridad no llega pensando más, sino soltando lo que nubla tu visión."
         </p>
 
-        <a 
-          href={whatsappLink}
-          target="_blank"
-          class="w-full block bg-white text-[#243c5a] py-4 rounded-xl font-bold hover:bg-[#6ed8d9] transition-colors shadow-lg"
-        >
-          Agendar mi sesión de claridad
-        </a>
+        <div class="flex flex-col gap-3">
+          <a 
+            href="/tarifas#rituales"
+            class="w-full block bg-white text-[#243c5a] py-4 rounded-xl font-bold hover:bg-[#6ed8d9] transition-colors"
+          >
+            Ver Precios
+          </a>
+          <a 
+            href={whatsappLink}
+            target="_blank"
+            class="w-full block bg-white/20 text-white py-4 rounded-xl font-bold hover:bg-white/40 transition-colors shadow-lg backdrop-blur-sm"
+          >
+            Agendar mi sesión de claridad
+          </a>
+        </div>
         <p class="mt-4 text-xs text-white/40">*Disponible en formato individual, de pareja o para grupos pequeños (consultar precios). Se requiere reserva previa con el 50% para separar fecha</p>
       </div>
     </div>

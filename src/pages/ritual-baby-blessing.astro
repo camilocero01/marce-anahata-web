@@ -139,13 +139,21 @@ const ritualesPosts = (await getCollection('blog', ({ data, slug }) =>
           "Para cuidar a un bebé, primero debemos cuidar a la madre que lo sostiene."
         </p>
 
-        <a 
-          href={whatsappLink}
-          target="_blank"
-          class="w-full block bg-stone-100 text-[#243c5a] py-4 rounded-xl font-bold hover:bg-[#6ed8d9] transition-colors shadow-md"
-        >
-          Consultar disponibilidad por WhatsApp
-        </a>
+        <div class="flex flex-col gap-3">
+          <a 
+            href="/tarifas#rituales"
+            class="w-full block bg-stone-100 text-[#243c5a] py-4 rounded-xl font-bold hover:bg-[#6ed8d9] transition-colors"
+          >
+            Ver Precios
+          </a>
+          <a 
+            href={whatsappLink}
+            target="_blank"
+            class="w-full block bg-white/20 text-white py-4 rounded-xl font-bold hover:bg-white/40 transition-colors backdrop-blur-sm shadow-md"
+          >
+            Consultar disponibilidad por WhatsApp
+          </a>
+        </div>
         <p class="mt-4 text-xs text-white/40">*Ideal realizarlo entre la semana 28 y 36 de gestación. El valor puede variar según el número de asistentes. Se requiere reserva previa con el 50% para separar fecha.</p>
       </div>
     </div>

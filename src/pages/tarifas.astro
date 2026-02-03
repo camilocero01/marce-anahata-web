@@ -105,6 +105,18 @@ const tarifas = {
       cantidad: 1,
       total: '$105,000',
       individual: '$105,000'
+    },
+    {
+      descripcion: 'Ritual de pareja (tarifa por pareja)',
+      cantidad: 1,
+      total: '$360,000',
+      individual: '$360,000'
+    },
+    {
+      descripcion: 'Baby Blessing (tarifa por familia)',
+      cantidad: 1,
+      total: '$360,000',
+      individual: '$360,000'
     }
   ],
   consultas: [
@@ -211,7 +223,7 @@ const tarifas = {
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-20">
     
     <!-- Clases Yoga Grupales -->
-    <div>
+    <div id="clases-grupales">
       <div class="mb-6">
         <h2 class="text-2xl md:text-3xl font-serif text-marce-base-3 mb-3">
           🧘 Clases de Yoga Grupal
@@ -241,7 +253,7 @@ const tarifas = {
     </div>
 
     <!-- Clases Personalizadas -->
-    <div>
+    <div id="clases-personalizadas">
       <div class="mb-6">
         <h2 class="text-2xl md:text-3xl font-serif text-marce-base-3 mb-3">
           ✨ Clases Personalizadas
@@ -301,7 +313,7 @@ const tarifas = {
     </div>
 
     <!-- Rituales -->
-    <div>
+    <div id="rituales">
       <div class="mb-6">
         <h2 class="text-2xl md:text-3xl font-serif text-marce-base-3 mb-3">
           🕯️ Rituales Sagrados
@@ -359,7 +371,7 @@ const tarifas = {
     </div>
 
     <!-- Clases Fuera del Centro -->
-    <div>
+    <div id="talleres">
       <div class="mb-6">
         <h2 class="text-2xl md:text-3xl font-serif text-marce-base-3 mb-3">
           🌍 Clases Fuera del Centro

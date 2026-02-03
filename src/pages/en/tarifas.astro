@@ -87,6 +87,18 @@ const rates = {
     {
       description: '6+ people',
       total: '$27'
+    },
+    {
+      descripcion: 'Couple Ritual(couple)',
+      cantidad: 1,
+      total: '$95',
+      individual: '$95'
+    },
+    {
+      descripcion: 'Baby Blessing(include family)',
+      cantidad: 1,
+      total: '$95',
+      individual: '$95'
     }
   ],
   consultations: [
@@ -190,7 +202,7 @@ const rates = {
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-20">
     
     <!-- Group Yoga Classes -->
-    <div>
+    <div id="clases-grupales">
       <div class="mb-6">
         <h2 class="text-2xl md:text-3xl font-serif text-marce-base-3 mb-3">
           🧘 Group Yoga Classes
@@ -220,7 +232,7 @@ const rates = {
     </div>
 
     <!-- Private Classes -->
-    <div>
+    <div id="clases-personalizadas">
       <div class="mb-6">
         <h2 class="text-2xl md:text-3xl font-serif text-marce-base-3 mb-3">
           ✨ Private Classes
@@ -280,7 +292,7 @@ const rates = {
     </div>
 
     <!-- Sacred Rituals -->
-    <div>
+    <div id="rituales">
       <div class="mb-6">
         <h2 class="text-2xl md:text-3xl font-serif text-marce-base-3 mb-3">
           🕯️ Sacred Rituals
@@ -338,7 +350,7 @@ const rates = {
     </div>
 
     <!-- Off-Site Classes -->
-    <div>
+    <div id="talleres">
       <div class="mb-6">
         <h2 class="text-2xl md:text-3xl font-serif text-marce-base-3 mb-3">
           🌍 Off-Site Classes

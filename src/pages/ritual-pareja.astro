@@ -140,13 +140,21 @@ const ritualesPosts = (await getCollection('blog', ({ data, slug }) =>
           "El amor no es algo que encuentras. El amor es algo que construyes."
         </p>
 
-        <a 
-          href={whatsappLink}
-          target="_blank"
-          class="w-full block bg-white text-[#243c5a] py-4 rounded-xl font-bold hover:bg-[#6ed8d9] transition-colors"
-        >
-          Agendar Cita por WhatsApp
-        </a>
+        <div class="flex flex-col gap-3">
+          <a 
+            href="/tarifas#rituales"
+            class="w-full block bg-white text-[#243c5a] py-4 rounded-xl font-bold hover:bg-[#6ed8d9] transition-colors"
+          >
+            Ver Precios
+          </a>
+          <a 
+            href={whatsappLink}
+            target="_blank"
+            class="w-full block bg-white/20 text-white py-4 rounded-xl font-bold hover:bg-white/40 transition-colors backdrop-blur-sm"
+          >
+            Agendar Cita por WhatsApp
+          </a>
+        </div>
         <p class="mt-4 text-xs text-white/40">Se requiere reserva previa con el 50% para separar fecha</p>
       </div>
     </div>

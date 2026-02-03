@@ -31,7 +31,8 @@ const offerings = [
     description: "Tu espacio semanal de mantenimiento energético. Únete a la comunidad para practicar kriyas, pranayamas y meditaciones que te sostienen en la rutina.",
     details: ["Presencial y Online", "Frecuencia semanal", "Packs mensuales disponibles"],
     cta: "Reservar Ahora",
-    whatsappMsg: "Hola Marce Anahata, quiero reservar mi lugar en las clases grupales regulares. ¿Cómo procedo?"
+    whatsappMsg: "Hola Marce Anahata, quiero reservar mi lugar en las clases grupales regulares. ¿Cómo procedo?",
+    tarifaLink: "/tarifas#clases-grupales"
   },
   {
     icon: "✨",
@@ -39,7 +40,8 @@ const offerings = [
     description: "Un acompañamiento personalizado y profundo. Diseñamos la práctica según tus necesidades específicas (ansiedad, propósito, vitalidad, etc.).",
     details: ["Atención 100% personalizada", "Horarios flexibles", "Seguimiento cercano"],
     cta: "Agendar Sesión",
-    whatsappMsg: "Hola Marce Anahata, quiero agendar una sesión privada de yoga personalizada. ¿Qué disponibilidad tienes?"
+    whatsappMsg: "Hola Marce Anahata, quiero agendar una sesión privada de yoga personalizada. ¿Qué disponibilidad tienes?",
+    tarifaLink: "/tarifas#clases-personalizadas"
   },
   {
     icon: "🔮",
@@ -47,7 +49,8 @@ const offerings = [
     description: "Inmersiones de fin de semana o varias horas para trabajar temas específicos: Prosperidad, Relaciones, Sanación de Linaje, Chakras, etc.",
     details: ["Temáticas rotativas", "Mayor duración y profundidad", "Material de apoyo"],
     cta: "Consultar Talleres",
-    whatsappMsg: "Hola Marce Anahata, quisiera información sobre los próximos talleres temáticos disponibles."
+    whatsappMsg: "Hola Marce Anahata, quisiera información sobre los próximos talleres temáticos disponibles.",
+    tarifaLink: "/tarifas#talleres"
   }
 ];
 ---
@@ -165,7 +168,7 @@ const offerings = [
 
           <div class="flex flex-col gap-3">
             <a 
-              href="/tarifas"
+              href={offer.tarifaLink}
               class="text-center w-full py-3 rounded-lg bg-[#6ed8d9] text-[#243c5a] font-semibold hover:bg-[#5d5a8c] hover:text-white transition-colors shadow-sm"
             >
               Ver Precios

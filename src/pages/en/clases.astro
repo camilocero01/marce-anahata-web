@@ -32,7 +32,8 @@ const offerings = [
     description: "Your weekly space for energetic maintenance. Join the community to practice kriyas, pranayamas, and meditations that support your routine.",
     details: ["In-person and Online", "Weekly frequency", "Monthly packs available"],
     cta: "Book Now",
-    whatsappMsg: "Hi Marce Anahata, I want to reserve my spot in the regular group classes. How do I proceed?"
+    whatsappMsg: "Hi Marce Anahata, I want to reserve my spot in the regular group classes. How do I proceed?",
+    tarifaLink: "/en/tarifas#clases-grupales"
   },
   {
     icon: "✨",
@@ -40,7 +41,8 @@ const offerings = [
     description: "Personalized, deep support. We design the practice according to your specific needs (anxiety, purpose, vitality, etc.).",
     details: ["100% personalized attention", "Flexible schedules", "Close follow-up"],
     cta: "Schedule Session",
-    whatsappMsg: "Hi Marce Anahata, I'd like to schedule a personalized private yoga session. What's your availability?"
+    whatsappMsg: "Hi Marce Anahata, I'd like to schedule a personalized private yoga session. What's your availability?",
+    tarifaLink: "/en/tarifas#clases-personalizadas"
   },
   {
     icon: "🔮",
@@ -48,7 +50,8 @@ const offerings = [
     description: "Weekend or multi-hour immersions to work on specific themes: Prosperity, Relationships, Ancestral Healing, Chakras, etc.",
     details: ["Rotating themes", "Longer duration and depth", "Support material"],
     cta: "Ask About Workshops",
-    whatsappMsg: "Hi Marce Anahata, I'd like information about the upcoming thematic workshops available."
+    whatsappMsg: "Hi Marce Anahata, I'd like information about the upcoming thematic workshops available.",
+    tarifaLink: "/en/tarifas#talleres"
   }
 ];
 ---
@@ -162,7 +165,7 @@ const offerings = [
 
           <div class="flex flex-col gap-3">
             <a 
-              href="/en/tarifas"
+              href={offer.tarifaLink}
               class="text-center w-full py-3 rounded-lg bg-[#6ed8d9] text-[#243c5a] font-semibold hover:bg-[#5d5a8c] hover:text-white transition-colors shadow-sm"
             >
               View Pricing
