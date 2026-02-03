@@ -8,7 +8,6 @@ export const defaultLang = 'es';
 export const ui = {
   es: {
     'nav.home': 'Inicio',
-    'nav.about': 'Nosotros',
     'nav.blog': 'Blog',
     'nav.services': 'Servicios',
     'nav.yoga': 'Clases de Yoga',
@@ -20,7 +19,6 @@ export const ui = {
     'nav.contact': 'Contacto',
     'nav.cta': 'Contáctenos',
     'nav.about': 'Sobre Nosotros',
-    'nav.faq': 'Preguntas Frecuentes',
     'nav.prices': 'Tarifas',
     'footer.explore': 'Explora',
     'footer.contact': 'Contacto y Ubicación',
@@ -33,7 +31,6 @@ export const ui = {
   },
   en: {
     'nav.home': 'Home',
-    'nav.about': 'About Us',
     'nav.blog': 'Blog',
     'nav.services': 'Services',
     'nav.yoga': 'Yoga Classes',
@@ -45,7 +42,6 @@ export const ui = {
     'nav.contact': 'Contact',
     'nav.cta': 'Contact Us',
     'nav.about': 'About Us',
-    'nav.faq': 'FAQ',
     'nav.prices': 'Prices',
     'footer.explore': 'Explore',
     'footer.contact': 'Contact & Location',
