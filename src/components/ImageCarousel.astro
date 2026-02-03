@@ -65,6 +65,8 @@ const imageSchema = {
       <button
         class="carousel-btn carousel-btn--prev"
         data-carousel-id={carouselId}
+        data-event="carousel_nav"
+        data-direction="prev"
         aria-label="Imagen anterior"
         type="button"
       >
@@ -73,6 +75,8 @@ const imageSchema = {
       <button
         class="carousel-btn carousel-btn--next"
         data-carousel-id={carouselId}
+        data-event="carousel_nav"
+        data-direction="next"
         aria-label="Siguiente imagen"
         type="button"
       >

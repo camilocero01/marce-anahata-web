@@ -224,6 +224,155 @@ const orgSchema = JSON.stringify({
             });
         </script>
 
+        <!-- Pricing Page Tracking -->
+        <script is:inline>
+            document.addEventListener('click', (e) => {
+                const link = e.target.closest('[data-event="pricing_click"]');
+                if (link && window.gtag) {
+                    const label = link.getAttribute('data-label') || 'Unknown';
+                    const page = link.getAttribute('data-page') || document.location.pathname;
+                    
+                    window.gtag('event', 'pricing_page_click', {
+                        'event_category': 'engagement',
+                        'event_label': label,
+                        'page_path': page
+                    });
+                }
+            });
+        </script>
+
+        <!-- Newsletter Subscription Tracking -->
+        <script is:inline>
+            document.addEventListener('submit', (e) => {
+                const form = e.target.closest('[data-event="newsletter_signup"]');
+                if (form && window.gtag) {
+                    const page = form.getAttribute('data-page') || document.location.pathname;
+                    
+                    window.gtag('event', 'newsletter_signup', {
+                        'event_category': 'lead',
+                        'event_label': 'Newsletter Subscription',
+                        'page_path': page,
+                        'value': 1
+                    });
+                }
+            });
+        </script>
+
+        <!-- Gallery & Carousel Interaction Tracking -->
+        <script is:inline>
+            document.addEventListener('click', (e) => {
+                const galleryItem = e.target.closest('[data-event="gallery_click"]');
+                if (galleryItem && window.gtag) {
+                    const label = galleryItem.getAttribute('data-label') || 'Gallery Image';
+                    const gallery = galleryItem.getAttribute('data-gallery') || 'Unknown Gallery';
+                    
+                    window.gtag('event', 'gallery_image_click', {
+                        'event_category': 'engagement',
+                        'event_label': label,
+                        'gallery_name': gallery,
+                        'page_path': document.location.pathname
+                    });
+                }
+
+                const carouselBtn = e.target.closest('[data-event="carousel_nav"]');
+                if (carouselBtn && window.gtag) {
+                    const direction = carouselBtn.getAttribute('data-direction') || 'unknown';
+                    const carouselId = carouselBtn.getAttribute('data-carousel-id') || 'Unknown Carousel';
+                    
+                    window.gtag('event', 'carousel_navigation', {
+                        'event_category': 'engagement',
+                        'event_label': `${carouselId} - ${direction}`,
+                        'carousel_id': carouselId,
+                        'direction': direction,
+                        'page_path': document.location.pathname
+                    });
+                }
+            });
+        </script>
+
+        <!-- FAQ Accordion Tracking -->
+        <script is:inline>
+            document.addEventListener('toggle', (e) => {
+                const details = e.target.closest('[data-event="faq_open"]');
+                if (details && window.gtag && details.tagName === 'DETAILS') {
+                    const question = details.getAttribute('data-label') || 'Unknown FAQ';
+                    const state = details.open ? 'opened' : 'closed';
+                    
+                    window.gtag('event', 'faq_interaction', {
+                        'event_category': 'engagement',
+                        'event_label': question,
+                        'faq_action': state,
+                        'page_path': document.location.pathname
+                    });
+                }
+            }, true);
+        </script>
+
+        <!-- Language Switcher Tracking -->
+        <script is:inline>
+            document.addEventListener('click', (e) => {
+                const langLink = e.target.closest('[data-event="language_switch"]');
+                if (langLink && window.gtag) {
+                    const language = langLink.getAttribute('data-language') || 'unknown';
+                    
+                    window.gtag('event', 'language_switch', {
+                        'event_category': 'engagement',
+                        'language': language,
+                        'page_path': document.location.pathname
+                    });
+                }
+            });
+        </script>
+
+        <!-- External Links Tracking -->
+        <script is:inline>
+            document.addEventListener('click', (e) => {
+                const extLink = e.target.closest('[data-event="external_link"]');
+                if (extLink && window.gtag) {
+                    const url = extLink.href || extLink.getAttribute('data-url') || 'unknown';
+                    const label = extLink.getAttribute('data-label') || new URL(url).hostname;
+                    const linkType = extLink.getAttribute('data-link-type') || 'external';
+                    
+                    window.gtag('event', 'external_link_click', {
+                        'event_category': 'engagement',
+                        'event_label': label,
+                        'link_url': url,
+                        'link_type': linkType,
+                        'page_path': document.location.pathname
+                    });
+                }
+            });
+        </script>
+
+        <!-- Scroll Depth Tracking -->
+        <script is:inline>
+            let scrollDepthTracked = new Set();
+            
+            window.addEventListener('scroll', () => {
+                if (!window.gtag) return;
+                
+                const windowHeight = window.innerHeight;
+                const scrollTop = window.scrollY;
+                const docHeight = document.documentElement.scrollHeight;
+                
+                const scrollPercent = Math.round((scrollTop + windowHeight) / docHeight * 100);
+                
+                const checkpoints = [25, 50, 75, 100];
+                
+                checkpoints.forEach(checkpoint => {
+                    if (scrollPercent >= checkpoint && !scrollDepthTracked.has(checkpoint)) {
+                        scrollDepthTracked.add(checkpoint);
+                        
+                        window.gtag('event', 'scroll_depth', {
+                            'event_category': 'engagement',
+                            'scroll_depth_threshold': checkpoint,
+                            'page_path': document.location.pathname
+                        });
+                    }
+                });
+            }, { passive: true });
+        </script>
+
     </head>
     <body class="bg-stone-50 text-stone-800 font-sans flex flex-col min-h-screen">
 
@@ -268,7 +417,7 @@ const orgSchema = JSON.stringify({
                         </button>
                         <div class="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-xl border border-stone-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                             <a href={lang === 'en' ? '/en/faq' : '/faq'} class="block px-4 py-3 text-sm text-stone-700 hover:bg-stone-50 hover:text-[#243c5a] transition-colors">{t('nav.faq')}</a>
-                            <a href={lang === 'en' ? '/en/tarifas' : '/tarifas'} class="block px-4 py-3 text-sm text-stone-700 hover:bg-stone-50 hover:text-[#243c5a] transition-colors last:rounded-b-lg">{t('nav.prices')}</a>
+                            <a href={lang === 'en' ? '/en/tarifas' : '/tarifas'} data-event="pricing_click" data-label="Nav - Pricing Link" class="block px-4 py-3 text-sm text-stone-700 hover:bg-stone-50 hover:text-[#243c5a] transition-colors last:rounded-b-lg">{t('nav.prices')}</a>
                             <a href={lang === 'en' ? '/en/contacto' : '/contacto'} class="block px-4 py-3 text-sm text-stone-700 hover:bg-stone-50 hover:text-[#243c5a] transition-colors last:rounded-b-lg">{t('nav.cta')}</a>
                         </div>
                     </div>
@@ -302,7 +451,7 @@ const orgSchema = JSON.stringify({
         <div class="flex flex-col gap-2 pl-2">
             <a href={lang === 'en' ? '/en/contacto' : '/contacto'} class="text-stone-700 hover:text-[#6ed8d9]">{t('nav.cta')}</a>
             <a href={lang === 'en' ? '/en/faq' : '/faq'} class="text-stone-700 hover:text-[#6ed8d9]">{t('nav.faq')}</a>
-            <a href={lang === 'en' ? '/en/tarifas' : '/tarifas'} class="text-stone-700 hover:text-[#6ed8d9]">{t('nav.prices')}</a>
+            <a href={lang === 'en' ? '/en/tarifas' : '/tarifas'} data-event="pricing_click" data-label="Footer - Pricing Link" class="text-stone-700 hover:text-[#6ed8d9]">{t('nav.prices')}</a>
         </div>
     </div>
     <hr class="border-stone-100">
@@ -370,7 +519,7 @@ const orgSchema = JSON.stringify({
                             <li><a href={lang === 'en' ? '/en/blog' : '/blog'} class="hover:text-[#6ed8d9] transition-colors">{t('nav.blog')}</a></li>
                             <li><a href={lang === 'en' ? '/en/sobre-mi' : '/sobre-mi'} class="hover:text-[#6ed8d9] transition-colors">{t('nav.aboutme')}</a></li>
                             <li><a href={lang === 'en' ? '/en/faq' : '/faq'} class="hover:text-[#6ed8d9] transition-colors">{t('nav.faq')}</a></li>
-                            <li><a href={lang === 'en' ? '/en/tarifas' : '/tarifas'} class="hover:text-[#6ed8d9] transition-colors">{t('nav.prices')}</a></li>
+                            <li><a href={lang === 'en' ? '/en/tarifas' : '/tarifas'} data-event="pricing_click" data-label="Mobile Menu - Pricing Link" class="hover:text-[#6ed8d9] transition-colors">{t('nav.prices')}</a></li>
                             <li><a href={lang === 'en' ? '/en/contacto' : '/contacto'} class="hover:text-[#6ed8d9] transition-colors">{t('footer.contact')}</a></li>
                         </ul>
                     </div>

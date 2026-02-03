@@ -180,7 +180,7 @@ const faqSchema = JSON.stringify({
       <!-- FAQ Accordion -->
       <div class="space-y-4">
         {faqs.map((faq, index) => (
-          <details class="group bg-white rounded-xl border-2 border-stone-100 hover:border-[#6ed8d9]/30 transition-all shadow-sm hover:shadow-md">
+          <details class="group bg-white rounded-xl border-2 border-stone-100 hover:border-[#6ed8d9]/30 transition-all shadow-sm hover:shadow-md" data-event="faq_open" data-label={faq.question.substring(0, 50)}>
             <summary class="cursor-pointer p-6 font-semibold text-[#243c5a] flex justify-between items-center list-none">
               <span class="flex-1 pr-4 text-left">{faq.question}</span>
               <svg class="w-5 h-5 text-[#6ed8d9] transition-transform group-open:rotate-180 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
