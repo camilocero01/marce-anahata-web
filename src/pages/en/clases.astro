@@ -10,7 +10,7 @@ import { getCollection } from 'astro:content';
 const pageInfo = {
   title: "Kundalini Yoga Classes & Workshops in Medellín - El Poblado",
   subtitle: "Sacred technology to strengthen your body, calm the mind, and awaken vital energy in daily life.",
-  whatsappMessageGeneral: "Hi Marce Anahata, I'm interested in your Kundalini Yoga classes. Could you share the current schedules and prices?",
+  whatsappMessageGeneral: "Hi Marce Anahata, I'm interested in your Kundalini Yoga classes. Could you share information about pricing and monthly packages?",
 };
 
 const whatsappLinkGeneral = `https://wa.me/573207329921?text=${encodeURIComponent(pageInfo.whatsappMessageGeneral)}`;
@@ -31,24 +31,24 @@ const offerings = [
     title: "Regular Group Classes",
     description: "Your weekly space for energetic maintenance. Join the community to practice kriyas, pranayamas, and meditations that support your routine.",
     details: ["In-person and Online", "Weekly frequency", "Monthly packs available"],
-    cta: "Check Schedules",
-    whatsappMsg: "Hi Marce Anahata, I'm interested in regular group classes. What schedules do you have?"
+    cta: "Book Now",
+    whatsappMsg: "Hi Marce Anahata, I want to reserve my spot in the regular group classes. How do I proceed?"
   },
   {
     icon: "✨",
     title: "Private Sessions (1:1)",
     description: "Personalized, deep support. We design the practice according to your specific needs (anxiety, purpose, vitality, etc.).",
     details: ["100% personalized attention", "Flexible schedules", "Close follow-up"],
-    cta: "Book a Private Session",
-    whatsappMsg: "Hi Marce Anahata, I'd like information about a personalized private yoga session for me."
+    cta: "Schedule Session",
+    whatsappMsg: "Hi Marce Anahata, I'd like to schedule a personalized private yoga session. What's your availability?"
   },
   {
     icon: "🔮",
     title: "Deep Thematic Workshops",
     description: "Weekend or multi-hour immersions to work on specific themes: Prosperity, Relationships, Ancestral Healing, Chakras, etc.",
     details: ["Rotating themes", "Longer duration and depth", "Support material"],
-    cta: "See Upcoming Workshops",
-    whatsappMsg: "Hi Marce Anahata, what's the schedule for your upcoming thematic workshops?"
+    cta: "Ask About Workshops",
+    whatsappMsg: "Hi Marce Anahata, I'd like information about the upcoming thematic workshops available."
   }
 ];
 ---
@@ -160,16 +160,159 @@ const offerings = [
             ))}
           </ul>
 
-          <a 
-            href={whatsappLinkOffer}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-center w-full py-3 rounded-lg border-2 border-[#243c5a] text-[#243c5a] font-semibold hover:bg-[#243c5a] hover:text-white transition-colors"
-          >
-            {offer.cta}
-          </a>
+          <div class="flex flex-col gap-3">
+            <a 
+              href="/en/tarifas"
+              class="text-center w-full py-3 rounded-lg bg-[#6ed8d9] text-[#243c5a] font-semibold hover:bg-[#5d5a8c] hover:text-white transition-colors shadow-sm"
+            >
+              View Pricing
+            </a>
+            <a 
+              href={whatsappLinkOffer}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-center w-full py-3 rounded-lg border-2 border-[#243c5a] text-[#243c5a] font-semibold hover:bg-[#243c5a] hover:text-white transition-colors"
+            >
+              {offer.cta}
+            </a>
+          </div>
         </div>
       )})}
+    </div>
+  </section>
+
+  <section class="py-24 bg-white px-6" id="horarios">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <span class="uppercase tracking-[0.2em] text-sm mb-4 block text-[#6ed8d9] font-medium">Our Schedule</span>
+        <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-4">Current Class Times</h2>
+        <p class="text-[#243c5a]/70 text-lg max-w-2xl mx-auto">Choose the schedule that fits your routine. All our classes combat stress and awaken your vital energy.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        {/* MONDAY */}
+        <div class="group relative">
+          <div class="absolute -inset-0.5 bg-gradient-to-r from-[#5d5a8c] to-[#6ed8d9] rounded-2xl opacity-20 group-hover:opacity-100 transition duration-300 blur"></div>
+          <div class="relative bg-white rounded-2xl p-6 border border-[#6ed8d9]/30 hover:border-[#6ed8d9] transition-all">
+            <h3 class="text-xl font-serif text-[#243c5a] mb-4 flex items-center gap-2">
+              <span class="text-2xl">📅</span>
+              Monday
+            </h3>
+            <div class="space-y-4">
+              <div class="pb-4 border-b border-stone-200">
+                <p class="text-sm font-medium text-[#5d5a8c] mb-1">6:30 AM</p>
+                <p class="text-[#243c5a] font-semibold">Kundalini Yoga</p>
+                <p class="text-xs text-[#243c5a]/60">Meditation</p>
+              </div>
+              <div>
+                <p class="text-sm font-medium text-[#5d5a8c] mb-1">7:00 PM</p>
+                <p class="text-[#243c5a] font-semibold">Kundalini Yoga</p>
+                <p class="text-xs text-[#243c5a]/60">Meditation</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* TUESDAY */}
+        <div class="group relative">
+          <div class="absolute -inset-0.5 bg-gradient-to-r from-[#5d5a8c] to-[#6ed8d9] rounded-2xl opacity-20 group-hover:opacity-100 transition duration-300 blur"></div>
+          <div class="relative bg-white rounded-2xl p-6 border border-[#6ed8d9]/30 hover:border-[#6ed8d9] transition-all">
+            <h3 class="text-xl font-serif text-[#243c5a] mb-4 flex items-center gap-2">
+              <span class="text-2xl">🕯️</span>
+              Tuesday
+            </h3>
+            <div>
+              <p class="text-sm font-medium text-[#5d5a8c] mb-1">10:30 AM</p>
+              <p class="text-[#243c5a] font-semibold">Restorative Yoga</p>
+              <p class="text-xs text-[#243c5a]/60">Deep relaxation and healing</p>
+            </div>
+          </div>
+        </div>
+
+        {/* WEDNESDAY */}
+        <div class="group relative">
+          <div class="absolute -inset-0.5 bg-gradient-to-r from-[#5d5a8c] to-[#6ed8d9] rounded-2xl opacity-20 group-hover:opacity-100 transition duration-300 blur"></div>
+          <div class="relative bg-white rounded-2xl p-6 border border-[#6ed8d9]/30 hover:border-[#6ed8d9] transition-all">
+            <h3 class="text-xl font-serif text-[#243c5a] mb-4 flex items-center gap-2">
+              <span class="text-2xl">⚡</span>
+              Wednesday
+            </h3>
+            <div>
+              <p class="text-sm font-medium text-[#5d5a8c] mb-1">8:30 AM</p>
+              <p class="text-[#243c5a] font-semibold">Yoga Fit</p>
+              <p class="text-xs text-[#243c5a]/60">Energy and strengthening</p>
+            </div>
+          </div>
+        </div>
+
+        {/* THURSDAY */}
+        <div class="group relative">
+          <div class="absolute -inset-0.5 bg-gradient-to-r from-[#5d5a8c] to-[#6ed8d9] rounded-2xl opacity-20 group-hover:opacity-100 transition duration-300 blur"></div>
+          <div class="relative bg-white rounded-2xl p-6 border border-[#6ed8d9]/30 hover:border-[#6ed8d9] transition-all">
+            <h3 class="text-xl font-serif text-[#243c5a] mb-4 flex items-center gap-2">
+              <span class="text-2xl">🧘</span>
+              Thursday
+            </h3>
+            <div>
+              <p class="text-sm font-medium text-[#5d5a8c] mb-1">10:00 AM</p>
+              <p class="text-[#243c5a] font-semibold">Kundalini Yoga</p>
+              <p class="text-xs text-[#243c5a]/60">Awakening and awareness</p>
+            </div>
+          </div>
+        </div>
+
+        {/* FRIDAY */}
+        <div class="group relative">
+          <div class="absolute -inset-0.5 bg-gradient-to-r from-[#5d5a8c] to-[#6ed8d9] rounded-2xl opacity-20 group-hover:opacity-100 transition duration-300 blur"></div>
+          <div class="relative bg-white rounded-2xl p-6 border border-[#6ed8d9]/30 hover:border-[#6ed8d9] transition-all">
+            <h3 class="text-xl font-serif text-[#243c5a] mb-4 flex items-center gap-2">
+              <span class="text-2xl">🌊</span>
+              Friday
+            </h3>
+            <div>
+              <p class="text-sm font-medium text-[#5d5a8c] mb-1">4:00 PM</p>
+              <p class="text-[#243c5a] font-semibold">Yoga Flow</p>
+              <p class="text-xs text-[#243c5a]/60">Fluid and graceful movement</p>
+            </div>
+          </div>
+        </div>
+
+        {/* SATURDAY */}
+        <div class="group relative">
+          <div class="absolute -inset-0.5 bg-gradient-to-r from-[#5d5a8c] to-[#6ed8d9] rounded-2xl opacity-20 group-hover:opacity-100 transition duration-300 blur"></div>
+          <div class="relative bg-white rounded-2xl p-6 border border-[#6ed8d9]/30 hover:border-[#6ed8d9] transition-all">
+            <h3 class="text-xl font-serif text-[#243c5a] mb-4 flex items-center gap-2">
+              <span class="text-2xl">☀️</span>
+              Saturday
+            </h3>
+            <div>
+              <p class="text-sm font-medium text-[#5d5a8c] mb-1">9:00 AM</p>
+              <p class="text-[#243c5a] font-semibold">Kundalini Yoga</p>
+              <p class="text-xs text-[#243c5a]/60">Weekly rebirth</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-gradient-to-r from-[#5d5a8c]/5 to-[#6ed8d9]/5 rounded-2xl p-8 border border-[#6ed8d9]/20">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+          <div>
+            <h3 class="text-xl font-semibold text-[#243c5a] mb-2">Questions about the schedule?</h3>
+            <p class="text-[#243c5a]/70">All our classes are in-person in El Poblado, and some time slots available online. Contact me for more details.</p>
+          </div>
+          <a 
+            href={whatsappLinkGeneral}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="whitespace-nowrap inline-flex items-center gap-2 bg-[#6ed8d9] text-[#243c5a] px-6 py-3 rounded-full font-semibold hover:bg-[#5d5a8c] hover:text-white transition-all shadow-md"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+              <path fill-rule="evenodd" d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 01-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 006.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 011.955-.694l4.423 1.105c.834.209 1.42.96 1.42 1.82V19.5a3 3 0 01-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5z" clip-rule="evenodd" />
+            </svg>
+            Ask on WhatsApp
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -180,7 +323,7 @@ const offerings = [
     <div class="max-w-4xl mx-auto text-center relative z-10">
       <h2 class="text-3xl md:text-4xl font-serif mb-6">Ready to start your practice?</h2>
       <p class="text-white/80 text-lg mb-10 leading-relaxed max-w-2xl mx-auto">
-        Group class schedules and workshop topics vary each month. Contact me directly so I can send you the updated schedule and investment options.
+        Reserve your spot in our classes or ask about our monthly packages and thematic workshops. Contact me directly for all the details.
       </p>
       
       <a 
@@ -192,7 +335,7 @@ const offerings = [
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
           <path fill-rule="evenodd" d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 01-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 006.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 011.955-.694l4.423 1.105c.834.209 1.42.96 1.42 1.82V19.5a3 3 0 01-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5z" clip-rule="evenodd" />
         </svg>
-        Request Current Schedules & Pricing
+        Book My Class
       </a>
       <p class="mt-6 text-sm text-[#6ed8d9]/80 font-light tracking-wider">Fast response via WhatsApp</p>
     </div>
