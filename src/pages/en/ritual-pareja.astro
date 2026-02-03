@@ -153,14 +153,22 @@ const ritualPosts: any[] = [];
           "Love isn't something you find. Love is something you build."
         </p>
 
-        <a 
-          href={whatsappLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="w-full block bg-white text-[#243c5a] py-4 rounded-xl font-bold hover:bg-[#6ed8d9] transition-colors"
-        >
-          Book via WhatsApp
-        </a>
+        <div class="flex flex-col gap-3">
+          <a 
+            href="/en/tarifas#rituales"
+            class="w-full block bg-white text-[#243c5a] py-4 rounded-xl font-bold hover:bg-[#6ed8d9] transition-colors"
+          >
+            View Pricing
+          </a>
+          <a 
+            href={whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-full block bg-white/20 text-white py-4 rounded-xl font-bold hover:bg-white/40 transition-colors backdrop-blur-sm"
+          >
+            Book via WhatsApp
+          </a>
+        </div>
         <p class="mt-4 text-xs text-white/40">A 50% deposit is required to reserve the date.</p>
       </div>
     </div>
