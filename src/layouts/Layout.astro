@@ -162,8 +162,7 @@ const orgSchema = JSON.stringify({
 
         <!-- Performance: Preload critical resources -->
         <link rel="preload" as="image" href="/images/social-preview-wa.jpg" fetchpriority="high" />
-        <link rel="preload" as="font" type="font/woff2" href="/fonts/montserrat-400.woff2" crossorigin />
-        <link rel="preload" as="font" type="font/woff2" href="/fonts/montserrat-700.woff2" crossorigin />
+        <!-- Fonts are imported via @fontsource, no need for manual preload -->
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
