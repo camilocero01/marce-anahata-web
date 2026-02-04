@@ -1,0 +1,129 @@
+---
+// src/components/UpcomingEventsGridEN.astro
+import { getCollection } from 'astro:content';
+
+// Get all featured events in the future (English posts only)
+const allPosts = await getCollection('blog', ({ data, slug }) => !data.draft && slug.startsWith('en/'));
+
+// Filter future and featured events
+const upcomingEvents = allPosts
+  .filter(post => 
+    post.data.isEvent && 
+    post.data.featured && 
+    post.data.eventDate &&
+    new Date(post.data.eventDate) > new Date()
+  )
+  .sort((a, b) => new Date(a.data.eventDate).getTime() - new Date(b.data.eventDate).getTime())
+  .slice(0, 3);
+
+// Format date function
+const formatDate = (date: Date) => {
+  return new Date(date).toLocaleDateString('en-US', {
+    weekday: 'short',
+    day: 'numeric',
+    month: 'short'
+  });
+};
+
+// Get location icon by event type
+const getLocationIcon = (type: string | undefined) => {
+  switch(type) {
+    case 'presencial':
+      return '📍';
+    case 'online':
+      return '💻';
+    case 'hibrido':
+      return '🌐';
+    default:
+      return '📍';
+  }
+};
+---
+
+{upcomingEvents.length > 0 && (
+  <section class="py-16 bg-white px-6">
+    <div class="max-w-6xl mx-auto">
+      {/* Header */}
+      <div class="text-center mb-16">
+        <span class="text-[#5d5a8c] font-bold tracking-widest uppercase text-xs">Beyond Our Services</span>
+        <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mt-2 mb-4">Upcoming Events</h2>
+        <p class="text-[#243c5a]/70 max-w-2xl mx-auto text-lg">Experiential gatherings designed to deepen your practice and connect with a wellness community. Guided meditations, gong baths and sacred ceremonies that transform.</p>
+      </div>
+
+      {/* 3 column grid */}
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        {upcomingEvents.map((event) => (
+          <a 
+            href={`/en/blog/${event.slug.replace('en/', '')}`}
+            data-event="event_click"
+            data-label={`${event.data.title} - Grid EN`}
+            class="group block bg-stone-50 rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-stone-200 hover:border-[#6ed8d9] flex flex-col"
+          >
+            {/* Compact image */}
+            {event.data.image && (
+              <div class="relative h-40 overflow-hidden bg-stone-200">
+                <img
+                  src={event.data.image}
+                  alt={event.data.title}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  loading="lazy"
+                />
+                {/* Event type badge */}
+                <div class="absolute top-2 right-2 bg-[#6ed8d9] text-[#243c5a] text-xs px-2 py-1 rounded-full font-semibold">
+                  {event.data.eventType}
+                </div>
+              </div>
+            )}
+
+            {/* Content */}
+            <div class="p-4 flex flex-col flex-grow">
+              {/* Title */}
+              <h3 class="text-lg font-serif text-[#243c5a] mb-3 group-hover:text-[#6ed8d9] transition-colors line-clamp-2">
+                {event.data.title}
+              </h3>
+
+              {/* Quick details */}
+              <div class="space-y-2 text-xs text-[#5d5a8c] font-medium mb-4 flex-grow">
+                {/* Date and Time */}
+                <div class="flex items-center gap-2">
+                  <span>📅</span>
+                  <span>{formatDate(event.data.eventDate)}</span>
+                  {event.data.eventTime && (
+                    <>
+                      <span>•</span>
+                      <span>{event.data.eventTime.split('-')[0].trim()}</span>
+                    </>
+                  )}
+                </div>
+
+                {/* Location */}
+                {event.data.eventLocation && (
+                  <div class="flex items-center gap-2 line-clamp-1">
+                    <span>{getLocationIcon(event.data.eventType)}</span>
+                    <span class="line-clamp-1 text-[10px]">{event.data.eventLocation}</span>
+                  </div>
+                )}
+
+                {/* Price */}
+                {event.data.eventPrice && (
+                  <div class="flex items-center gap-2 text-[#6ed8d9] font-bold">
+                    <span>💰</span>
+                    <span>${event.data.eventPrice.toLocaleString('es-CO')}</span>
+                  </div>
+                )}
+              </div>
+
+              {/* CTA */}
+              <div class="flex items-center gap-1 text-[#6ed8d9] text-sm font-semibold group-hover:gap-2 transition-all">
+                Book Now
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+)}

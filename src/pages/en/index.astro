@@ -2,6 +2,7 @@
 // src/pages/en/index.astro
 import Layout from '../../layouts/Layout.astro';
 import ReviewsSection from '../../components/cards/ReviewsSection.astro';
+import UpcomingEventsGridEN from '../../components/UpcomingEventsGridEN.astro';
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import terapiaSonidoImg from '../../assets/terapia-sonido-2.webp';
@@ -162,6 +163,8 @@ const serviciosHome = [
       </div>
     </div>
   </section>
+
+  <UpcomingEventsGridEN />
 
   <ReviewsSection lang="en" />
 

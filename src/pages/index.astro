@@ -3,6 +3,7 @@
 import Layout from '../layouts/Layout.astro';
 import ReviewsSection from '../components/cards/ReviewsSection.astro';
 import Newsletter from '../components/Newsletter.astro';
+import UpcomingEventsGrid from '../components/UpcomingEventsTimeline.astro';
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import terapiaSonidoImg from '../assets/terapia-sonido-2.webp';
@@ -164,7 +165,8 @@ const ogImage = '/images/social-preview-wa.jpg';
     </div>
   </section>
 
-
+  <!-- Sección de Próximos Eventos -->
+  <UpcomingEventsGrid />
 
   <ReviewsSection />
 

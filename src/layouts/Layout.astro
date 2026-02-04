@@ -372,6 +372,35 @@ const orgSchema = JSON.stringify({
             }, { passive: true });
         </script>
 
+        <!-- Events Timeline Tracking -->
+        <script is:inline>
+            document.addEventListener('click', (e) => {
+                const eventLink = e.target.closest('[data-event="event_click"]');
+                if (eventLink && window.gtag) {
+                    const label = eventLink.getAttribute('data-label') || 'Unknown Event';
+                    
+                    window.gtag('event', 'event_click', {
+                        'event_category': 'events',
+                        'event_label': label,
+                        'page_path': document.location.pathname,
+                        'timestamp': new Date().toISOString()
+                    });
+                }
+
+                const eventCTA = e.target.closest('[data-event="events_cta_click"]');
+                if (eventCTA && window.gtag) {
+                    const label = eventCTA.getAttribute('data-label') || 'Unknown CTA';
+                    
+                    window.gtag('event', 'events_cta_click', {
+                        'event_category': 'events',
+                        'event_label': label,
+                        'page_path': document.location.pathname,
+                        'timestamp': new Date().toISOString()
+                    });
+                }
+            });
+        </script>
+
     </head>
     <body class="bg-stone-50 text-stone-800 font-sans flex flex-col min-h-screen">
 

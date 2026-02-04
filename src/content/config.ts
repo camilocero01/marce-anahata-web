@@ -12,7 +12,16 @@ const blog = defineCollection({
     tags: z.array(z.string()).default([]),
     image: z.string().optional(),
     canonical: z.string().url().optional(),
-    ogImage: z.string().optional()
+    ogImage: z.string().optional(),
+    // Campos para eventos
+    isEvent: z.boolean().default(false),
+    eventDate: z.coerce.date().optional(),
+    eventTime: z.string().optional(),
+    eventLocation: z.string().optional(),
+    eventType: z.enum(['presencial', 'online', 'hibrido']).optional(),
+    eventCapacity: z.number().optional(),
+    eventPrice: z.number().optional(),
+    featured: z.boolean().default(false)
   })
 });
 
