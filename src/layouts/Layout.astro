@@ -149,7 +149,7 @@ const orgSchema = JSON.stringify({
         <title>{finalTitle}</title>
         <meta name="description" content={description} />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href={Astro.url} />
+        <link rel="canonical" href={`${siteUrl}${normalizedPath || '/'}`} />
         <link rel="sitemap" href="/sitemap-index.xml" />
         <link rel="alternate" hreflang="es-CO" href={resolvedEsUrl} />
         {resolvedEnUrl && <link rel="alternate" hreflang="en" href={resolvedEnUrl} />}
