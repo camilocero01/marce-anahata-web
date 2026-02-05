@@ -25,6 +25,11 @@ Google Search Console reporta **URLs fantasma** que fueron descubiertas en versi
 - ✅ Bloqueadas páginas de paginación duplicadas: `/blog/page/1`, `/blog/tag/*/page/1`
 - ✅ Bloqueadas versiones en inglés de páginas de bajo valor
 
+### 3. Canonical & Hreflang Tags (Completado)
+- ✅ Corregido canonical tag para usar path normalizado sin trailing slashes
+- ✅ Hreflang alternates ya estaban correctamente configurados
+- ✅ Resuelve "Alternate page with proper canonical tag" warning
+
 ---
 
 ## 🛠️ Acciones en Google Search Console
