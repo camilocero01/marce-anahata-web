@@ -1,6 +1,21 @@
 User-agent: *
 Allow: /
+
+# Bloquear páginas de bajo valor SEO
 Disallow: /buscar
+Disallow: /admin
+Disallow: /links
+Disallow: /privacidad
+Disallow: /en/buscar
+Disallow: /en/links
+Disallow: /en/privacidad
+Disallow: /en/404
+
+# Bloquear páginas de paginación duplicadas (page/1 es duplicado de la página principal)
+Disallow: /blog/page/1
+Disallow: /en/blog/page/1
+Disallow: /blog/tag/*/page/1
+Disallow: /en/blog/tag/*/page/1
 
 # Allow AI crawlers and search engines
 User-agent: GPTBot
