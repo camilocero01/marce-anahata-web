@@ -3,14 +3,12 @@ import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog', ({ data }) => !data.draft);
-  // Detectar idioma por prefijo del slug
+  // Solo obtener posts en español (no comienzan con 'en/')
+  const posts = await getCollection('blog', ({ data, slug }) => !data.draft && !slug.startsWith('en/'));
   return posts.map((post) => {
-    const isEn = post.id.startsWith('en/');
-    const slug = isEn ? post.slug.replace(/^en\//, '') : post.slug;
     return {
-      params: { slug },
-      props: { post, lang: isEn ? 'en' : 'es' }
+      params: { slug: post.slug },
+      props: { post, lang: 'es' }
     };
   });
 }

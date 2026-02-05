@@ -5,8 +5,8 @@ import { getCollection } from 'astro:content';
 const title = "404 - Página no encontrada | Marce Anahata";
 const description = "Ups, página no encontrada. Respira profundo y vuelve al inicio, o explora nuestros artículos.";
 
-// Últimos 3 posts publicados (no borradores)
-const latestPosts = (await getCollection('blog', ({ data }) => !data.draft))
+// Últimos 3 posts publicados en español (no borradores)
+const latestPosts = (await getCollection('blog', ({ data, slug }) => !data.draft && !slug.startsWith('en/')))
   .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime())
   .slice(0, 3);
 

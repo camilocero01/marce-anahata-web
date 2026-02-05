@@ -44,7 +44,10 @@ export default defineConfig({
         )  return false;
         // Excluir primera página de paginación (duplicados de páginas principales)
         if (page.endsWith('/blog/page/1')) return false;
+        if (page.endsWith('/en/blog/page/1')) return false;
+        // Excluir páginas de etiquetas de la primera página
         if (page.includes('/blog/tag/') && page.endsWith('/page/1')) return false;
+        if (page.includes('/en/blog/tag/') && page.endsWith('/page/1')) return false;
         return true;
       }
     }),

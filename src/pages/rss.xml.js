@@ -2,7 +2,8 @@ import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
 
 export async function GET(context) {
-  const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  // Solo posts en español (no comienzan con 'en/')
+  const posts = (await getCollection('blog', ({ data, slug }) => !data.draft && !slug.startsWith('en/')))
     .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
 
   const items = posts.slice(0, 20).map((post) => ({
