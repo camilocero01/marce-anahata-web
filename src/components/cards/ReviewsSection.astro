@@ -1,8 +1,6 @@
 ---
 // src/components/ReviewsSection.astro
 import reviewsData from '../../data/reviews.json';
-import 'swiper/css';
-import 'swiper/css/pagination';
 
 interface Props {
   lang?: 'es' | 'en';
@@ -131,65 +129,114 @@ const googleReviewsLink = "https://www.google.com/search?sca_esv=c581b398f00b64e
 
 </section>
 
-<script>
-  import Swiper from 'swiper';
-  import { Pagination, Autoplay } from 'swiper/modules';
+<script is:inline>
+  const reviewsSection = document.getElementById('reviews');
+  const swiperCssHref = 'https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css';
+  const swiperScriptHref = 'https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js';
+  let swiperInitialized = false;
 
-  // Inicializar Swiper cuando el componente esté listo
-  const initSwiper = () => {
-    const swiper = new Swiper('.reviews-carousel', {
-      modules: [Pagination, Autoplay],
-      
+  const loadSwiperCss = () => {
+    if (document.querySelector('link[data-swiper-css]')) return;
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = swiperCssHref;
+    link.crossOrigin = 'anonymous';
+    link.setAttribute('data-swiper-css', 'true');
+    document.head.appendChild(link);
+  };
+
+  const loadSwiperScript = () => new Promise((resolve, reject) => {
+    if (window.Swiper) return resolve();
+    if (document.querySelector('script[data-swiper-js]')) {
+      const existing = document.querySelector('script[data-swiper-js]');
+      existing.addEventListener('load', () => resolve(), { once: true });
+      existing.addEventListener('error', () => reject(new Error('Failed to load Swiper')), { once: true });
+      return;
+    }
+    const script = document.createElement('script');
+    script.src = swiperScriptHref;
+    script.async = true;
+    script.defer = true;
+    script.crossOrigin = 'anonymous';
+    script.setAttribute('data-swiper-js', 'true');
+    script.addEventListener('load', () => resolve(), { once: true });
+    script.addEventListener('error', () => reject(new Error('Failed to load Swiper')), { once: true });
+    document.head.appendChild(script);
+  });
+
+  const initSwiper = async () => {
+    if (swiperInitialized) return;
+    swiperInitialized = true;
+    loadSwiperCss();
+
+    await loadSwiperScript();
+
+    const Swiper = window.Swiper;
+    if (!Swiper) return;
+
+    new Swiper('.reviews-carousel', {
       // Modo de CSS deshabilitado para mejor rendimiento táctil
       cssMode: false,
-      
+
       // Configuración base para móvil
       slidesPerView: 1,
       spaceBetween: 24,
       loop: true,
-      
+
       // Habilitar gestos táctiles y grabCursor
       grabCursor: true,
       touchEventsTarget: 'container',
       touchRatio: 1,
       touchAngle: 45,
       simulateTouch: true,
-      
+
       // Autoplay configuración
       autoplay: {
         delay: 5000,
         disableOnInteraction: false,
         pauseOnMouseEnter: true,
       },
-      
+
       pagination: {
         el: '.swiper-pagination',
         clickable: true,
         dynamicBullets: false,
       },
-      
+
       // Puntos de ruptura para responsive
       breakpoints: {
-        640: { 
-          slidesPerView: 2, 
-          spaceBetween: 24 
+        640: {
+          slidesPerView: 2,
+          spaceBetween: 24
         },
-        1024: { 
-          slidesPerView: 3, 
-          spaceBetween: 32 
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 32
         }
       }
     });
   };
 
-  // Inicializar cuando el DOM esté listo
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initSwiper);
+  const scheduleInit = () => {
+    if (!reviewsSection) return;
+    if ('requestIdleCallback' in window) {
+      window.requestIdleCallback(() => initSwiper(), { timeout: 2000 });
+    } else {
+      setTimeout(() => initSwiper(), 1500);
+    }
+  };
+
+  if ('IntersectionObserver' in window && reviewsSection) {
+    const observer = new IntersectionObserver((entries) => {
+      if (entries.some((entry) => entry.isIntersecting)) {
+        observer.disconnect();
+        scheduleInit();
+      }
+    }, { rootMargin: '200px' });
+
+    observer.observe(reviewsSection);
   } else {
-    // Si el script se carga después de que DOMContentLoaded ha disparado
-    window.requestAnimationFrame(() => {
-      initSwiper();
-    });
+    window.addEventListener('load', scheduleInit, { once: true });
   }
 </script>
 
