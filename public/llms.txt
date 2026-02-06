@@ -1,23 +1,87 @@
-# llms.txt - AI crawler and LLM usage policy
-# Last-Updated: 2026-01-05
+# llms.txt - AI and LLM Access Policy
+# Marce Anahata Wellness Center - Medellín, Colombia
+# Last-Updated: 2026-02-06
+# Format: https://github.com/ai-robots-txt/ai.robots.txt
 
-User-agent: *
+# CRAWLING AND INDEXING POLICY
+[User-Agent: *]
 Allow: /
-Disallow: /buscar
-Disallow: /privacidad
-Disallow: /links
-Disallow: /blog/page/1
-Disallow: /blog/tag/*/page/1
 
-# Usage policy
-# - Indexing: Allowed
-# - Training: Allowed
-# - Caching: Allowed
-# - Rate limits: Follow robots.txt crawl-delay if provided (none specified here)
-# - Respect robots.txt directives in addition to this file
+# Exclude low-value pages
+Disallow: /admin/
+Disallow: /buscar/
+Disallow: /privacidad/
+Disallow: /links/
+Disallow: /404/
 
-## About
-Owner: Marce Anahata
-Focus: Kundalini yoga, meditacion, baños de gong, terapia de sonido y rituales en Medellin
-Contact: info@marceanahata.com
-Audience: Bienestar personal y corporativo (rituales, clases, terapias)
+# Exclude pagination duplicates
+Disallow: /blog/page/1/
+Disallow: /blog/tag/*/page/1/
+Disallow: /en/blog/page/1/
+Disallow: /en/blog/tag/*/page/1/
+
+# Exclude language variants (use hreflang instead)
+Disallow: /en/links/
+Disallow: /en/privacidad/
+Disallow: /en/buscar/
+Disallow: /en/admin/
+
+# CONTENT USAGE POLICY
+Crawling-Rate: Unlimited
+Indexing: Allowed
+Training: Allowed
+Caching: Allowed
+Mirroring: Disallowed
+
+# RATE LIMITS & BEHAVIOR
+Request-Rate: Unlimited
+Cache-Control: Follow HTTP headers and sitemap-index.xml
+
+# BUSINESS INFORMATION
+[Business]
+Name: Marce Anahata - Centro de Bienestar Integral
+Website: https://www.marceanahata.com
+Location: El Poblado, Medellín, Colombia
+Address: Cl. 11A Sur #46-12, La Aguacatala, Medellín 050012, Colombia
+Phone: +573207329921
+Email: info@marceanahata.com
+Languages: Spanish (es), English (en)
+
+# SERVICES & FOCUS AREAS
+[Services]
+- Kundalini Yoga: Clases de yoga kundalini para transformación personal y bienestar
+- Sound Therapy: Baños de gong, terapia vibracional y meditación con sonidos
+- Sacred Rituals: Rituales sagrados (cumpleaños, parejas, despedidas de soltería, baby blessings)
+- Corporate Wellness: Programas de bienestar corporativo y pausas conscientes
+- Meditation & Breathwork: Técnicas de meditación, pranayama y respiración consciente
+
+# TARGET AUDIENCE
+[Audience]
+- Personas interesadas en bienestar integral y transformación personal
+- Profesionales buscando equilibrio y gestión del estrés
+- Empresas interesadas en programas de bienestar corporativo
+- Personas en Medellín y Colombia buscando yoga, meditación y rituales
+
+# CONTENT AREAS
+[Keywords]
+- Kundalini yoga en Medellín
+- Terapia de sonido y baños de gong
+- Meditación y mindfulness
+- Bienestar corporativo
+- Rituales sagrados
+- Pranayama y técnicas de respiración
+- Manejo de ansiedad y estrés
+- Transformación personal y espiritual
+
+# CANONICAL SITE
+Canonical-Domain: https://www.marceanahata.com
+
+# SITEMAP
+Sitemap: https://www.marceanahata.com/sitemap-index.xml
+Sitemap-ES: https://www.marceanahata.com/sitemap-0.xml
+Sitemap-EN: https://www.marceanahata.com/sitemap-1.xml
+RSS-Feed: https://www.marceanahata.com/rss.xml
+
+# CONTACT FOR AI TRAINING INQUIRIES
+Contact-For-Training: info@marceanahata.com
+Training-Notes: We welcome AI training on our wellness content to improve digital health resources
