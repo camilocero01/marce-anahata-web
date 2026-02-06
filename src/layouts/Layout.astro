@@ -216,16 +216,38 @@ const orgSchema = JSON.stringify({
         <!-- Vercel Web Analytics -->
         <Analytics />
 
-        <!-- Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-N2S592YWN3"></script>
+        <!-- Google Analytics (lazy-load to reduce unused JS) -->
         <script is:inline>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-N2S592YWN3', {
-                anonymize_ip: true,
-                cookie_flags: 'SameSite=None;Secure'
-            });
+            (function() {
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                window.gtag = window.gtag || gtag;
+
+                let gtagLoaded = false;
+                const loadGtag = () => {
+                    if (gtagLoaded) return;
+                    gtagLoaded = true;
+
+                    const script = document.createElement('script');
+                    script.async = true;
+                    script.src = 'https://www.googletagmanager.com/gtag/js?id=G-N2S592YWN3';
+                    document.head.appendChild(script);
+
+                    gtag('js', new Date());
+                    gtag('config', 'G-N2S592YWN3', {
+                        anonymize_ip: true,
+                        cookie_flags: 'SameSite=None;Secure'
+                    });
+                };
+
+                // Load on first user interaction
+                ['click', 'scroll', 'keydown', 'touchstart'].forEach((event) => {
+                    window.addEventListener(event, loadGtag, { once: true, passive: true });
+                });
+
+                // Fallback: load after 3 seconds
+                setTimeout(loadGtag, 3000);
+            })();
         </script>
 
         <!-- WhatsApp CTA Tracking -->
