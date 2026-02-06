@@ -35,7 +35,6 @@ const jsonLd = {
 
 <Layout title={pageTitle} description={pageDescription}>
   <Fragment slot="head">
-    <link rel="canonical" href={canonical} />
     <link rel="alternate" type="application/rss+xml" title={`RSS de ${tag}`} href={`/blog/tag/${encodeURIComponent(tag)}/rss.xml`} />
     {totalPages > 1 && <link rel="next" href={`/blog/tag/${encodeURIComponent(tag)}/page/2`} />}
     <meta property="og:type" content="website" />

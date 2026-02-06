@@ -40,7 +40,6 @@ const nextUrl = currentPage < totalPages ? `/blog/tag/${encodeURIComponent(tag)}
 
 <Layout title={pageTitle} description={pageDescription}>
   <Fragment slot="head">
-    <link rel="canonical" href={canonical} />
     {prevUrl && <link rel="prev" href={prevUrl} />}
     {nextUrl && <link rel="next" href={nextUrl} />}
     <link rel="alternate" type="application/rss+xml" title={`RSS de ${tag}`} href={`/blog/tag/${encodeURIComponent(tag)}/rss.xml`} />
