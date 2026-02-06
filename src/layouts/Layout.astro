@@ -205,10 +205,6 @@ const orgSchema = JSON.stringify({
         <!-- Performance: Preload critical resources for LCP -->
         <link rel="preload" as="image" href="/images/hero-bg.webp" fetchpriority="high" />
         
-        <!-- Performance: Reduce Critical Request Chain with preload hints -->
-        <!-- These CSS files are page-specific and non-critical, but preload them to start download earlier -->
-        <link rel="preload" as="style" href="/_astro/page.D1uwR3nK.js" fetchpriority="low" />
-        
         <!-- Performance: Preconnect to external resources -->
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link rel="dns-prefetch" href="https://www.googletagmanager.com">
@@ -430,34 +426,38 @@ const orgSchema = JSON.stringify({
 
         <!-- Optimize non-critical CSS loading to improve LCP -->
         <script is:inline>
-            // Aggressively defer non-critical CSS using media="print" strategy
-            // This immediately removes CSS from render-blocking critical path
-            // The CSS loads in parallel and switches to "all" once loaded
-            (function() {
-                // Run immediately (before DOM is fully parsed) to defer CSS before it starts loading
+            // Defer non-critical CSS by setting media="print" BEFORE it renders
+            // Wait for DOMContentLoaded to ensure all <link> tags exist in DOM
+            function deferNonCriticalCSS() {
                 const cssPattern = /(_astro\/.+\.(Ba9GzthS|Ci-JBwWK|D_3XNa-1|ZqSXg5|C0tnh0b2|mYlM44M2|DinvUyT7)\.css)/;
                 const stylesheets = document.querySelectorAll('link[rel="stylesheet"][href*="_astro/"]');
                 
                 stylesheets.forEach(link => {
                     if (cssPattern.test(link.href)) {
-                        // 1. Immediately set media="print" to prevent render-blocking
+                        // 1. Set media="print" to remove from render-blocking
                         link.media = 'print';
                         
-                        // 2. When CSS finishes loading, switch back to "all"
-                        link.addEventListener('load', function onload() {
+                        // 2. Switch to "all" when CSS loads
+                        link.onload = () => {
                             link.media = 'all';
-                            link.removeEventListener('load', onload);
-                        }, { once: true });
+                        };
                         
-                        // 3. Fallback: if CSS doesn't fire load event, switch after 2s
+                        // 3. Failsafe: switch after 1s
                         setTimeout(() => {
                             if (link.media === 'print') {
                                 link.media = 'all';
                             }
-                        }, 2000);
+                        }, 1000);
                     }
                 });
-            })();
+            }
+            
+            // Execute on DOMContentLoaded to ensure all links are in DOM
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', deferNonCriticalCSS);
+            } else {
+                deferNonCriticalCSS();
+            }
         </script>
 
     </head>
