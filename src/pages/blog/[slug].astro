@@ -67,7 +67,7 @@ const jsonLd = {
 // Related posts: last 3 from same primary tag
 const primaryTag = data.tags?.[0];
 const relatedPosts = primaryTag
-  ? (await getCollection('blog', ({ data: d }) => !d.draft && (d.tags || []).includes(primaryTag)))
+  ? (await getCollection('blog', ({ data: d, slug }) => !d.draft && !slug.startsWith('en/') && (d.tags || []).includes(primaryTag)))
       .filter((p) => p.slug !== post.slug)
       .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime())
       .slice(0, 3)
