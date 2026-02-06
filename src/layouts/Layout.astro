@@ -43,6 +43,11 @@ const resolvedLogo = logo?.startsWith('http') ? logo : new URL(logo, siteUrl).to
 const normalizedPath = Astro.url.pathname !== '/' && Astro.url.pathname.endsWith('/')
     ? Astro.url.pathname.slice(0, -1)
     : Astro.url.pathname;
+
+const ensureTrailingSlash = (path: string) => {
+    if (path === '/') return '/';
+    return path.endsWith('/') ? path : `${path}/`;
+};
 const isEnPath = normalizedPath.startsWith('/en');
 const baseEsPath = isEnPath ? normalizedPath.replace(/^\/en/, '') || '/' : normalizedPath || '/';
 
@@ -73,10 +78,13 @@ const getEnPath = (path: string) => {
     return null;
 };
 
-const resolvedEsPath = isEnPath ? baseEsPath : normalizedPath || '/';
+const resolvedEsPath = ensureTrailingSlash(isEnPath ? baseEsPath : normalizedPath || '/');
 const resolvedEnPath = isEnPath ? normalizedPath : getEnPath(baseEsPath);
+const resolvedEnPathWithSlash = resolvedEnPath ? ensureTrailingSlash(resolvedEnPath) : null;
 const resolvedEsUrl = new URL(resolvedEsPath, siteUrl).toString();
-const resolvedEnUrl = resolvedEnPath ? new URL(resolvedEnPath, siteUrl).toString() : null;
+const resolvedEnUrl = resolvedEnPathWithSlash ? new URL(resolvedEnPathWithSlash, siteUrl).toString() : null;
+const canonicalPath = ensureTrailingSlash(normalizedPath || '/');
+const canonicalUrl = new URL(canonicalPath, siteUrl).toString();
 
 // Schema.org para SEO Local (Negocio Local)
 const schema = JSON.stringify({
@@ -149,7 +157,7 @@ const orgSchema = JSON.stringify({
         <title>{finalTitle}</title>
         <meta name="description" content={description} />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href={`${siteUrl}${normalizedPath || '/'}`} />
+        <link rel="canonical" href={canonicalUrl} />
         <link rel="sitemap" href="/sitemap-index.xml" />
         <link rel="alternate" hreflang="es-CO" href={resolvedEsUrl} />
         {resolvedEnUrl && <link rel="alternate" hreflang="en" href={resolvedEnUrl} />}
@@ -170,7 +178,7 @@ const orgSchema = JSON.stringify({
         <meta name="twitter:image:alt" content={title} />
 
         <meta property="og:type" content={ogType} />
-        <meta property="og:url" content={Astro.url} />
+        <meta property="og:url" content={canonicalUrl} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta property="og:image" content={resolvedImage} />
