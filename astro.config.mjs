@@ -31,6 +31,11 @@ export default defineConfig({
       // Exclude low-value pages from sitemap
       // The `page` parameter is a full URL, so compare by path endings
       filter: (page) => {
+        // Excluir archivos de feed y configuración
+        if (page.endsWith('/rss.xml')
+          || page.endsWith('/feed.xml')
+          || page.endsWith('/sitemap-index.xml')
+        ) return false;
         // Excluir páginas para no afectar el SEO (incluir / final)
         if ( page.endsWith('/admin/')
           || page.endsWith('/links/') 
