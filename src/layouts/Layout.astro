@@ -87,8 +87,9 @@ const resolvedEsUrl = new URL(resolvedEsPath, siteUrl).toString();
 const resolvedEnUrl = resolvedEnPathWithSlash ? new URL(resolvedEnPathWithSlash, siteUrl).toString() : null;
 const canonicalPath = ensureTrailingSlash(normalizedPath || '/');
 const canonicalUrl = new URL(canonicalPath, siteUrl).toString();
+const pageUrl = new URL(Astro.url).toString();
 const selfHreflang = lang === 'en' ? 'en' : 'es-CO';
-const selfHreflangUrl = canonicalUrl;
+const selfHreflangUrl = pageUrl;
 
 // Schema.org para SEO Local (Negocio Local)
 const schema = JSON.stringify({
