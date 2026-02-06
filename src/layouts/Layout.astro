@@ -205,6 +205,10 @@ const orgSchema = JSON.stringify({
         <!-- Performance: Preload critical resources for LCP -->
         <link rel="preload" as="image" href="/images/hero-bg.webp" fetchpriority="high" />
         
+        <!-- Performance: Reduce Critical Request Chain with preload hints -->
+        <!-- These CSS files are page-specific and non-critical, but preload them to start download earlier -->
+        <link rel="preload" as="style" href="/_astro/page.D1uwR3nK.js" fetchpriority="low" />
+        
         <!-- Performance: Preconnect to external resources -->
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link rel="dns-prefetch" href="https://www.googletagmanager.com">
