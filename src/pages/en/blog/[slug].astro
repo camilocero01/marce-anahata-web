@@ -67,7 +67,7 @@ const relatedPosts = primaryTag
       .slice(0, 3)
   : [];
 ---
-<Layout title={pageTitle} description={description} image={image} lang={lang}>
+<Layout title={pageTitle} description={description} image={image} lang={lang} includeAlternates={false}>
   <Fragment slot="head">
     <meta property="article:published_time" content={publishedTime} />
     {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}

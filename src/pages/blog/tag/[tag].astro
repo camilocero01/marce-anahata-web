@@ -33,7 +33,7 @@ const jsonLd = {
 
 ---
 
-<Layout title={pageTitle} description={pageDescription}>
+<Layout title={pageTitle} description={pageDescription} includeAlternates={false}>
   <Fragment slot="head">
     <link rel="alternate" type="application/rss+xml" title={`RSS de ${tag}`} href={`/blog/tag/${encodeURIComponent(tag)}/rss.xml`} />
     {totalPages > 1 && <link rel="next" href={`/blog/tag/${encodeURIComponent(tag)}/page/2`} />}

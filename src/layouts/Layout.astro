@@ -23,6 +23,7 @@ interface Props {
     ogType?: string;
     hideAuthorInTitle?: boolean;
     lang?: string;
+    includeAlternates?: boolean;
 }
 
 const {
@@ -33,6 +34,7 @@ const {
     ogType = 'website',
     hideAuthorInTitle = false,
     lang = 'es',
+    includeAlternates = true,
 } = Astro.props as Props;
 
 const finalTitle = hideAuthorInTitle ? title : `${title} | Marce Anahata`;
@@ -162,12 +164,12 @@ const orgSchema = JSON.stringify({
         <link rel="canonical" href={canonicalUrl} />
         <link rel="sitemap" href="/sitemap-index.xml" />
                 <link rel="alternate" hreflang={selfHreflang} href={selfHreflangUrl} />
-                {lang === 'en' ? (
+                {includeAlternates && (lang === 'en' ? (
                     <link rel="alternate" hreflang="es-CO" href={resolvedEsUrl} />
                 ) : (
                     resolvedEnUrl && <link rel="alternate" hreflang="en" href={resolvedEnUrl} />
-                )}
-                <link rel="alternate" hreflang="x-default" href={resolvedEsUrl} />
+                ))}
+                <link rel="alternate" hreflang="x-default" href={includeAlternates ? resolvedEsUrl : canonicalUrl} />
 
         <meta name="theme-color" content="#243c5a" />
         <meta property="og:locale" content="es_CO" />

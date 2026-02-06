@@ -38,7 +38,7 @@ const prevUrl = currentPage > 1 ? (currentPage === 2 ? `/blog/tag/${encodeURICom
 const nextUrl = currentPage < totalPages ? `/blog/tag/${encodeURIComponent(tag)}/page/${currentPage + 1}` : undefined;
 ---
 
-<Layout title={pageTitle} description={pageDescription}>
+<Layout title={pageTitle} description={pageDescription} includeAlternates={false}>
   <Fragment slot="head">
     {prevUrl && <link rel="prev" href={prevUrl} />}
     {nextUrl && <link rel="next" href={nextUrl} />}

@@ -73,7 +73,7 @@ const relatedPosts = primaryTag
       .slice(0, 3)
   : [];
 ---
-<Layout title={pageTitle} description={description} image={image} lang={lang}>
+<Layout title={pageTitle} description={description} image={image} lang={lang} includeAlternates={false}>
   <Fragment slot="head">
     <meta property="og:url" content={canonical} />
     <meta property="og:title" content={pageTitle} />
