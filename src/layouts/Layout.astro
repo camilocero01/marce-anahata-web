@@ -421,6 +421,45 @@ const orgSchema = JSON.stringify({
             });
         </script>
 
+        <!-- Optimize non-critical CSS loading to improve LCP -->
+        <script is:inline>
+            // Defer non-critical page-specific CSS to prevent render-blocking
+            // Strategy: Convert to media="print" with onload callback to switch to "all"
+            // This allows CSS to load in parallel without blocking render
+            if ('requestIdleCallback' in window) {
+                requestIdleCallback(() => {
+                    const stylesheets = document.querySelectorAll('link[rel="stylesheet"][href*="_astro/"]');
+                    stylesheets.forEach(link => {
+                        // Target larger CSS chunks that aren't critical for above-the-fold
+                        // Files like bienestar-corporativo.css are page-specific and can be deferred
+                        if (link.href.match(/(_astro\/.+\.(Ba9GzthS|Ci-JBwWK|D_3XNa-1|ZqSXg5|C0tnh0b2)\.css)/)) {
+                            link.rel = 'preload';
+                            link.as = 'style';
+                            link.onload = () => {
+                                link.rel = 'stylesheet';
+                            };
+                        }
+                    });
+                }, { timeout: 3000 });
+            } else {
+                // Fallback for browsers without requestIdleCallback
+                const stylesheets = document.querySelectorAll('link[rel="stylesheet"][href*="_astro/"]');
+                stylesheets.forEach(link => {
+                    if (link.href.match(/(_astro\/.+\.(Ba9GzthS|Ci-JBwWK|D_3XNa-1|ZqSXg5|C0tnh0b2)\.css)/)) {
+                        const clone = link.cloneNode();
+                        clone.rel = 'preload';
+                        clone.as = 'style';
+                        clone.onload = () => {
+                            clone.rel = 'stylesheet';
+                            link.remove();
+                        };
+                        link.parentNode.insertBefore(clone, link);
+                        link.remove();
+                    }
+                });
+            }
+        </script>
+
     </head>
     <body class="bg-stone-50 text-stone-800 font-sans flex flex-col min-h-screen">
 
