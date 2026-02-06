@@ -85,6 +85,8 @@ const resolvedEsUrl = new URL(resolvedEsPath, siteUrl).toString();
 const resolvedEnUrl = resolvedEnPathWithSlash ? new URL(resolvedEnPathWithSlash, siteUrl).toString() : null;
 const canonicalPath = ensureTrailingSlash(normalizedPath || '/');
 const canonicalUrl = new URL(canonicalPath, siteUrl).toString();
+const selfHreflang = lang === 'en' ? 'en' : 'es-CO';
+const selfHreflangUrl = canonicalUrl;
 
 // Schema.org para SEO Local (Negocio Local)
 const schema = JSON.stringify({
@@ -159,9 +161,13 @@ const orgSchema = JSON.stringify({
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href={canonicalUrl} />
         <link rel="sitemap" href="/sitemap-index.xml" />
-        <link rel="alternate" hreflang="es-CO" href={resolvedEsUrl} />
-        {resolvedEnUrl && <link rel="alternate" hreflang="en" href={resolvedEnUrl} />}
-        <link rel="alternate" hreflang="x-default" href={resolvedEsUrl} />
+                <link rel="alternate" hreflang={selfHreflang} href={selfHreflangUrl} />
+                {lang === 'en' ? (
+                    <link rel="alternate" hreflang="es-CO" href={resolvedEsUrl} />
+                ) : (
+                    resolvedEnUrl && <link rel="alternate" hreflang="en" href={resolvedEnUrl} />
+                )}
+                <link rel="alternate" hreflang="x-default" href={resolvedEsUrl} />
 
         <meta name="theme-color" content="#243c5a" />
         <meta property="og:locale" content="es_CO" />
