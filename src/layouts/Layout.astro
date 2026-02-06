@@ -424,42 +424,6 @@ const orgSchema = JSON.stringify({
             });
         </script>
 
-        <!-- Optimize non-critical CSS loading to improve LCP -->
-        <script is:inline>
-            // Defer non-critical CSS by setting media="print" BEFORE it renders
-            // Wait for DOMContentLoaded to ensure all <link> tags exist in DOM
-            function deferNonCriticalCSS() {
-                const cssPattern = /(_astro\/.+\.(Ba9GzthS|Ci-JBwWK|D_3XNa-1|ZqSXg5|C0tnh0b2|mYlM44M2|DinvUyT7)\.css)/;
-                const stylesheets = document.querySelectorAll('link[rel="stylesheet"][href*="_astro/"]');
-                
-                stylesheets.forEach(link => {
-                    if (cssPattern.test(link.href)) {
-                        // 1. Set media="print" to remove from render-blocking
-                        link.media = 'print';
-                        
-                        // 2. Switch to "all" when CSS loads
-                        link.onload = () => {
-                            link.media = 'all';
-                        };
-                        
-                        // 3. Failsafe: switch after 1s
-                        setTimeout(() => {
-                            if (link.media === 'print') {
-                                link.media = 'all';
-                            }
-                        }, 1000);
-                    }
-                });
-            }
-            
-            // Execute on DOMContentLoaded to ensure all links are in DOM
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', deferNonCriticalCSS);
-            } else {
-                deferNonCriticalCSS();
-            }
-        </script>
-
     </head>
     <body class="bg-stone-50 text-stone-800 font-sans flex flex-col min-h-screen">
 

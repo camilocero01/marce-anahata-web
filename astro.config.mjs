@@ -25,7 +25,8 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
   build: {
-    inlineStylesheets: 'auto'
+    // Inline all CSS to eliminate render-blocking stylesheet requests
+    inlineStylesheets: 'always'
   },
 
   integrations: [
