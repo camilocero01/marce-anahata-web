@@ -78,7 +78,7 @@ const getLocationIcon = (type: string | undefined) => {
             {/* Content */}
             <div class="p-4 flex flex-col flex-grow">
               {/* Title */}
-              <h3 class="text-lg font-serif text-[#243c5a] mb-3 group-hover:text-[#6ed8d9] transition-colors line-clamp-2">
+              <h3 class="text-lg font-serif text-[#243c5a] mb-3 group-hover:text-[#5d5a8c] transition-colors line-clamp-2">
                 {event.data.title}
               </h3>
 
@@ -106,7 +106,7 @@ const getLocationIcon = (type: string | undefined) => {
 
                 {/* Price */}
                 {event.data.eventPrice && (
-                  <div class="flex items-center gap-2 text-[#6ed8d9] font-bold">
+                  <div class="flex items-center gap-2 text-[#243c5a] font-bold">
                     <span>💰</span>
                     <span>${event.data.eventPrice.toLocaleString('es-CO')}</span>
                   </div>
@@ -114,7 +114,7 @@ const getLocationIcon = (type: string | undefined) => {
               </div>
 
               {/* CTA */}
-              <div class="flex items-center gap-1 text-[#6ed8d9] text-sm font-semibold group-hover:gap-2 transition-all">
+              <div class="flex items-center gap-1 text-[#243c5a] text-sm font-semibold group-hover:gap-2 group-hover:text-[#5d5a8c] transition-all">
                 Book Now
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
