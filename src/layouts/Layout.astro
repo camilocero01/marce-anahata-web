@@ -202,6 +202,9 @@ const orgSchema = JSON.stringify({
 
         <slot name="head" />
 
+        <!-- Performance: Preload critical resources for LCP -->
+        <link rel="preload" as="image" href="/images/hero-bg.webp" fetchpriority="high" />
+        
         <!-- Performance: Preconnect to external resources -->
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link rel="dns-prefetch" href="https://www.googletagmanager.com">
