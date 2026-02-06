@@ -24,6 +24,10 @@ Disallow: /en/blog/page/1
 Disallow: /blog/tag/*/page/1
 Disallow: /en/blog/tag/*/page/1
 
+# Bloquear RSS feeds (no deben indexarse)
+Disallow: /rss.xml
+Disallow: /*/rss.xml
+
 # Allow AI crawlers and search engines
 User-agent: GPTBot
 Allow: /
