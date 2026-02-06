@@ -10,6 +10,13 @@ Disallow: /en/buscar
 Disallow: /en/links
 Disallow: /en/privacidad
 Disallow: /en/404
+Disallow: /bio
+Disallow: /servicios/
+Disallow: /~partytown/
+
+# Bloquear rutas incorrectas de blog en inglés
+Disallow: /blog/en/
+Disallow: /en/contact
 
 # Bloquear páginas de paginación duplicadas (page/1 es duplicado de la página principal)
 Disallow: /blog/page/1
