@@ -102,7 +102,7 @@ You don't have to go through this alone. Your peace is your power.
   "embedUrl": "https://instagram.com/marce_anahata",
   "publisher": {
     "@type": "Organization",
-    "name": "Marce Anahata Wellness Center",
+    "name": "Marce Anahata Centro de Bienestar",
     "logo": {
       "@type": "ImageObject",
       "url": "https://marceanahata.com/images/logo.svg",

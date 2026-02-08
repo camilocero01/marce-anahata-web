@@ -5,8 +5,8 @@ const whatsappNumber = "573207329921";
 const whatsappLink = `https://wa.me/${whatsappNumber}?text=Hi%20Marce!%20I%20want%20to%20schedule%20a%20session%20with%20you...`;
 const email = "info@marceanahata.com";
 const instagram = "@marce_anahata";
-const address = "Cl. 11A Sur #46-12, La Aguacatala";
-const city = "El Poblado, Medellín, Antioquia";
+const address = "Cl. 11A Sur #46-12, Barrio La Aguacatala, El Poblado, Medellín, Antioquia";
+const city = "";
 ---
 
 <Layout 
@@ -132,7 +132,7 @@ const city = "El Poblado, Medellín, Antioquia";
           <div class="flex-1">
             <h3 class="font-bold text-[#243c5a] mb-1">Location</h3>
             <p class="text-sm text-stone-600 mb-1">{address}</p>
-            <p class="text-sm text-stone-600 mb-3">{city}</p>
+            {city && <p class="text-sm text-stone-600 mb-3">{city}</p>}
             <p class="text-xs text-stone-500 italic">By appointment only</p>
           </div>
         </div>

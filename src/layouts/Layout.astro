@@ -98,21 +98,21 @@ const schema = JSON.stringify({
     "name": "Marce Anahata Centro de Bienestar",
     "image": resolvedImage,
   "description": description,
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Cl. 11A Sur #46-12, La Aguacatala",
-    "addressLocality": "Medellín",
-    "addressRegion": "Antioquia",
-    "postalCode": "050012",
-    "addressCountry": "CO"
-  },
+    "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Cl. 11A Sur #46-12, Barrio La Aguacatala, El Poblado, Medellín, Antioquia",
+        "addressLocality": "Medellín",
+        "addressRegion": "Antioquia",
+        "postalCode": "050012",
+        "addressCountry": "CO"
+    },
   "geo": {
     "@type": "GeoCoordinates",
     "latitude": 6.1955152,
     "longitude": -75.5779584
   },
     "url": siteUrl.toString(),
-  "telephone": "+573207329921",
+    "telephone": "+57 320 732 9921",
   "email": "info@marceanahata.com",
   "priceRange": "70000-500000 COP",
   "areaServed": {
@@ -121,7 +121,8 @@ const schema = JSON.stringify({
   },
   "knowsAbout": ["Kundalini Yoga", "Terapia de Sonido", "Meditación", "Rituales Sagrados", "Bienestar Corporativo"],
     "sameAs": [
-        "https://instagram.com/marce_anahata",
+        "https://www.instagram.com/marceanahata",
+        "https://www.linkedin.com/company/marceanahata",
         "https://wa.me/573207329921"
     ]
 });
@@ -130,7 +131,7 @@ const schema = JSON.stringify({
 const orgSchema = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "Organization",
-    "name": "Marce Anahata",
+    "name": "Marce Anahata Centro de Bienestar",
     "url": siteUrl.toString(),
         "logo": new URL('/favicon.png', siteUrl).toString(),
   "description": "Centro de bienestar integral con Kundalini Yoga, Terapia de Sonido, Rituales Sagrados y Bienestar Corporativo en Medellín.",
@@ -139,13 +140,14 @@ const orgSchema = JSON.stringify({
   "contactPoint": {
     "@type": "ContactPoint",
     "contactType": "Customer Support",
-    "telephone": "+573207329921",
+    "telephone": "+57 320 732 9921",
     "email": "info@marceanahata.com"
   },
-  "sameAs": [
-    "https://instagram.com/marce_anahata",
-    "https://wa.me/573207329921"
-  ]
+    "sameAs": [
+        "https://www.instagram.com/marceanahata",
+        "https://www.linkedin.com/company/marceanahata",
+        "https://wa.me/573207329921"
+    ]
 });
 ---
 
