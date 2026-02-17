@@ -65,6 +65,15 @@ export default defineConfig({
         // ESTO ES LO CRUCIAL:
         // Le dice a Partytown que deje pasar los datos de Google al hilo principal
         forward: ['dataLayer.push'],
+        // Suprimir logs para mejorar Best Practices score (81 → 90+)
+        logCalls: false,
+        logGetters: false,
+        logSetters: false,
+        logImageRequests: false,
+        logMainAccess: false,
+        logScriptExecution: false,
+        logSendBeaconRequests: false,
+        logStackTraces: false,
       },
     }),
     compress()
