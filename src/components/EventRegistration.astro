@@ -7,6 +7,8 @@ export interface Props {
   eventDescription?: string;
   formId?: string; // ID de Formspree del evento
   paymentLabel?: string; // Label para el campo de confirmación de pago
+  experienceName?: string; // Nombre de la experiencia (para textos genéricos)
+  successMessage?: string; // Mensaje de éxito personalizado
 }
 
 const {
@@ -14,7 +16,9 @@ const {
   eventDate = "",
   eventDescription = "Completa el formulario para reservar tu lugar",
   formId = "mgovwznp", // Por defecto usa el mismo de newsletter, cambiar según evento
-  paymentLabel = "La inversión del evento será de <strong>$120.000 COP</strong>. Entiendo que llenar este formulario es una pre-inscripción, mi cupo se reserva con el pago del 50% del total correspondinete a <strong>$60.000 COP</strong> a la cuenta de ahorros No. <strong>935-972725-35</strong> del Bancolombia a nombre de <strong>Marcela Zuleta cc 32297153</strong>. Una vez realizado el pago, enviar comprobante por <a href=\"https://wa.me/573207329921?text=Hola%20Marce%20Anahata%2C%20envio%20comprobante%20de%20pago%20para%20el%20Ba%C3%B1o%20de%20Gong%20del%2013%20de%20febrero%20de%202026.\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-[#6ed8d9] hover:text-[#5ac5c6] font-semibold underline\">👉acá</a> para confirmar. El valor restante debe ser pagado 2 días antes del evento."
+  paymentLabel = "La inversión del evento será de <strong>$120.000 COP</strong>. Entiendo que llenar este formulario es una pre-inscripción, mi cupo se reserva con el pago del 50% del total correspondinete a <strong>$60.000 COP</strong> a la cuenta de ahorros No. <strong>935-972725-35</strong> del Bancolombia a nombre de <strong>Marcela Zuleta cc 32297153</strong>. Una vez realizado el pago, enviar comprobante por <a href=\"https://wa.me/573207329921?text=Hola%20Marce%20Anahata%2C%20envio%20comprobante%20de%20pago%20para%20confirmar%20mi%20reserva.\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-[#6ed8d9] hover:text-[#5ac5c6] font-semibold underline\">👉acá</a> para confirmar. El valor restante debe ser pagado 2 días antes del evento.",
+  experienceName = "baño de gong",
+  successMessage = "✓ ¡Gracias por tu inscripción! Hemos recibido tu reserva. Pronto recibirás un correo de confirmación con los detalles del evento. 🙏✨"
 } = Astro.props;
 ---
 
@@ -146,17 +150,17 @@ const {
         </h4>
       </div>
 
-      <!-- Primera vez en terapia de sonido -->
+      <!-- Primera vez en la experiencia -->
       <div>
         <label for="first-time" class="block text-sm font-medium text-[#243c5a] mb-2">
-          ¿Has participado antes en un baño de gong o terapia de sonido? *
+          ¿Has participado antes en un {experienceName}? *
         </label>
         <select 
           id="first-time"
           name="first_time"
           required
           class="w-full px-4 py-3 rounded-lg border-2 border-stone-200 focus:border-[#6ed8d9] focus:outline-none transition-colors bg-white"
-          aria-label="Primera vez en terapia de sonido"
+          aria-label="Primera vez en la experiencia"
         >
           <option value="">-- Selecciona una opción --</option>
           <option value="no">Sí, he participado antes</option>
@@ -227,7 +231,7 @@ const {
       <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded mb-4">
         <p class="text-sm text-blue-900 font-semibold mb-2">⚕️ Importante: Naturaleza de esta experiencia</p>
         <p class="text-xs text-blue-800 leading-relaxed">
-          El baño de gong es una <strong>experiencia complementaria de bienestar y relajación</strong>. No es un tratamiento médico ni psicológico, y <strong>no reemplaza, sustituye ni puede usarse como alternativa a</strong> ningún tratamiento médico, psicológico, terapéutico o farmacológico prescrito por profesionales de la salud. Si tienes una condición médica diagnosticada, tomas medicamentos o estás bajo cuidado médico, continúa con tu tratamiento y consulta a tu profesional de salud antes de participar.
+          {experienceName} es una <strong>experiencia complementaria de bienestar y relajación</strong>. No es un tratamiento médico ni psicológico, y <strong>no reemplaza, sustituye ni puede usarse como alternativa a</strong> ningún tratamiento médico, psicológico, terapéutico o farmacológico prescrito por profesionales de la salud. Si tienes una condición médica diagnosticada, tomas medicamentos o estás bajo cuidado médico, continúa con tu tratamiento y consulta a tu profesional de salud antes de participar.
         </p>
       </div>
 
@@ -241,7 +245,7 @@ const {
           class="mt-1 w-4 h-4 rounded border-2 border-stone-200 focus:border-[#6ed8d9] focus:outline-none transition-colors cursor-pointer"
         />
         <label for="consent-1" class="text-sm text-stone-700 cursor-pointer">
-          Acepto participar de forma voluntaria y consciente en la sesión de baño de gong. *
+          Acepto participar de forma voluntaria y consciente en la sesión de {experienceName}. *
         </label>
       </div>
 
@@ -255,7 +259,7 @@ const {
           class="mt-1 w-4 h-4 rounded border-2 border-stone-200 focus:border-[#6ed8d9] focus:outline-none transition-colors cursor-pointer"
         />
         <label for="consent-2" class="text-sm text-stone-700 cursor-pointer">
-          Comprendo que el baño de gong es una <strong>experiencia complementaria</strong> de bienestar y que <strong>no reemplaza</strong> ningún tratamiento médico, psicológico, terapéutico o farmacológico prescrito por profesionales de la salud. *
+          Comprendo que {experienceName} es una <strong>experiencia complementaria</strong> de bienestar y que <strong>no reemplaza</strong> ningún tratamiento médico, psicológico, terapéutico o farmacológico prescrito por profesionales de la salud. *
         </label>
       </div>
 
@@ -335,7 +339,7 @@ const {
   }
 </style>
 
-<script define:vars={{formId}}>
+<script define:vars={{formId, successMessage}}>
   // Handle event registration form submission
   const form = document.getElementById('event-registration-form');
   const messageDiv = document.getElementById('form-message');
@@ -373,7 +377,7 @@ const {
         if (response.ok) {
           // Success - stay on the page
           if (messageDiv) {
-            messageDiv.innerHTML = '✓ ¡Gracias por tu inscripción! Hemos recibido tu reserva. Pronto recibirás un correo de confirmación con los detalles del evento. Nos vemos el 13 de febrero. 🙏✨';
+            messageDiv.innerHTML = successMessage;
             messageDiv.className = 'text-sm text-green-600 font-semibold mt-4 p-3 bg-green-50 rounded-lg';
           }
           

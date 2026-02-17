@@ -7,6 +7,8 @@ export interface Props {
   eventDescription?: string;
   formId?: string; // Formspree ID for the event
   paymentLabel?: string; // Label for the payment confirmation field
+  experienceName?: string; // Experience name for contextual text
+  successMessage?: string; // Custom success message
 }
 
 const {
@@ -14,7 +16,9 @@ const {
   eventDate = "",
   eventDescription = "Complete the form to reserve your place",
   formId = "mgovwznp", // Default uses same as newsletter, change per event
-  paymentLabel = "The event investment will be <strong>$120.000 COP</strong>. I understand that completing this form is a pre-registration, my spot is reserved with payment of 50% of the total corresponding to <strong>$60.000 COP</strong> to savings account No. <strong>935-972725-35</strong> at Bancolombia in the name of <strong>Marcela Zuleta cc 32297153</strong>. Once payment is made, send receipt via <a href=\"https://wa.me/573207329921?text=Hello%20Marce%20Anahata%2C%20I%20am%20sending%20payment%20confirmation%20for%20the%20Gong%20Bath%20on%20February%2013%2C%202026.\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-[#6ed8d9] hover:text-[#5ac5c6] font-semibold underline\">👉here</a> to confirm. The remaining amount must be paid 2 days before the event."
+  paymentLabel = "The event investment will be <strong>$120.000 COP</strong>. I understand that completing this form is a pre-registration, my spot is reserved with payment of 50% of the total corresponding to <strong>$60.000 COP</strong> to savings account No. <strong>935-972725-35</strong> at Bancolombia in the name of <strong>Marcela Zuleta cc 32297153</strong>. Once payment is made, send receipt via <a href=\"https://wa.me/573207329921?text=Hello%20Marce%20Anahata%2C%20I%20am%20sending%20payment%20confirmation%20to%20confirm%20my%20reservation.\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-[#6ed8d9] hover:text-[#5ac5c6] font-semibold underline\">👉here</a> to confirm. The remaining amount must be paid 2 days before the event.",
+  experienceName = "gong bath",
+  successMessage = "✓ Thank you for registering! We’ve received your reservation. You’ll get a confirmation email with event details soon. 🙏✨"
 } = Astro.props;
 ---
 
@@ -152,17 +156,17 @@ const {
         </h4>
       </div>
 
-      <!-- Have you participated before in sound therapy or gong bath -->
+      <!-- Have you participated before in the experience -->
       <div>
         <label for="first-time" class="block text-sm font-medium text-[#243c5a] mb-2">
-          Have you participated before in a gong bath or sound therapy session? *
+          Have you participated before in a {experienceName} session? *
         </label>
         <select 
           id="first-time"
           name="first_time"
           required
           class="w-full px-4 py-3 rounded-lg border-2 border-stone-200 focus:border-[#6ed8d9] focus:outline-none transition-colors bg-white"
-          aria-label="First time in sound therapy"
+          aria-label="First time in the experience"
         >
           <option value="">-- Select an option --</option>
           <option value="no">Yes, I have participated before</option>
@@ -233,7 +237,7 @@ const {
       <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded mb-4">
         <p class="text-sm text-blue-900 font-semibold mb-2">⚕️ Important: Nature of this experience</p>
         <p class="text-xs text-blue-800 leading-relaxed">
-          The gong bath is a <strong>complementary wellness and relaxation experience</strong>. It is not a medical or psychological treatment, and <strong>does not replace, substitute, or serve as an alternative to</strong> any medical, psychological, therapeutic, or pharmaceutical treatment prescribed by health professionals. If you have a diagnosed medical condition, take medications, or are under medical care, continue with your treatment and consult your healthcare professional before participating.
+          {experienceName} is a <strong>complementary wellness and relaxation experience</strong>. It is not a medical or psychological treatment, and <strong>does not replace, substitute, or serve as an alternative to</strong> any medical, psychological, therapeutic, or pharmaceutical treatment prescribed by health professionals. If you have a diagnosed medical condition, take medications, or are under medical care, continue with your treatment and consult your healthcare professional before participating.
         </p>
       </div>
 
@@ -247,7 +251,7 @@ const {
           class="mt-1 w-4 h-4 rounded border-2 border-stone-200 focus:border-[#6ed8d9] focus:outline-none transition-colors cursor-pointer"
         />
         <label for="consent-1" class="text-sm text-stone-700 cursor-pointer">
-          I accept to participate voluntarily and consciously in the gong bath session. *
+          I accept to participate voluntarily and consciously in the {experienceName} session. *
         </label>
       </div>
 
@@ -261,7 +265,7 @@ const {
           class="mt-1 w-4 h-4 rounded border-2 border-stone-200 focus:border-[#6ed8d9] focus:outline-none transition-colors cursor-pointer"
         />
         <label for="consent-2" class="text-sm text-stone-700 cursor-pointer">
-          I understand that the gong bath is a <strong>complementary wellness experience</strong> and that it <strong>does not replace</strong> any medical, psychological, therapeutic, or pharmaceutical treatment prescribed by health professionals. *
+          I understand that {experienceName} is a <strong>complementary wellness experience</strong> and that it <strong>does not replace</strong> any medical, psychological, therapeutic, or pharmaceutical treatment prescribed by health professionals. *
         </label>
       </div>
 
@@ -341,7 +345,7 @@ const {
   }
 </style>
 
-<script define:vars={{formId}}>
+<script define:vars={{formId, successMessage}}>
   // Handle event registration form submission
   const form = document.getElementById('event-registration-form');
   const messageDiv = document.getElementById('form-message');
@@ -379,7 +383,7 @@ const {
         if (response.ok) {
           // Success - stay on the page
           if (messageDiv) {
-            messageDiv.innerHTML = '✓ Thank you for your registration! We have received your reservation. You will soon receive a confirmation email with the event details. See you on February 13. 🙏✨';
+            messageDiv.innerHTML = successMessage;
             messageDiv.className = 'text-sm text-green-600 font-semibold mt-4 p-3 bg-green-50 rounded-lg';
           }
           
