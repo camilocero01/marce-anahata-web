@@ -5,23 +5,34 @@ import { getCollection } from 'astro:content';
 // Get all featured events in the future (English posts only)
 const allPosts = await getCollection('blog', ({ data, slug }) => !data.draft && slug.startsWith('en/'));
 
+// Normalize dates (avoid timezone day shift)
+const toLocalDate = (value: Date | string | undefined) => {
+  if (!value) return null;
+  const dateStr = value instanceof Date
+    ? value.toISOString().split('T')[0]
+    : String(value);
+  return new Date(`${dateStr}T00:00:00`);
+};
+
 // Filter future and featured events
 const upcomingEvents = allPosts
   .filter(post => 
     post.data.isEvent && 
     post.data.featured && 
     post.data.eventDate &&
-    new Date(post.data.eventDate) > new Date()
+    toLocalDate(post.data.eventDate)! > new Date()
   )
-  .sort((a, b) => new Date(a.data.eventDate).getTime() - new Date(b.data.eventDate).getTime())
+  .sort((a, b) => toLocalDate(a.data.eventDate)!.getTime() - toLocalDate(b.data.eventDate)!.getTime())
   .slice(0, 3);
 
 // Format date function
-const formatDate = (date: Date) => {
-  return new Date(date).toLocaleDateString('en-US', {
+const formatDate = (value: Date | string) => {
+  const date = toLocalDate(value);
+  return date?.toLocaleDateString('en-US', {
     weekday: 'short',
     day: 'numeric',
-    month: 'short'
+    month: 'short',
+    timeZone: 'America/Bogota'
   });
 };
 
