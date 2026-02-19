@@ -277,6 +277,6 @@ Respira conscientemente hoy, y mañana será un día diferente.
 
 Te invito a que comiences **hoy mismo** con el ejercicio 4-8. Dedica **5 minutos ahora mismo** y observa cómo tu mente se clarifica.
 
-Si quieres una guía más profunda sobre técnicas avanzadas de respiración y cómo combinarlas con terapia sonora para un bienestar integral, te espero en mis **clases de Kundalini Yoga** y sesiones de **Terapia de Sonido** donde integramos estas herramientas en una práctica holística.
+Si quieres una guía más profunda sobre técnicas avanzadas de respiración y cómo combinarlas con terapia sonora para un bienestar integral, te espero en mis [clases de Kundalini Yoga](https://marceanahata.com/clases), [sesiones de Terapia de Sonido](https://marceanahata.com/terapia-sonido) y programas de [Bienestar Corporativo](https://marceanahata.com/bienestar-corporativo), donde integramos estas herramientas en una práctica holística.
 
 **Tu biología está lista para cambiar. Solo necesita que respires.**

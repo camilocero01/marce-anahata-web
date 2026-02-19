@@ -277,6 +277,6 @@ Ready to transform your relationship with stress and anxiety?
 
 I invite you to start **right now** with the 4-8 exercise. Dedicate **5 minutes now** and notice how your mind clarifies.
 
-If you want a deeper guide on advanced breathing techniques and how to combine them with sound therapy for holistic wellness, I'm waiting for you in my **Kundalini Yoga classes** and **Sound Therapy sessions**, where we integrate these tools into a comprehensive practice.
+If you want a deeper guide on advanced breathing techniques and how to combine them with sound therapy for holistic wellness, I'm waiting for you in my [Kundalini Yoga classes](https://marceanahata.com/clases), [Sound Therapy sessions](https://marceanahata.com/terapia-sonido), and [Corporate Wellness programs](https://marceanahata.com/bienestar-corporativo), where we integrate these tools into a comprehensive practice.
 
 **Your biology is ready to change. It just needs you to breathe.**
