@@ -6,6 +6,8 @@ import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import sobreMiImg from '../assets/sobre-mi/sobre-mi.webp';
 import sobreMiBioImg from '../assets/sobre-mi/sobre-mi-bio.webp';
+import terapiaGongImg from '../assets/terapia/terapia-vikrampal-gong.webp';
+import terapiaNamYogaImg from '../assets/terapia/terapia-nam-yoga.webp';
 
 const whatsappLink = "https://wa.me/573207329921?text=Hola%20Marce%20Anahata,%20le%C3%AD%20tu%20historia%20y%20quisiera%20conocer%20m%C3%A1s%20sobre%20tus%20servicios.";
 
@@ -173,57 +175,100 @@ const sobreMiPosts = (await getCollection('blog', ({ data, slug }) =>
 
 
   <section class="py-24 bg-stone-50 px-6">
-    <div class="max-w-5xl mx-auto">
+    <div class="max-w-6xl mx-auto">
       <div class="text-center mb-16">
         <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-4">Formación y Respaldo Profesional</h2>
         <p class="text-[#243c5a]/70 text-lg">Un camino de estudio riguroso para sostener tu proceso con seguridad.</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        
-        <div class="bg-white p-8 rounded-xl shadow-sm border-t-4 border-[#6ed8d9] hover:shadow-lg transition-shadow">
-          <div class="flex items-center gap-4 mb-6">
-            <div class="w-12 h-12 bg-[#6ed8d9]/20 rounded-full flex items-center justify-center text-2xl">🔔</div>
-            <div>
-              <h3 class="text-xl font-bold text-[#243c5a]">Terapia de Sonido</h3>
-              <p class="text-xs text-[#5d5a8c] uppercase tracking-wider font-bold">Instituto Internacional (España)</p>
+      <!-- Terapia de Sonido -->
+      <div class="mb-20">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div class="order-2 md:order-1">
+            <div class="bg-white p-8 rounded-xl shadow-sm border-t-4 border-[#6ed8d9] hover:shadow-lg transition-shadow">
+              <div class="flex items-center gap-4 mb-6">
+                <div class="w-12 h-12 bg-[#6ed8d9]/20 rounded-full flex items-center justify-center text-2xl">🔔</div>
+                <div>
+                  <h3 class="text-xl font-bold text-[#243c5a]">Terapia de Sonido</h3>
+                  <p class="text-xs text-[#5d5a8c] uppercase tracking-wider font-bold">Instituto Internacional (España)</p>
+                </div>
+              </div>
+              
+              <p class="text-[#243c5a]/80 mb-4 text-sm leading-relaxed">
+                Certificación de <strong>110 horas</strong> especializada en el uso terapéutico del sonido y la musicoterapia. Formación integral que abarca desde la física de las frecuencias hasta la psicología clínica aplicada.
+              </p>
+
+              <ul class="space-y-2 text-sm text-[#243c5a]/70 mb-6">
+                <li class="flex gap-2">✓ Avalado por la <strong>Fundación Musicoterapia y Salud</strong>.</li>
+                <li class="flex gap-2">✓ Dirección de <strong>Vikrampal Sandes</strong> y María Jesús del Olmo.</li>
+                <li class="flex gap-2">✓ Especialización en Gong, Cuencos y Voz.</li>
+                <li class="flex gap-2">✓ TFF: Impacto del Gong en sintomatología psicológica.</li>
+              </ul>
+
+              <p class="text-xs text-[#243c5a]/50 italic mt-4">
+                Certificado firmado por <a href="https://vikrampal.es/sobre-mi/" target="_blank" class="underline hover:text-[#6ed8d9]">Vikrampal Sandes</a>.
+              </p>
             </div>
           </div>
-          
-          <p class="text-[#243c5a]/80 mb-4 text-sm leading-relaxed">
-            Certificación de <strong>110 horas</strong> especializada en el uso terapéutico del sonido y la musicoterapia. Formación integral que abarca desde la física de las frecuencias hasta la psicología clínica aplicada.
-          </p>
 
-          <ul class="space-y-2 text-sm text-[#243c5a]/70 mb-6">
-            <li class="flex gap-2">✓ Avalado por la <strong>Fundación Musicoterapia y Salud</strong>.</li>
-            <li class="flex gap-2">✓ Dirección de <strong>Vikrampal Sandes</strong> y María Jesús del Olmo.</li>
-            <li class="flex gap-2">✓ Especialización en Gong, Cuencos y Voz.</li>
-            <li class="flex gap-2">✓ TFF: Impacto del Gong en sintomatología psicológica.</li>
-          </ul>
-        </div>
-
-        <div class="bg-white p-8 rounded-xl shadow-sm border-t-4 border-[#5d5a8c] hover:shadow-lg transition-shadow">
-          <div class="flex items-center gap-4 mb-6">
-            <div class="w-12 h-12 bg-[#5d5a8c]/10 rounded-full flex items-center justify-center text-2xl">🧘‍♀️</div>
-            <div>
-              <h3 class="text-xl font-bold text-[#243c5a]">Kundalini Yoga</h3>
-              <p class="text-xs text-[#5d5a8c] uppercase tracking-wider font-bold">The Kundalini Research Institute (KRI)</p>
-            </div>
+          <div class="order-1 md:order-2 relative">
+            <div class="absolute -inset-4 bg-[#6ed8d9]/20 rounded-2xl rotate-3 z-0"></div>
+            <Image 
+              src={terapiaGongImg} 
+              alt="Vikrampal Sandes - Maestro certificador de Terapia de Sonido" 
+              class="relative z-10 w-full rounded-xl shadow-xl object-cover"
+              width={600}
+              height={400}
+              densities={[1.5, 2]}
+            />
           </div>
-          
-          <p class="text-[#243c5a]/80 mb-4 text-sm leading-relaxed">
-            Instructora Certificada Internacionalmente (Nivel 1). Un entrenamiento inmersivo de un año diseñado para dominar la tecnología del yoga y la auto-maestría.
-          </p>
-
-          <ul class="space-y-2 text-sm text-[#243c5a]/70 mb-6">
-            <li class="flex gap-2">✓ Formada por la maestra <strong>Nam Nidhan Khalsa</strong>.</li>
-            <li class="flex gap-2">✓ Anatomía Yóguica y Sistema de Chakras.</li>
-            <li class="flex gap-2">✓ Ciencia del Naad (Mantra) y Respiración.</li>
-            <li class="flex gap-2">✓ Metodología de enseñanza segura y ética.</li>
-          </ul>
         </div>
-
       </div>
+
+      <!-- Kundalini Yoga -->
+      <div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div class="relative">
+            <div class="absolute -inset-4 bg-[#5d5a8c]/10 rounded-2xl -rotate-3 z-0"></div>
+            <Image 
+              src={terapiaNamYogaImg} 
+              alt="Nam Nidhan Khalsa - Maestra certificadora de Kundalini Yoga" 
+              class="relative z-10 w-full rounded-xl shadow-xl object-cover"
+              width={600}
+              height={400}
+              densities={[1.5, 2]}
+            />
+          </div>
+
+          <div>
+            <div class="bg-white p-8 rounded-xl shadow-sm border-t-4 border-[#5d5a8c] hover:shadow-lg transition-shadow">
+              <div class="flex items-center gap-4 mb-6">
+                <div class="w-12 h-12 bg-[#5d5a8c]/10 rounded-full flex items-center justify-center text-2xl">🧘‍♀️</div>
+                <div>
+                  <h3 class="text-xl font-bold text-[#243c5a]">Kundalini Yoga</h3>
+                  <p class="text-xs text-[#5d5a8c] uppercase tracking-wider font-bold">The Kundalini Research Institute (KRI)</p>
+                </div>
+              </div>
+              
+              <p class="text-[#243c5a]/80 mb-4 text-sm leading-relaxed">
+                Instructora Certificada Internacionalmente (Nivel 1). Un entrenamiento inmersivo de un año diseñado para dominar la tecnología del yoga y la auto-maestría.
+              </p>
+
+              <ul class="space-y-2 text-sm text-[#243c5a]/70 mb-6">
+                <li class="flex gap-2">✓ Formada por la maestra <strong>Nam Nidhan Khalsa</strong>.</li>
+                <li class="flex gap-2">✓ Anatomía Yóguica y Sistema de Chakras.</li>
+                <li class="flex gap-2">✓ Ciencia del Naad (Mantra) y Respiración.</li>
+                <li class="flex gap-2">✓ Metodología de enseñanza segura y ética.</li>
+              </ul>
+
+              <p class="text-xs text-[#243c5a]/50 italic mt-4">
+                Formada por <a href="https://namnidhankhalsa.com/quienes-somos/" target="_blank" class="underline hover:text-[#5d5a8c]">Nam Nidhan Khalsa</a>, pionera en Latinoamérica.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
