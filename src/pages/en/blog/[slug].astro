@@ -60,12 +60,43 @@ const jsonLd = {
 
 // Related posts: last 3 from same primary tag
 const primaryTag = data.tags?.[0];
-const relatedPosts = primaryTag
+let relatedPosts = primaryTag
   ? (await getCollection('blog', ({ data: d, slug }) => !d.draft && slug.startsWith('en/') && (d.tags || []).includes(primaryTag)))
       .filter((p) => p.slug !== post.slug)
       .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime())
       .slice(0, 3)
   : [];
+
+// If less than 3 related posts, add cross-silo recommendations
+if (relatedPosts.length < 3) {
+  const crossSiloTags: Record<string, string[]> = {
+    'yoga': ['sound therapy', 'meditation', 'wellness'],
+    'sound therapy': ['yoga', 'meditation', 'rituals'],
+    'corporate wellness': ['yoga', 'sound therapy', 'burnout'],
+    'meditation': ['yoga', 'sound therapy', 'consciousness']
+  };
+  
+  const additionalTags: string[] = (primaryTag && crossSiloTags[primaryTag]) || [];
+  const additionalPosts = (await getCollection('blog', ({ data: d, slug }) => 
+    !d.draft && slug.startsWith('en/') && 
+    additionalTags.some((tag) => (d.tags || []).includes(tag))
+  ))
+    .filter((p) => p.slug !== post.slug && !relatedPosts.find(rp => rp.slug === p.slug))
+    .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime())
+    .slice(0, 3 - relatedPosts.length);
+  
+  relatedPosts = [...relatedPosts, ...additionalPosts];
+}
+
+// Determine service CTA based on primary tag
+const serviceCTA = {
+  'yoga': { url: '/clases', text: 'Explore our Kundalini Yoga classes' },
+  'sound therapy': { url: '/terapia-sonido', text: 'Discover Sound Therapy' },
+  'corporate wellness': { url: '/bienestar-corporativo', text: 'Learn about our corporate programs' },
+  'burnout': { url: '/bienestar-corporativo', text: 'Corporate wellness programs' },
+  'meditation': { url: '/clases', text: 'Learn meditation with Kundalini Yoga' },
+  'rituals': { url: '/rituales', text: 'Explore our sacred rituals' }
+}[primaryTag];
 ---
 <Layout title={pageTitle} description={description} image={image} lang={lang} includeAlternates={false}>
   <Fragment slot="head">
@@ -151,13 +182,21 @@ const relatedPosts = primaryTag
             </article>
           ))}
         </div>
-        <div class="text-center mt-10">
+        <div class="text-center mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center">
           <a
             href={`/en/blog/tag/${encodeURIComponent(primaryTag)}`}
             class="inline-block px-6 py-3 border-2 border-[#243c5a] text-[#243c5a] rounded-lg hover:bg-[#243c5a] hover:text-white transition-all font-semibold"
           >
-            See more about {primaryTag}
+            More about {primaryTag}
           </a>
+          {serviceCTA && (
+            <a
+              href={serviceCTA.url}
+              class="inline-block px-6 py-3 bg-[#6ed8d9] text-[#243c5a] rounded-lg hover:bg-[#5d5a8c] hover:text-white transition-all font-semibold shadow-sm"
+            >
+              {serviceCTA.text}
+            </a>
+          )}
         </div>
       </section>
     )}

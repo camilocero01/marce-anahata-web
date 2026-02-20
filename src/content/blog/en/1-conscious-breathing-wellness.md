@@ -161,6 +161,8 @@ Conscious breathing **isn't passive relaxation**. It's **neurological training**
 - **Optimized digestion:** Your parasympathetic system controls digestion
 - **Regulated blood pressure:** Cumulative effect on cardiovascular health
 
+These changes are especially valuable in high-stress work and relationship contexts. If you work in a demanding corporate environment, our [corporate wellness programs](https://marceanahata.com/bienestar-corporativo) are specifically designed to help teams build resilience and mental clarity.
+
 ### Benefits You'll Notice in 2-3 Months:
 
 - Your nervous system becomes more **resilient** to stress
@@ -200,7 +202,7 @@ It's the "supervisor" of your parasympathetic system. It connects directly from 
 - Your intestines
 - Your throat
 
-**A slow, conscious breath is the most direct way to stimulate the vagus nerve without medication.**
+**A slow, conscious breath is the most direct way to stimulate the vagus nerve without medication.** In fact, this is the foundation of advanced techniques used in [Kundalini Yoga practices](https://marceanahata.com/clases), where breath control is essential to awaken your energetic potential.
 
 ---
 
@@ -267,7 +269,7 @@ You don't need complex meditation. You don't need expensive retreats. You don't 
 
 **You just need to understand that you have an "off" button for your nervous system, and that button is your breath.**
 
-Breathe consciously today, and tomorrow will be different.
+Breathe consciously today, and tomorrow will be different. And if you want to amplify the effects further, you can combine conscious breathing with [vibrational medicine from sound therapy](https://marceanahata.com/terapia-sonido), which works directly on your cellular frequencies for enhanced wellness.
 
 ---
 
