@@ -21,6 +21,51 @@ const whatsappLink = `https://wa.me/573207329921?text=${encodeURIComponent('Hola
         { '@type': 'ListItem', position: 2, name: 'Círculo de Mujeres', item: 'https://marceanahata.com/circulo-mujeres-conscientes' },
       ],
     })}</script>
+    <script type="application/ld+json">{JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Event',
+      name: 'Círculo de Mujeres Conscientes',
+      description: 'Encuentro mensual de mujeres en Medellín para rituales de conexión femenina, terapia de sonido, meditación y hermandad. Un espacio sagrado donde las mujeres se reúnen para sanar, recordar y renacer juntas.',
+      eventSchedule: {
+        '@type': 'Schedule',
+        repeatFrequency: 'P1M',
+        byDay: 'Saturday',
+        startTime: '19:00',
+        endTime: '22:00'
+      },
+      location: {
+        '@type': 'Place',
+        name: 'Marce Anahata Centro de Bienestar',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: 'Cl. 11A Sur #46-12',
+          addressLocality: 'Medellín',
+          addressRegion: 'Antioquia',
+          postalCode: '050012',
+          addressCountry: 'CO'
+        },
+        geo: {
+          '@type': 'GeoCoordinates',
+          latitude: 6.2092,
+          longitude: -75.5697
+        }
+      },
+      organizer: {
+        '@type': 'Person',
+        name: 'Marce Anahata',
+        url: 'https://marceanahata.com/sobre-mi',
+        sameAs: ['https://www.instagram.com/marceanahata/']
+      },
+      audience: {
+        '@type': 'Audience',
+        audienceType: 'Mujeres buscando conexión, sanación femenina y autoconocimiento',
+        geographicArea: {
+          '@type': 'City',
+          name: 'Medellín'
+        }
+      },
+      keywords: 'círculo de mujeres, mujeres conscientes, Medellín, rituales femeninos, luna llena, luna nueva, sororidad, hermandad femenina, sanación femenina, terapia de sonido para mujeres, encuentros de mujeres, medicina femenina, ciclo menstrual, feminidad sagrada'
+    })}</script>
   </Fragment>
 
   <!-- Hero con texto superpuesto fluido -->
@@ -322,6 +367,213 @@ const whatsappLink = `https://wa.me/573207329921?text=${encodeURIComponent('Hola
         </div>
         <p class="mt-6 text-sm text-white/80">*Colchonetas, mantas y elementos del ritual están incluidos.</p>
       </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section with Schema.org -->
+  <section class="py-24 bg-stone-50 px-6">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-16">
+        <span class="text-[#5d5a8c] uppercase tracking-[0.3em] text-sm font-semibold">Preguntas Frecuentes</span>
+        <h2 class="text-4xl md:text-5xl font-serif text-[#243c5a] mt-4 mb-6">
+          Todo lo que necesitas saber
+        </h2>
+        <p class="text-lg text-[#243c5a]/70">
+          Respuestas claras para que llegues al círculo con confianza y claridad.
+        </p>
+      </div>
+
+      <div class="space-y-6">
+        <!-- FAQ 1 -->
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-100" itemscope itemtype="https://schema.org/Question">
+          <h3 class="text-xl font-serif text-[#243c5a] mb-4" itemprop="name">
+            ¿Qué es el Círculo de Mujeres Conscientes de Marce Anahata?
+          </h3>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <div itemprop="text" class="text-[#243c5a]/80 leading-relaxed">
+              <p class="mb-4">Es un encuentro mensual en Medellín donde mujeres se reúnen en un espacio sagrado para conectar consigo mismas y con otras a través de rituales, terapia de sonido, meditación y círculo de palabra.</p>
+              <p>No es terapia grupal ni un taller. Es un espacio de hermandad donde cada mujer puede ser escuchada sin juicios y donde sanamos mejor juntas.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-100" itemscope itemtype="https://schema.org/Question">
+          <h3 class="text-xl font-serif text-[#243c5a] mb-4" itemprop="name">
+            ¿Cuándo y dónde se realiza el Círculo de Mujeres en Medellín?
+          </h3>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <div itemprop="text" class="text-[#243c5a]/80 leading-relaxed">
+              <p class="mb-4"><strong>Cuándo:</strong> Generalmente el primer sábado de cada mes, de 5:00 PM a 8:00 PM. Las fechas exactas se publican en nuestros eventos.</p>
+              <p><strong>Dónde:</strong> El Poblado, Medellín, Colombia. La dirección exacta (Cl. 11A Sur #46-12, La Aguacatala) se comparte al confirmar tu cupo para mantener la intimidad del espacio.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-100" itemscope itemtype="https://schema.org/Question">
+          <h3 class="text-xl font-serif text-[#243c5a] mb-4" itemprop="name">
+            ¿Qué incluye cada encuentro del Círculo de Mujeres?
+          </h3>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <div itemprop="text" class="text-[#243c5a]/80 leading-relaxed">
+              <p class="mb-3">Cada círculo incluye:</p>
+              <ul class="list-disc list-inside space-y-2 mb-4">
+                <li><strong>Ritual de apertura</strong> con baño de gong y cuencos de cristal</li>
+                <li><strong>Meditación guiada</strong> y técnicas de respiración consciente</li>
+                <li><strong>Círculo de palabra</strong> - espacio de escucha profunda donde cada voz importa</li>
+                <li><strong>Movimiento intuitivo</strong> o danza sagrada para liberar energía estancada</li>
+                <li><strong>Ritual de cierre</strong> según la fase lunar (luna llena, nueva, creciente)</li>
+              </ul>
+              <p class="text-sm">Todos los materiales están incluidos: colchonetas, mantas, elementos del ritual y espacio preparado con amor.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-100" itemscope itemtype="https://schema.org/Question">
+          <h3 class="text-xl font-serif text-[#243c5a] mb-4" itemprop="name">
+            ¿Necesito experiencia previa en yoga o meditación para participar?
+          </h3>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <div itemprop="text" class="text-[#243c5a]/80 leading-relaxed">
+              <p class="mb-4"><strong>No, ninguna experiencia es necesaria.</strong> El círculo está diseñado para todas las mujeres, sin importar su camino espiritual o nivel de práctica.</p>
+              <p>Solo necesitas venir con corazón abierto y disposición para estar presente. Todo lo demás se facilita en el momento.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 5 -->
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-100" itemscope itemtype="https://schema.org/Question">
+          <h3 class="text-xl font-serif text-[#243c5a] mb-4" itemprop="name">
+            ¿Cuánto cuesta participar en el Círculo de Mujeres?
+          </h3>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <div itemprop="text" class="text-[#243c5a]/80 leading-relaxed">
+              <p class="mb-4">La inversión por encuentro mensual varía según la temporada y el ritual específico. <strong>$120.000 COP</strong> o si vienes con una amiga son $90.000 COP Cada una.</p>
+              <p class="text-sm italic">Contáctame vía WhatsApp para conocer las opciones actuales y asegurar tu cupo en el próximo círculo.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 6 -->
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-100" itemscope itemtype="https://schema.org/Question">
+          <h3 class="text-xl font-serif text-[#243c5a] mb-4" itemprop="name">
+            ¿Qué debo llevar al Círculo de Mujeres?
+          </h3>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <div itemprop="text" class="text-[#243c5a]/80 leading-relaxed">
+              <p class="mb-3"><strong>Solo necesitas traer:</strong></p>
+              <ul class="list-disc list-inside space-y-2 mb-4">
+                <li><strong>Ropa cómoda</strong> - preferiblemente de colores claros o naturales</li>
+                <li><strong>Botella de agua</strong> para mantenerte hidratada</li>
+                <li><strong>Diario personal</strong> (opcional) si te gusta escribir tus reflexiones</li>
+                <li><strong>Corazón abierto</strong> y disposición para estar presente</li>
+              </ul>
+              <p class="text-sm">Colchonetas, mantas, cojines y todos los elementos del ritual están incluidos.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 7 -->
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-100" itemscope itemtype="https://schema.org/Question">
+          <h3 class="text-xl font-serif text-[#243c5a] mb-4" itemprop="name">
+            ¿Hay límite de edad o condiciones especiales para participar?
+          </h3>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <div itemprop="text" class="text-[#243c5a]/80 leading-relaxed">
+              <p class="mb-4">El círculo está abierto para <strong>mujeres mayores de 18 años</strong> de cualquier edad, condición física o momento de vida.</p>
+              <p class="mb-4">Si estás embarazada o tienes alguna condición médica especial, por favor avísame al momento de inscribirte para adaptar las prácticas según sea necesario.</p>
+              <p>Todas las mujeres son bienvenidas: madres, hijas, solteras, en pareja, jóvenes, mayores. El círculo honra la diversidad femenina.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 8 -->
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-100" itemscope itemtype="https://schema.org/Question">
+          <h3 class="text-xl font-serif text-[#243c5a] mb-4" itemprop="name">
+            ¿Puedo ir a un solo círculo o debo comprometerme a todos los encuentros?
+          </h3>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <div itemprop="text" class="text-[#243c5a]/80 leading-relaxed">
+              <p class="mb-4"><strong>Puedes asistir a encuentros individuales sin compromiso.</strong> Cada círculo es una experiencia completa en sí misma.</p>
+              <p>Sin embargo, muchas mujeres descubren que el verdadero poder está en el compromiso de largo plazo. Por eso ofrecemos packs trimestrales con descuento para quienes desean profundizar su proceso.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQPage Schema -->
+      <script type="application/ld+json">{JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: [
+          {
+            '@type': 'Question',
+            name: '¿Qué es el Círculo de Mujeres Conscientes de Marce Anahata?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'Es un encuentro mensual en Medellín donde mujeres se reúnen en un espacio sagrado para conectar consigo mismas y con otras a través de rituales, terapia de sonido, meditación y círculo de palabra. No es terapia grupal ni un taller. Es un espacio de hermandad donde cada mujer puede ser escuchada sin juicios y donde sanamos mejor juntas.'
+            }
+          },
+          {
+            '@type': 'Question',
+            name: '¿Cuándo y dónde se realiza el Círculo de Mujeres en Medellín?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'Generalmente el primer sábado de cada mes, de 5:00 PM a 8:00 PM en El Poblado, Medellín, Colombia. La dirección exacta (Cl. 11A Sur #46-12, La Aguacatala) se comparte al confirmar tu cupo para mantener la intimidad del espacio.'
+            }
+          },
+          {
+            '@type': 'Question',
+            name: '¿Qué incluye cada encuentro del Círculo de Mujeres?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'Cada círculo incluye: Ritual de apertura con baño de gong y cuencos de cristal, Meditación guiada y técnicas de respiración consciente, Círculo de palabra (espacio de escucha profunda), Movimiento intuitivo o danza sagrada, y Ritual de cierre según la fase lunar.'
+            }
+          },
+          {
+            '@type': 'Question',
+            name: '¿Necesito experiencia previa en yoga o meditación para participar?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'No, ninguna experiencia es necesaria. El círculo está diseñado para todas las mujeres, sin importar su camino espiritual o nivel de práctica. Solo necesitas venir con corazón abierto y disposición para estar presente.'
+            }
+          },
+          {
+            '@type': 'Question',
+            name: '¿Cuánto cuesta participar en el Círculo de Mujeres?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'La inversión por encuentro mensual varía según la temporada y el ritual específico, generalmente entre $80.000 - $120.000 COP. También se ofrecen packs trimestrales con descuento para quienes desean comprometerse con el proceso de largo plazo.'
+            }
+          },
+          {
+            '@type': 'Question',
+            name: '¿Qué debo llevar al Círculo de Mujeres?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'Solo necesitas traer: Ropa cómoda (preferiblemente de colores claros), botella de agua, diario personal (opcional) y corazón abierto. Colchonetas, mantas, cojines y todos los elementos del ritual están incluidos.'
+            }
+          },
+          {
+            '@type': 'Question',
+            name: '¿Hay límite de edad o condiciones especiales para participar?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'El círculo está abierto para mujeres mayores de 18 años de cualquier edad, condición física o momento de vida. Si estás embarazada o tienes alguna condición médica especial, avísame al inscribirte para adaptar las prácticas. Todas las mujeres son bienvenidas.'
+            }
+          },
+          {
+            '@type': 'Question',
+            name: '¿Puedo ir a un solo círculo o debo comprometerme a todos los encuentros?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'Puedes asistir a encuentros individuales sin compromiso. Cada círculo es una experiencia completa. Sin embargo, el verdadero poder está en el compromiso de largo plazo, por eso ofrecemos packs trimestrales con descuento.'
+            }
+          }
+        ]
+      })}</script>
     </div>
   </section>
 
