@@ -15,6 +15,35 @@ const pageInfo = {
 };
 
 const whatsappLinkGeneral = `https://wa.me/573207329921?text=${encodeURIComponent(pageInfo.whatsappMessageGeneral)}`; // CAMBIA TU NÚMERO AQUÍ
+const serviceUrl = 'https://marceanahata.com/clases';
+
+const faqItems = [
+  {
+    question: '¿Qué incluyen las clases de Kundalini Yoga en Medellín?',
+    answer:
+      'Incluyen kriyas, pranayamas, meditación y mantras para fortalecer sistema nervioso, mejorar enfoque y elevar la energía vital en la vida diaria.'
+  },
+  {
+    question: '¿Dónde se dictan las clases de Kundalini Yoga?',
+    answer:
+      'Las clases se realizan en El Poblado, Medellín, y también hay opciones online según la modalidad y disponibilidad.'
+  },
+  {
+    question: '¿Necesito experiencia previa para empezar?',
+    answer:
+      'No necesitas experiencia previa. Las clases están adaptadas para personas principiantes y practicantes con experiencia.'
+  },
+  {
+    question: '¿Qué modalidades de práctica ofrecen?',
+    answer:
+      'Ofrecemos clases grupales regulares, sesiones privadas 1:1 y talleres temáticos profundos.'
+  },
+  {
+    question: '¿Cómo puedo reservar mi clase?',
+    answer:
+      'Puedes reservar por WhatsApp desde esta página para conocer horarios vigentes, packs mensuales y opciones personalizadas.'
+  }
+];
 
 // 3 posts aleatorios con tags "yoga" o "meditación"
 const yogaPosts = (await getCollection('blog', ({ data, slug }) =>
@@ -74,6 +103,41 @@ const offerings = [
           "item": "https://marceanahata.com/clases"
         }
       ]
+    })}</script>
+    <script type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Clases y Talleres de Kundalini Yoga en Medellín",
+      "description": "Clases de Kundalini Yoga en Medellín para fortalecer cuerpo, calmar mente y despertar energía vital con respiración, meditación y kriyas.",
+      "serviceType": "Kundalini Yoga Classes",
+      "provider": {
+        "@type": "Person",
+        "name": "Marce Anahata",
+        "url": "https://marceanahata.com/sobre-mi"
+      },
+      "areaServed": {
+        "@type": "City",
+        "name": "Medellín"
+      },
+      "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/InStock",
+        "url": serviceUrl
+      },
+      "url": serviceUrl,
+      "keywords": "kundalini yoga Medellín, clases de yoga Medellín, meditación, pranayama, bienestar integral"
+    })}</script>
+    <script type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": faqItems.map((item) => ({
+        "@type": "Question",
+        "name": item.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": item.answer
+        }
+      }))
     })}</script>
   </Fragment>
   
@@ -411,6 +475,24 @@ const offerings = [
       </div>
     </section>
   )}
+
+  <section class="py-20 bg-stone-50 px-6">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-4">Preguntas frecuentes sobre Kundalini Yoga</h2>
+        <p class="text-[#243c5a]/70 max-w-2xl mx-auto">Respuestas rápidas para quienes buscan clases de yoga en Medellín.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {faqItems.map((item) => (
+          <article class="bg-white p-6 rounded-xl border border-stone-100 shadow-sm">
+            <h3 class="text-lg font-semibold text-[#243c5a] mb-3">{item.question}</h3>
+            <p class="text-sm text-[#243c5a]/80 leading-relaxed">{item.answer}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
 
   <div class="bg-white">
     <ReviewsSection />

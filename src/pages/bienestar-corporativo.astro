@@ -14,6 +14,35 @@ const serviceInfo = {
 };
 
 const whatsappLink = `https://wa.me/573207329921?text=${encodeURIComponent(serviceInfo.whatsappMessage)}`; // CAMBIA EL NÚMERO
+const serviceUrl = 'https://marceanahata.com/bienestar-corporativo';
+
+const faqItems = [
+  {
+    question: '¿Qué es un programa de bienestar corporativo?',
+    answer:
+      'Es una intervención para equipos que integra mindfulness, respiración consciente, yoga y herramientas emocionales para reducir estrés y mejorar clima laboral.'
+  },
+  {
+    question: '¿Qué tipo de empresas pueden contratar estos talleres?',
+    answer:
+      'Trabajamos con empresas pequeñas, medianas y grandes en Medellín y área metropolitana, adaptando la metodología al contexto de cada equipo.'
+  },
+  {
+    question: '¿Qué resultados pueden esperar los equipos?',
+    answer:
+      'Los equipos suelen reportar reducción de burnout, mejor comunicación empática, mayor foco mental y mayor cohesión en periodos de alta carga.'
+  },
+  {
+    question: '¿Las sesiones son en la empresa o en el centro de bienestar?',
+    answer:
+      'Ambas opciones están disponibles: en tu empresa o en el centro de bienestar en El Poblado, según objetivo, logística y número de participantes.'
+  },
+  {
+    question: '¿Cómo solicito una propuesta personalizada?',
+    answer:
+      'Puedes solicitar una propuesta por WhatsApp desde esta página. Definimos objetivos, formato, duración y alcance según las necesidades de tu organización.'
+  }
+];
 
 // 3 posts aleatorios con tags "burnout" o "bienestar corporativo"
 const bienestarPosts = (await getCollection('blog', ({ data, slug }) =>
@@ -42,6 +71,41 @@ const bienestarPosts = (await getCollection('blog', ({ data, slug }) =>
           "item": "https://marceanahata.com/bienestar-corporativo"
         }
       ]
+    })}</script>
+    <script type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Programa de Bienestar Corporativo en Medellín",
+      "description": "Talleres de bienestar corporativo en Medellín con mindfulness, yoga y gestión emocional para reducir burnout y fortalecer equipos conscientes.",
+      "serviceType": "Corporate Wellness Program",
+      "provider": {
+        "@type": "Person",
+        "name": "Marce Anahata",
+        "url": "https://marceanahata.com/sobre-mi"
+      },
+      "areaServed": {
+        "@type": "City",
+        "name": "Medellín"
+      },
+      "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/InStock",
+        "url": serviceUrl
+      },
+      "url": serviceUrl,
+      "keywords": "bienestar corporativo Medellín, burnout laboral, mindfulness para empresas, pausas activas conscientes, liderazgo consciente"
+    })}</script>
+    <script type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": faqItems.map((item) => ({
+        "@type": "Question",
+        "name": item.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": item.answer
+        }
+      }))
     })}</script>
   </Fragment>
   
@@ -332,6 +396,24 @@ const bienestarPosts = (await getCollection('blog', ({ data, slug }) =>
       </div>
     </section>
   )}
+
+  <section class="py-20 bg-stone-50 px-6">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-4">Preguntas frecuentes sobre Bienestar Corporativo</h2>
+        <p class="text-[#243c5a]/70 max-w-2xl mx-auto">Respuestas clave para empresas que buscan programas de bienestar en Medellín.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {faqItems.map((item) => (
+          <article class="bg-white p-6 rounded-xl border border-stone-100 shadow-sm">
+            <h3 class="text-lg font-semibold text-[#243c5a] mb-3">{item.question}</h3>
+            <p class="text-sm text-[#243c5a]/80 leading-relaxed">{item.answer}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
 
   <div style="background-color: #fcfcfc; border: 1px solid #e5e7eb; padding: 40px; max-width: 600px; margin: 0 auto; font-family: 'Georgia', serif; color: #243c5a; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-radius: 12px; position: relative; overflow: hidden;">
     

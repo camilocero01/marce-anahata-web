@@ -15,6 +15,25 @@ const serviceInfo = {
 };
 
 const whatsappLink = `https://wa.me/573207329921?text=${encodeURIComponent(serviceInfo.whatsappMessage)}`;
+const serviceUrl = `https://marceanahata.com${Astro.url.pathname}`;
+const faqItems = [
+  {
+    question: `What is included in ${serviceInfo.title}?`,
+    answer: `It is a personalized ritual experience in Medellín designed to honor your process, elevate your energy, and create a sacred moment of transformation.`
+  },
+  {
+    question: 'Where is this ritual held in Medellín?',
+    answer: 'It is held in El Poblado, Medellín. Exact location details are shared once your booking is confirmed via WhatsApp.'
+  },
+  {
+    question: 'How long does the ritual last and how do I book?',
+    answer: `The ritual lasts approximately ${serviceInfo.duration}. You can book directly through WhatsApp from this page.`
+  },
+  {
+    question: 'Is the ritual personalized to my intention?',
+    answer: 'Yes. Each ritual is tailored to your life moment, intention, and energetic needs.'
+  }
+];
 
 // TEMPORARILY DISABLED FOR PRODUCTION
 // const ritualPosts = (await getCollection('blog', ({ data, slug }) =>
@@ -35,6 +54,36 @@ const ritualPosts: any[] = [];
         { "@type": "ListItem", "position": 2, "name": "Rituals", "item": "https://marceanahata.com/en/rituales" },
         { "@type": "ListItem", "position": 3, "name": "Bachelorette Ritual", "item": "https://marceanahata.com/en/ritual-despedida-soltera" }
       ]
+    })}</script>
+    <script type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": serviceInfo.title,
+      "description": "Personalized ritual service in Medellín for emotional, energetic, and spiritual transformation.",
+      "serviceType": "Ritual Service",
+      "provider": {
+        "@type": "Person",
+        "name": "Marce Anahata",
+        "url": "https://marceanahata.com/en/sobre-mi"
+      },
+      "areaServed": { "@type": "City", "name": "Medellín" },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "COP",
+        "availability": "https://schema.org/InStock",
+        "url": serviceUrl
+      },
+      "url": serviceUrl,
+      "keywords": "rituals Medellín, personalized ritual, energy healing, spiritual wellness"
+    })}</script>
+    <script type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": faqItems.map((item) => ({
+        "@type": "Question",
+        "name": item.question,
+        "acceptedAnswer": { "@type": "Answer", "text": item.answer }
+      }))
     })}</script>
     <meta property="og:locale" content="en_US" />
   </Fragment>
@@ -232,6 +281,23 @@ const ritualPosts: any[] = [];
       </div>
     </section>
   )}
+
+  <section class="py-20 bg-white px-6">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-4">Ritual FAQ</h2>
+        <p class="text-[#243c5a]/70 max-w-2xl mx-auto">Quick answers to help you book with clarity and confidence.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {faqItems.map((item) => (
+          <article class="bg-stone-50 p-6 rounded-xl border border-stone-100 shadow-sm">
+            <h3 class="text-lg font-semibold text-[#243c5a] mb-3">{item.question}</h3>
+            <p class="text-sm text-[#243c5a]/80 leading-relaxed">{item.answer}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
 
   <div class="bg-stone-50">
     <ReviewsSection lang="en" />

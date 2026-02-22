@@ -18,6 +18,35 @@ const serviceInfo = {
 };
 
 const whatsappLink = `https://wa.me/573207329921?text=${encodeURIComponent(serviceInfo.whatsappMessage)}`; // CAMBIA EL NÚMERO
+const serviceUrl = 'https://marceanahata.com/terapia-sonido';
+
+const faqItems = [
+  {
+    question: '¿Qué es la Terapia de Sonido en Marce Anahata?',
+    answer:
+      'Es una sesión de 2 horas de medicina vibracional en Medellín con gong, cuencos de cristal e instrumentos sutiles para reducir el estrés, calmar el sistema nervioso y apoyar la liberación emocional.'
+  },
+  {
+    question: '¿Dónde se realiza la sesión de Terapia de Sonido?',
+    answer:
+      'Las sesiones se realizan en El Poblado, Medellín, Colombia, en Marce Anahata Centro de Bienestar. Los detalles de reserva se confirman directamente por WhatsApp.'
+  },
+  {
+    question: '¿Cuánto dura la sesión y cuál es la inversión?',
+    answer:
+      'Cada sesión dura 2 horas. La inversión personal actual es de $230.000 COP.'
+  },
+  {
+    question: '¿Necesito experiencia previa en yoga o meditación?',
+    answer:
+      'No necesitas experiencia previa. La Terapia de Sonido es apta para personas principiantes y practicantes avanzadas.'
+  },
+  {
+    question: '¿Cómo agendo una sesión de Terapia de Sonido en Medellín?',
+    answer:
+      'Puedes agendar directamente por WhatsApp desde esta página. La reserva requiere el 50% para separar la fecha.'
+  }
+];
 
 // 3 posts aleatorios con tag "terapia de sonido"
 const sonidoPosts = (await getCollection('blog', ({ data, slug }) =>
@@ -47,6 +76,44 @@ const sonidoPosts = (await getCollection('blog', ({ data, slug }) =>
         }
       ]
     })}</script>
+    <script type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Sesión de Terapia de Sonido en Medellín",
+      "description": "Terapia de sonido con gong y cuencos de cristal en Medellín para restablecer la armonía celular, reducir estrés y favorecer el equilibrio emocional.",
+      "serviceType": "Terapia de Sonido",
+      "provider": {
+        "@type": "Person",
+        "name": "Marce Anahata",
+        "url": "https://marceanahata.com/sobre-mi"
+      },
+      "areaServed": {
+        "@type": "City",
+        "name": "Medellín"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "230000",
+        "priceCurrency": "COP",
+        "availability": "https://schema.org/InStock",
+        "url": serviceUrl
+      },
+      "url": serviceUrl,
+      "keywords": "terapia de sonido Medellín, baño de gong Medellín, medicina vibracional, cuencos de cristal, reducción de estrés"
+    })}</script>
+    <script type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": faqItems.map((item) => ({
+        "@type": "Question",
+        "name": item.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": item.answer
+        }
+      }))
+    })}</script>
+    <meta property="og:locale" content="es_CO" />
   </Fragment>
   
 <section class="relative h-[70vh] flex items-center justify-center overflow-hidden">
@@ -405,6 +472,24 @@ const sonidoPosts = (await getCollection('blog', ({ data, slug }) =>
       </div>
     </section>
   )}
+
+  <section class="py-20 bg-stone-50 px-6">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-4">Preguntas frecuentes sobre Terapia de Sonido</h2>
+        <p class="text-[#243c5a]/70 max-w-2xl mx-auto">Respuestas rápidas para quienes buscan una sesión de terapia de sonido en Medellín.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {faqItems.map((item) => (
+          <article class="bg-white p-6 rounded-xl border border-stone-100 shadow-sm">
+            <h3 class="text-lg font-semibold text-[#243c5a] mb-3">{item.question}</h3>
+            <p class="text-sm text-[#243c5a]/80 leading-relaxed">{item.answer}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
 
   <div class="bg-white">
     <ReviewsSection />

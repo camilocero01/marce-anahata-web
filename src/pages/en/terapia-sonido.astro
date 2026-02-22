@@ -17,6 +17,35 @@ const serviceInfo = {
 };
 
 const whatsappLink = `https://wa.me/573207329921?text=${encodeURIComponent(serviceInfo.whatsappMessage)}`;
+const serviceUrl = 'https://marceanahata.com/en/terapia-sonido';
+
+const faqItems = [
+  {
+    question: 'What is Sound Therapy at Marce Anahata?',
+    answer:
+      'It is a 2-hour vibrational healing session in Medellín using gongs, crystal bowls and subtle sound instruments to reduce stress, calm the nervous system, and support emotional release.'
+  },
+  {
+    question: 'Where is the Sound Therapy session located?',
+    answer:
+      'Sessions are held in El Poblado, Medellín, Colombia, at Marce Anahata Wellness Center. Exact booking details are confirmed directly through WhatsApp.'
+  },
+  {
+    question: 'How long is the session and what is the price?',
+    answer:
+      'Each session lasts 2 hours. The current personal investment is $230,000 COP.'
+  },
+  {
+    question: 'Do I need previous meditation or yoga experience?',
+    answer:
+      'No prior experience is required. Sound Therapy is accessible for beginners and advanced practitioners.'
+  },
+  {
+    question: 'How can I book a Sound Therapy session in Medellín?',
+    answer:
+      'You can book directly through WhatsApp from this page. Reservations require a 50% payment to secure the date.'
+  }
+];
 
 // 3 English posts with tag "terapia de sonido" (kept tag for compatibility)
 // TEMPORARILY DISABLED FOR PRODUCTION
@@ -41,6 +70,43 @@ const sonidoPosts: any[] = [];
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://marceanahata.com/en" },
         { "@type": "ListItem", "position": 2, "name": "Sound Therapy", "item": "https://marceanahata.com/en/terapia-sonido" }
       ]
+    })}</script>
+    <script type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Sound Therapy Session in Medellín",
+      "description": "Sound therapy with gong and crystal bowls in Medellín to restore cellular harmony, reduce stress and support emotional balance.",
+      "serviceType": "Sound Therapy",
+      "provider": {
+        "@type": "Person",
+        "name": "Marce Anahata",
+        "url": "https://marceanahata.com/en/sobre-mi"
+      },
+      "areaServed": {
+        "@type": "City",
+        "name": "Medellín"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "230000",
+        "priceCurrency": "COP",
+        "availability": "https://schema.org/InStock",
+        "url": serviceUrl
+      },
+      "url": serviceUrl,
+      "keywords": "sound therapy Medellín, gong bath Medellín, vibrational healing, crystal bowls, stress relief"
+    })}</script>
+    <script type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": faqItems.map((item) => ({
+        "@type": "Question",
+        "name": item.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": item.answer
+        }
+      }))
     })}</script>
     <meta property="og:locale" content="en_US" />
   </Fragment>
@@ -399,6 +465,24 @@ const sonidoPosts: any[] = [];
       </div>
     </section>
   )}
+
+  <section class="py-20 bg-stone-50 px-6">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-4">Sound Therapy FAQ</h2>
+        <p class="text-[#243c5a]/70 max-w-2xl mx-auto">Quick answers for people looking for Sound Therapy in Medellín.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {faqItems.map((item) => (
+          <article class="bg-white p-6 rounded-xl border border-stone-100 shadow-sm">
+            <h3 class="text-lg font-semibold text-[#243c5a] mb-3">{item.question}</h3>
+            <p class="text-sm text-[#243c5a]/80 leading-relaxed">{item.answer}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
 
   <div class="bg-white">
     <ReviewsSection lang="en" />

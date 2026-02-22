@@ -16,6 +16,25 @@ const serviceInfo = {
 };
 
 const whatsappLink = `https://wa.me/573207329921?text=${encodeURIComponent(serviceInfo.whatsappMessage)}`; // CAMBIA EL NÚMERO
+const serviceUrl = `https://marceanahata.com${Astro.url.pathname}`;
+const faqItems = [
+  {
+    question: `¿En qué consiste ${serviceInfo.title}?`,
+    answer: `Es una experiencia ritual personalizada para honrar tu proceso, elevar tu energía y crear un momento sagrado de transformación en Medellín.`
+  },
+  {
+    question: '¿Dónde se realiza este ritual en Medellín?',
+    answer: 'Se realiza en El Poblado, Medellín. Los detalles de la ubicación se comparten al confirmar la reserva por WhatsApp.'
+  },
+  {
+    question: '¿Cuánto dura el ritual y cómo se reserva?',
+    answer: `La duración aproximada es ${serviceInfo.duration}. Puedes reservar directamente por WhatsApp desde esta página.`
+  },
+  {
+    question: '¿El ritual se adapta a mi intención personal?',
+    answer: 'Sí. Cada ritual se diseña de forma personalizada según tu momento de vida, intención y necesidades energéticas.'
+  }
+];
 
 // 3 posts aleatorios con tag "rituales"
 const ritualesPosts = (await getCollection('blog', ({ data, slug }) =>
@@ -26,6 +45,39 @@ const ritualesPosts = (await getCollection('blog', ({ data, slug }) =>
 ---
 
 <Layout title="Despedida de Soltera Consciente | Marce Anahata" description="Despedida de soltera consciente en Medellín: círculo de diosas para honrar a la novia, tejer sororidad y llenarla de bendiciones sagradas.">
+  <Fragment slot="head">
+    <script type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": serviceInfo.title,
+      "description": "Ritual personalizado en Medellín para transformación emocional, energética y espiritual.",
+      "serviceType": "Ritual Service",
+      "provider": {
+        "@type": "Person",
+        "name": "Marce Anahata",
+        "url": "https://marceanahata.com/sobre-mi"
+      },
+      "areaServed": { "@type": "City", "name": "Medellín" },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "COP",
+        "availability": "https://schema.org/InStock",
+        "url": serviceUrl
+      },
+      "url": serviceUrl,
+      "keywords": "rituales Medellín, ritual personalizado, sanación energética, bienestar espiritual"
+    })}</script>
+    <script type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": faqItems.map((item) => ({
+        "@type": "Question",
+        "name": item.question,
+        "acceptedAnswer": { "@type": "Answer", "text": item.answer }
+      }))
+    })}</script>
+    <meta property="og:locale" content="es_CO" />
+  </Fragment>
   
   <section class="relative h-[70vh] flex items-center justify-center overflow-hidden">
     <video 
@@ -215,6 +267,23 @@ const ritualesPosts = (await getCollection('blog', ({ data, slug }) =>
       </div>
     </section>
   )}
+
+  <section class="py-20 bg-white px-6">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-4">Preguntas frecuentes sobre este ritual</h2>
+        <p class="text-[#243c5a]/70 max-w-2xl mx-auto">Respuestas rápidas para ayudarte a reservar con claridad y confianza.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {faqItems.map((item) => (
+          <article class="bg-stone-50 p-6 rounded-xl border border-stone-100 shadow-sm">
+            <h3 class="text-lg font-semibold text-[#243c5a] mb-3">{item.question}</h3>
+            <p class="text-sm text-[#243c5a]/80 leading-relaxed">{item.answer}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
 
   <div class="bg-stone-50">
     <ReviewsSection />

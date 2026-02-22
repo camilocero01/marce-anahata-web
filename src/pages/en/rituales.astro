@@ -13,6 +13,25 @@ const pageInfo = {
 };
 
 const whatsappLink = `https://wa.me/573207329921?text=${encodeURIComponent(pageInfo.whatsappMessage)}`;
+const serviceUrl = 'https://marceanahata.com/en/rituales';
+const faqItems = [
+  {
+    question: 'What sacred rituals do you offer in Medellín?',
+    answer: 'We offer couple rituals, birthday solar return rituals, conscious bachelorette rituals, baby blessing ceremonies, and closure & opening rituals.'
+  },
+  {
+    question: 'Where are rituals held?',
+    answer: 'Rituals are held in El Poblado, Medellín. Exact location details are shared once booking is confirmed via WhatsApp.'
+  },
+  {
+    question: 'Are rituals personalized?',
+    answer: 'Yes. Each ceremony is tailored to the intention, life moment, and energetic needs of the participants.'
+  },
+  {
+    question: 'How can I book a ritual?',
+    answer: 'You can book via WhatsApp from this page and we will share availability, investment details, and logistics.'
+  }
+];
 
 // English-facing ritual cards
 const rituals = ritualesData.map((ritual) => {
@@ -72,6 +91,39 @@ const ritualPosts: any[] = [];
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://marceanahata.com/en" },
         { "@type": "ListItem", "position": 2, "name": "Rituals", "item": "https://marceanahata.com/en/rituales" }
       ]
+    })}</script>
+    <script type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Sacred Rituals in Medellín",
+      "description": "Personalized rituals in Medellín to honor life cycles, elevate vibration, and support emotional and spiritual transformation.",
+      "serviceType": "Ritual Services",
+      "provider": {
+        "@type": "Person",
+        "name": "Marce Anahata",
+        "url": "https://marceanahata.com/en/sobre-mi"
+      },
+      "areaServed": { "@type": "City", "name": "Medellín" },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "COP",
+        "availability": "https://schema.org/InStock",
+        "url": serviceUrl
+      },
+      "url": serviceUrl,
+      "keywords": "rituals Medellín, couple ritual, baby blessing, solar return ritual, conscious bachelorette"
+    })}</script>
+    <script type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": faqItems.map((item) => ({
+        "@type": "Question",
+        "name": item.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": item.answer
+        }
+      }))
     })}</script>
     <meta property="og:locale" content="en_US" />
   </Fragment>
@@ -179,6 +231,23 @@ const ritualPosts: any[] = [];
       </div>
     </section>
   )}
+
+  <section class="py-20 bg-white px-6">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-4">Ritual FAQ</h2>
+        <p class="text-[#243c5a]/70 max-w-2xl mx-auto">Quick answers to help you choose and book the right ritual for your moment.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {faqItems.map((item) => (
+          <article class="bg-stone-50 p-6 rounded-xl border border-stone-100 shadow-sm">
+            <h3 class="text-lg font-semibold text-[#243c5a] mb-3">{item.question}</h3>
+            <p class="text-sm text-[#243c5a]/80 leading-relaxed">{item.answer}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
 
   <div class="bg-stone-50">
     <ReviewsSection lang="en" />
