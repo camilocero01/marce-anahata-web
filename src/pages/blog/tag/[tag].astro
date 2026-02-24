@@ -12,6 +12,12 @@ export async function getStaticPaths() {
 const { tag } = Astro.params;
 if (!tag) throw new Error('Tag no encontrado');
 
+// Check if this tag also exists in English posts (for hreflang reciprocity)
+const enPosts = await getCollection('blog', ({ data, slug }) => !data.draft && slug.startsWith('en/'));
+const enTags = new Set<string>();
+enPosts.forEach(p => (p.data.tags || []).forEach(t => enTags.add(t)));
+const hasEnglishCounterpart = enTags.has(tag);
+
 const allPosts = (await getCollection('blog', ({ data, slug }) => !data.draft && !slug.startsWith('en/')))
   .filter(p => (p.data.tags || []).includes(tag))
   .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
@@ -33,7 +39,7 @@ const jsonLd = {
 
 ---
 
-<Layout title={pageTitle} description={pageDescription} includeAlternates={false}>
+<Layout title={pageTitle} description={pageDescription} includeAlternates={hasEnglishCounterpart}>
   <Fragment slot="head">
     <link rel="alternate" type="application/rss+xml" title={`RSS de ${tag}`} href={`/blog/tag/${encodeURIComponent(tag)}/rss.xml`} />
     {totalPages > 1 && <link rel="next" href={`/blog/tag/${encodeURIComponent(tag)}/page/2`} />}

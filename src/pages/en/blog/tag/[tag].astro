@@ -11,13 +11,20 @@ export async function getStaticPaths() {
 
 const { tag } = Astro.params;
 const lang = 'en';
+
+// Check if this tag also exists in Spanish posts (for hreflang reciprocity)
+const esPosts = await getCollection('blog', ({ data, slug }) => !data.draft && !slug.startsWith('en/'));
+const esTags = new Set<string>();
+esPosts.forEach(p => (p.data.tags || []).forEach(t => esTags.add(t)));
+const hasSpanishCounterpart = esTags.has(tag);
+
 const posts = (await getCollection('blog', ({ data, slug }) => !data.draft && slug.startsWith('en/') && (data.tags || []).includes(tag)))
   .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
 
 const pageTitle = `Posts tagged “${tag}”`;
 const description = `All blog posts tagged with “${tag}” in English.`;
 ---
-<Layout title={pageTitle} description={description} lang={lang}>
+<Layout title={pageTitle} description={description} lang={lang} includeAlternates={hasSpanishCounterpart}>
   <main class="max-w-3xl mx-auto px-4 py-16">
     <a href="/en/blog" class="text-sm text-[#243c5a] hover:underline">← Back to blog</a>
     <h1 class="text-3xl font-serif text-[#243c5a] mb-8 mt-4">{pageTitle}</h1>
