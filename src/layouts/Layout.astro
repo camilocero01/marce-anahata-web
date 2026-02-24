@@ -207,8 +207,8 @@ const orgSchema = JSON.stringify({
         <!-- Performance: Preload critical resources for LCP -->
         <link rel="preload" as="image" href="/images/hero-bg.webp" fetchpriority="high" />
         
-        <!-- Performance: Preconnect to external resources -->
-        <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+        <!-- Performance: Preconnect to external resources (sin crossorigin para coincidir con script async sin CORS) -->
+        <link rel="preconnect" href="https://www.googletagmanager.com">
         <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 
         <script type="application/ld+json" set:html={schema} />
