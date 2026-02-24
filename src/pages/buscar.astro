@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
-const posts = await getCollection('blog', ({ data }) => data.draft !== true);
+const posts = await getCollection('blog', ({ data, slug }) => data.draft !== true && !slug.startsWith('en/'));
 const sortedPosts = posts.sort((a, b) => (b.data.pubDate?.valueOf?.() ?? 0) - (a.data.pubDate?.valueOf?.() ?? 0));
 const query = (Astro.url.searchParams.get('q') || '').trim();
 const normalizedQuery = query.toLowerCase();
