@@ -12,7 +12,7 @@ Disallow: /en/privacidad
 Disallow: /en/404
 Disallow: /bio
 Disallow: /servicios/
-Disallow: /~partytown/
+
 
 # Bloquear rutas incorrectas de blog en inglés
 Disallow: /blog/en/
