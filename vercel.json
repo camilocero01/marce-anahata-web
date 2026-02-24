@@ -119,6 +119,16 @@
       ],
       "destination": "/blog",
       "permanent": true
+    },
+    {
+      "source": "/blog/5-tecnica-respiracion-para-dominar-la-anisedad-copy",
+      "destination": "/blog/5-tecnica-respiracion-para-dominar-la-anisedad",
+      "permanent": true
+    },
+    {
+      "source": "/blog/5-tecnica-respiracion-para-dominar-la-anisedad-copy/",
+      "destination": "/blog/5-tecnica-respiracion-para-dominar-la-anisedad",
+      "permanent": true
     }
   ]
 }
