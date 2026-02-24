@@ -217,8 +217,7 @@ const orgSchema = JSON.stringify({
         <!-- Vercel Web Analytics -->
         <Analytics />
 
-        <!-- Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-N2S592YWN3"></script>
+        <!-- Google Analytics (deferred to reduce unused JS and avoid blocking LCP/FCP) -->
         <script is:inline>
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -228,6 +227,20 @@ const orgSchema = JSON.stringify({
                 anonymize_ip: true,
                 cookie_flags: 'SameSite=None;Secure'
             });
+            // Defer loading gtag.js until after page is interactive
+            (function() {
+                function loadGA() {
+                    var s = document.createElement('script');
+                    s.src = 'https://www.googletagmanager.com/gtag/js?id=G-N2S592YWN3';
+                    s.async = true;
+                    document.head.appendChild(s);
+                }
+                if (document.readyState === 'complete') {
+                    loadGA();
+                } else {
+                    window.addEventListener('load', loadGA);
+                }
+            })();
         </script>
 
         <!-- WhatsApp CTA Tracking -->
