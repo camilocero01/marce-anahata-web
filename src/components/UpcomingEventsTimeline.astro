@@ -5,13 +5,13 @@ import { getCollection } from 'astro:content';
 // Obtener todos los eventos que están destacados (featured) y son en el futuro
 const allPosts = await getCollection('blog', ({ data, slug }) => !data.draft && !slug.startsWith('en/'));
 
-// Normalizar fechas (evita desfase por zona horaria)
+// Normalizar fechas (usa mediodía para evitar desfase por zona horaria)
 const toLocalDate = (value: Date | string | undefined) => {
   if (!value) return null;
   const dateStr = value instanceof Date
     ? value.toISOString().split('T')[0]
     : String(value);
-  return new Date(`${dateStr}T00:00:00`);
+  return new Date(`${dateStr}T12:00:00`);
 };
 
 // Filtrar eventos futuros y destacados
