@@ -46,9 +46,9 @@ const normalizedPath = Astro.url.pathname !== '/' && Astro.url.pathname.endsWith
     ? Astro.url.pathname.slice(0, -1)
     : Astro.url.pathname;
 
-const ensureTrailingSlash = (path: string) => {
+const normalizePath = (path: string) => {
     if (path === '/') return '/';
-    return path.endsWith('/') ? path : `${path}/`;
+    return path.endsWith('/') ? path.slice(0, -1) : path;
 };
 const isEnPath = normalizedPath.startsWith('/en');
 const baseEsPath = isEnPath ? normalizedPath.replace(/^\/en/, '') || '/' : normalizedPath || '/';
@@ -81,16 +81,15 @@ const getEnPath = (path: string) => {
     return null;
 };
 
-const resolvedEsPath = ensureTrailingSlash(isEnPath ? baseEsPath : normalizedPath || '/');
+const resolvedEsPath = normalizePath(isEnPath ? baseEsPath : normalizedPath || '/');
 const resolvedEnPath = isEnPath ? normalizedPath : getEnPath(baseEsPath);
-const resolvedEnPathWithSlash = resolvedEnPath ? ensureTrailingSlash(resolvedEnPath) : null;
+const resolvedEnPathNormalized = resolvedEnPath ? normalizePath(resolvedEnPath) : null;
 const resolvedEsUrl = new URL(resolvedEsPath, siteUrl).toString();
-const resolvedEnUrl = resolvedEnPathWithSlash ? new URL(resolvedEnPathWithSlash, siteUrl).toString() : null;
-const canonicalPath = ensureTrailingSlash(normalizedPath || '/');
+const resolvedEnUrl = resolvedEnPathNormalized ? new URL(resolvedEnPathNormalized, siteUrl).toString() : null;
+const canonicalPath = normalizePath(normalizedPath || '/');
 const canonicalUrl = new URL(canonicalPath, siteUrl).toString();
-const pageUrl = new URL(Astro.url).toString();
-const selfHreflang = lang === 'en' ? 'en' : 'es-CO';
-const selfHreflangUrl = pageUrl;
+const selfHreflang = lang === 'en' ? 'en' : 'es';
+const selfHreflangUrl = canonicalUrl;
 
 // Schema.org para SEO Local (Negocio Local)
 const schema = JSON.stringify({
@@ -169,10 +168,11 @@ const orgSchema = JSON.stringify({
         <link rel="sitemap" href="/sitemap-index.xml" />
                 <link rel="alternate" hreflang={selfHreflang} href={selfHreflangUrl} />
                 {includeAlternates && (lang === 'en' ? (
-                    <link rel="alternate" hreflang="es-CO" href={resolvedEsUrl} />
+                    <link rel="alternate" hreflang="es" href={resolvedEsUrl} />
                 ) : (
                     resolvedEnUrl && <link rel="alternate" hreflang="en" href={resolvedEnUrl} />
                 ))}
+                {lang !== 'en' && <link rel="alternate" hreflang="es-CO" href={canonicalUrl} />}
                 <link rel="alternate" hreflang="x-default" href={includeAlternates ? resolvedEsUrl : canonicalUrl} />
 
         <meta name="theme-color" content="#243c5a" />
