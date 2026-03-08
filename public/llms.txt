@@ -1,6 +1,6 @@
 # llms.txt - AI and LLM Access Policy
 # Marce Anahata Wellness Center - Medellín, Colombia
-# Last-Updated: 2026-02-06
+# Last-Updated: 2026-03-07
 # Format: https://github.com/ai-robots-txt/ai.robots.txt
 
 # CRAWLING AND INDEXING POLICY
@@ -46,6 +46,14 @@ Address: Cl. 11A Sur #46-12, La Aguacatala, Medellín 050012, Colombia
 Phone: +573207329921
 Email: info@marceanahata.com
 Languages: Spanish (es), English (en)
+
+# SOCIAL PROFILES
+[Social]
+Instagram: https://www.instagram.com/marce_anahata
+LinkedIn: https://www.linkedin.com/company/marceanahata
+YouTube: https://www.youtube.com/@marce_anahata
+TikTok: https://www.tiktok.com/@marce_anahata
+WhatsApp: https://wa.me/573207329921
 
 # SERVICES & FOCUS AREAS
 [Services]
