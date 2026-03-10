@@ -38,23 +38,19 @@ export default defineConfig({
           || page.endsWith('/feed.xml')
           || page.endsWith('/sitemap-index.xml')
         ) return false;
-        // Excluir páginas para no afectar el SEO (incluir / final)
-        if ( page.endsWith('/admin/')
-          || page.endsWith('/links/') 
-          || page.endsWith('/privacidad/')
-          || page.endsWith('/buscar/')
-          || page.endsWith('/404/')
-          || page.endsWith('/en/links/')
-          || page.endsWith('/en/privacidad/')
-          || page.endsWith('/en/buscar/')
-          || page.endsWith('/en/404/')
-        )  return false;
+        // Excluir páginas para no afectar el SEO
+        // Con trailingSlash: 'never', las URLs no tienen / final
+        const url = new URL(page);
+        const path = url.pathname.replace(/\/$/, ''); // Normalizar por seguridad
+        if (['/admin', '/links', '/privacidad', '/buscar', '/404',
+             '/en/links', '/en/privacidad', '/en/buscar', '/en/404'
+        ].includes(path)) return false;
         // Excluir primera página de paginación (duplicados de páginas principales)
-        if (page.endsWith('/blog/page/1/')) return false;
-        if (page.endsWith('/en/blog/page/1/')) return false;
+        if (path.endsWith('/blog/page/1')) return false;
+        if (path.endsWith('/en/blog/page/1')) return false;
         // Excluir páginas de etiquetas de la primera página
-        if (page.includes('/blog/tag/') && page.endsWith('/page/1/')) return false;
-        if (page.includes('/en/blog/tag/') && page.endsWith('/page/1/')) return false;
+        if (path.includes('/blog/tag/') && path.endsWith('/page/1')) return false;
+        if (path.includes('/en/blog/tag/') && path.endsWith('/page/1')) return false;
         return true;
       }
     }),
@@ -63,7 +59,8 @@ export default defineConfig({
   site: 'https://www.marceanahata.com', // URL de producción (usar dominio canonico)
   // 'always' fuerza la barra al final (ej: /contacto/)
   // 'never' la quita (ej: /contacto) -> Recomendado para Vercel
-  trailingSlash: 'ignore', 
+  // Usar 'never' para que sitemap y canonical coincidan sin trailing slash
+  trailingSlash: 'never', 
   prefetch: true, // Habilita la estrategia por defecto (hover)
   compressHTML: true,
 });
