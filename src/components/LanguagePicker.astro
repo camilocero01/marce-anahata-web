@@ -2,7 +2,8 @@
 import { getRelativeLocaleUrl } from 'astro:i18n';
 
 const currentLang = Astro.currentLocale || 'es';
-let currentPath = Astro.url.pathname.replace(/^\/(en|es)\//, '');
+let currentPath = Astro.url.pathname.replace(/^\/(en|es)(\/|$)/, '');
+// Si currentPath quedó vacío (homepage), dejarlo vacío para que getRelativeLocaleUrl genere la raíz
 // Si estamos en cualquier sección del blog, redirigir a la raíz del blog del idioma destino
 if (
   Astro.url.pathname.startsWith('/en/blog') ||
