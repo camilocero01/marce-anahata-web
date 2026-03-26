@@ -5,7 +5,7 @@ description: "¿Duermes 9 horas y sigues agotada? El problema no es el estrés, 
 pubDate: 2026-03-26
 updatedDate: 2026-03-26
 author: "Marce Anahata"
-tags: ["agotamiento mental", "rumiación", "sistema nervioso", "bienestar mental", "estrés", "mindfulness", "bienestar medellín"]
+tags: [" burnout", "estrés", "sistema nervioso", "bienestar mental", "estrés", "bienestar corporativo", "pausas activas"]
 image: "/images/blog/11-agotamiento-mental-rumiacion.jpg"
 ogImage: "/images/blog/11-agotamiento-mental-rumiacion.jpg"
 draft: false
@@ -33,9 +33,9 @@ La rumiación es eso: reescribir conversaciones que ya ocurrieron, ensayar situa
 
 ## ¿Qué le pasa al cerebro cuando rumiamos demasiado?
 
-Cuando el cerebro está en modo de respuesta al estrés agudo —una amenaza real— está **activo pero intacto**. Resuelve, actúa, se descarga.
+Cuando el cerebro está en **modo de respuesta al estrés agudo** —una amenaza real— está **activo pero intacto**. Resuelve, actúa, se descarga.
 
-Cuando el cerebro rumiación crónica, algo diferente ocurre: la corteza prefrontal (la zona del pensamiento racional y la toma de decisiones) se satura. El cerebro luce, metafóricamente, **inflamado, cansado y nebuloso**. La microinflamación neurológica por estrés sostenido es real y afecta la memoria, la concentración y la regulación emocional.
+Cuando el cerebro entra en **modo de rumiación crónica,** algo diferente ocurre: la corteza prefrontal (la zona del pensamiento racional y la toma de decisiones) se satura. El cerebro luce, metafóricamente, **inflamado, cansado y nebuloso**. La microinflamación neurológica por estrés sostenido es real y afecta la memoria, la concentración y la regulación emocional.
 
 El resultado: sientes que *piensas demasiado*, que no puedes "apagar" la mente, y que ninguna cantidad de sueño te recarga.
 

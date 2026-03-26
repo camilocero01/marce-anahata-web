@@ -5,7 +5,7 @@ description: "Sleeping 9 hours and still exhausted? The problem isn't stress —
 pubDate: 2026-03-26
 updatedDate: 2026-03-26
 author: "Marce Anahata"
-tags: ["mental exhaustion", "rumination", "nervous system", "mental wellness", "stress", "mindfulness", "wellness medellín"]
+tags: ["burnout", "corporate wellness", "nervous system", "mental wellness", "stress", "mindfulness", "wellness"]
 image: "/images/blog/11-agotamiento-mental-rumiacion.jpg"
 ogImage: "/images/blog/11-agotamiento-mental-rumiacion.jpg"
 draft: false
