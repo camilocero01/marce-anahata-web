@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s \"https://commons.wikimedia.org/wiki/Category:Uterus\")",
+      "Bash(curl -s \"https://commons.wikimedia.org/wiki/File:Chart_showing_growth_of_uterus_and_vagina._Wellcome_L0002176EB.jpg\")",
+      "Bash(curl -s \"https://commons.wikimedia.org/wiki/File:Uterus,_Berengarius,_1523_Wellcome_M0001523.jpg\")"
+    ]
+  }
+}
