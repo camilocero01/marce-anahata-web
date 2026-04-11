@@ -119,6 +119,21 @@ const tarifas = {
       individual: '$360,000'
     }
   ],
+  banoGong: [
+    {
+      descripcion: 'Entrada individual',
+      cantidad: 1,
+      total: '$120.000',
+      individual: '$120.000'
+    },
+    {
+      descripcion: 'Dúo — precio por persona (pareja, amigo/a, familiar o conocido)',
+      cantidad: 2,
+      total: '$180.000',
+      individual: '$90.000',
+      highlight: true
+    }
+  ],
   consultas: [
     {
       descripcion: 'Consulta individual',
@@ -310,6 +325,40 @@ const tarifas = {
           </tbody>
         </table>
       </div>
+    </div>
+
+    <!-- Baño de Gong / Viaje 450 Vibraciones -->
+    <div id="bano-de-gong">
+      <div class="mb-6">
+        <h2 class="text-2xl md:text-3xl font-serif text-marce-base-3 mb-3">
+          🔔 Baño de Gong — El Viaje de las 450 Vibraciones
+        </h2>
+        <p class="text-stone-600">Sesiones mensuales de terapia de sonido · Abril a diciembre de 2026</p>
+      </div>
+      <div class="overflow-x-auto rounded-xl shadow-md border border-stone-200">
+        <table class="w-full">
+          <thead>
+            <tr class="bg-marce-base-3 text-white">
+              <th class="px-6 py-4 text-left font-semibold">Descripción</th>
+              <th class="px-6 py-4 text-right font-semibold">Valor Total</th>
+              <th class="px-6 py-4 text-right font-semibold">Valor x Persona</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tarifas.banoGong.map((tarifa, index) => (
+              <tr class={`border-b border-stone-200 hover:bg-marce-base-2/5 transition-colors ${tarifa.highlight ? 'bg-marce-base-2/10' : index % 2 === 0 ? 'bg-white' : 'bg-stone-50'}`}>
+                <td class="px-6 py-4 font-medium text-marce-base-3">
+                  {tarifa.descripcion}
+                  {tarifa.highlight && <span class="ml-2 text-xs bg-[#6ed8d9]/20 text-[#243c5a] px-2 py-0.5 rounded-full font-semibold">Recomendado</span>}
+                </td>
+                <td class="px-6 py-4 text-right text-marce-base-3 font-semibold">{tarifa.total}</td>
+                <td class="px-6 py-4 text-right text-marce-base-2 font-bold">{tarifa.individual}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-3 text-xs text-stone-500">* La reserva se confirma con el 50% del valor. El saldo 2 días antes del evento. <a href="/viaje-450-vibraciones" class="text-[#5d5a8c] underline hover:text-[#6ed8d9] transition-colors">Ver todas las sesiones del viaje →</a></p>
     </div>
 
     <!-- Rituales -->
