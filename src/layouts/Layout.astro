@@ -140,6 +140,12 @@ const orgSchema = JSON.stringify({
   "description": "Centro de bienestar integral con Kundalini Yoga, Terapia de Sonido, Rituales Sagrados y Bienestar Corporativo en Medellín.",
   "foundingDate": "2020",
   "foundingLocation": "Medellín, Colombia",
+  "founder": {
+    "@type": "Person",
+    "name": "Marcela Zuleta",
+    "alternateName": "Marce Anahata",
+    "url": new URL('/sobre-mi', siteUrl).toString()
+  },
   "contactPoint": {
     "@type": "ContactPoint",
     "contactType": "Customer Support",
@@ -147,12 +153,106 @@ const orgSchema = JSON.stringify({
     "email": "info@marceanahata.com"
   },
     "sameAs": [
-        "https://www.instagram.com/marceanahata",
+        "https://www.instagram.com/marce_anahata",
                 "https://www.youtube.com/@marce_anahata",
                 "https://www.tiktok.com/@marce_anahata",
         "https://www.linkedin.com/company/marceanahata",
         "https://wa.me/573207329921"
     ]
+});
+
+// Person schema — Marce Anahata (E-E-A-T para buscadores IA)
+const personSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Marcela Zuleta Marín",
+  "alternateName": "Marce Anahata",
+  "url": new URL('/sobre-mi', siteUrl).toString(),
+  "image": new URL('/images/marce-perfil.webp', siteUrl).toString(),
+  "description": "Terapeuta de Sonido certificada (110 horas, avalada por la Fundación Musicoterapia y Salud, España) e Instructora Internacional de Kundalini Yoga certificada por KRI. Especialista en baños de gong, Puja de Gong y sanación vibracional en Medellín, Colombia.",
+  "jobTitle": ["Terapeuta de Sonido", "Instructora de Kundalini Yoga", "Facilitadora de Rituales Sagrados"],
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Marce Anahata Centro de Bienestar",
+    "url": siteUrl.toString()
+  },
+  "knowsAbout": [
+    "Baño de gong",
+    "Puja de Gong",
+    "Terapia de sonido",
+    "Medicina vibracional",
+    "Kundalini Yoga",
+    "Meditación",
+    "Sanación vibracional",
+    "Gong terapéutico",
+    "Cuencos de cristal",
+    "Rituales sagrados",
+    "Bienestar corporativo",
+    "Círculo de mujeres",
+    "Pranayama",
+    "Sistema nervioso y sonido"
+  ],
+  "hasCredential": [
+    {
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "Certificación profesional",
+      "name": "Terapeuta de Sonido — 110 horas",
+      "description": "Certificación especializada en uso terapéutico del sonido y musicoterapia. Especialización en Gong, Cuencos de Cristal y Voz. Incluye TFF: Impacto del Gong en sintomatología psicológica.",
+      "recognizedBy": {
+        "@type": "Organization",
+        "name": "Fundación Musicoterapia y Salud",
+        "url": "https://vikrampal.es"
+      },
+      "educationalLevel": "Profesional",
+      "competencyRequired": "Gong, Cuencos de cristal, Voz terapéutica, Psicología clínica aplicada al sonido"
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "Certificación internacional",
+      "name": "Instructora Certificada de Kundalini Yoga — Nivel 1",
+      "description": "Entrenamiento inmersivo de un año. Anatomía Yóguica, Sistema de Chakras, Ciencia del Naad (Mantra), Respiración y metodología de enseñanza. Formada por Nam Nidhan Khalsa, pionera en Latinoamérica.",
+      "recognizedBy": {
+        "@type": "Organization",
+        "name": "Kundalini Research Institute (KRI)",
+        "url": "https://www.kundaliniresearchinstitute.org"
+      }
+    }
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Medellín",
+    "addressRegion": "Antioquia",
+    "addressCountry": "CO"
+  },
+  "sameAs": [
+    "https://www.instagram.com/marce_anahata",
+    "https://www.youtube.com/@marce_anahata",
+    "https://www.tiktok.com/@marce_anahata",
+    "https://www.linkedin.com/company/marceanahata"
+  ]
+});
+
+// WebSite schema — contexto global del dominio para IA
+const websiteSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Marce Anahata — Bienestar, Yoga y Terapia de Sonido en Medellín",
+  "url": siteUrl.toString(),
+  "description": "Centro de bienestar integral en El Poblado, Medellín. Kundalini Yoga, baños de gong, terapia de sonido, rituales sagrados y bienestar corporativo.",
+  "inLanguage": ["es-CO", "en"],
+  "publisher": {
+    "@type": "Person",
+    "name": "Marce Anahata",
+    "url": new URL('/sobre-mi', siteUrl).toString()
+  },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": new URL('/buscar?q={search_term_string}', siteUrl).toString()
+    },
+    "query-input": "required name=search_term_string"
+  }
 });
 ---
 
@@ -182,7 +282,6 @@ const orgSchema = JSON.stringify({
         <meta name="theme-color" content="#243c5a" />
         <meta property="og:locale" content="es_CO" />
         {resolvedEnUrl && <meta property="og:locale:alternate" content="en_US" />}
-        <meta property="fb:app_id" content="1234567890" />
 
         <!-- Performance: Preload critical resources -->
         <link rel="preload" as="image" href="/images/social-preview-wa.jpg" fetchpriority="high" />
@@ -218,6 +317,8 @@ const orgSchema = JSON.stringify({
 
         <script type="application/ld+json" set:html={schema} />
         <script type="application/ld+json" set:html={orgSchema} />
+        <script type="application/ld+json" set:html={personSchema} />
+        <script type="application/ld+json" set:html={websiteSchema} />
 
         <!-- Vercel Web Analytics -->
         <Analytics />

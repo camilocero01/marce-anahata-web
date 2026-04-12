@@ -94,7 +94,12 @@ const jsonLd = isEvent ? {
   image: absoluteImage,
   author: {
     '@type': 'Person',
-    name: data.author || 'Marce Anahata'
+    name: data.author || 'Marce Anahata',
+    url: 'https://marceanahata.com/sobre-mi',
+    sameAs: [
+      'https://www.instagram.com/marce_anahata',
+      'https://www.youtube.com/@marce_anahata'
+    ]
   },
   datePublished: publishedTime,
   dateModified: modifiedTime || publishedTime,

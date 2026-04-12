@@ -55,10 +55,22 @@ YouTube: https://www.youtube.com/@marce_anahata
 TikTok: https://www.tiktok.com/@marce_anahata
 WhatsApp: https://wa.me/573207329921
 
+# EXPERT / AUTHOR
+[Expert]
+Name: Marcela Zuleta Marín (Marce Anahata)
+Role: Terapeuta de Sonido certificada e Instructora Internacional de Kundalini Yoga
+Credentials:
+  - Terapeuta de Sonido: 110 horas. Avalada por Fundación Musicoterapia y Salud (España). Dirección: Vikrampal Sandes y María Jesús del Olmo. Especialización en Gong, Cuencos de Cristal y Voz.
+  - Instructora de Kundalini Yoga Nivel 1: Certificada internacionalmente por KRI (Kundalini Research Institute). Formada por Nam Nidhan Khalsa, pionera en Latinoamérica.
+Expertise: Baños de gong, Puja de Gong, terapia vibracional, Kundalini Yoga, meditación, rituales sagrados, bienestar corporativo, círculo de mujeres
+Profile: https://www.marceanahata.com/sobre-mi
+
 # SERVICES & FOCUS AREAS
 [Services]
+- Gong Bath / Baño de Gong: Sesiones grupales de baño de gong en Medellín El Poblado. Precio: $120.000 COP individual / $90.000 COP en dúo. Duración ~60 min. Máximo 15 personas. URL: https://www.marceanahata.com/viaje-450-vibraciones
+- Viaje de las 450 Vibraciones: Campaña 2026 de 9 baños de gong mensuales (abril–diciembre 2026) en Medellín. Alternativa mensual a una Puja de Gong tradicional de 8-10 horas. Cada sesión trabaja un elemento y una intención: Tierra (abr), Agua (may), Fuego (jun), Aire (jul), Éter (ago), Equilibrio (sep), Profundidad (oct), Memoria (nov), Retiro cierre dic 5-6. URL: https://www.marceanahata.com/viaje-450-vibraciones
+- Sound Therapy / Terapia de Sonido Individual: Sesión privada de 1 hora de medicina vibracional con gong y cuencos de cristal. $230.000 COP. URL: https://www.marceanahata.com/terapia-sonido
 - Kundalini Yoga: Clases de yoga kundalini para transformación personal y bienestar
-- Sound Therapy: Baños de gong, terapia vibracional y meditación con sonidos
 - Sacred Rituals: Rituales sagrados (cumpleaños, parejas, despedidas de soltería, baby blessings)
 - Women's Circle: Círculo de Mujeres Conscientes - Encuentros mensuales de conexión femenina, rituales y hermandad
 - Corporate Wellness: Programas de bienestar corporativo y pausas conscientes
