@@ -99,6 +99,18 @@ const ritualesPosts = (await getCollection('blog', ({ data, slug }) =>
         }
       }))
     })}</script>
+    <script type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Rituales Sagrados — Marce Anahata",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "11",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
+    })}</script>
     <meta property="og:locale" content="es_CO" />
   </Fragment>
   <section class="relative h-[50vh] flex items-center justify-center overflow-hidden">

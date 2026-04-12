@@ -96,6 +96,7 @@ const selfHreflangUrl = canonicalUrl;
 const schema = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "HealthAndBeautyBusiness",
+  "@id": "https://www.marceanahata.com/#business",
     "name": "Marce Anahata Centro de Bienestar",
     "image": resolvedImage,
   "description": description,
@@ -116,6 +117,20 @@ const schema = JSON.stringify({
     "telephone": "+57 320 732 9921",
   "email": "info@marceanahata.com",
   "priceRange": "70000-500000 COP",
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+      "opens": "09:00",
+      "closes": "20:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "09:00",
+      "closes": "18:00"
+    }
+  ],
   "areaServed": {
     "@type": "City",
     "name": "Medellín"
@@ -134,6 +149,7 @@ const schema = JSON.stringify({
 const orgSchema = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": "https://www.marceanahata.com/#organization",
     "name": "Marce Anahata Centro de Bienestar",
     "url": siteUrl.toString(),
         "logo": new URL('/favicon.png', siteUrl).toString(),
@@ -165,6 +181,7 @@ const orgSchema = JSON.stringify({
 const personSchema = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "Person",
+  "@id": "https://www.marceanahata.com/#person",
   "name": "Marcela Zuleta Marín",
   "alternateName": "Marce Anahata",
   "url": new URL('/sobre-mi', siteUrl).toString(),
@@ -276,6 +293,7 @@ const websiteSchema = JSON.stringify({
                 <link rel="alternate" hreflang="x-default" href={includeAlternates ? resolvedEsUrl : canonicalUrl} />
 
         <meta name="theme-color" content="#243c5a" />
+        <meta property="og:site_name" content="Marce Anahata" />
         <meta property="og:locale" content={lang === 'en' ? 'en_US' : 'es_CO'} />
         {lang !== 'en' && resolvedEnUrl && <meta property="og:locale:alternate" content="en_US" />}
         {lang === 'en' && <meta property="og:locale:alternate" content="es_CO" />}

@@ -113,6 +113,18 @@ const sonidoPosts = (await getCollection('blog', ({ data, slug }) =>
         }
       }))
     })}</script>
+    <script type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Terapia de Sonido — Marce Anahata",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "11",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
+    })}</script>
     <meta property="og:locale" content="es_CO" />
   </Fragment>
   
