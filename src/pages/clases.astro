@@ -136,6 +136,63 @@ const offerings = [
     })}</script>
     <script type="application/ld+json">{JSON.stringify({
       "@context": "https://schema.org",
+      "@type": "Course",
+      "name": "Kundalini Yoga en Medellín — Clases y Talleres",
+      "description": "Clases de Kundalini Yoga presenciales y online en El Poblado, Medellín. Kriyas, pranayamas, meditación y mantras para fortalecer el sistema nervioso, mejorar el enfoque y despertar la energía vital. Aptas para principiantes y practicantes con experiencia.",
+      "url": serviceUrl,
+      "inLanguage": "es",
+      "teaches": ["Kundalini Yoga", "Pranayama", "Meditación", "Kriyas", "Mantras", "Sistema nervioso"],
+      "educationalLevel": "Principiante a avanzado",
+      "provider": {
+        "@type": "Person",
+        "@id": "https://www.marceanahata.com/#person",
+        "name": "Marce Anahata",
+        "url": "https://marceanahata.com/sobre-mi"
+      },
+      "hasCourseInstance": [
+        {
+          "@type": "CourseInstance",
+          "name": "Clases Regulares de Kundalini Yoga — Grupales",
+          "courseMode": ["ONSITE", "ONLINE"],
+          "courseSchedule": {
+            "@type": "Schedule",
+            "repeatFrequency": "P1W",
+            "scheduleTimezone": "America/Bogota"
+          },
+          "location": {
+            "@type": "Place",
+            "name": "Marce Anahata Centro de Bienestar",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Cl. 11A Sur #46-12",
+              "addressLocality": "Medellín",
+              "addressRegion": "Antioquia",
+              "addressCountry": "CO"
+            }
+          }
+        },
+        {
+          "@type": "CourseInstance",
+          "name": "Sesión Privada de Kundalini Yoga 1 a 1",
+          "courseMode": "ONSITE",
+          "description": "Acompañamiento personalizado diseñado según necesidades específicas: ansiedad, propósito, vitalidad."
+        },
+        {
+          "@type": "CourseInstance",
+          "name": "Taller Temático Profundo de Kundalini Yoga",
+          "courseMode": "ONSITE",
+          "description": "Inmersiones de mayor duración sobre temas como Prosperidad, Relaciones, Sanación de Linaje y Chakras."
+        }
+      ],
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "COP",
+        "availability": "https://schema.org/InStock",
+        "url": serviceUrl
+      }
+    })}</script>
+    <script type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
       "@type": "FAQPage",
       "mainEntity": faqItems.map((item) => ({
         "@type": "Question",

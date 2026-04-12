@@ -18,6 +18,67 @@ const whatsappLink = `https://wa.me/573207329921?text=${encodeURIComponent(conta
 ---
 
 <Layout title="Contacto — Marce Anahata Centro de Bienestar en El Poblado, Medellín" description="Agenda tu sesión de yoga, baño de gong o terapia de sonido en Marce Anahata, El Poblado, Medellín. Contacto por WhatsApp, teléfono y formulario.">
+  <Fragment slot="head">
+    <script type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "@id": "https://www.marceanahata.com/#business",
+      "name": "Marce Anahata Centro de Bienestar",
+      "url": "https://www.marceanahata.com",
+      "telephone": "+573207329921",
+      "email": "info@marceanahata.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Cl. 11A Sur #46-12, Barrio La Aguacatala",
+        "addressLocality": "El Poblado, Medellín",
+        "addressRegion": "Antioquia",
+        "postalCode": "050012",
+        "addressCountry": "CO"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 6.1955152,
+        "longitude": -75.5779584
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+          "opens": "09:00",
+          "closes": "20:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "09:00",
+          "closes": "18:00"
+        }
+      ],
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "contactType": "reservations",
+          "telephone": "+573207329921",
+          "contactOption": "TollFree",
+          "availableLanguage": ["Spanish", "English"]
+        },
+        {
+          "@type": "ContactPoint",
+          "contactType": "customer support",
+          "email": "info@marceanahata.com",
+          "availableLanguage": ["Spanish", "English"]
+        }
+      ],
+      "sameAs": [
+        "https://www.instagram.com/marce_anahata",
+        "https://www.youtube.com/@marce_anahata",
+        "https://www.tiktok.com/@marce_anahata",
+        "https://www.linkedin.com/company/marceanahata",
+        "https://wa.me/573207329921"
+      ]
+    })}</script>
+    <meta property="og:locale" content="es_CO" />
+  </Fragment>
 
   <section class="relative h-[40vh] flex items-center justify-center overflow-hidden bg-[#243c5a]">
     <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
