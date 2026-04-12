@@ -55,6 +55,7 @@ export default defineConfig({
           '/bano-de-gong',
           '/viaje-450-vibraciones',
           '/terapia-sonido',
+          '/en/viaje-450-vibraciones',
         ].includes(path)) {
           return { ...item, priority: 1.0, changefreq: 'weekly' };
         }

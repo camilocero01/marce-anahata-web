@@ -1,0 +1,441 @@
+---
+// src/pages/en/viaje-450-vibraciones.astro
+import Layout from '../../layouts/Layout.astro';
+import ReviewsSection from '../../components/cards/ReviewsSection.astro';
+import { getCollection } from 'astro:content';
+
+const pageUrl = 'https://marceanahata.com/en/viaje-450-vibraciones';
+
+const whatsappLink = `https://wa.me/573207329921?text=${encodeURIComponent('Hello Marce Anahata, I would like to learn more about El Viaje de las 450 Vibraciones and reserve my spot.')}`;
+
+// Full journey map — 9 months, 2026
+const sessions = [
+  { month: 'April',     date: '24 Apr',   name: 'The Seed and the Silence',       element: 'Earth',     focus: 'Grounding and preparation of the inner terrain. Planting the Sankalpa.',          emoji: '🌱', slug: '12-viaje-450-vibraciones-abril-2026',  available: true  },
+  { month: 'May',       date: '22 May',   name: 'Cleansing of Waters',             element: 'Water',     focus: 'Emotional release and clearing of old memories. Letting go and flowing.',         emoji: '💧', slug: '13-viaje-450-vibraciones-mayo-2026',  available: true  },
+  { month: 'June',      date: '26 Jun',   name: 'The Solstice and the Inner Fire', element: 'Fire',      focus: 'Vitality, will and personal power. Burning what no longer serves.',                emoji: '🔥', slug: '14-viaje-450-vibraciones-junio-2026', available: true  },
+  { month: 'July',      date: 'Jul 2026', name: 'The Wind and the Word',           element: 'Air',       focus: 'Expression, communication and inner truth. Opening the voice of the heart.',       emoji: '🌬️', slug: null,                                  available: false },
+  { month: 'August',    date: 'Aug 2026', name: 'The Inner Cave',                  element: 'Ether',     focus: 'Deep silence and intuition. Listening to what has no sound.',                      emoji: '🌌', slug: null,                                  available: false },
+  { month: 'September', date: 'Sep 2026', name: 'The Equinox and the Bridge',      element: 'Balance',   focus: 'Integration of opposites. The midpoint between the light and shadow of the year.', emoji: '⚖️', slug: null,                                  available: false },
+  { month: 'October',   date: 'Oct 2026', name: 'The Shadow and the Treasure',     element: 'Depth',     focus: 'Encountering the personal shadow. What is hidden is also a gift.',                  emoji: '🌑', slug: null,                                  available: false },
+  { month: 'November',  date: 'Nov 2026', name: 'The Return',                      element: 'Memory',    focus: 'Honoring cycles, ancestors and what we were. Gratitude and release.',               emoji: '🍂', slug: null,                                  available: false },
+  { month: 'December',  date: '5–6 Dec',  name: 'Closing Retreat — The Great Puja',element: 'Wholeness', focus: 'Two-day retreat (Sat 5 & Sun 6 Dec). Final ceremony and integration of the 9-month journey. Theme to be announced.', emoji: '✨', slug: null, available: false },
+];
+
+// Published journey posts for the articles section
+const viajePostSlugs = [
+  '12-viaje-450-vibraciones-abril-2026',
+  '13-viaje-450-vibraciones-mayo-2026',
+  '14-viaje-450-vibraciones-junio-2026',
+];
+const viajePosts = (await getCollection('blog', ({ slug, data }) =>
+  !data.draft && !slug.startsWith('en/') && viajePostSlugs.includes(slug)
+)).sort((a, b) => new Date(a.data.pubDate).getTime() - new Date(b.data.pubDate).getTime());
+
+const faqItems = [
+  {
+    q: 'What is El Viaje de las 450 Vibraciones?',
+    a: 'It is a monthly commitment of 9 gong bath sessions spread throughout 2026 (April through December). Each session works with a different element and intention, together forming the depth of a traditional Gong Puja of 8 to 10 hours — distributed month by month with purpose and care.'
+  },
+  {
+    q: 'What is a Gong Puja and why do it differently?',
+    a: 'A traditional Gong Puja is a continuous sound session lasting 8 to 10 hours. Its effects are profound: the nervous system enters a state of repair that few practices can achieve. However, that intensity in a single night is not accessible for every body or every moment in life. El Viaje de las 450 Vibraciones distributes that same depth throughout the year, with a monthly intention that allows each experience to be integrated before moving to the next.'
+  },
+  {
+    q: 'Do I need to attend all sessions to benefit?',
+    a: 'Each session has complete value in itself and can be experienced independently. However, those who attend the full journey experience a deeper cumulative transformation, as each month builds on the previous one following the cycle of elements.'
+  },
+  {
+    q: 'Can I join the journey even if some sessions have already passed?',
+    a: 'Yes. You can begin the journey at any session. What matters is the commitment to your own process month by month. If you join in June, you still have July through December ahead of you.'
+  },
+  {
+    q: 'Do I need previous experience in meditation or sound therapy?',
+    a: 'No. You only need to arrive in comfortable clothing and with openness to receive. The gong does the rest.'
+  },
+  {
+    q: 'Is there a special price for the full package?',
+    a: 'The price per session is $120,000 COP (or $90,000 per person if you come as a duo). The December session is a two-day retreat (December 5 and 6), whose price will be announced soon. Write to us on WhatsApp to ask about package options for the full year.'
+  },
+  {
+    q: 'What should I bring to each session?',
+    a: 'A yoga mat or blanket, a water bottle, something warm, and if you wish, a journal to write in afterwards. Arrive 10–15 minutes early to settle in calmly.'
+  },
+  {
+    q: 'Where do the sessions take place?',
+    a: 'All sessions are held at Marce Anahata Centro de Bienestar, Cl. 11A Sur #46-12, Barrio La Aguacatala, El Poblado, Medellín, Antioquia.'
+  },
+];
+---
+
+<Layout
+  title="Gong Bath Medellín 2026 | El Viaje de las 450 Vibraciones — Marce Anahata"
+  description="9 gong bath sessions in Medellín throughout 2026 in El Poblado. Each month an element, an intention and a healing experience. The depth of a Gong Puja distributed month by month."
+  image="/images/blog/8/home-bano-de-gong-.jpg"
+  lang="en"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://marceanahata.com/en" },
+        { "@type": "ListItem", "position": 2, "name": "El Viaje de las 450 Vibraciones", "item": pageUrl }
+      ]
+    })}</script>
+    <script type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "EventSeries",
+      "name": "El Viaje de las 450 Vibraciones — Monthly Gong Bath Medellín 2026",
+      "description": "9 gong bath sessions in Medellín distributed monthly throughout 2026, forming the depth of a traditional Gong Puja. Each month an element and an intention: Earth, Water, Fire, Air, Ether, Balance, Depth, Memory and Wholeness.",
+      "startDate": "2026-04-24",
+      "endDate": "2026-12-06",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "image": "https://marceanahata.com/images/blog/8/home-bano-de-gong-.jpg",
+      "keywords": "gong bath Medellín, gong puja, sound therapy Medellín, vibrational healing, sound bath El Poblado, sonic meditation Medellín",
+      "organizer": { "@type": "Person", "name": "Marce Anahata", "url": "https://marceanahata.com/sobre-mi" },
+      "location": { "@type": "Place", "name": "Marce Anahata Centro de Bienestar", "address": { "@type": "PostalAddress", "streetAddress": "Cl. 11A Sur #46-12", "addressLocality": "Medellín", "addressRegion": "Antioquia", "addressCountry": "CO" } },
+      "offers": {
+        "@type": "AggregateOffer",
+        "lowPrice": "90000",
+        "highPrice": "120000",
+        "priceCurrency": "COP",
+        "availability": "https://schema.org/InStock"
+      },
+      "url": pageUrl
+    })}</script>
+    <script type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": faqItems.map(item => ({
+        "@type": "Question",
+        "name": item.q,
+        "acceptedAnswer": { "@type": "Answer", "text": item.a }
+      }))
+    })}</script>
+    <meta property="og:locale" content="en_US" />
+    <link rel="alternate" hreflang="es" href="https://marceanahata.com/viaje-450-vibraciones" />
+    <link rel="alternate" hreflang="en" href="https://marceanahata.com/en/viaje-450-vibraciones" />
+  </Fragment>
+
+  <!-- ═══════════════════════════════════════════════ HERO ══ -->
+  <section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-[#243c5a]">
+    <img
+      src="/images/blog/8/home-bano-de-gong-.jpg"
+      alt="El Viaje de las 450 Vibraciones — Gong bath in Medellín"
+      class="absolute inset-0 w-full h-full object-cover opacity-25 z-0"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-[#243c5a]/60 via-[#243c5a]/40 to-[#243c5a] z-10"></div>
+
+    <div class="relative z-20 text-center text-white px-6 max-w-4xl mx-auto pt-24 pb-16">
+      <span class="uppercase tracking-[0.25em] text-xs md:text-sm mb-6 block text-[#6ed8d9] font-bold">
+        Monthly Gong Bath · El Poblado, Medellín 2026
+      </span>
+
+      <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif mb-6 leading-tight">
+        El Viaje de las<br />
+        <span class="text-[#6ed8d9]">450 Vibraciones</span>
+      </h1>
+
+      <p class="text-sm md:text-base font-semibold tracking-widest uppercase text-white/50 mb-2 -mt-3">
+        9 Gong Baths in Medellín · April to December 2026
+      </p>
+
+      <p class="text-lg md:text-xl font-light max-w-2xl mx-auto mb-4 text-white/80 leading-relaxed">
+        9 gong bath sessions throughout 2026. Each month an element, an intention and a healing experience.
+      </p>
+      <p class="text-base md:text-lg font-light max-w-xl mx-auto mb-10 text-white/60 italic">
+        The depth of a traditional Gong Puja, distributed month by month with purpose.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="#sessions"
+          class="inline-block bg-[#6ed8d9] text-[#243c5a] px-8 py-4 rounded-full font-bold hover:bg-white transition-all duration-300 shadow-lg"
+        >
+          See all 9 sessions
+        </a>
+        <a
+          href={whatsappLink}
+          target="_blank"
+          class="inline-block border-2 border-white/40 text-white px-8 py-4 rounded-full font-medium hover:border-[#6ed8d9] hover:text-[#6ed8d9] transition-all duration-300"
+        >
+          Reserve via WhatsApp
+        </a>
+      </div>
+
+      <!-- Session indicator dots -->
+      <div class="mt-16 flex items-center justify-center gap-2 flex-wrap">
+        {sessions.map((s) => (
+          <div
+            class={`w-3 h-3 rounded-full transition-all ${s.available ? 'bg-[#6ed8d9] scale-125' : 'bg-white/30'}`}
+            title={s.month}
+          />
+        ))}
+      </div>
+      <p class="text-white/40 text-xs mt-3 tracking-widest uppercase">April → December 2026</p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════ WHAT IS THE JOURNEY ══ -->
+  <section class="py-24 bg-white px-6">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+      <div>
+        <span class="uppercase tracking-widest text-xs text-[#5d5a8c] font-bold block mb-4">The proposal</span>
+        <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-6 leading-tight">
+          A Gong Puja not in one night,<br />but over an entire year
+        </h2>
+        <p class="text-[#243c5a]/80 mb-5 leading-relaxed">
+          A traditional <strong>Gong Puja</strong> is a continuous sound session lasting 8 to 10 hours. Its effects are profound: the nervous system enters a state of repair that few practices can achieve. However, that intensity in a single night is not accessible for every body or every moment in life.
+        </p>
+        <p class="text-[#243c5a]/80 mb-5 leading-relaxed">
+          <strong>El Viaje de las 450 Vibraciones</strong> was born from a question: what if we distribute that transformation throughout the year? Month by month, from April to December, we gather in a session with a different thematic intention — like chapters of a book that only makes sense when read in full.
+        </p>
+        <p class="text-[#243c5a]/80 leading-relaxed">
+          By the end of the year you will have lived that depth not all at once, but <strong>woven with intention through nine months of your life</strong>. A gift you build month by month, without rushing.
+        </p>
+      </div>
+
+      <!-- Visual comparison -->
+      <div class="space-y-4">
+        <div class="bg-stone-100 rounded-2xl p-7 border border-stone-200">
+          <h3 class="font-serif text-xl text-[#243c5a] mb-3">Traditional Gong Puja</h3>
+          <ul class="space-y-2 text-sm text-[#243c5a]/70">
+            <li class="flex gap-3"><span>⏱️</span> 8 to 10 hours of continuous sound</li>
+            <li class="flex gap-3"><span>🌙</span> A single night of high intensity</li>
+            <li class="flex gap-3"><span>💪</span> Requires physical and mental preparation</li>
+            <li class="flex gap-3"><span>🎯</span> One general intention for the whole process</li>
+          </ul>
+        </div>
+        <div class="bg-[#6ed8d9]/10 rounded-2xl p-7 border-2 border-[#6ed8d9]/40 relative">
+          <span class="absolute -top-3 left-6 bg-[#6ed8d9] text-[#243c5a] text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">This proposal</span>
+          <h3 class="font-serif text-xl text-[#243c5a] mb-3">El Viaje de las 450 Vibraciones</h3>
+          <ul class="space-y-2 text-sm text-[#243c5a]/80">
+            <li class="flex gap-3"><span>📅</span> 9 monthly sessions of ~60 minutes</li>
+            <li class="flex gap-3"><span>🌱</span> Sustainable pace, month-by-month integration</li>
+            <li class="flex gap-3"><span>🙏</span> Accessible for any level of experience</li>
+            <li class="flex gap-3"><span>🗺️</span> Each session: an element, its own intention</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════ 9 SESSIONS MAP ══ -->
+  <section id="sessions" class="py-24 bg-stone-50 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <span class="uppercase tracking-widest text-xs text-[#5d5a8c] font-bold block mb-4">The journey map</span>
+        <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-4">9 gong baths in Medellín — 9 intentions</h2>
+        <p class="text-[#243c5a]/70 max-w-xl mx-auto">April to December 2026. Each session is a chapter — complete in itself and part of something greater.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {sessions.map((s, i) => (
+          <div class={`relative rounded-2xl p-6 border-2 transition-all ${s.available ? 'bg-white border-[#6ed8d9]/50 shadow-md hover:shadow-lg hover:border-[#6ed8d9]' : 'bg-stone-100 border-stone-200 opacity-70'}`}>
+            <div class={`absolute -top-3 -left-3 w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold ${s.available ? 'bg-[#6ed8d9] text-[#243c5a]' : 'bg-stone-300 text-stone-600'}`}>
+              {i + 1}
+            </div>
+
+            <div class="flex items-start gap-4">
+              <span class="text-3xl">{s.emoji}</span>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-2 mb-1">
+                  <span class={`text-xs font-bold uppercase tracking-widest ${s.available ? 'text-[#6ed8d9]' : 'text-stone-400'}`}>{s.month}</span>
+                  <span class="text-stone-300">·</span>
+                  <span class="text-xs text-stone-400">{s.element}</span>
+                </div>
+                <h3 class="font-serif text-lg text-[#243c5a] leading-tight mb-2">{s.name}</h3>
+                <p class="text-xs text-[#243c5a]/60 leading-relaxed">{s.focus}</p>
+              </div>
+            </div>
+
+            <div class="mt-4 pt-4 border-t border-stone-100 flex items-center justify-between">
+              {s.available ? (
+                <a
+                  href={`/blog/${s.slug}`}
+                  class="text-xs font-semibold text-[#5d5a8c] hover:text-[#6ed8d9] transition-colors flex items-center gap-1"
+                >
+                  See details and reserve
+                  <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </a>
+              ) : (
+                <span class="text-xs text-stone-400 italic">Coming soon</span>
+              )}
+              <span class="text-xs text-stone-400">{s.date}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Final closing retreat highlight -->
+      <div class="mt-8 bg-[#243c5a] rounded-2xl p-8 text-white text-center relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_center,_#6ed8d9_0%,_transparent_70%)]"></div>
+        <div class="relative z-10">
+          <span class="text-4xl block mb-3">✨</span>
+          <span class="text-[#6ed8d9] uppercase tracking-widest text-xs font-bold block mb-2">Session 9 · December 5 & 6, 2026</span>
+          <h3 class="font-serif text-2xl md:text-3xl mb-3">Closing Retreat — The Great Puja</h3>
+          <p class="text-white/70 max-w-xl mx-auto text-sm leading-relaxed">
+            The year's close will not be an ordinary session: it will be a <strong class="text-white/90">two-day retreat</strong> — Saturday December 5 and Sunday December 6, 2026. There the final gong bath of the journey will take place, as a ceremony of integration of the nine months traveled. Full theme and details coming soon.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════ HOW IT WORKS ══ -->
+  <section class="py-24 bg-[#243c5a] text-white px-6">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-16">
+        <span class="uppercase tracking-widest text-xs text-[#6ed8d9] font-bold block mb-4">The experience</span>
+        <h2 class="text-3xl md:text-4xl font-serif">What does each session look like?</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-[#6ed8d9]/10 rounded-full flex items-center justify-center mx-auto mb-5 text-2xl">🎯</div>
+          <h3 class="font-bold text-[#6ed8d9] mb-3">Monthly intention</h3>
+          <p class="text-white/60 text-sm leading-relaxed">Each session opens with a thematic framing — the element of the month and its focus — so the body and mind know where to go.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 bg-[#6ed8d9]/10 rounded-full flex items-center justify-center mx-auto mb-5 text-2xl">🎵</div>
+          <h3 class="font-bold text-[#6ed8d9] mb-3">Designed sound</h3>
+          <p class="text-white/60 text-sm leading-relaxed">The sonic structure changes each month — tones, rhythms, mallets and instruments — to resonate with the purpose of that specific session.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 bg-[#6ed8d9]/10 rounded-full flex items-center justify-center mx-auto mb-5 text-2xl">🌿</div>
+          <h3 class="font-bold text-[#6ed8d9] mb-3">Conscious integration</h3>
+          <p class="text-white/60 text-sm leading-relaxed">Each session closes with time for silence to integrate. The body needs that space to assimilate what the sound has moved.</p>
+        </div>
+      </div>
+
+      <div class="mt-16 bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col md:flex-row items-center gap-8 justify-between">
+        <div>
+          <p class="text-[#6ed8d9] uppercase text-xs tracking-widest mb-1">Investment per session</p>
+          <p class="text-3xl font-serif">$120,000 COP</p>
+          <p class="text-white/50 text-sm mt-1">$90,000 COP per person when coming as a duo</p>
+          <p class="text-white/40 text-xs mt-1">Ask about full package (9 sessions)</p>
+        </div>
+        <div>
+          <p class="text-[#6ed8d9] uppercase text-xs tracking-widest mb-1">Location</p>
+          <p class="text-lg">Marce Anahata Centro de Bienestar</p>
+          <p class="text-white/50 text-sm mt-1">El Poblado, Medellín — in-person</p>
+        </div>
+        <a
+          href={whatsappLink}
+          target="_blank"
+          class="flex-shrink-0 bg-[#6ed8d9] text-[#243c5a] px-8 py-4 rounded-full font-bold hover:bg-white transition-all shadow-lg"
+        >
+          Reserve via WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════ UPCOMING SESSIONS ══ -->
+  {viajePosts.length > 0 && (
+    <section class="py-24 bg-white px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-14">
+          <span class="uppercase tracking-widest text-xs text-[#5d5a8c] font-bold block mb-4">Upcoming sessions</span>
+          <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a]">The first chapters of the journey</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {viajePosts.map((post) => (
+            <a
+              href={`/blog/${post.slug}`}
+              class="group block bg-stone-50 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 border border-stone-100 hover:border-[#6ed8d9]"
+            >
+              {post.data.image && (
+                <div class="h-48 overflow-hidden">
+                  <img
+                    src={post.data.image}
+                    alt={post.data.title}
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                </div>
+              )}
+              <div class="p-6">
+                {post.data.eventDate && (
+                  <p class="text-xs text-[#6ed8d9] font-bold uppercase tracking-widest mb-2">
+                    {new Date(`${post.data.eventDate}T12:00:00`).toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'America/Bogota' })}
+                  </p>
+                )}
+                <h3 class="font-serif text-lg text-[#243c5a] mb-3 group-hover:text-[#5d5a8c] transition-colors leading-tight">{post.data.title}</h3>
+                <p class="text-sm text-stone-500 leading-relaxed line-clamp-2">{post.data.description}</p>
+                <div class="mt-4 flex items-center gap-1 text-[#5d5a8c] text-sm font-semibold">
+                  See details and reserve
+                  <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ════════════════════════════════════════════ FAQ ══ -->
+  <section class="py-24 bg-stone-50 px-6">
+    <div class="max-w-3xl mx-auto">
+      <div class="text-center mb-14">
+        <span class="uppercase tracking-widest text-xs text-[#5d5a8c] font-bold block mb-4">Frequently asked questions</span>
+        <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a]">Everything you need to know</h2>
+      </div>
+      <div class="space-y-4">
+        {faqItems.map((item) => (
+          <details class="group bg-white rounded-xl border-2 border-stone-100 hover:border-[#6ed8d9]/30 transition-all shadow-sm hover:shadow-md">
+            <summary class="cursor-pointer p-6 font-semibold text-[#243c5a] flex justify-between items-center list-none">
+              <span class="flex-1 pr-4 text-left">{item.q}</span>
+              <svg class="w-5 h-5 text-[#6ed8d9] transition-transform group-open:rotate-180 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <div class="px-6 pb-6 pt-2 text-stone-700 leading-relaxed border-t border-stone-100">{item.a}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════ REVIEWS ══ -->
+  <div class="bg-white">
+    <ReviewsSection />
+  </div>
+
+  <!-- ══════════════════════════════════════ FINAL CTA ══ -->
+  <section class="py-24 bg-[#243c5a] text-white px-6 relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-80 h-80 bg-[#6ed8d9] rounded-full filter blur-[120px] opacity-10"></div>
+    <div class="absolute bottom-0 left-0 w-80 h-80 bg-[#5d5a8c] rounded-full filter blur-[120px] opacity-15"></div>
+    <div class="max-w-3xl mx-auto text-center relative z-10">
+      <span class="text-5xl block mb-6">🌱 💧 🔥</span>
+      <h2 class="text-3xl md:text-5xl font-serif mb-6 leading-tight">
+        Begin the journey<br />
+        <span class="text-[#6ed8d9]">where you are</span>
+      </h2>
+      <p class="text-white/70 mb-10 max-w-xl mx-auto leading-relaxed">
+        This is not an event. It is a nine-month commitment to yourself. Each session awaits you wherever you are in your process.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href={whatsappLink}
+          target="_blank"
+          class="bg-[#6ed8d9] text-[#243c5a] px-10 py-4 rounded-full font-bold hover:bg-white transition-all shadow-lg"
+        >
+          Reserve via WhatsApp
+        </a>
+        <a
+          href="#sessions"
+          class="border-2 border-white/30 text-white px-10 py-4 rounded-full font-medium hover:border-[#6ed8d9] hover:text-[#6ed8d9] transition-all"
+        >
+          See all sessions
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Layout>
