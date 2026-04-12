@@ -50,8 +50,8 @@ const ritualesPosts = (await getCollection('blog', ({ data, slug }) =>
       "@context": "https://schema.org",
       "@type": "Service",
       "name": serviceInfo.title,
-      "description": "Ritual personalizado en Medellín para transformación emocional, energética y espiritual.",
-      "serviceType": "Ritual Service",
+      "description": "Ritual de cierre y apertura en Medellín: limpieza energética profunda para soltar lo viejo y manifestar con claridad un nuevo ciclo de vida. Ceremonia personalizada en El Poblado.",
+      "serviceType": "Ritual de Cierre y Apertura",
       "provider": {
         "@type": "Person",
         "name": "Marce Anahata",
@@ -60,12 +60,13 @@ const ritualesPosts = (await getCollection('blog', ({ data, slug }) =>
       "areaServed": { "@type": "City", "name": "Medellín" },
       "offers": {
         "@type": "Offer",
+        "price": "230000",
         "priceCurrency": "COP",
         "availability": "https://schema.org/InStock",
         "url": serviceUrl
       },
       "url": serviceUrl,
-      "keywords": "rituales Medellín, ritual personalizado, sanación energética, bienestar espiritual"
+      "keywords": "ritual de cierre y apertura Medellín, limpieza energética Medellín, ritual nuevo ciclo, soltar y manifestar El Poblado"
     })}</script>
     <script type="application/ld+json">{JSON.stringify({
       "@context": "https://schema.org",
@@ -75,6 +76,15 @@ const ritualesPosts = (await getCollection('blog', ({ data, slug }) =>
         "name": item.question,
         "acceptedAnswer": { "@type": "Answer", "text": item.answer }
       }))
+    })}</script>
+    <script type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://marceanahata.com" },
+        { "@type": "ListItem", "position": 2, "name": "Rituales Sagrados", "item": "https://marceanahata.com/rituales" },
+        { "@type": "ListItem", "position": 3, "name": "Ritual de Cierre y Apertura", "item": serviceUrl }
+      ]
     })}</script>
     <meta property="og:locale" content="es_CO" />
   </Fragment>

@@ -50,8 +50,8 @@ const ritualesPosts = (await getCollection('blog', ({ data, slug }) =>
       "@context": "https://schema.org",
       "@type": "Service",
       "name": serviceInfo.title,
-      "description": "Ritual personalizado en Medellín para transformación emocional, energética y espiritual.",
-      "serviceType": "Ritual Service",
+      "description": "Despedida de soltera consciente en Medellín: círculo de diosas para honrar a la novia, tejer sororidad y llenarla de bendiciones antes de su gran día. Experiencia sagrada y transformadora en El Poblado.",
+      "serviceType": "Despedida de Soltera Consciente",
       "provider": {
         "@type": "Person",
         "name": "Marce Anahata",
@@ -60,12 +60,13 @@ const ritualesPosts = (await getCollection('blog', ({ data, slug }) =>
       "areaServed": { "@type": "City", "name": "Medellín" },
       "offers": {
         "@type": "Offer",
+        "price": "138000",
         "priceCurrency": "COP",
         "availability": "https://schema.org/InStock",
         "url": serviceUrl
       },
       "url": serviceUrl,
-      "keywords": "rituales Medellín, ritual personalizado, sanación energética, bienestar espiritual"
+      "keywords": "despedida de soltera consciente Medellín, círculo de diosas novia, despedida soltera espiritual, ritual novia El Poblado Medellín"
     })}</script>
     <script type="application/ld+json">{JSON.stringify({
       "@context": "https://schema.org",
@@ -75,6 +76,15 @@ const ritualesPosts = (await getCollection('blog', ({ data, slug }) =>
         "name": item.question,
         "acceptedAnswer": { "@type": "Answer", "text": item.answer }
       }))
+    })}</script>
+    <script type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://marceanahata.com" },
+        { "@type": "ListItem", "position": 2, "name": "Rituales Sagrados", "item": "https://marceanahata.com/rituales" },
+        { "@type": "ListItem", "position": 3, "name": "Despedida de Soltera Consciente", "item": serviceUrl }
+      ]
     })}</script>
     <meta property="og:locale" content="es_CO" />
   </Fragment>
