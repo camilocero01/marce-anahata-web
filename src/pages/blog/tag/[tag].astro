@@ -1,194 +1,203 @@
 ---
-import Layout from "../../../layouts/Layout.astro";
+import Layout from '../../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog', ({ data, slug }) => !data.draft && !slug.startsWith('en/'));
-  const tagSet = new Set<string>();
-  posts.forEach(p => (p.data.tags || []).forEach(t => tagSet.add(t)));
-  return Array.from(tagSet).map(tag => ({ params: { tag } }));
+  const allPosts = await getCollection('blog', ({ data, slug }) => !data.draft && !slug.startsWith('en/'));
+
+  const tagMap = new Map<string, typeof allPosts>();
+  allPosts.forEach(post => {
+    post.data.tags?.forEach(tag => {
+      if (!tagMap.has(tag)) tagMap.set(tag, []);
+      tagMap.get(tag)!.push(post);
+    });
+  });
+
+  return Array.from(tagMap.entries()).map(([tag, posts]) => ({
+    params: { tag },
+    props: { tag, posts: posts.sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()) }
+  }));
 }
 
-const { tag } = Astro.params;
-if (!tag) throw new Error('Tag no encontrado');
+const { tag, posts } = Astro.props;
+const siteOrigin = 'https://marceanahata.com';
+const canonical = `${siteOrigin}/blog/tag/${encodeURIComponent(tag)}`;
 
-// Check if this tag also exists in English posts (for hreflang reciprocity)
-const enPosts = await getCollection('blog', ({ data, slug }) => !data.draft && slug.startsWith('en/'));
-const enTags = new Set<string>();
-enPosts.forEach(p => (p.data.tags || []).forEach(t => enTags.add(t)));
-const hasEnglishCounterpart = enTags.has(tag);
-
-const allPosts = (await getCollection('blog', ({ data, slug }) => !data.draft && !slug.startsWith('en/')))
-  .filter(p => (p.data.tags || []).includes(tag))
-  .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
-const PER_PAGE = 7;
-const currentPage = 1;
-const totalPages = Math.max(1, Math.ceil(allPosts.length / PER_PAGE));
-const posts = allPosts.slice(0, PER_PAGE);
-const [featured, ...rest] = posts;
-const pageTitle = `Artículos sobre "${tag}"`;
-const pageDescription = `Artículos del blog relacionados con ${tag}.`;
-const canonical = new URL(Astro.url).toString();
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  name: pageTitle,
-  description: pageDescription,
-  url: canonical
+const tagMeta: Record<string, { title: string; description: string }> = {
+  'baño de gong': {
+    title: 'Baño de Gong en Medellín — Artículos y Eventos | Marce Anahata',
+    description: 'Todo sobre baños de gong en Medellín: qué son, cómo funcionan, beneficios y próximos eventos en Marce Anahata Centro de Bienestar, El Poblado.'
+  },
+  'terapia de sonido': {
+    title: 'Terapia de Sonido en Medellín — Artículos | Marce Anahata',
+    description: 'Artículos sobre terapia de sonido, medicina vibracional y sanación con gong y cuencos de cristal en Medellín. Marce Anahata, terapeuta certificada.'
+  },
+  'viaje 450 vibraciones': {
+    title: 'El Viaje de las 450 Vibraciones — Artículos | Marce Anahata',
+    description: 'Todos los artículos y sesiones del Viaje de las 450 Vibraciones: 9 baños de gong mensuales en Medellín durante 2026.'
+  },
+  'meditación': {
+    title: 'Meditación en Medellín — Artículos | Marce Anahata',
+    description: 'Guías y artículos sobre meditación, mindfulness y prácticas contemplativas. Aprende a meditar con Marce Anahata en El Poblado, Medellín.'
+  },
+  'sanación vibracional': {
+    title: 'Sanación Vibracional — Artículos | Marce Anahata',
+    description: 'Artículos sobre sanación vibracional, frecuencias terapéuticas y medicina del sonido en Medellín. Marce Anahata Centro de Bienestar.'
+  },
+  'rituales': {
+    title: 'Rituales Sagrados en Medellín — Artículos | Marce Anahata',
+    description: 'Artículos sobre rituales sagrados: cumpleaños, parejas, despedidas de soltera, baby blessing y ceremonias de intención. El Poblado, Medellín.'
+  },
+  'bienestar': {
+    title: 'Bienestar Holístico en Medellín — Artículos | Marce Anahata',
+    description: 'Artículos sobre bienestar integral, salud holística y transformación personal en Marce Anahata Centro de Bienestar, El Poblado.'
+  }
 };
 
+const meta = tagMeta[tag] ?? {
+  title: `#${tag} — Artículos de Blog | Marce Anahata`,
+  description: `Artículos sobre ${tag} en Marce Anahata Centro de Bienestar, El Poblado, Medellín. Yoga, terapia de sonido y bienestar holístico.`
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: siteOrigin },
+    { '@type': 'ListItem', position: 2, name: 'Blog', item: `${siteOrigin}/blog` },
+    { '@type': 'ListItem', position: 3, name: `#${tag}`, item: canonical }
+  ]
+};
+
+const collectionSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: meta.title,
+  description: meta.description,
+  url: canonical,
+  about: { '@type': 'Thing', name: tag },
+  numberOfItems: posts.length,
+  publisher: {
+    '@type': 'Organization',
+    name: 'Marce Anahata Centro de Bienestar',
+    url: siteOrigin
+  }
+};
 ---
 
-<Layout title={pageTitle} description={pageDescription} includeAlternates={hasEnglishCounterpart}>
+<Layout title={meta.title} description={meta.description}>
   <Fragment slot="head">
-    <link rel="alternate" type="application/rss+xml" title={`RSS de ${tag}`} href={`/blog/tag/${encodeURIComponent(tag)}/rss.xml`} />
-    {totalPages > 1 && <link rel="next" href={`/blog/tag/${encodeURIComponent(tag)}/page/2`} />}
+    <link rel="canonical" href={canonical} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={meta.title} />
+    <meta property="og:description" content={meta.description} />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://www.marceanahata.com/images/social-preview-wa.jpg" />
-    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(collectionSchema)} />
   </Fragment>
 
   <main class="max-w-5xl mx-auto px-4 py-16">
-    <div class="text-center mb-12">
-      <h1 class="text-4xl md:text-5xl font-serif text-[#243c5a] mb-4">{pageTitle}</h1>
-      <p class="text-stone-600 text-lg">{pageDescription}</p>
-      <div class="mt-6 flex items-center justify-center gap-4">
-        <a href="/blog" class="text-sm text-[#243c5a] hover:underline">← Volver al blog</a>
-        <a href={`/blog/tag/${encodeURIComponent(tag)}/rss.xml`} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm text-[#243c5a] hover:underline">
-          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-            <path d="M5 5c7.732 0 14 6.268 14 14" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            <path d="M5 12a7 7 0 0 1 7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            <circle cx="6" cy="18" r="2" fill="currentColor" />
-          </svg>
-          <span>RSS de este tag</span>
-        </a>
-      </div>
+
+    <div class="mb-4">
+      <a href="/blog" class="text-sm text-[#243c5a] hover:underline">← Volver al blog</a>
     </div>
 
-    {posts.length === 0 ? (
-      <p class="text-center text-stone-500">No hay artículos con este tag.</p>
-    ) : (
-      <div class="space-y-12">
-        {featured && (
-          <article class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-stone-100 md:grid md:grid-cols-2 md:gap-6">
-            {featured.data.image && (
-              <div class="relative overflow-hidden h-full min-h-[300px]">
-                <a href={`/blog/${featured.slug}`}>
-                  <img
-                    src={featured.data.image}
-                    alt={featured.data.title}
-                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    loading="eager"
-                  />
-                </a>
-                <div class="absolute top-4 left-4 bg-[#6ed8d9] text-white px-3 py-1 rounded-full text-xs font-semibold shadow-md">
-                  Más Reciente
-                </div>
-              </div>
-            )}
-            <div class="p-6 md:p-8 flex flex-col justify-center">
-              <div class="flex items-center gap-3 mb-3 text-sm text-stone-500">
-                <time datetime={featured.data.pubDate.toISOString()}>
-                  {new Date(featured.data.pubDate).toLocaleDateString('es-CO', { year: 'numeric', month: 'long', day: 'numeric' })}
-                </time>
-                <span>•</span>
-                <span>{featured.data.author || 'Marce Anahata'}</span>
-              </div>
-              <h2 class="font-serif text-[#243c5a] group-hover:text-[#6ed8d9] transition-colors mb-3 text-3xl md:text-4xl">
-                <a href={`/blog/${featured.slug}`} class="hover:text-[#6ed8d9] transition-colors">{featured.data.title}</a>
-              </h2>
-              <p class="text-stone-600 mb-4 text-lg leading-relaxed">
-                {featured.data.description}
-              </p>
-              {featured.data.tags && featured.data.tags.length > 0 && (
-                <div class="flex flex-wrap gap-2 mb-4">
-                  {featured.data.tags.map(t => (
-                    <a href={`/blog/tag/${encodeURIComponent(t)}`} class="bg-[#6ed8d9]/20 text-[#243c5a] px-3 py-1 rounded-full text-xs font-medium hover:bg-[#6ed8d9]/30 transition-colors">#{t}</a>
-                  ))}
-                </div>
-              )}
-              <div class="flex items-center text-[#5d5a8c] font-medium text-sm group-hover:text-[#6ed8d9] transition-colors">
-                <a href={`/blog/${featured.slug}`} class="flex items-center">
-                  <span>Leer artículo</span>
-                  <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </article>
-        )}
+    <div class="text-center mb-14">
+      <span class="inline-block bg-[#6ed8d9]/20 text-[#243c5a] px-4 py-1 rounded-full text-sm font-semibold mb-4 uppercase tracking-widest">
+        #{tag}
+      </span>
+      <h1 class="text-4xl md:text-5xl font-serif text-[#243c5a] mb-4">
+        {tag === 'baño de gong' ? 'Baño de Gong en Medellín'
+          : tag === 'terapia de sonido' ? 'Terapia de Sonido en Medellín'
+          : tag === 'viaje 450 vibraciones' ? 'El Viaje de las 450 Vibraciones'
+          : tag === 'meditación' ? 'Meditación y Mindfulness'
+          : tag === 'sanación vibracional' ? 'Sanación Vibracional'
+          : tag === 'rituales' ? 'Rituales Sagrados en Medellín'
+          : `#${tag}`}
+      </h1>
+      <p class="text-stone-500 text-lg max-w-xl mx-auto leading-relaxed">{meta.description}</p>
+      <p class="text-[#5d5a8c] font-semibold mt-3 text-sm">
+        {posts.length} {posts.length === 1 ? 'artículo' : 'artículos'}
+      </p>
+    </div>
 
-        {rest.length > 0 && (
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {rest.map(post => (
-              <article class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-stone-100">
-                {post.data.image && (
-                  <a href={`/blog/${post.slug}`}>
-                    <img
-                      src={post.data.image}
-                      alt={post.data.title}
-                      class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"
-                      loading="lazy"
-                    />
-                  </a>
-                )}
-                <div class="p-6 flex flex-col justify-center">
-                  <div class="flex items-center gap-3 mb-3 text-sm text-stone-500">
-                    <time datetime={post.data.pubDate.toISOString()}>
-                      {new Date(post.data.pubDate).toLocaleDateString('es-CO', { year: 'numeric', month: 'long', day: 'numeric' })}
-                    </time>
-                    <span>•</span>
-                    <span>{post.data.author || 'Marce Anahata'}</span>
-                  </div>
-                  <h3 class="font-serif text-[#243c5a] group-hover:text-[#6ed8d9] transition-colors mb-3 text-2xl">
-                    <a href={`/blog/${post.slug}`} class="hover:text-[#6ed8d9] transition-colors">{post.data.title}</a>
-                  </h3>
-                  <p class="text-stone-600 mb-4 text-base">
-                    {post.data.description}
-                  </p>
-                  {post.data.tags && post.data.tags.length > 0 && (
-                    <div class="flex flex-wrap gap-2 mb-4">
-                      {post.data.tags.map(t => (
-                        <a href={`/blog/tag/${encodeURIComponent(t)}`} class="bg-[#6ed8d9]/20 text-[#243c5a] px-3 py-1 rounded-full text-xs font-medium hover:bg-[#6ed8d9]/30 transition-colors">
-                          #{t}
-                        </a>
-                      ))}
-                    </div>
-                  )}
-                  <div class="flex items-center text-[#5d5a8c] font-medium text-sm group-hover:text-[#6ed8d9] transition-colors">
-                    <a href={`/blog/${post.slug}`} class="flex items-center">
-                      <span>Leer artículo</span>
-                      <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-        )}
+    {tag === 'baño de gong' && (
+      <div class="mb-12 bg-[#243c5a] rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center gap-6 text-white">
+        <span class="text-4xl flex-shrink-0">🔔</span>
+        <div class="flex-1 text-center md:text-left">
+          <p class="font-bold text-lg mb-1">Próximos baños de gong en Medellín 2026</p>
+          <p class="text-white/70 text-sm">9 sesiones mensuales · El Poblado · $120.000 COP / $90.000 dúo</p>
+        </div>
+        <a href="/viaje-450-vibraciones" class="flex-shrink-0 bg-[#6ed8d9] text-[#243c5a] px-6 py-3 rounded-full font-bold hover:bg-white transition-all whitespace-nowrap">
+          Ver calendario →
+        </a>
       </div>
     )}
-    {totalPages > 1 && (
-      <nav class="mt-12 flex items-center justify-center gap-3">
-        <ul class="flex items-center gap-2">
-          {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => {
-            const href = n === 1 ? `/blog/tag/${encodeURIComponent(tag)}` : `/blog/tag/${encodeURIComponent(tag)}/page/${n}`;
-            const isActive = n === currentPage;
-            return (
-              <li>
-                <a href={href} aria-current={isActive ? 'page' : undefined}
-                  class={`min-w-9 text-center px-3 py-2 rounded-lg border transition-colors ${isActive ? 'bg-[#243c5a] text-white border-[#243c5a]' : 'text-[#243c5a] border-stone-200 hover:bg-stone-50'}`}>
-                  {n}
-                </a>
-              </li>
-            );
-          })}
-        </ul>
-        <a href={`/blog/tag/${encodeURIComponent(tag)}/page/2`} class="px-3 py-2 rounded-lg border text-[#243c5a] border-stone-200 hover:bg-stone-50">Siguiente</a>
-      </nav>
+
+    {tag === 'viaje 450 vibraciones' && (
+      <div class="mb-12 bg-[#6ed8d9]/10 border-2 border-[#6ed8d9]/40 rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center gap-6">
+        <span class="text-4xl flex-shrink-0">✨</span>
+        <div class="flex-1 text-center md:text-left">
+          <p class="font-bold text-lg text-[#243c5a] mb-1">El Viaje de las 450 Vibraciones 2026</p>
+          <p class="text-[#243c5a]/70 text-sm">9 baños de gong de abril a diciembre · Cada mes un elemento y una intención</p>
+        </div>
+        <a href="/viaje-450-vibraciones" class="flex-shrink-0 bg-[#243c5a] text-white px-6 py-3 rounded-full font-bold hover:bg-[#5d5a8c] transition-all whitespace-nowrap">
+          Ver el viaje completo →
+        </a>
+      </div>
     )}
+
+    {posts.length === 0 ? (
+      <p class="text-center text-stone-500 py-20">No hay artículos publicados con este tema aún.</p>
+    ) : (
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {posts.map(post => (
+          <article class="bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-stone-100 hover:border-[#6ed8d9] flex flex-col">
+            {post.data.image && (
+              <a href={`/blog/${post.slug}`} class="block h-48 overflow-hidden">
+                <img
+                  src={post.data.image}
+                  alt={post.data.title}
+                  width="400"
+                  height="300"
+                  class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+              </a>
+            )}
+            <div class="p-6 flex flex-col flex-grow">
+              <div class="flex items-center gap-2 mb-3 text-xs text-stone-400 uppercase tracking-wider">
+                <time datetime={new Date(post.data.pubDate).toISOString()}>
+                  {new Date(post.data.pubDate).toLocaleDateString('es-CO', { year: 'numeric', month: 'long', day: 'numeric' })}
+                </time>
+                {post.data.isEvent && (
+                  <span class="bg-[#6ed8d9]/20 text-[#243c5a] px-2 py-0.5 rounded-full font-semibold">Evento</span>
+                )}
+              </div>
+              <h2 class="font-serif text-[#243c5a] text-xl mb-3 leading-tight flex-grow">
+                <a href={`/blog/${post.slug}`} class="hover:text-[#5d5a8c] transition-colors">{post.data.title}</a>
+              </h2>
+              <p class="text-stone-500 text-sm mb-4 leading-relaxed line-clamp-2">{post.data.description}</p>
+              <a
+                href={`/blog/${post.slug}`}
+                class="inline-flex items-center gap-1 text-[#5d5a8c] text-sm font-semibold hover:text-[#6ed8d9] transition-colors mt-auto"
+              >
+                Leer más
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    )}
+
+    <div class="mt-16 text-center">
+      <a href="/blog" class="inline-block px-6 py-3 border-2 border-[#243c5a] text-[#243c5a] rounded-lg hover:bg-[#243c5a] hover:text-white transition-all font-semibold">
+        ← Ver todos los artículos
+      </a>
+    </div>
+
   </main>
 </Layout>

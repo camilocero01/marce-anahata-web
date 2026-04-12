@@ -8,6 +8,30 @@ interface Props {
 
 const { lang = 'es' } = Astro.props;
 
+const totalReviews = reviewsData.length;
+const avgRating = (reviewsData.reduce((sum, r) => sum + r.estrellas, 0) / totalReviews).toFixed(1);
+
+const aggregateRatingSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'Marce Anahata Centro de Bienestar',
+  url: 'https://marceanahata.com',
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: avgRating,
+    reviewCount: totalReviews,
+    bestRating: '5',
+    worstRating: '1'
+  },
+  review: reviewsData.map(r => ({
+    '@type': 'Review',
+    author: { '@type': 'Person', name: r.nombre },
+    reviewRating: { '@type': 'Rating', ratingValue: String(r.estrellas), bestRating: '5' },
+    reviewBody: r.texto,
+    datePublished: '2025-01-01'
+  }))
+};
+
 const translations = {
   es: {
     title: "Lo que dicen quienes han vibrado aquí",
@@ -27,6 +51,8 @@ const t = translations[lang];
 
 const googleReviewsLink = "https://www.google.com/search?sca_esv=c581b398f00b64e5&q=Marce+Anahata+-+Centro+de+bienestar+Medell%C3%ADn&si=AMgyJEtREmoPL4P1I5IDCfuA8gybfVI2d5Uj7QMwYCZHKDZ-E8digRyuKFLuaq_GTmCUkL39iUOp2I4pUmF1uDhUV503YmVnTB23PfNQ4MOerXVzro1X_lmUuSqdl7xSBoOtlokEI3m4H7mnuTb5chGZQTWDBxvVJLo97qBQ_z8KL83eYwd9Z5M%3D&sa=X&ved=2ahUKEwj3q9znq8KRAxWGmLAFHbdkNWYQrrQLegQIHxAA&biw=1536&bih=826&dpr=1.25&zx=1765897501773&no_sw_cr=1"; 
 ---
+
+<script type="application/ld+json" set:html={JSON.stringify(aggregateRatingSchema)} />
 
 <section id="reviews" class="py-24 bg-stone-50 overflow-hidden">
   <div class="max-w-7xl mx-auto px-6 text-center mb-12">

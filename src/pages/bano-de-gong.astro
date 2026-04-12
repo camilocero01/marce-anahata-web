@@ -1,0 +1,325 @@
+---
+// src/pages/bano-de-gong.astro
+// Página evergreen de servicio — rankea indefinidamente sin fecha en la URL
+import Layout from '../layouts/Layout.astro';
+import ReviewsSection from '../components/cards/ReviewsSection.astro';
+import { getCollection } from 'astro:content';
+
+const siteOrigin = 'https://marceanahata.com';
+const pageUrl = `${siteOrigin}/bano-de-gong`;
+const whatsappLink = `https://wa.me/573207329921?text=${encodeURIComponent('Hola Marce Anahata, quiero conocer más sobre los baños de gong y reservar mi lugar.')}`;
+
+// Posts de baño de gong publicados
+const gongPosts = (await getCollection('blog', ({ data, slug }) =>
+  !data.draft && !slug.startsWith('en/') && (data.tags || []).includes('baño de gong')
+)).sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
+
+const faqItems = [
+  {
+    q: '¿Qué es un baño de gong?',
+    a: 'Un baño de gong es una experiencia terapéutica de sonido en la que las personas se recuestan cómodamente mientras reciben una inmersión de vibraciones creadas por el gong. No es un baño de agua — es un baño de ondas sonoras que envuelve todo el cuerpo. El sonido actúa sobre el sistema nervioso favoreciendo la relajación profunda, la liberación emocional y la regulación del estrés.'
+  },
+  {
+    q: '¿Cuánto cuesta el baño de gong en Medellín?',
+    a: 'En Marce Anahata el precio es de $120.000 COP por persona. Si vienes en dúo (con pareja, amigo/a o familiar), el valor es de $90.000 COP por persona. Se requiere el 50% de anticipo para reservar el cupo.'
+  },
+  {
+    q: '¿Dónde se realizan los baños de gong?',
+    a: 'En Marce Anahata Centro de Bienestar, Cl. 11A Sur #46-12, Barrio La Aguacatala, El Poblado, Medellín, Antioquia. Todas las sesiones son presenciales.'
+  },
+  {
+    q: '¿Con qué frecuencia hacen baños de gong?',
+    a: 'Realizamos un baño de gong grupal cada mes a lo largo de 2026, como parte del Viaje de las 450 Vibraciones. Cada sesión tiene su propia intención y elemento. También ofrecemos sesiones de terapia de sonido individual.'
+  },
+  {
+    q: '¿Necesito experiencia previa?',
+    a: 'No. Solo necesitas llegar con ropa cómoda y disposición a recibir. El gong hace el resto. No se requiere experiencia en meditación ni en terapia de sonido.'
+  },
+  {
+    q: '¿Qué debo llevar?',
+    a: 'Colchoneta o manta, botella de agua y algo abrigador. Se recomienda llegar 10-15 minutos antes para acomodarse. Si quieres, puedes traer un diario para escribir después de la sesión.'
+  },
+  {
+    q: '¿Cuánto dura una sesión?',
+    a: 'Cada sesión grupal dura aproximadamente 60 minutos, incluyendo el encuadre inicial, el sonido y el cierre de integración.'
+  },
+  {
+    q: '¿Hay contraindicaciones?',
+    a: 'Si tienes condiciones médicas sensibles como marcapasos, epilepsia u otras, consúltanos antes de asistir. En general, el baño de gong es una práctica suave y accesible para cualquier persona.'
+  }
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Baño de Gong en Medellín — Marce Anahata',
+  description: 'Sesiones grupales de baño de gong en El Poblado, Medellín. Terapia de sonido con gong para relajación profunda, liberación emocional y regulación del sistema nervioso. $120.000 COP por persona.',
+  url: pageUrl,
+  provider: {
+    '@type': 'LocalBusiness',
+    name: 'Marce Anahata Centro de Bienestar',
+    url: siteOrigin,
+    telephone: '+573207329921',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Cl. 11A Sur #46-12',
+      addressLocality: 'El Poblado, Medellín',
+      addressRegion: 'Antioquia',
+      addressCountry: 'CO'
+    }
+  },
+  areaServed: { '@type': 'City', name: 'Medellín' },
+  offers: {
+    '@type': 'AggregateOffer',
+    lowPrice: '90000',
+    highPrice: '120000',
+    priceCurrency: 'COP',
+    availability: 'https://schema.org/InStock'
+  },
+  serviceType: 'Terapia de Sonido',
+  category: 'Baño de Gong'
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map(item => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a }
+  }))
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: siteOrigin },
+    { '@type': 'ListItem', position: 2, name: 'Baño de Gong en Medellín', item: pageUrl }
+  ]
+};
+---
+
+<Layout
+  title="Baño de Gong en Medellín | Marce Anahata Centro de Bienestar"
+  description="Sesiones de baño de gong en El Poblado, Medellín. Terapia de sonido grupal para relajación profunda y liberación emocional. $120.000 COP · $90.000 dúo · El Poblado."
+  image="/images/blog/8/home-bano-de-gong-.jpg"
+>
+  <Fragment slot="head">
+    <link rel="canonical" href={pageUrl} />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:type" content="website" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+
+  <!-- ══════════════════════ HERO ══ -->
+  <section class="relative min-h-[70vh] flex items-center justify-center overflow-hidden bg-[#243c5a]">
+    <img
+      src="/images/blog/8/home-bano-de-gong-.jpg"
+      alt="Baño de gong en Medellín — Marce Anahata Centro de Bienestar"
+      class="absolute inset-0 w-full h-full object-cover opacity-25 z-0"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-[#243c5a]/60 via-[#243c5a]/30 to-[#243c5a] z-10"></div>
+    <div class="relative z-20 text-center text-white px-6 max-w-3xl mx-auto pt-24 pb-16">
+      <span class="uppercase tracking-[0.25em] text-xs md:text-sm mb-6 block text-[#6ed8d9] font-bold">
+        Terapia de Sonido Grupal · El Poblado, Medellín
+      </span>
+      <h1 class="text-4xl md:text-6xl font-serif mb-6 leading-tight">
+        Baño de Gong<br />
+        <span class="text-[#6ed8d9]">en Medellín</span>
+      </h1>
+      <p class="text-lg md:text-xl font-light max-w-xl mx-auto mb-10 text-white/80 leading-relaxed">
+        Sumérgete en un océano de sonido. El gong trabaja sobre tu sistema nervioso, libera la tensión acumulada y te devuelve al centro — en solo 60 minutos.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/viaje-450-vibraciones" class="inline-block bg-[#6ed8d9] text-[#243c5a] px-8 py-4 rounded-full font-bold hover:bg-white transition-all shadow-lg">
+          Ver próximas sesiones
+        </a>
+        <a href={whatsappLink} target="_blank" class="inline-block border-2 border-white/40 text-white px-8 py-4 rounded-full font-medium hover:border-[#6ed8d9] hover:text-[#6ed8d9] transition-all">
+          Reservar por WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════ QUÉ ES ══ -->
+  <section class="py-24 bg-white px-6">
+    <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+      <div>
+        <span class="uppercase tracking-widest text-xs text-[#5d5a8c] font-bold block mb-4">La experiencia</span>
+        <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-6 leading-tight">¿Qué es un baño de gong?</h2>
+        <p class="text-[#243c5a]/80 mb-5 leading-relaxed">
+          Un <strong>baño de gong</strong> es una experiencia de sonido terapéutico en la que te recuestas en colchoneta y recibes una inmersión de vibraciones creadas por el gong. No es un baño de agua — es un baño de ondas sonoras que envuelven todo el cuerpo.
+        </p>
+        <p class="text-[#243c5a]/80 mb-5 leading-relaxed">
+          El gong produce un espectro sonoro amplio y complejo que viaja a través del cuerpo, interactúa con el sistema nervioso y lleva al cerebro a un estado profundo de relajación — similar al que se alcanza en meditación o sueño profundo.
+        </p>
+        <p class="text-[#243c5a]/80 leading-relaxed">
+          El resultado es una sensación de descanso profundo, ligereza emocional y claridad mental que pocas prácticas logran en tan poco tiempo.
+        </p>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <img src="/images/blog/8/3-bano-de-gong-.jpg" alt="Gong ceremonial en Marce Anahata Medellín" class="rounded-2xl w-full h-48 object-cover shadow-md" loading="lazy" />
+        <img src="/images/blog/8/1-bano-de-gong-.jpg" alt="Participantes en baño de gong en El Poblado" class="rounded-2xl w-full h-48 object-cover shadow-md mt-6" loading="lazy" />
+        <img src="/images/blog/8/5-bano-de-gong-.jpg" alt="Relajación profunda en sesión de terapia de sonido" class="rounded-2xl w-full h-48 object-cover shadow-md -mt-6" loading="lazy" />
+        <img src="/images/blog/8/7-bano-de-gong-.jpg" alt="Sala de meditación sonora Marce Anahata" class="rounded-2xl w-full h-48 object-cover shadow-md" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════ BENEFICIOS ══ -->
+  <section class="py-20 bg-stone-50 px-6">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-14">
+        <span class="uppercase tracking-widest text-xs text-[#5d5a8c] font-bold block mb-4">Por qué funciona</span>
+        <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a]">Beneficios del baño de gong</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          { emoji: '🌿', title: 'Físicos', text: 'Libera tensión muscular, armoniza el sistema nervioso, favorece el descanso. Muchas personas sienten músculos más sueltos y respiración más amplia.' },
+          { emoji: '🧘', title: 'Mentales', text: 'Reduce el estrés y la ansiedad, calma la mente, baja el ruido mental. El sonido ayuda a recuperar claridad y foco.' },
+          { emoji: '💛', title: 'Emocionales', text: 'Ayuda a procesar emociones sin hablar ni analizar. Es común sentir alivio, contención y una ligereza duradera después de la sesión.' },
+          { emoji: '✨', title: 'Energéticos', text: 'Eleva la vibración, abre espacio para la intuición y el equilibrio interno. La sensación es de "reordenar" lo interior.' }
+        ].map(b => (
+          <div class="bg-white rounded-2xl p-6 border border-stone-100 shadow-sm hover:shadow-md transition-shadow">
+            <div class="text-3xl mb-4">{b.emoji}</div>
+            <h3 class="font-bold text-[#243c5a] mb-2">{b.title}</h3>
+            <p class="text-[#243c5a]/70 text-sm leading-relaxed">{b.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════ PRECIO Y PRÓXIMAS SESIONES ══ -->
+  <section class="py-24 bg-[#243c5a] text-white px-6">
+    <div class="max-w-4xl mx-auto text-center">
+      <span class="uppercase tracking-widest text-xs text-[#6ed8d9] font-bold block mb-4">Próximas sesiones 2026</span>
+      <h2 class="text-3xl md:text-4xl font-serif mb-6">El Viaje de las 450 Vibraciones</h2>
+      <p class="text-white/70 max-w-xl mx-auto mb-10 leading-relaxed">
+        Cada mes realizamos un baño de gong con una intención y un elemento distinto — 9 sesiones de abril a diciembre de 2026. Puedes unirte en cualquier momento.
+      </p>
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col md:flex-row items-center gap-8 justify-between max-w-2xl mx-auto mb-10">
+        <div class="text-center md:text-left">
+          <p class="text-[#6ed8d9] uppercase text-xs tracking-widest mb-1">Inversión por sesión</p>
+          <p class="text-3xl font-serif">$120.000 COP</p>
+          <p class="text-white/50 text-sm mt-1">$90.000 COP por persona en dúo</p>
+        </div>
+        <div class="text-center md:text-left">
+          <p class="text-[#6ed8d9] uppercase text-xs tracking-widest mb-1">Lugar</p>
+          <p class="text-lg">El Poblado, Medellín</p>
+          <p class="text-white/50 text-sm">Presencial · Máx. 15 personas</p>
+        </div>
+        <a href={whatsappLink} target="_blank" class="flex-shrink-0 bg-[#6ed8d9] text-[#243c5a] px-8 py-4 rounded-full font-bold hover:bg-white transition-all shadow-lg">
+          Reservar
+        </a>
+      </div>
+      <a href="/viaje-450-vibraciones" class="inline-block border-2 border-white/30 text-white px-8 py-4 rounded-full font-medium hover:border-[#6ed8d9] hover:text-[#6ed8d9] transition-all">
+        Ver calendario de sesiones →
+      </a>
+    </div>
+  </section>
+
+  <!-- ══════════════════════ QUIÉN FACILITA ══ -->
+  <section class="py-20 bg-white px-6">
+    <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-12">
+      <img
+        src="/images/marce-perfil.webp"
+        alt="Marce Anahata — terapeuta de sonido certificada en Medellín"
+        class="w-40 h-40 rounded-full object-cover shadow-xl border-4 border-[#6ed8d9]/30 flex-shrink-0"
+        loading="lazy"
+      />
+      <div>
+        <span class="uppercase tracking-widest text-xs text-[#5d5a8c] font-bold block mb-3">Facilitadora</span>
+        <h2 class="text-2xl md:text-3xl font-serif text-[#243c5a] mb-4">Marcela Zuleta — Marce Anahata</h2>
+        <p class="text-[#243c5a]/80 leading-relaxed mb-4">
+          Terapeuta de Sonido certificada con <strong>110 horas de formación</strong> avalada por la Fundación Musicoterapia y Salud (España), bajo la dirección de <strong>Vikrampal Sandes</strong>. Especialización en Gong, Cuencos de Cristal y Voz terapéutica.
+        </p>
+        <p class="text-[#243c5a]/80 leading-relaxed">
+          También instructora de <strong>Kundalini Yoga certificada internacionalmente por KRI</strong>, formada por Nam Nidhan Khalsa, pionera en Latinoamérica.
+        </p>
+        <a href="/sobre-mi" class="inline-block mt-5 text-[#5d5a8c] font-semibold text-sm hover:text-[#6ed8d9] transition-colors">
+          Conocer más sobre Marce →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════ POSTS RELACIONADOS ══ -->
+  {gongPosts.length > 0 && (
+    <section class="py-20 bg-stone-50 px-6">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-serif text-[#243c5a] mb-3">Próximas sesiones y artículos</h2>
+          <p class="text-[#243c5a]/60 text-sm">Todo sobre los baños de gong en Marce Anahata</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {gongPosts.slice(0, 3).map(post => (
+            <a href={`/blog/${post.slug}`} class="group bg-white rounded-xl overflow-hidden border border-stone-100 hover:border-[#6ed8d9] hover:shadow-md transition-all">
+              {post.data.image && (
+                <div class="h-44 overflow-hidden">
+                  <img src={post.data.image} alt={post.data.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                </div>
+              )}
+              <div class="p-5">
+                {post.data.isEvent && (
+                  <span class="text-xs bg-[#6ed8d9]/20 text-[#243c5a] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wider mb-2 inline-block">Evento</span>
+                )}
+                <h3 class="font-serif text-[#243c5a] text-lg leading-tight mb-2 group-hover:text-[#5d5a8c] transition-colors">{post.data.title}</h3>
+                <p class="text-stone-500 text-sm line-clamp-2">{post.data.description}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ══════════════════════ FAQ ══ -->
+  <section class="py-20 bg-white px-6">
+    <div class="max-w-3xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-serif text-[#243c5a] mb-3">Preguntas frecuentes</h2>
+        <p class="text-[#243c5a]/60 text-sm">Todo lo que necesitas saber antes de venir</p>
+      </div>
+      <div class="space-y-4">
+        {faqItems.map(item => (
+          <details class="group bg-stone-50 rounded-xl border-2 border-stone-100 hover:border-[#6ed8d9]/30 transition-all shadow-sm">
+            <summary class="cursor-pointer p-6 font-semibold text-[#243c5a] flex justify-between items-center list-none">
+              <span class="flex-1 pr-4 text-left">{item.q}</span>
+              <svg class="w-5 h-5 text-[#6ed8d9] transition-transform group-open:rotate-180 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <div class="px-6 pb-6 pt-2 text-stone-700 leading-relaxed border-t border-stone-100">{item.a}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════ REVIEWS ══ -->
+  <div class="bg-stone-50">
+    <ReviewsSection />
+  </div>
+
+  <!-- ══════════════════════ CTA FINAL ══ -->
+  <section class="py-20 bg-[#243c5a] text-white px-6 text-center">
+    <div class="max-w-2xl mx-auto">
+      <p class="text-[#6ed8d9] uppercase tracking-widest text-xs font-bold mb-4">¿Listo para escuchar?</p>
+      <h2 class="text-3xl md:text-4xl font-serif mb-6">Reserva tu lugar en el próximo baño de gong</h2>
+      <p class="text-white/70 mb-8 leading-relaxed">El Poblado, Medellín · $120.000 COP · Máx. 15 personas · Cupos limitados</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={whatsappLink} target="_blank" class="bg-[#6ed8d9] text-[#243c5a] px-10 py-4 rounded-full font-bold hover:bg-white transition-all shadow-lg">
+          Reservar por WhatsApp
+        </a>
+        <a href="/viaje-450-vibraciones" class="border-2 border-white/30 text-white px-10 py-4 rounded-full font-medium hover:border-[#6ed8d9] hover:text-[#6ed8d9] transition-all">
+          Ver calendario 2026
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Layout>

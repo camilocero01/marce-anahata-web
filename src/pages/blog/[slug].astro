@@ -140,6 +140,44 @@ if (relatedPosts.length < 3) {
   relatedPosts = [...relatedPosts, ...additionalPosts];
 }
 
+// FAQPage schema para posts de eventos con baño de gong
+const eventFaqSchema = isEvent && (data.tags || []).includes('baño de gong') ? {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: '¿Qué es un baño de gong?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Un baño de gong es una experiencia terapéutica de sonido en la que las personas se recuestan cómodamente mientras reciben una inmersión de vibraciones creadas por el gong. El sonido actúa sobre el sistema nervioso favoreciendo la relajación profunda, la liberación emocional y la regulación del estrés.' }
+    },
+    {
+      '@type': 'Question',
+      name: '¿Necesito experiencia previa para asistir a un baño de gong?',
+      acceptedAnswer: { '@type': 'Answer', text: 'No. Solo necesitas llegar con ropa cómoda y disposición a recibir. El gong hace el resto. No se requiere experiencia previa en meditación ni en terapia de sonido.' }
+    },
+    {
+      '@type': 'Question',
+      name: '¿Cuánto cuesta el baño de gong en Marce Anahata?',
+      acceptedAnswer: { '@type': 'Answer', text: 'El precio es de $120.000 COP por persona. Si vienes con alguien (dúo), el valor es de $90.000 COP por persona. Se requiere el 50% de anticipo para reservar el cupo.' }
+    },
+    {
+      '@type': 'Question',
+      name: '¿Dónde se realiza el baño de gong?',
+      acceptedAnswer: { '@type': 'Answer', text: 'En Marce Anahata Centro de Bienestar, Cl. 11A Sur #46-12, Barrio La Aguacatala, El Poblado, Medellín, Antioquia. Las sesiones son presenciales.' }
+    },
+    {
+      '@type': 'Question',
+      name: '¿Qué debo llevar al baño de gong?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Colchoneta o manta, botella de agua y algo abrigador. Se recomienda llegar 10-15 minutos antes para acomodarse con calma.' }
+    },
+    {
+      '@type': 'Question',
+      name: '¿Cuánto dura una sesión de baño de gong?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Cada sesión dura aproximadamente 60 minutos, incluyendo el tiempo de sonido y el cierre de integración.' }
+    }
+  ]
+} : null;
+
 // Determine service CTA based on primary tag
 const serviceCTA = {
   'yoga': { url: '/clases', text: 'Explora nuestras clases de Kundalini Yoga' },
@@ -171,6 +209,7 @@ const serviceCTA = {
     <meta name="author" content={data.author || 'Marce Anahata'} />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    {eventFaqSchema && <script type="application/ld+json" set:html={JSON.stringify(eventFaqSchema)} />}
   </Fragment>
   <main class="max-w-3xl mx-auto px-4 py-16">
     <a href={lang === 'en' ? '/en/blog' : '/blog'} class="text-sm text-[#243c5a] hover:underline">← {lang === 'en' ? 'Back to blog' : 'Volver al blog'}</a>

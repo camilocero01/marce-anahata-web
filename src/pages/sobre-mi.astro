@@ -11,6 +11,84 @@ import terapiaNamYogaImg from '../assets/terapia/terapia-nam-yoga.webp';
 
 const whatsappLink = "https://wa.me/573207329921?text=Hola%20Marce%20Anahata,%20le%C3%AD%20tu%20historia%20y%20quisiera%20conocer%20m%C3%A1s%20sobre%20tus%20servicios.";
 
+const siteUrl = 'https://marceanahata.com';
+const pageUrl = `${siteUrl}/sobre-mi`;
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Marcela Zuleta Marín',
+  alternateName: 'Marce Anahata',
+  url: pageUrl,
+  mainEntityOfPage: pageUrl,
+  image: `${siteUrl}/images/marce-perfil.webp`,
+  description: 'Terapeuta de Sonido certificada (110 horas, Fundación Musicoterapia y Salud, España) e Instructora Internacional de Kundalini Yoga certificada por KRI. Especialista en baños de gong, Puja de Gong y sanación vibracional en Medellín, Colombia.',
+  jobTitle: ['Terapeuta de Sonido', 'Instructora de Kundalini Yoga', 'Facilitadora de Rituales Sagrados'],
+  worksFor: {
+    '@type': 'LocalBusiness',
+    name: 'Marce Anahata Centro de Bienestar',
+    url: siteUrl,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Cl. 11A Sur #46-12, Barrio La Aguacatala',
+      addressLocality: 'El Poblado, Medellín',
+      addressRegion: 'Antioquia',
+      addressCountry: 'CO'
+    }
+  },
+  knowsAbout: [
+    'Baño de gong', 'Puja de Gong', 'Terapia de sonido', 'Medicina vibracional',
+    'Kundalini Yoga', 'Meditación', 'Sanación vibracional', 'Gong terapéutico',
+    'Cuencos de cristal', 'Rituales sagrados', 'Bienestar corporativo',
+    'Círculo de mujeres', 'Pranayama', 'Sistema nervioso y sonido'
+  ],
+  hasCredential: [
+    {
+      '@type': 'EducationalOccupationalCredential',
+      credentialCategory: 'Certificación profesional',
+      name: 'Terapeuta de Sonido — 110 horas',
+      description: 'Certificación especializada en uso terapéutico del sonido y musicoterapia. Especialización en Gong, Cuencos de Cristal y Voz. Dirección: Vikrampal Sandes y María Jesús del Olmo.',
+      recognizedBy: {
+        '@type': 'Organization',
+        name: 'Fundación Musicoterapia y Salud',
+        url: 'https://vikrampal.es'
+      }
+    },
+    {
+      '@type': 'EducationalOccupationalCredential',
+      credentialCategory: 'Certificación internacional',
+      name: 'Instructora Certificada de Kundalini Yoga — Nivel 1',
+      description: 'Entrenamiento inmersivo de un año. Formada por Nam Nidhan Khalsa, pionera en Latinoamérica.',
+      recognizedBy: {
+        '@type': 'Organization',
+        name: 'Kundalini Research Institute (KRI)',
+        url: 'https://www.kundaliniresearchinstitute.org'
+      }
+    }
+  ],
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Medellín',
+    addressRegion: 'Antioquia',
+    addressCountry: 'CO'
+  },
+  sameAs: [
+    'https://www.instagram.com/marce_anahata',
+    'https://www.youtube.com/@marce_anahata',
+    'https://www.tiktok.com/@marce_anahata',
+    'https://www.linkedin.com/company/marceanahata'
+  ]
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
+    { '@type': 'ListItem', position: 2, name: 'Sobre Mí', item: pageUrl }
+  ]
+};
+
 // 3 posts aleatorios con tag "Marce Anahata"
 const sobreMiPosts = (await getCollection('blog', ({ data, slug }) =>
   !data.draft && !slug.startsWith('en/') && data.tags.includes('Marce Anahata')
@@ -19,7 +97,14 @@ const sobreMiPosts = (await getCollection('blog', ({ data, slug }) =>
   .slice(0, 3);
 ---
 
-<Layout title="Sobre Mí | Marce Anahata" description="Marce Anahata: instructora certificada de kundalini yoga, terapeuta de sonido y facilitadora de rituales sagrados en Medellín. Mi camino de transformación.">
+<Layout title="Sobre Mí — Marcela Zuleta, Terapeuta de Sonido y Kundalini Yoga | Marce Anahata" description="Marcela Zuleta (Marce Anahata): terapeuta de sonido certificada 110h (Fundación Musicoterapia y Salud) e instructora de Kundalini Yoga KRI. Especialista en baños de gong en Medellín.">
+  <Fragment slot="head">
+    <link rel="canonical" href={pageUrl} />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:type" content="profile" />
+    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
   
   <section class="relative h-[60vh] flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 z-0">
