@@ -122,9 +122,9 @@ const schema = JSON.stringify({
   },
   "knowsAbout": ["Kundalini Yoga", "Terapia de Sonido", "Meditación", "Rituales Sagrados", "Bienestar Corporativo"],
     "sameAs": [
-        "https://www.instagram.com/marceanahata",
-                "https://www.youtube.com/@marce_anahata",
-                "https://www.tiktok.com/@marce_anahata",
+        "https://www.instagram.com/marce_anahata",
+        "https://www.youtube.com/@marce_anahata",
+        "https://www.tiktok.com/@marce_anahata",
         "https://www.linkedin.com/company/marceanahata",
         "https://wa.me/573207329921"
     ]
@@ -246,12 +246,8 @@ const websiteSchema = JSON.stringify({
     "url": new URL('/sobre-mi', siteUrl).toString()
   },
   "potentialAction": {
-    "@type": "SearchAction",
-    "target": {
-      "@type": "EntryPoint",
-      "urlTemplate": new URL('/buscar?q={search_term_string}', siteUrl).toString()
-    },
-    "query-input": "required name=search_term_string"
+    "@type": "ReadAction",
+    "target": siteUrl.toString()
   }
 });
 ---
@@ -280,8 +276,9 @@ const websiteSchema = JSON.stringify({
                 <link rel="alternate" hreflang="x-default" href={includeAlternates ? resolvedEsUrl : canonicalUrl} />
 
         <meta name="theme-color" content="#243c5a" />
-        <meta property="og:locale" content="es_CO" />
-        {resolvedEnUrl && <meta property="og:locale:alternate" content="en_US" />}
+        <meta property="og:locale" content={lang === 'en' ? 'en_US' : 'es_CO'} />
+        {lang !== 'en' && resolvedEnUrl && <meta property="og:locale:alternate" content="en_US" />}
+        {lang === 'en' && <meta property="og:locale:alternate" content="es_CO" />}
 
         <!-- Performance: Preload critical resources -->
         <link rel="preload" as="image" href="/images/social-preview-wa.jpg" fetchpriority="high" />

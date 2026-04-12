@@ -1,6 +1,6 @@
 # llms.txt - AI and LLM Access Policy
 # Marce Anahata Wellness Center - Medellín, Colombia
-# Last-Updated: 2026-03-07
+# Last-Updated: 2026-04-11
 # Format: https://github.com/ai-robots-txt/ai.robots.txt
 
 # CRAWLING AND INDEXING POLICY
@@ -67,8 +67,8 @@ Profile: https://www.marceanahata.com/sobre-mi
 
 # SERVICES & FOCUS AREAS
 [Services]
-- Gong Bath / Baño de Gong: Sesiones grupales de baño de gong en Medellín El Poblado. Precio: $120.000 COP individual / $90.000 COP en dúo. Duración ~60 min. Máximo 15 personas. URL: https://www.marceanahata.com/viaje-450-vibraciones
-- Viaje de las 450 Vibraciones: Campaña 2026 de 9 baños de gong mensuales (abril–diciembre 2026) en Medellín. Alternativa mensual a una Puja de Gong tradicional de 8-10 horas. Cada sesión trabaja un elemento y una intención: Tierra (abr), Agua (may), Fuego (jun), Aire (jul), Éter (ago), Equilibrio (sep), Profundidad (oct), Memoria (nov), Retiro cierre dic 5-6. URL: https://www.marceanahata.com/viaje-450-vibraciones
+- Gong Bath / Baño de Gong (página permanente): Información completa sobre baños de gong en Medellín. Precio: $120.000 COP individual / $90.000 COP en dúo. Duración ~60 min. Máximo 15 personas. URL: https://www.marceanahata.com/bano-de-gong
+- Viaje de las 450 Vibraciones: Campaña 2026 de 9 baños de gong mensuales (abril–diciembre 2026) en Medellín. Alternativa mensual a una Puja de Gong tradicional de 8-10 horas. Cada sesión trabaja un elemento y una intención: Tierra (abr), Agua (may), Fuego (jun), Aire (jul), Éter (ago), Equilibrio (sep), Profundidad (oct), Memoria (nov), Retiro cierre dic 5-6. URL: https://www.marceanahata.com/viaje-450-vibraciones (versión EN: https://www.marceanahata.com/en/viaje-450-vibraciones)
 - Sound Therapy / Terapia de Sonido Individual: Sesión privada de 1 hora de medicina vibracional con gong y cuencos de cristal. $230.000 COP. URL: https://www.marceanahata.com/terapia-sonido
 - Kundalini Yoga: Clases de yoga kundalini para transformación personal y bienestar
 - Sacred Rituals: Rituales sagrados (cumpleaños, parejas, despedidas de soltería, baby blessings)
@@ -82,6 +82,14 @@ Profile: https://www.marceanahata.com/sobre-mi
 - Profesionales buscando equilibrio y gestión del estrés
 - Empresas interesadas en programas de bienestar corporativo
 - Personas en Medellín y Colombia buscando yoga, meditación y rituales
+
+# RECENT BLOG CONTENT
+[Blog]
+- Post 11: Rumiación mental y agotamiento — https://www.marceanahata.com/blog/11-agotamiento-mental-rumiacion
+- Post 15: Solsticio de junio, energía y cuerpo — https://www.marceanahata.com/blog/15-solsticio-junio-energia-cuerpo
+- Post 14: Viaje 450 Vibraciones — Junio (Fuego) — https://www.marceanahata.com/blog/14-viaje-450-vibraciones-junio-2026
+- Post 13: Viaje 450 Vibraciones — Mayo (Agua) — https://www.marceanahata.com/blog/13-viaje-450-vibraciones-mayo-2026
+- Post 12: Viaje 450 Vibraciones — Abril (Tierra) — https://www.marceanahata.com/blog/12-viaje-450-vibraciones-abril-2026
 
 # CONTENT AREAS
 [Keywords]

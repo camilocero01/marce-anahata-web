@@ -49,4 +49,3 @@ Allow: /
 
 # Sitemap location (canonical domain)
 Sitemap: https://www.marceanahata.com/sitemap-index.xml
-Sitemap: https://www.marceanahata.com/rss.xml
