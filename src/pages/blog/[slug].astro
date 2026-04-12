@@ -48,12 +48,50 @@ const breadcrumbSchema = {
   }))
 };
 
-const jsonLd = {
+const isEvent = data.isEvent === true;
+const eventDateIso = isEvent && data.eventDate ? new Date(data.eventDate).toISOString() : null;
+
+const jsonLd = isEvent ? {
+  '@context': 'https://schema.org',
+  '@type': 'Event',
+  name: title,
+  description,
+  image: absoluteImage,
+  url: canonical,
+  startDate: eventDateIso || publishedTime,
+  endDate: eventDateIso || publishedTime,
+  eventStatus: 'https://schema.org/EventScheduled',
+  eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+  location: {
+    '@type': 'Place',
+    name: 'Marce Anahata Centro de Bienestar',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Cl. 11A Sur #46-12',
+      addressLocality: 'El Poblado, Medellín',
+      addressRegion: 'Antioquia',
+      addressCountry: 'CO'
+    }
+  },
+  organizer: {
+    '@type': 'Person',
+    name: 'Marce Anahata',
+    url: 'https://marceanahata.com'
+  },
+  offers: {
+    '@type': 'Offer',
+    price: data.eventPrice || '120000',
+    priceCurrency: 'COP',
+    availability: 'https://schema.org/InStock',
+    url: canonical
+  },
+  keywords: (data.tags || []).join(', '),
+} : {
   '@context': 'https://schema.org',
   '@type': 'BlogPosting',
   headline: title,
   description,
-  image: image,
+  image: absoluteImage,
   author: {
     '@type': 'Person',
     name: data.author || 'Marce Anahata'
@@ -77,9 +115,12 @@ let relatedPosts = primaryTag
 if (relatedPosts.length < 3) {
   const crossSiloTags: Record<string, string[]> = {
     'yoga': ['terapia de sonido', 'meditación', 'bienestar'],
-    'terapia de sonido': ['yoga', 'meditación', 'rituales'],
+    'terapia de sonido': ['yoga', 'meditación', 'rituales', 'baño de gong'],
     'bienestar corporativo': ['yoga', 'terapia de sonido', 'burnout'],
-    'meditación': ['yoga', 'terapia de sonido', 'conciencia']
+    'meditación': ['yoga', 'terapia de sonido', 'conciencia', 'baño de gong'],
+    'baño de gong': ['terapia de sonido', 'meditación', 'rituales', 'sanación vibracional'],
+    'sanación vibracional': ['baño de gong', 'terapia de sonido', 'meditación'],
+    'viaje 450 vibraciones': ['baño de gong', 'terapia de sonido', 'meditación']
   };
   
   const additionalTags: string[] = (primaryTag && crossSiloTags[primaryTag]) || [];
@@ -101,7 +142,10 @@ const serviceCTA = {
   'bienestar corporativo': { url: '/bienestar-corporativo', text: 'Conoce nuestros programas corporativos' },
   'burnout': { url: '/bienestar-corporativo', text: 'Programas de bienestar para empresas' },
   'meditación': { url: '/clases', text: 'Aprende meditación con Kundalini Yoga' },
-  'rituales': { url: '/rituales', text: 'Explora nuestros rituales sagrados' }
+  'rituales': { url: '/rituales', text: 'Explora nuestros rituales sagrados' },
+  'baño de gong': { url: '/viaje-450-vibraciones', text: 'Reserva tu lugar en el Viaje de las 450 Vibraciones' },
+  'sanación vibracional': { url: '/viaje-450-vibraciones', text: 'Reserva tu lugar en el Viaje de las 450 Vibraciones' },
+  'viaje 450 vibraciones': { url: '/viaje-450-vibraciones', text: 'Ver todos los baños de gong 2026' }
 }[primaryTag];
 ---
 <Layout title={pageTitle} description={description} image={image} lang={lang} includeAlternates={false}>

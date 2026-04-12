@@ -418,6 +418,26 @@ const sonidoPosts = (await getCollection('blog', ({ data, slug }) =>
     </div>
   </section>
 
+  <!-- Bloque baño de gong grupal -->
+  <section class="py-16 bg-stone-50 px-6">
+    <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-10 bg-white rounded-2xl border border-stone-100 shadow-sm p-8 md:p-12">
+      <div class="text-5xl flex-shrink-0">🔔</div>
+      <div class="flex-1">
+        <span class="uppercase tracking-widest text-xs text-[#5d5a8c] font-bold block mb-2">Experiencia grupal</span>
+        <h2 class="text-2xl md:text-3xl font-serif text-[#243c5a] mb-3">Baños de Gong en Medellín — El Viaje de las 450 Vibraciones</h2>
+        <p class="text-[#243c5a]/70 mb-5 leading-relaxed text-sm">
+          Además de las sesiones individuales, cada mes realizamos un <strong>baño de gong grupal en El Poblado</strong>. 9 sesiones a lo largo de 2026 — cada una con un elemento y una intención distinta. Una alternativa accesible para vivir la profundidad del sonido en comunidad.
+        </p>
+        <a
+          href="/viaje-450-vibraciones"
+          class="inline-block bg-[#243c5a] text-white px-6 py-3 rounded-full font-semibold text-sm hover:bg-[#5d5a8c] transition-all"
+        >
+          Ver el calendario de baños de gong →
+        </a>
+      </div>
+    </div>
+  </section>
+
   {sonidoPosts.length > 0 && (
     <section class="max-w-7xl mx-auto px-6 py-20 bg-white">
       <div class="text-center mb-12">
