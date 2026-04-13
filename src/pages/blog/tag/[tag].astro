@@ -5,6 +5,10 @@ import { getCollection } from 'astro:content';
 export async function getStaticPaths() {
   const allPosts = await getCollection('blog', ({ data, slug }) => !data.draft && !slug.startsWith('en/'));
 
+  const enPosts = await getCollection('blog', ({ data, slug }) => !data.draft && slug.startsWith('en/'));
+  const enTags = new Set<string>();
+  enPosts.forEach(p => (p.data.tags || []).forEach(t => enTags.add(t)));
+
   const tagMap = new Map<string, typeof allPosts>();
   allPosts.forEach(post => {
     post.data.tags?.forEach(tag => {
@@ -15,11 +19,15 @@ export async function getStaticPaths() {
 
   return Array.from(tagMap.entries()).map(([tag, posts]) => ({
     params: { tag },
-    props: { tag, posts: posts.sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()) }
+    props: {
+      tag,
+      posts: posts.sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()),
+      hasEnglishCounterpart: enTags.has(tag)
+    }
   }));
 }
 
-const { tag, posts } = Astro.props;
+const { tag, posts, hasEnglishCounterpart } = Astro.props;
 const siteOrigin = 'https://www.marceanahata.com';
 const canonical = `${siteOrigin}/blog/tag/${encodeURIComponent(tag)}`;
 
@@ -85,9 +93,10 @@ const collectionSchema = {
 };
 ---
 
-<Layout title={meta.title} description={meta.description} includeAlternates={false}>
+<Layout title={meta.title} description={meta.description} includeAlternates={hasEnglishCounterpart}>
   <Fragment slot="head">
     <link rel="canonical" href={canonical} />
+    {posts.length > 7 && <link rel="next" href={`/blog/tag/${encodeURIComponent(tag)}/page/2`} />}
     <meta property="og:url" content={canonical} />
     <meta property="og:title" content={meta.title} />
     <meta property="og:description" content={meta.description} />

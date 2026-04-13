@@ -32,13 +32,13 @@ const paginated = allPosts.slice(start, start + PER_PAGE);
 const [featured, ...rest] = paginated;
 
 const pageTitle = `Artículos sobre "${tag}"`;
-const pageDescription = `Artículos del blog relacionados con ${tag}. Página ${currentPage} de ${totalPages}.`;
+const pageDescription = `Artículos sobre ${tag} en Marce Anahata Centro de Bienestar, El Poblado, Medellín. Terapia de sonido, yoga y bienestar holístico. Página ${currentPage} de ${totalPages}.`;
 const canonical = new URL(Astro.url).toString();
 const prevUrl = currentPage > 1 ? (currentPage === 2 ? `/blog/tag/${encodeURIComponent(tag)}` : `/blog/tag/${encodeURIComponent(tag)}/page/${currentPage - 1}`) : undefined;
 const nextUrl = currentPage < totalPages ? `/blog/tag/${encodeURIComponent(tag)}/page/${currentPage + 1}` : undefined;
 ---
 
-<Layout title={pageTitle} description={pageDescription}><!-- Tag pagination: hreflang handled by Layout auto-detection -->
+<Layout title={pageTitle} description={pageDescription} includeAlternates={false}>
   <Fragment slot="head">
     {prevUrl && <link rel="prev" href={prevUrl} />}
     {nextUrl && <link rel="next" href={nextUrl} />}

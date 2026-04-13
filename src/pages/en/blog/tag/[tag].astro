@@ -22,7 +22,7 @@ const posts = (await getCollection('blog', ({ data, slug }) => !data.draft && sl
   .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
 
 const pageTitle = `Posts tagged “${tag}”`;
-const description = `All blog posts tagged with “${tag}” in English.`;
+const description = `Explore all English articles tagged “${tag}” on the Marce Anahata blog — sound therapy, gong baths, meditation and holistic wellness in Medellín, Colombia.`;
 ---
 <Layout title={pageTitle} description={description} lang={lang} includeAlternates={hasSpanishCounterpart}>
   <main class="max-w-3xl mx-auto px-4 py-16">

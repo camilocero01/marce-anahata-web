@@ -5,7 +5,7 @@ description: "¿Duermes 9 horas y sigues agotada? El problema no es el estrés, 
 pubDate: 2026-03-26
 updatedDate: 2026-03-26
 author: "Marce Anahata"
-tags: [" burnout", "estrés", "sistema nervioso", "bienestar mental", "estrés", "bienestar corporativo", "pausas activas"]
+tags: ["burnout", "estrés", "sistema nervioso", "bienestar mental", "bienestar corporativo", "pausas activas"]
 image: "/images/blog/11-agotamiento-mental-rumiacion.jpg"
 ogImage: "/images/blog/11-agotamiento-mental-rumiacion.jpg"
 draft: false
