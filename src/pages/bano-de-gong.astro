@@ -5,7 +5,7 @@ import Layout from '../layouts/Layout.astro';
 import ReviewsSection from '../components/cards/ReviewsSection.astro';
 import { getCollection } from 'astro:content';
 
-const siteOrigin = 'https://marceanahata.com';
+const siteOrigin = 'https://www.marceanahata.com';
 const pageUrl = `${siteOrigin}/bano-de-gong`;
 const whatsappLink = `https://wa.me/573207329921?text=${encodeURIComponent('Hola Marce Anahata, quiero conocer más sobre los baños de gong y reservar mi lugar.')}`;
 
@@ -111,6 +111,7 @@ const breadcrumbSchema = {
   title="Baño de Gong en Medellín | Marce Anahata Centro de Bienestar"
   description="Sesiones de baño de gong en El Poblado, Medellín. Terapia de sonido grupal para relajación profunda y liberación emocional. $120.000 COP · $90.000 dúo · El Poblado."
   image="/images/blog/8/home-bano-de-gong-.jpg"
+  includeAlternates={false}
 >
   <Fragment slot="head">
     <link rel="canonical" href={pageUrl} />

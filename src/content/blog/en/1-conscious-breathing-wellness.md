@@ -161,7 +161,7 @@ Conscious breathing **isn't passive relaxation**. It's **neurological training**
 - **Optimized digestion:** Your parasympathetic system controls digestion
 - **Regulated blood pressure:** Cumulative effect on cardiovascular health
 
-These changes are especially valuable in high-stress work and relationship contexts. If you work in a demanding corporate environment, our [corporate wellness programs](https://marceanahata.com/bienestar-corporativo) are specifically designed to help teams build resilience and mental clarity.
+These changes are especially valuable in high-stress work and relationship contexts. If you work in a demanding corporate environment, our [corporate wellness programs](https://www.marceanahata.com/bienestar-corporativo) are specifically designed to help teams build resilience and mental clarity.
 
 ### Benefits You'll Notice in 2-3 Months:
 
@@ -202,7 +202,7 @@ It's the "supervisor" of your parasympathetic system. It connects directly from 
 - Your intestines
 - Your throat
 
-**A slow, conscious breath is the most direct way to stimulate the vagus nerve without medication.** In fact, this is the foundation of advanced techniques used in [Kundalini Yoga practices](https://marceanahata.com/clases), where breath control is essential to awaken your energetic potential.
+**A slow, conscious breath is the most direct way to stimulate the vagus nerve without medication.** In fact, this is the foundation of advanced techniques used in [Kundalini Yoga practices](https://www.marceanahata.com/clases), where breath control is essential to awaken your energetic potential.
 
 ---
 
@@ -269,7 +269,7 @@ You don't need complex meditation. You don't need expensive retreats. You don't 
 
 **You just need to understand that you have an "off" button for your nervous system, and that button is your breath.**
 
-Breathe consciously today, and tomorrow will be different. And if you want to amplify the effects further, you can combine conscious breathing with [vibrational medicine from sound therapy](https://marceanahata.com/terapia-sonido), which works directly on your cellular frequencies for enhanced wellness.
+Breathe consciously today, and tomorrow will be different. And if you want to amplify the effects further, you can combine conscious breathing with [vibrational medicine from sound therapy](https://www.marceanahata.com/terapia-sonido), which works directly on your cellular frequencies for enhanced wellness.
 
 ---
 
@@ -279,6 +279,6 @@ Ready to transform your relationship with stress and anxiety?
 
 I invite you to start **right now** with the 4-8 exercise. Dedicate **5 minutes now** and notice how your mind clarifies.
 
-If you want a deeper guide on advanced breathing techniques and how to combine them with sound therapy for holistic wellness, I'm waiting for you in my [Kundalini Yoga classes](https://marceanahata.com/clases), [Sound Therapy sessions](https://marceanahata.com/terapia-sonido), and [Corporate Wellness programs](https://marceanahata.com/bienestar-corporativo), where we integrate these tools into a comprehensive practice.
+If you want a deeper guide on advanced breathing techniques and how to combine them with sound therapy for holistic wellness, I'm waiting for you in my [Kundalini Yoga classes](https://www.marceanahata.com/clases), [Sound Therapy sessions](https://www.marceanahata.com/terapia-sonido), and [Corporate Wellness programs](https://www.marceanahata.com/bienestar-corporativo), where we integrate these tools into a comprehensive practice.
 
 **Your biology is ready to change. It just needs you to breathe.**

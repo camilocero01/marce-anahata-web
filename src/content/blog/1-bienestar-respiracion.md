@@ -161,7 +161,7 @@ La respiración consciente **no es una técnica de relajación pasiva**. Es un *
 - **Digestión optimizada:** Tu sistema parasimpático controla la digestión
 - **Presión arterial regulada:** Efecto acumulativo en tu salud cardiovascular
 
-Estos cambios son especialmente valiosos en contextos de estrés laboral y relacional. Si trabajas en un ambiente corporativo de alto estrés, considera explorar nuestros [programas de bienestar corporativo](https://marceanahata.com/bienestar-corporativo) diseñados para equipos que buscan mejorar su resiliencia mental y física.
+Estos cambios son especialmente valiosos en contextos de estrés laboral y relacional. Si trabajas en un ambiente corporativo de alto estrés, considera explorar nuestros [programas de bienestar corporativo](https://www.marceanahata.com/bienestar-corporativo) diseñados para equipos que buscan mejorar su resiliencia mental y física.
 
 ### Los Beneficios Que Verás en 2-3 Meses:
 
@@ -202,7 +202,7 @@ Es el "supervisor" del sistema parasimpático. Conecta directamente desde tu cer
 - Tu intestino
 - Tu garganta
 
-**Una respiración lenta y consciente es la forma más directa de estimular el nervio vago sin necesidad de medicinas.** De hecho, esta es la base de técnicas avanzadas utilizadas en [prácticas de Kundalini Yoga](https://marceanahata.com/clases), donde el control respiratorio es fundamental para activar tu potencial energético.
+**Una respiración lenta y consciente es la forma más directa de estimular el nervio vago sin necesidad de medicinas.** De hecho, esta es la base de técnicas avanzadas utilizadas en [prácticas de Kundalini Yoga](https://www.marceanahata.com/clases), donde el control respiratorio es fundamental para activar tu potencial energético.
 
 ---
 
@@ -269,7 +269,7 @@ No necesitas meditación compleja. No necesitas retiros costosos. No necesitas m
 
 **Solo necesitas entender que tienes un botón de "off" en tu sistema nervioso, y ese botón es tu respiración.**
 
-Respira conscientemente hoy, y mañana será un día diferente. Y si quieres potenciar aún más los efectos, puedes combinar la respiración consciente con la [medicina vibracional de la terapia de sonido](https://marceanahata.com/terapia-sonido), que actúa directamente en tus frecuencias celulares para un bienestar aún más profundo.
+Respira conscientemente hoy, y mañana será un día diferente. Y si quieres potenciar aún más los efectos, puedes combinar la respiración consciente con la [medicina vibracional de la terapia de sonido](https://www.marceanahata.com/terapia-sonido), que actúa directamente en tus frecuencias celulares para un bienestar aún más profundo.
 
 ---
 
@@ -279,6 +279,6 @@ Respira conscientemente hoy, y mañana será un día diferente. Y si quieres pot
 
 Te invito a que comiences **hoy mismo** con el ejercicio 4-8. Dedica **5 minutos ahora mismo** y observa cómo tu mente se clarifica.
 
-Si quieres una guía más profunda sobre técnicas avanzadas de respiración y cómo combinarlas con terapia sonora para un bienestar integral, te espero en mis [clases de Kundalini Yoga](https://marceanahata.com/clases), [sesiones de Terapia de Sonido](https://marceanahata.com/terapia-sonido) y programas de [Bienestar Corporativo](https://marceanahata.com/bienestar-corporativo), donde integramos estas herramientas en una práctica holística.
+Si quieres una guía más profunda sobre técnicas avanzadas de respiración y cómo combinarlas con terapia sonora para un bienestar integral, te espero en mis [clases de Kundalini Yoga](https://www.marceanahata.com/clases), [sesiones de Terapia de Sonido](https://www.marceanahata.com/terapia-sonido) y programas de [Bienestar Corporativo](https://www.marceanahata.com/bienestar-corporativo), donde integramos estas herramientas en una práctica holística.
 
 **Tu biología está lista para cambiar. Solo necesita que respires.**

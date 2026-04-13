@@ -20,7 +20,7 @@ export async function getStaticPaths() {
 }
 
 const { tag, posts } = Astro.props;
-const siteOrigin = 'https://marceanahata.com';
+const siteOrigin = 'https://www.marceanahata.com';
 const canonical = `${siteOrigin}/blog/tag/${encodeURIComponent(tag)}`;
 
 const tagMeta: Record<string, { title: string; description: string }> = {
@@ -85,7 +85,7 @@ const collectionSchema = {
 };
 ---
 
-<Layout title={meta.title} description={meta.description}>
+<Layout title={meta.title} description={meta.description} includeAlternates={false}>
   <Fragment slot="head">
     <link rel="canonical" href={canonical} />
     <meta property="og:url" content={canonical} />

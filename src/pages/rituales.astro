@@ -14,7 +14,7 @@ const serviceInfo = {
 };
 
 const whatsappLink = `https://wa.me/573207329921?text=${encodeURIComponent(serviceInfo.whatsappMessage)}`; // CAMBIA EL NÚMERO
-const serviceUrl = 'https://marceanahata.com/rituales';
+const serviceUrl = 'https://www.marceanahata.com/rituales';
 const faqItems = [
   {
     question: '¿Qué tipos de rituales sagrados ofrecen en Medellín?',
@@ -56,13 +56,13 @@ const ritualesPosts = (await getCollection('blog', ({ data, slug }) =>
           "@type": "ListItem",
           "position": 1,
           "name": "Home",
-          "item": "https://marceanahata.com"
+          "item": "https://www.marceanahata.com"
         },
         {
           "@type": "ListItem",
           "position": 2,
           "name": "Rituales Sagrados",
-          "item": "https://marceanahata.com/rituales"
+          "item": "https://www.marceanahata.com/rituales"
         }
       ]
     })}</script>
@@ -75,7 +75,7 @@ const ritualesPosts = (await getCollection('blog', ({ data, slug }) =>
       "provider": {
         "@type": "Person",
         "name": "Marce Anahata",
-        "url": "https://marceanahata.com/sobre-mi"
+        "url": "https://www.marceanahata.com/sobre-mi"
       },
       "areaServed": { "@type": "City", "name": "Medellín" },
       "offers": {

@@ -94,17 +94,17 @@ No tienes que transitar esto solo. Tu paz es tú poder.
   "name": "Cómo salir de una crisis de ansiedad: 4 Llaves Biológicas de Luz",
   "description": "4 ejercicios de movimiento somático para regular el sistema nervioso simpático y parasimpático durante una crisis de ansiedad. Descarga tensión, enraiza y oxigena el cuerpo.",
   "thumbnailUrl": [
-    "https://marceanahata.com/images/blog/7-crisis-ansiedad-3.jpg"
+    "https://www.marceanahata.com/images/blog/7-crisis-ansiedad-3.jpg"
    ],
   "uploadDate": "2026-01-15T08:00:00-05:00",
-  "duration": "PT1M30S", "contentUrl": "https://marceanahata.com/videos/7-crisis-ansiedad.mp4",
+  "duration": "PT1M30S", "contentUrl": "https://www.marceanahata.com/videos/7-crisis-ansiedad.mp4",
   "embedUrl": "https://instagram.com/marce_anahata",
   "publisher": {
     "@type": "Organization",
     "name": "Marce Anahata Centro de Bienestar",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://marceanahata.com/images/logo.svg",
+      "url": "https://www.marceanahata.com/images/logo.svg",
       "width": 60,
       "height": 60
     }
