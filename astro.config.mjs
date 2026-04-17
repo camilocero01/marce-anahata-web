@@ -9,6 +9,8 @@ import compress from 'astro-compress';
 
 import mdx from '@astrojs/mdx';
 
+import vercel from '@astrojs/vercel';
+
 // https://astro.build/config
 export default defineConfig({
   i18n: {
@@ -103,11 +105,9 @@ export default defineConfig({
     }),
     compress()
   ],
-  site: 'https://www.marceanahata.com', // URL de producción (usar dominio canonico)
-  // 'always' fuerza la barra al final (ej: /contacto/)
-  // 'never' la quita (ej: /contacto) -> Recomendado para Vercel
-  // Usar 'never' para que sitemap y canonical coincidan sin trailing slash
-  trailingSlash: 'never', 
-  prefetch: true, // Habilita la estrategia por defecto (hover)
+  site: 'https://www.marceanahata.com',
+  trailingSlash: 'never',
+  prefetch: true,
   compressHTML: true,
+  adapter: vercel(),
 });
