@@ -6,7 +6,7 @@ import { getCollection } from 'astro:content';
 
 // --- DATOS DEL SERVICIO ---
 const serviceInfo = {
-  title: "Rituales Sagrados con Terapia de Sonido en Medellín - El Poblado",
+  title: "Rituales Sagrados con Terapia de Sonido en Envigado - La Frontera con El Poblado",
   subtitle: "Ceremonias diseñadas para honrar los ciclos de la vida, elevar la vibración y conectar desde el alma.",
   price: "$XXX.XXX COP", // PON TU PRECIO REAL AQUÍ
   duration: "1 Hora y 30 Minutos",
@@ -22,7 +22,7 @@ const faqItems = [
   },
   {
     question: '¿Dónde se realizan los rituales?',
-    answer: 'Los rituales se realizan en El Poblado, Medellín. La ubicación exacta se comparte al confirmar reserva por WhatsApp.'
+    answer: 'Los rituales se realizan en Envigado y Envigado y El Poblado. La ubicación exacta se comparte al confirmar reserva por WhatsApp.'
   },
   {
     question: '¿Los rituales son personalizados?',
@@ -45,7 +45,7 @@ const ritualesPosts = (await getCollection('blog', ({ data, slug }) =>
 
 <Layout 
   title="Rituales Sagrados en Medellín — Cumpleaños, Parejas y Baby Blessing"
-  description="Rituales sagrados personalizados en El Poblado, Medellín. Cumpleaños, parejas, baby blessings y cierres de ciclo con terapia de sonido y presencia consciente."
+  description="Rituales sagrados personalizados en Envigado y Envigado y El Poblado. Cumpleaños, parejas, baby blessings y cierres de ciclo con terapia de sonido y presencia consciente."
 >
   <Fragment slot="head">
     <script type="application/ld+json">{JSON.stringify({

@@ -24,7 +24,7 @@ const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 const [featured, ...rest] = paginated;
 
 const pageTitle = 'Blog';
-const pageDescription = 'Artículos sobre yoga, meditación, terapia de sonido, rituales y salud holística para tu transformación. Marce Anahata Centro de Bienestar, El Poblado, Medellín.';
+const pageDescription = 'Artículos sobre yoga, meditación, terapia de sonido, rituales y salud holística para tu transformación. Marce Anahata Centro de Bienestar, Envigado y El Poblado.';
 const canonical = new URL(Astro.url).toString();
 const prevUrl = currentPage > 1 ? (currentPage === 2 ? '/blog' : `/blog/page/${currentPage - 1}`) : undefined;
 const nextUrl = currentPage < totalPages ? `/blog/page/${currentPage + 1}` : undefined;
