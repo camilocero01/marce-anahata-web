@@ -3,7 +3,6 @@
 import Layout from '../layouts/Layout.astro';
 import ReviewsSection from '../components/cards/ReviewsSection.astro';
 import { Image } from 'astro:assets';
-import clasesYogaImg from '../assets/clase/clases-yoga.webp';
 import claseYogaLandingImg from '../assets/clase/clase-yoga-landing.webp';
 import { getCollection } from 'astro:content';
 
@@ -205,33 +204,34 @@ const offerings = [
     })}</script>
   </Fragment>
   
-  <section class="relative h-[60vh] md:h-[70vh] flex items-center justify-center overflow-hidden">
-    <div class="absolute inset-0 z-0">
-      <Image 
-        src={clasesYogaImg} 
-        alt="Práctica de Kundalini Yoga y meditación" 
-        class="w-full h-full object-cover opacity-90"
-        width={1920}
-        densities={[1.5, 2]}
-        loading="eager"
-        fetchpriority="high"
-      />
-      <div class="absolute inset-0 bg-[#243c5a]/30 mix-blend-multiply"></div>
-      <div class="absolute inset-0 bg-stone-100/10 mix-blend-overlay"></div>
-    </div>
+  <section class="relative h-[70vh] flex items-center justify-center overflow-hidden">
 
-    <div class="relative z-10 text-center text-white px-6 max-w-4xl mx-auto mt-16">
-      <span class="uppercase tracking-[0.2em] text-sm md:text-base mb-4 block text-[#6ed8d9] font-medium">Tu Práctica Diaria</span>
-      <h1 class="text-4xl md:text-6xl font-serif mb-6 leading-tight drop-shadow-sm">{pageInfo.title}</h1>
-      <p class="text-lg md:text-xl font-light max-w-2xl mx-auto mb-8 opacity-95 text-stone-50 leading-relaxed">
+    <video
+      class="absolute inset-0 w-full h-full object-cover z-0 opacity-60"
+      autoplay
+      loop
+      muted
+      playsinline
+      preload="metadata"
+      poster="/images/clases-yoga-poster.webp"
+    >
+      <source src="/videos/clases-yoga.mp4" type="video/mp4" />
+    </video>
+
+    <div class="absolute inset-0 bg-white opacity-30 z-10"></div>
+
+    <div class="relative z-20 text-center text-[#243c5a] px-6 max-w-4xl mx-auto mt-20">
+      <span class="uppercase tracking-[0.2em] text-sm md:text-base mb-4 block text-[#5d5a8c] font-bold">Tu Práctica Diaria</span>
+      <h1 class="text-4xl md:text-6xl font-serif mb-6 leading-tight">{pageInfo.title}</h1>
+      <p class="text-lg md:text-xl font-light max-w-2xl mx-auto mb-8 opacity-90 text-[#243c5a]">
         {pageInfo.subtitle}
       </p>
-       <a 
+      <a
         href={whatsappLinkGeneral}
         target="_blank"
         data-event="whatsapp_click"
         data-label="Kundalini Classes Hero CTA"
-        class="inline-block bg-[#6ed8d9] text-[#243c5a] px-8 py-4 rounded-full font-bold hover:bg-white transition-all duration-300 transform hover:-translate-y-1 shadow-lg"
+        class="inline-block bg-[#6ed8d9] text-[#243c5a] px-8 py-4 rounded-full font-medium hover:bg-[#243c5a] hover:text-white transition-all duration-300 transform hover:-translate-y-1 shadow-lg"
       >
         Empezar a Practicar
       </a>

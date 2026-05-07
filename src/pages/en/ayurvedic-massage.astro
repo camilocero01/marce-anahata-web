@@ -1,0 +1,493 @@
+---
+// src/pages/en/ayurvedic-massage.astro
+import Layout from '../../layouts/Layout.astro';
+import ReviewsSection from '../../components/cards/ReviewsSection.astro';
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import masajeBioImg from '../../assets/marmaterapia/puntos-marma-terapia-energetica-espalda.png';
+import masajeCertImg from '../../assets/marmaterapia/masaje-ayurvedico-aceites-medicinales.png';
+import masajeMeditacionImg from '../../assets/marmaterapia/meditacion-ayurveda-bienestar-holistico.png';
+
+// --- SERVICE DATA ---
+const serviceInfo = {
+  title: "Ayurvedic Massage & Marma Points",
+  subtitle: "In Envigado — La Frontera with El Poblado, experience an ancient therapy that detoxifies your body and restores the flow of your vital energy from the roots of Ayurvedic medicine.",
+  price: "$250.000 COP",
+  duration: "60 - 90 Min",
+  whatsappMessage: "Hello Marce Anahata, I'm interested in the Ayurvedic Massage & Marma Points session. I'd like to book an appointment to restore my vital energy."
+};
+
+const whatsappLink = `https://wa.me/573207329921?text=${encodeURIComponent(serviceInfo.whatsappMessage)}`;
+const serviceUrl = 'https://www.marceanahata.com/en/ayurvedic-massage';
+
+const faqItems = [
+  {
+    question: 'What is Ayurvedic Massage with Marma Points?',
+    answer:
+      'It is an ancient manual therapy from Ayurvedic medicine that works with warm medicinal oils and the activation of Marma Points — the vital energy centers of the body — to detoxify tissues, release accumulated tension and restore the flow of Prana (vital energy).'
+  },
+  {
+    question: 'Where are the sessions held?',
+    answer:
+      'Sessions take place at Marce Anahata Centro de Bienestar, in Envigado (2 blocks from El Poblado), Colombia. Booking details are confirmed directly via WhatsApp.'
+  },
+  {
+    question: 'How long is the session and what is the investment?',
+    answer:
+      'Sessions last 60 to 90 minutes depending on the chosen protocol. The investment is $250.000 COP. Contact us via WhatsApp for available options and scheduling.'
+  },
+  {
+    question: 'What are Marma Points?',
+    answer:
+      'Marma Points are 107 vital points of the body according to Ayurveda — similar to acupuncture meridians — where vital energy (Prana) is concentrated. Their activation through massage unblocks energetic stagnation and supports organic and emotional health.'
+  },
+  {
+    question: 'Do I need to prepare anything before the session?',
+    answer:
+      'We recommend wearing comfortable clothing, avoiding heavy meals 2 hours before, and staying well hydrated. No prior experience in any wellness practice is required.'
+  },
+  {
+    question: 'How do I book my session?',
+    answer:
+      'You can book directly via WhatsApp from this page. The reservation is confirmed with a deposit to hold your date.'
+  }
+];
+
+// Related blog posts in English
+const masajePosts = (await getCollection('blog', ({ data, slug }) =>
+  !data.draft && slug.startsWith('en/') &&
+  ((data.tags || []).includes('ayurveda') || (data.tags || []).includes('massage') || (data.tags || []).includes('wellness'))
+))
+  .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime())
+  .slice(0, 3);
+---
+
+<Layout title="Ayurvedic Massage & Marma Points | Marce Anahata" description="Ayurvedic Massage with Marma Points in Envigado (2 blocks from El Poblado). Ancient therapy with medicinal oils to detoxify, release tension and restore your vital energy." lang="en">
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.marceanahata.com/en"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Ayurvedic Massage & Marma Points",
+          "item": serviceUrl
+        }
+      ]
+    })}</script>
+    <script is:inline type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Ayurvedic Massage & Marma Points in Envigado",
+      "description": "Ancient manual therapy with warm medicinal oils and Marma Point activation to detoxify the body, release tension and restore the flow of vital energy.",
+      "serviceType": "Ayurvedic Massage",
+      "provider": {
+        "@type": "Person",
+        "name": "Marce Anahata",
+        "url": "https://www.marceanahata.com/en/sobre-mi"
+      },
+      "areaServed": [
+        { "@type": "City", "name": "Envigado" },
+        { "@type": "City", "name": "Medellín" }
+      ],
+      "offers": {
+        "@type": "Offer",
+        "price": "250000",
+        "priceCurrency": "COP",
+        "availability": "https://schema.org/InStock",
+        "url": serviceUrl
+      },
+      "url": serviceUrl,
+      "keywords": "ayurvedic massage Medellín, marma points Envigado, ayurveda therapy Colombia, medicinal oil massage, holistic wellness"
+    })}</script>
+    <script is:inline type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": faqItems.map((item) => ({
+        "@type": "Question",
+        "name": item.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": item.answer
+        }
+      }))
+    })}</script>
+    <script is:inline type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Ayurvedic Massage & Marma Points — Marce Anahata",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "11",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
+    })}</script>
+    <meta property="og:locale" content="en_US" />
+    <link rel="alternate" hreflang="es" href="https://www.marceanahata.com/masajes-ayurvedicos" />
+    <link rel="alternate" hreflang="en" href="https://www.marceanahata.com/en/ayurvedic-massage" />
+  </Fragment>
+
+  <!-- HERO -->
+  <section class="relative h-[70vh] flex items-center justify-center overflow-hidden">
+
+    <video
+      class="absolute inset-0 w-full h-full object-cover z-0 opacity-60"
+      autoplay
+      loop
+      muted
+      playsinline
+      preload="metadata"
+      poster="/images/masajes-ayurvedicos-poster.png"
+    >
+      <source src="/videos/masajes-ayurvedicos.mp4" type="video/mp4" />
+    </video>
+
+    <div class="absolute inset-0 bg-white opacity-30 z-10"></div>
+
+    <div class="relative z-20 text-center text-[#243c5a] px-6 max-w-4xl mx-auto mt-20">
+      <span class="uppercase tracking-[0.2em] text-sm md:text-base mb-4 block text-[#5d5a8c] font-bold">Ayurvedic Medicine</span>
+      <h1 class="text-4xl md:text-6xl font-serif mb-6 leading-tight">
+        {serviceInfo.title}
+      </h1>
+      <p class="text-lg md:text-xl font-light max-w-2xl mx-auto mb-8 opacity-90 text-[#243c5a]">
+        {serviceInfo.subtitle}
+      </p>
+      <a
+        href={whatsappLink}
+        target="_blank"
+        data-event="whatsapp_click"
+        data-label="Ayurvedic Massage Hero CTA"
+        class="inline-block bg-[#6ed8d9] text-[#243c5a] px-8 py-4 rounded-full font-medium hover:bg-[#243c5a] hover:text-white transition-all duration-300 transform hover:-translate-y-1 shadow-lg"
+      >
+        Book My Session
+      </a>
+    </div>
+  </section>
+
+  <!-- WHAT IS IT -->
+  <section class="py-20 bg-stone-50 px-6">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div class="relative">
+        <div class="absolute -top-4 -left-4 w-full h-full border-2 border-[#5d5a8c]/20 rounded-2xl z-0"></div>
+        <Image
+          src={masajeBioImg}
+          alt="Marma Points energy activation on the back — Ayurvedic therapy in Medellín"
+          class="rounded-2xl shadow-xl relative z-10 w-full h-[500px] object-cover"
+          width={600}
+          height={500}
+          densities={[1.5, 2]}
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+      <div>
+        <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-6">Your body remembers how to heal itself</h2>
+        <p class="text-[#243c5a]/80 mb-6 leading-relaxed">
+          Ayurveda — the science of life — understands the body as an intelligent field of energy. When Prana flows freely, we have health; when it stagnates, discomfort appears. Ayurvedic Massage with Marma Points is the most direct tool to restore that flow.
+        </p>
+        <p class="text-[#243c5a]/80 mb-8 leading-relaxed">
+          Through precise manual techniques and warm medicinal oils adapted to your constitution (Dosha), this therapy works simultaneously on the physical body and the energetic field, releasing deep tensions that conventional therapies cannot reach. Many people combine these sessions with our <a href="/en/clases" class="text-[#5d5a8c] font-medium hover:text-[#6ed8d9] transition-colors underline decoration-[#6ed8d9]/50">Kundalini Yoga classes</a> to enhance the integration process.
+        </p>
+        <ul class="space-y-4">
+          <li class="flex items-center gap-3 text-[#5d5a8c]">
+            <span class="text-xl">🌿</span> Deep tissue detoxification
+          </li>
+          <li class="flex items-center gap-3 text-[#5d5a8c]">
+            <span class="text-xl">⚡</span> Activation of the 107 Marma Points
+          </li>
+          <li class="flex items-center gap-3 text-[#5d5a8c]">
+            <span class="text-xl">🌸</span> Medicinal oils adapted to your Dosha
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="py-20 bg-[#243c5a] text-white px-6">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-serif text-white/70">How does Ayurvedic Massage work?</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div class="text-center">
+          <div class="w-20 h-20 bg-[#6ed8d9]/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <span class="text-3xl">🌿</span>
+          </div>
+          <h3 class="text-lg font-bold text-[#6ed8d9] mb-3">Physical Level</h3>
+          <p class="text-white/70 text-sm">
+            Warm medicinal oils penetrate the tissues, dissolve toxins (Ama), relieve chronic muscular tension and nourish joints and the peripheral nervous system.
+          </p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-20 h-20 bg-[#6ed8d9]/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <span class="text-3xl">⚡</span>
+          </div>
+          <h3 class="text-lg font-bold text-[#6ed8d9] mb-3">Energetic Level</h3>
+          <p class="text-white/70 text-sm">
+            Stimulation of the Marma Points reactivates vital energy centers, balances the three Doshas (Vata, Pitta, Kapha) and clears blockages in the Nadi channels.
+          </p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-20 h-20 bg-[#6ed8d9]/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <span class="text-3xl">🧠</span>
+          </div>
+          <h3 class="text-lg font-bold text-[#6ed8d9] mb-3">Emotional Level</h3>
+          <p class="text-white/70 text-sm">
+            The conscious therapeutic touch and the action of oils on the nervous system induce a state of deep calm, facilitating the release of emotions stored in the body.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT'S INCLUDED -->
+  <section class="py-20 bg-white px-6">
+    <div class="max-w-4xl mx-auto text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-4">Your Healing Protocol</h2>
+      <p class="text-[#243c5a]/80">A session designed from the Ayurvedic diagnosis to the energetic closing.</p>
+    </div>
+
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-stone-50 p-8 rounded-xl text-center hover:shadow-md transition-shadow group border border-stone-100">
+        <div class="w-16 h-16 bg-[#5d5a8c]/10 group-hover:bg-[#6ed8d9]/20 transition-colors rounded-full flex items-center justify-center mx-auto mb-6 text-2xl">🪔</div>
+        <h3 class="text-xl font-serif text-[#243c5a] mb-3">Dosha Assessment</h3>
+        <p class="text-sm text-[#243c5a]/70">We begin with an evaluation of your Ayurvedic constitution to select the oils and techniques best suited to your body at this moment.</p>
+      </div>
+      <div class="bg-stone-50 p-8 rounded-xl text-center hover:shadow-md transition-shadow group border border-stone-100">
+        <div class="w-16 h-16 bg-[#5d5a8c]/10 group-hover:bg-[#6ed8d9]/20 transition-colors rounded-full flex items-center justify-center mx-auto mb-6 text-2xl">🤲</div>
+        <h3 class="text-xl font-serif text-[#243c5a] mb-3">Abhyanga Oil Massage</h3>
+        <p class="text-sm text-[#243c5a]/70">Abhyanga massage techniques with warm medicinal oils that penetrate the seven tissues (Dhatus), detoxifying and nourishing from within.</p>
+      </div>
+      <div class="bg-stone-50 p-8 rounded-xl text-center hover:shadow-md transition-shadow group border border-stone-100">
+        <div class="w-16 h-16 bg-[#5d5a8c]/10 group-hover:bg-[#6ed8d9]/20 transition-colors rounded-full flex items-center justify-center mx-auto mb-6 text-2xl">✨</div>
+        <h3 class="text-xl font-serif text-[#243c5a] mb-3">Marma Activation</h3>
+        <p class="text-sm text-[#243c5a]/70">Precise pressure and stimulation of the 107 Marma Points to release energetic blockages, balance the chakras and seal the session with harmony.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRAINING -->
+  <section class="py-20 bg-stone-50 px-6 relative overflow-hidden">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+      <div>
+        <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-6">Why choose a therapist with Ayurvedic training?</h2>
+        <p class="text-[#243c5a]/80 mb-6 leading-relaxed">
+          Ayurveda is a complete medical system with over 5,000 years of history. Applying its tools requires a deep understanding of energetic physiology, the Doshas and the composition of medicinal oils. My training ensures a safe, precise and truly transformative session.
+        </p>
+        <p class="text-[#243c5a]/80 mb-6 leading-relaxed">
+          This therapy is part of a holistic wellness approach that also includes <a href="/en/terapia-sonido" class="text-[#5d5a8c] font-medium hover:text-[#6ed8d9] transition-colors underline decoration-[#6ed8d9]/50">sound therapy</a> and <a href="/en/clases" class="text-[#5d5a8c] font-medium hover:text-[#6ed8d9] transition-colors underline decoration-[#6ed8d9]/50">yoga</a>, for those seeking transformation that goes beyond the symptom.
+        </p>
+
+        <div class="bg-white p-6 rounded-xl border-l-4 border-[#5d5a8c] shadow-sm mb-8">
+          <h3 class="font-serif text-xl text-[#243c5a] mb-2">Ayurvedic Therapy Training</h3>
+          <p class="text-sm text-[#5d5a8c] mb-4 font-semibold uppercase tracking-wider">Traditional Indian Medicine</p>
+          <ul class="space-y-2 text-[#243c5a]/70 text-sm">
+            <li class="flex gap-2"><span class="text-[#6ed8d9]">✓</span> Ayurvedic foundations: Doshas, Dhatus and Malas.</li>
+            <li class="flex gap-2"><span class="text-[#6ed8d9]">✓</span> Complete Abhyanga massage protocol.</li>
+            <li class="flex gap-2"><span class="text-[#6ed8d9]">✓</span> Mapping and activation of the 107 Marma Points.</li>
+            <li class="flex gap-2"><span class="text-[#6ed8d9]">✓</span> Selection and preparation of medicinal oils.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="relative">
+        <div class="absolute -inset-4 bg-[#6ed8d9]/20 rounded-2xl rotate-3 z-0"></div>
+        <Image
+          src={masajeCertImg}
+          alt="Ayurvedic massage with medicinal oils in Envigado — Marce Anahata"
+          class="relative z-10 w-full rounded-xl shadow-xl object-cover"
+          width={600}
+          height={500}
+          densities={[1.5, 2]}
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- BADGES -->
+  <section class="py-16 bg-white px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-serif text-[#243c5a]">A holistic approach to wellness</h2>
+        <p class="text-[#243c5a]/70 mt-2">Ayurveda as part of a holistic and scientific vision of health.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="p-6 bg-stone-50 rounded-xl border border-stone-100 hover:shadow-lg transition-all">
+          <div class="text-4xl mb-4 text-[#5d5a8c]">🌿</div>
+          <h3 class="text-lg font-bold text-[#243c5a] mb-2">Ancient Medicine</h3>
+          <p class="text-sm text-[#243c5a]/80">Ayurveda has accompanied human health for over 5,000 years, with a deep and systematized body of knowledge.</p>
+        </div>
+
+        <div class="p-6 bg-stone-50 rounded-xl border border-stone-100 hover:shadow-lg transition-all">
+          <div class="text-4xl mb-4 text-[#5d5a8c]">🤲</div>
+          <h3 class="text-lg font-bold text-[#243c5a] mb-2">Personalized Therapy</h3>
+          <p class="text-sm text-[#243c5a]/80">Every session adapts to your Dosha constitution and your body's current state — no generic protocols here.</p>
+        </div>
+
+        <div class="p-6 bg-stone-50 rounded-xl border border-stone-100 hover:shadow-lg transition-all">
+          <div class="text-4xl mb-4 text-[#5d5a8c]">🔗</div>
+          <h3 class="text-lg font-bold text-[#243c5a] mb-2">Holistic Integration</h3>
+          <p class="text-sm text-[#243c5a]/80">Combined with yoga, sound and rituals for a transformation that encompasses body, mind and spirit as one indivisible whole.</p>
+        </div>
+
+        <div class="p-6 bg-stone-50 rounded-xl border border-stone-100 hover:shadow-lg transition-all">
+          <div class="text-4xl mb-4 text-[#5d5a8c]">✨</div>
+          <h3 class="text-lg font-bold text-[#243c5a] mb-2">Sacred Space</h3>
+          <p class="text-sm text-[#243c5a]/80">Every session takes place in a carefully prepared environment with intention, aroma, light and presence so your body can fully surrender.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA WITH PRICE -->
+  <section class="py-20 bg-[#243c5a] text-white px-6 relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-64 h-64 bg-[#6ed8d9] rounded-full filter blur-[100px] opacity-10"></div>
+    <div class="absolute bottom-0 left-0 w-64 h-64 bg-[#5d5a8c] rounded-full filter blur-[100px] opacity-20"></div>
+
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+      <h2 class="text-3xl md:text-5xl font-serif mb-8">Return to the balance you deserve</h2>
+
+      <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 md:p-12 inline-block max-w-2xl w-full">
+        <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-6 border-b border-white/10 pb-8">
+          <div class="text-center md:text-left">
+            <p class="text-[#6ed8d9] uppercase text-xs tracking-widest mb-1">Session Duration</p>
+            <p class="text-xl">{serviceInfo.duration}</p>
+          </div>
+          <div class="text-center md:text-right">
+            <p class="text-[#6ed8d9] uppercase text-xs tracking-widest mb-1">Personal Investment</p>
+            <p class="text-3xl font-serif">{serviceInfo.price}</p>
+          </div>
+        </div>
+
+        <p class="mb-8 text-white/80 font-light italic">
+          "A healthy body is the first dharma — the first sacred duty of every human being."
+        </p>
+
+        <a
+          href={whatsappLink}
+          target="_blank"
+          data-event="whatsapp_click"
+          data-label="Ayurvedic Massage CTA Final"
+          class="w-full block bg-white text-[#243c5a] py-4 rounded-xl font-bold hover:bg-[#6ed8d9] transition-colors shadow-lg"
+        >
+          Book via WhatsApp
+        </a>
+        <p class="mt-4 text-xs text-white/40">*In-person sessions only. Advance booking required to hold your date.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CROSS-SELL -->
+  <section class="py-16 bg-stone-50 px-6">
+    <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-10 bg-white rounded-2xl border border-stone-100 shadow-sm p-8 md:p-12">
+      <div class="w-32 h-32 md:w-40 md:h-40 flex-shrink-0 rounded-full overflow-hidden shadow-lg border-4 border-[#6ed8d9]/30">
+        <Image
+          src={masajeMeditacionImg}
+          alt="Woman in Ayurvedic meditation with medicinal oils — holistic wellness"
+          class="w-full h-full object-cover"
+          width={160}
+          height={160}
+          densities={[1.5, 2]}
+        />
+      </div>
+      <div class="flex-1">
+        <span class="uppercase tracking-widest text-xs text-[#5d5a8c] font-bold block mb-2">Enhance your healing</span>
+        <h2 class="text-2xl md:text-3xl font-serif text-[#243c5a] mb-3">Combine it with Sound Therapy</h2>
+        <p class="text-[#243c5a]/70 mb-5 leading-relaxed text-sm">
+          Many people who come for Ayurvedic massage also discover the power of our <strong>Sound Therapy with Gong and Crystal Bowls</strong>. The combination of both therapies deeply enhances the energetic and emotional detoxification process.
+        </p>
+        <a
+          href="/en/terapia-sonido"
+          class="inline-block bg-[#243c5a] text-white px-6 py-3 rounded-full font-semibold text-sm hover:bg-[#5d5a8c] transition-all"
+        >
+          Discover Sound Therapy →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- RELATED POSTS -->
+  {masajePosts.length > 0 && (
+    <section class="max-w-7xl mx-auto px-6 py-20 bg-white">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-serif text-marce-base-3 mb-4">Articles on Wellness & Ayurveda</h2>
+        <p class="text-stone-600 max-w-2xl mx-auto">Explore more about ancestral medicine and holistic therapies for your health.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {masajePosts.map((post) => (
+          <article class="bg-stone-50 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 border border-stone-100 flex flex-col">
+            {post.data.image && (
+              <div class="h-48 overflow-hidden">
+                <img
+                  src={post.data.image}
+                  alt={post.data.title}
+                  class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                  loading="lazy"
+                />
+              </div>
+            )}
+            <div class="p-6 flex flex-col flex-grow">
+              <time class="text-xs text-stone-500 mb-2 uppercase tracking-wider">
+                {new Date(post.data.pubDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+              </time>
+              <h3 class="text-xl font-semibold text-marce-base-3 mb-3 leading-tight">
+                {post.data.title}
+              </h3>
+              <p class="text-stone-600 text-sm mb-4 flex-grow leading-relaxed">
+                {post.data.description}
+              </p>
+              <a
+                href={`/en/blog/${post.slug.replace(/^en\//, '')}`}
+                class="text-marce-base-1 font-semibold text-sm hover:text-marce-base-2 transition-colors inline-flex items-center gap-1"
+              >
+                Read more
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- FAQ -->
+  <section class="py-20 bg-stone-50 px-6">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-4">Frequently Asked Questions about Ayurvedic Massage</h2>
+        <p class="text-[#243c5a]/70 max-w-2xl mx-auto">Everything you need to know before your first session.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {faqItems.map((item) => (
+          <article class="bg-white p-6 rounded-xl border border-stone-100 shadow-sm">
+            <h3 class="text-lg font-semibold text-[#243c5a] mb-3">{item.question}</h3>
+            <p class="text-sm text-[#243c5a]/80 leading-relaxed">{item.answer}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <div class="bg-white">
+    <ReviewsSection lang="en" />
+  </div>
+
+</Layout>
