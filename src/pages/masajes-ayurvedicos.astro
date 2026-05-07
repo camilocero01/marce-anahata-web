@@ -34,7 +34,7 @@ const faqItems = [
   {
     question: '¿Cuánto dura la sesión y cuál es la inversión?',
     answer:
-      'Las sesiones tienen una duración de 60 a 90 minutos según el protocolo elegido. Contáctanos por WhatsApp para conocer la inversión actual y las opciones disponibles.'
+      'Las sesiones tienen una duración de 60 a 90 minutos según el protocolo elegido. La inversión es de $250.000 COP. Contáctanos por WhatsApp para reservar tu fecha.'
   },
   {
     question: '¿Qué son los Puntos Marma?',
@@ -62,7 +62,7 @@ const masajePosts = (await getCollection('blog', ({ data, slug }) =>
   .slice(0, 3);
 ---
 
-<Layout title="Masajes Ayurvédicos y Puntos Marma | Marce Anahata" description="Masaje Ayurvédico con Puntos Marma en Envigado (a 2 cuadras de El Poblado). Terapia milenaria con aceites medicinales para desintoxicar, liberar tensión y restaurar tu energía vital.">
+<Layout title="Masajes Ayurvédicos y Puntos Marma | Marce Anahata" description="Masaje Ayurvédico con Puntos Marma en Envigado, a 2 cuadras de El Poblado. Aceites medicinales, desintoxicación profunda y restauración de energía vital. Desde $250.000 COP." image="/images/masajes-ayurvedicos-poster.png">
   <Fragment slot="head">
     <script is:inline type="application/ld+json">{JSON.stringify({
       "@context": "https://schema.org",
@@ -99,6 +99,8 @@ const masajePosts = (await getCollection('blog', ({ data, slug }) =>
       ],
       "offers": {
         "@type": "Offer",
+        "price": "250000",
+        "priceCurrency": "COP",
         "availability": "https://schema.org/InStock",
         "url": serviceUrl
       },
@@ -130,8 +132,6 @@ const masajePosts = (await getCollection('blog', ({ data, slug }) =>
       }
     })}</script>
     <meta property="og:locale" content="es_CO" />
-    <link rel="alternate" hreflang="es" href="https://www.marceanahata.com/masajes-ayurvedicos" />
-    <link rel="alternate" hreflang="en" href="https://www.marceanahata.com/en/ayurvedic-massage" />
   </Fragment>
 
   <!-- HERO -->

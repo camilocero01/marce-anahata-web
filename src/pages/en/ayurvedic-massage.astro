@@ -62,7 +62,7 @@ const masajePosts = (await getCollection('blog', ({ data, slug }) =>
   .slice(0, 3);
 ---
 
-<Layout title="Ayurvedic Massage & Marma Points | Marce Anahata" description="Ayurvedic Massage with Marma Points in Envigado (2 blocks from El Poblado). Ancient therapy with medicinal oils to detoxify, release tension and restore your vital energy." lang="en">
+<Layout title="Ayurvedic Massage & Marma Points | Marce Anahata" description="Ayurvedic Massage with Marma Points in Envigado (2 blocks from El Poblado). Ancient therapy with medicinal oils to detoxify, release tension and restore your vital energy." lang="en" includeAlternates={false}>
   <Fragment slot="head">
     <script is:inline type="application/ld+json">{JSON.stringify({
       "@context": "https://schema.org",

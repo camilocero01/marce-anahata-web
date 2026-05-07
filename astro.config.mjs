@@ -71,6 +71,8 @@ export default defineConfig({
           '/tarifas',
           '/circulo-mujeres-conscientes',
           '/bienestar-corporativo',
+          '/masajes-ayurvedicos',
+          '/en/ayurvedic-massage',
         ].includes(path)) {
           return { ...item, priority: 0.9, changefreq: 'monthly' };
         }
