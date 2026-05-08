@@ -42,6 +42,7 @@ export default defineConfig({
         if (['/admin', '/links', '/privacidad', '/buscar', '/404',
              '/en/links', '/en/privacidad', '/en/buscar', '/en/404'
         ].includes(path)) return false;
+        if (path.startsWith('/propuestas')) return false;
         if (path.endsWith('/blog/page/1')) return false;
         if (path.endsWith('/en/blog/page/1')) return false;
         if (path.includes('/blog/tag/') && path.endsWith('/page/1')) return false;
