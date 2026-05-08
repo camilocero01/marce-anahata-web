@@ -81,44 +81,6 @@ const tarifas = {
       individual: '$80,625'
     }
   ],
-  rituales: [
-    {
-      descripcion: '1 persona',
-      cantidad: 1,
-      total: '$230,000',
-      individual: '$230,000'
-    },
-    {
-      descripcion: '1 persona con brunch',
-      cantidad: 1,
-      total: '$275,000',
-      individual: '$275,000'
-    },
-    {
-      descripcion: '2-5 personas',
-      cantidad: 1,
-      total: '$138,000',
-      individual: '$138,000'
-    },
-    {
-      descripcion: '6 personas en adelante',
-      cantidad: 1,
-      total: '$105,000',
-      individual: '$105,000'
-    },
-    {
-      descripcion: 'Ritual de pareja (tarifa por pareja)',
-      cantidad: 1,
-      total: '$360,000',
-      individual: '$360,000'
-    },
-    {
-      descripcion: 'Baby Blessing (tarifa por familia)',
-      cantidad: 1,
-      total: '$360,000',
-      individual: '$360,000'
-    }
-  ],
   banoGong: [
     {
       descripcion: 'Entrada individual',
@@ -367,7 +329,11 @@ const tarifas = {
         <h2 class="text-2xl md:text-3xl font-serif text-marce-base-3 mb-3">
           🕯️ Rituales Sagrados
         </h2>
-        <p class="text-stone-600">Ceremonias conscientemente diseñadas para tus momentos especiales</p>
+        <p class="text-stone-600 mb-4">Ceremonias 100% personalizadas para tus momentos especiales</p>
+        <p class="text-stone-700 text-sm leading-relaxed bg-[#243c5a]/5 rounded-xl p-4 border-l-4 border-[#6ed8d9]">
+          Cada Ritual Sagrado se diseña contigo desde cero: tú eliges la hora, la intención, la dinámica y el momento de tu vida que quieres honrar. Es un encuentro íntimo donde acondicionamos cada detalle del espacio para tu proceso.<br /><br />
+          Por eso, una vez creado tu ritual, invitar a personas queridas no implica un costo proporcional. Si quieres compartir tu ceremonia con tu pareja, familia o amigas, ofrecemos una tarifa especial por cada acompañante.
+        </p>
       </div>
       <div class="overflow-x-auto rounded-xl shadow-md border border-stone-200">
         <table class="w-full">
@@ -378,12 +344,52 @@ const tarifas = {
             </tr>
           </thead>
           <tbody>
-            {tarifas.rituales.map((tarifa, index) => (
-              <tr class={`border-b border-stone-200 hover:bg-marce-base-2/5 transition-colors ${index % 2 === 0 ? 'bg-white' : 'bg-stone-50'}`}>
-                <td class="px-6 py-4 font-medium text-marce-base-3">{tarifa.descripcion}</td>
-                <td class="px-6 py-4 text-right text-marce-base-2 font-bold text-lg">{tarifa.total}</td>
-              </tr>
-            ))}
+            <!-- Ritual base -->
+            <tr class="bg-[#243c5a]/5">
+              <td colspan="2" class="px-6 py-2 text-xs font-bold uppercase tracking-widest text-[#243c5a]/50">Tu Ritual Sagrado</td>
+            </tr>
+            <tr class="bg-white border-b border-stone-200 hover:bg-[#6ed8d9]/5 transition-colors">
+              <td class="px-6 py-4 font-medium text-marce-base-3">
+                Ritual Sagrado
+                <span class="block text-xs font-normal text-stone-500 mt-0.5">Acondicionamiento completo del espacio · Personalización total · Hora a tu elección</span>
+              </td>
+              <td class="px-6 py-4 text-right text-marce-base-2 font-bold text-lg align-top">$230.000</td>
+            </tr>
+            <tr class="bg-stone-50 border-b border-stone-200 hover:bg-[#6ed8d9]/5 transition-colors">
+              <td class="px-6 py-4 font-medium text-marce-base-3">+ Brunch consciente
+                <span class="block text-xs font-normal text-stone-500 mt-0.5">Valor por persona</span>
+              </td>
+              <td class="px-6 py-4 text-right text-marce-base-2 font-bold text-lg">+$45.000</td>
+            </tr>
+
+            <!-- Acompañantes -->
+            <tr class="bg-[#243c5a]/5">
+              <td colspan="2" class="px-6 py-2 text-xs font-bold uppercase tracking-widest text-[#243c5a]/50">Suma acompañantes a tu ritual</td>
+            </tr>
+            <tr class="bg-white border-b border-stone-200 hover:bg-[#6ed8d9]/5 transition-colors">
+              <td class="px-6 py-4 font-medium text-marce-base-3">De 1 a 4 acompañantes adicionales</td>
+              <td class="px-6 py-4 text-right text-marce-base-2 font-bold text-lg">$138.000 <span class="text-xs font-normal">c/u</span></td>
+            </tr>
+            <tr class="bg-stone-50 border-b border-stone-200 hover:bg-[#6ed8d9]/5 transition-colors">
+              <td class="px-6 py-4 font-medium text-marce-base-3">De 5 acompañantes en adelante</td>
+              <td class="px-6 py-4 text-right text-marce-base-2 font-bold text-lg">$105.000 <span class="text-xs font-normal">c/u</span></td>
+            </tr>
+
+            <!-- Ceremonias especiales -->
+            <tr class="bg-[#243c5a]/5">
+              <td colspan="2" class="px-6 py-2 text-xs font-bold uppercase tracking-widest text-[#243c5a]/50">Ceremonias especiales</td>
+            </tr>
+            <tr class="bg-white border-b border-stone-200 hover:bg-[#6ed8d9]/5 transition-colors">
+              <td class="px-6 py-4 font-medium text-marce-base-3">Ritual de pareja</td>
+              <td class="px-6 py-4 text-right text-marce-base-2 font-bold text-lg">$360.000</td>
+            </tr>
+            <tr class="bg-stone-50 hover:bg-[#6ed8d9]/5 transition-colors">
+              <td class="px-6 py-4 font-medium text-marce-base-3">
+                Baby Blessing
+                <span class="block text-xs font-normal text-stone-500 mt-0.5">Tarifa por familia</span>
+              </td>
+              <td class="px-6 py-4 text-right text-marce-base-2 font-bold text-lg align-top">$360.000</td>
+            </tr>
           </tbody>
         </table>
       </div>
