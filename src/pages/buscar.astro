@@ -2,44 +2,146 @@
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
+// ── Índice de páginas del sitio ────────────────────────────────────────────
+const sitePages = [
+  {
+    title: 'Masajes Ayurvédicos y Puntos Marma',
+    description: 'Masaje Ayurvédico con Puntos Marma en Envigado. Aceites medicinales, desintoxicación profunda y restauración de la energía vital. Sesión individual de 60 a 90 minutos.',
+    keywords: 'masaje ayurvedico puntos marma abhyanga aceites medicinales desintoxicacion relajacion envigado',
+    url: '/masajes-ayurvedicos',
+    categoria: 'Servicio',
+  },
+  {
+    title: 'Terapia de Sonido',
+    description: 'Sesiones individuales de terapia de sonido con gong, cuencos y otros instrumentos sagrados. Para el sistema nervioso, el estrés y el equilibrio emocional.',
+    keywords: 'terapia sonido gong cuencos cristal sistema nervioso sanacion vibracional sesion individual',
+    url: '/terapia-sonido',
+    categoria: 'Servicio',
+  },
+  {
+    title: 'Baño de Gong',
+    description: 'Experiencia terapéutica de sonido grupal con el gong. Relajación profunda, liberación emocional y regulación del sistema nervioso.',
+    keywords: 'bano gong sonido grupal relajacion vibraciones sanacion',
+    url: '/bano-de-gong',
+    categoria: 'Servicio',
+  },
+  {
+    title: 'El Viaje de las 450 Vibraciones',
+    description: 'Sesiones mensuales de baño de gong ceremonial 2026. Una experiencia transformadora de sonido en Envigado, Medellín.',
+    keywords: 'viaje 450 vibraciones bano gong mensual 2026 ceremonia sonido transformacion',
+    url: '/viaje-450-vibraciones',
+    categoria: 'Evento',
+  },
+  {
+    title: 'Rituales Sagrados',
+    description: 'Ceremonias 100% personalizadas para cumpleaños, parejas, baby blessing y cierres de ciclo. Diseñadas contigo desde cero.',
+    keywords: 'ritual sagrado cumpleanos pareja baby blessing cierre ciclo ceremonia personalizada',
+    url: '/rituales',
+    categoria: 'Servicio',
+  },
+  {
+    title: 'Clases de Yoga — Kundalini, Somático, Pilates y Barre',
+    description: 'Clases grupales y personalizadas de Kundalini Yoga, Yoga Restaurativo, Yoga Somático, Pilates y Barre en Envigado.',
+    keywords: 'kundalini yoga somatico pilates barre clases grupales personalizadas meditacion envigado',
+    url: '/clases',
+    categoria: 'Servicio',
+  },
+  {
+    title: 'Círculo de Mujeres Conscientes',
+    description: 'Espacio sagrado para el encuentro femenino. Un círculo de mujeres para soltar, sanar y reconectar con la propia esencia.',
+    keywords: 'circulo mujeres conscientes femenino sagrado sanacion encuentro',
+    url: '/circulo-mujeres-conscientes',
+    categoria: 'Servicio',
+  },
+  {
+    title: 'Bienestar Corporativo',
+    description: 'Programas de bienestar para empresas y equipos: yoga, meditación, terapia de sonido y talleres de manejo del estrés.',
+    keywords: 'bienestar corporativo empresas equipos yoga meditacion estres burnout talleres',
+    url: '/bienestar-corporativo',
+    categoria: 'Servicio',
+  },
+  {
+    title: 'Sobre Marce Anahata',
+    description: 'Conoce a Marce Anahata: terapeuta de sonido, maestra de Kundalini Yoga y facilitadora de rituales sagrados en Medellín.',
+    keywords: 'sobre marce anahata terapeuta sonido maestra yoga facilitadora rituales historia',
+    url: '/sobre-mi',
+    categoria: 'Sobre Marce',
+  },
+  {
+    title: 'Tarifas 2026',
+    description: 'Precios de todos los servicios: clases de yoga, terapia de sonido, baño de gong, rituales y masajes. Transparentes y accesibles.',
+    keywords: 'tarifas precios 2026 yoga terapia sonido gong rituales masajes clases',
+    url: '/tarifas',
+    categoria: 'Información',
+  },
+  {
+    title: 'Contacto',
+    description: 'Escríbenos por WhatsApp o correo. Estamos en Envigado, a 2 cuadras de El Poblado, Medellín.',
+    keywords: 'contacto whatsapp ubicacion envigado poblado medellin reserva',
+    url: '/contacto',
+    categoria: 'Información',
+  },
+];
+
+// ── Blog posts ─────────────────────────────────────────────────────────────
 const posts = await getCollection('blog', ({ data, slug }) => data.draft !== true && !slug.startsWith('en/'));
 const sortedPosts = posts.sort((a, b) => (b.data.pubDate?.valueOf?.() ?? 0) - (a.data.pubDate?.valueOf?.() ?? 0));
+
+// ── Búsqueda ───────────────────────────────────────────────────────────────
 const query = (Astro.url.searchParams.get('q') || '').trim();
 const normalizedQuery = query.toLowerCase();
-const filtered = normalizedQuery
-  ? sortedPosts.filter((post) => {
-      const haystack = [
-        post.data.title,
-        post.data.description,
-        ...(post.data.tags || []),
-      ]
-        .filter(Boolean)
-        .join(' ')
-        .toLowerCase();
-      return haystack.includes(normalizedQuery);
+
+function normalize(str: string) {
+  return str.toLowerCase()
+    .normalize('NFD').replace(/[̀-ͯ]/g, ''); // elimina tildes para match
+}
+
+const nq = normalize(query);
+
+const filteredPages = nq
+  ? sitePages.filter(p =>
+      normalize(p.title + ' ' + p.description + ' ' + p.keywords + ' ' + p.categoria).includes(nq)
+    )
+  : [];
+
+const filteredPosts = nq
+  ? sortedPosts.filter(post => {
+      const haystack = normalize([post.data.title, post.data.description, ...(post.data.tags || [])].filter(Boolean).join(' '));
+      return haystack.includes(nq);
     })
   : sortedPosts;
 
-const title = query ? `Resultados para "${query}"` : 'Búsqueda en Blog';
-const description = 'Busca artículos, guías y rituales en el blog de Marce Anahata.';
+const totalResults = filteredPages.length + filteredPosts.length;
+
+const coloresCat: Record<string, string> = {
+  'Servicio':     'bg-[#6ed8d9]/15 text-[#243c5a]',
+  'Evento':       'bg-[#5d5a8c]/15 text-[#5d5a8c]',
+  'Sobre Marce':  'bg-amber-50 text-amber-700',
+  'Información':  'bg-stone-100 text-stone-600',
+};
+
+const pageTitle = query ? `Resultados para "${query}"` : 'Buscar en el sitio';
+const description = 'Busca servicios, artículos y páginas en el sitio de Marce Anahata.';
 ---
 
-<Layout title={title} description={description} ogType="article" hideAuthorInTitle={true}>
+<Layout title={pageTitle} description={description} hideAuthorInTitle={true}>
   <Fragment slot="head">
+    <meta name="robots" content="noindex, nofollow" />
     <meta property="og:locale" content="es_CO" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content="https://www.marceanahata.com/images/social-preview-wa.jpg" />
   </Fragment>
-  <section class="max-w-5xl mx-auto px-6 py-16">
-    <div class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+
+  <section class="max-w-4xl mx-auto px-6 py-16">
+
+    <!-- Header + formulario -->
+    <div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between mb-10">
       <div>
-        <p class="text-sm uppercase tracking-wide text-[#5d5a8c] font-semibold">Blog</p>
-        <h1 class="text-3xl md:text-4xl font-serif text-[#243c5a]">Búsqueda en Blog</h1>
-        <p class="text-stone-600 mt-2">Encuentra artículos por título, descripción o etiquetas.</p>
+        <p class="text-sm uppercase tracking-wide text-[#5d5a8c] font-semibold mb-1">Búsqueda</p>
+        <h1 class="text-3xl md:text-4xl font-serif text-[#243c5a]">
+          {query ? `Resultados para "${query}"` : 'Buscar en el sitio'}
+        </h1>
+        <p class="text-stone-500 mt-2 text-sm">Servicios, rituales, clases, artículos y más.</p>
       </div>
-      <form method="get" class="w-full md:w-80" role="search" aria-label="Buscar en blog">
+      <form method="get" class="w-full md:w-96" role="search" aria-label="Buscar en el sitio">
         <label class="sr-only" for="q">Buscar</label>
         <div class="relative">
           <input
@@ -47,47 +149,146 @@ const description = 'Busca artículos, guías y rituales en el blog de Marce Ana
             name="q"
             type="search"
             inputmode="search"
-            placeholder="Ej: sonido, yoga, ritual"
+            placeholder="Ej: masaje, yoga, ritual, gong…"
             value={query}
-            class="w-full rounded-full border border-stone-200 bg-white/90 px-4 py-3 pr-12 shadow-sm focus:border-[#6ed8d9] focus:ring-2 focus:ring-[#6ed8d9]/30 transition"
+            autofocus={!query}
+            class="w-full rounded-full border border-stone-200 bg-white px-5 py-3 pr-14 shadow-sm focus:border-[#6ed8d9] focus:ring-2 focus:ring-[#6ed8d9]/30 transition text-sm"
           />
-          <button type="submit" class="absolute inset-y-0 right-2 px-3 text-sm font-semibold text-white bg-[#243c5a] rounded-full hover:bg-[#5d5a8c] transition">
+          <button type="submit" aria-label="Buscar" class="absolute inset-y-1 right-1 px-4 text-sm font-semibold text-white bg-[#243c5a] rounded-full hover:bg-[#5d5a8c] transition">
             Buscar
           </button>
         </div>
       </form>
     </div>
 
-    <div class="mt-10">
-      <p class="text-sm text-stone-500">{filtered.length} resultado{filtered.length === 1 ? '' : 's'}</p>
-      {filtered.length === 0 && (
-        <p class="mt-4 text-stone-600">No encontramos coincidencias. Intenta con otra palabra clave.</p>
-      )}
-      <ul class="mt-6 space-y-6">
-        {filtered.map((post) => (
-          <li class="p-5 bg-white rounded-2xl border border-stone-200/70 shadow-sm hover:shadow-md transition" data-slug={post.slug}>
-            <div class="flex flex-col gap-3">
-              <div class="flex items-center gap-3 text-xs text-stone-500">
-                {post.data.pubDate && <span>{post.data.pubDate.toLocaleDateString('es-CO', { year: 'numeric', month: 'short', day: 'numeric' })}</span>}
-                {post.data.tags?.length ? <span class="hidden md:inline">•</span> : null}
-                {post.data.tags?.length ? (
-                  <span class="flex flex-wrap gap-2">
-                    {post.data.tags.map((tag) => (
-                      <span class="px-2 py-1 rounded-full bg-stone-100 text-stone-600" aria-label={`Etiqueta ${tag}`}>
-                        {tag}
-                      </span>
-                    ))}
+    {query && (
+      <p class="text-sm text-stone-400 mb-8">
+        {totalResults} resultado{totalResults === 1 ? '' : 's'} encontrado{totalResults === 1 ? '' : 's'}
+      </p>
+    )}
+
+    {/* ── SIN QUERY: accesos rápidos ────────────────────────── */}
+    {!query && (
+      <div>
+        <p class="text-xs font-bold uppercase tracking-widest text-stone-400 mb-5">Páginas del sitio</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-14">
+          {sitePages.map(page => (
+            <a
+              href={page.url}
+              class="group flex items-start gap-4 p-4 bg-white rounded-2xl border border-stone-200 shadow-sm hover:shadow-md hover:border-[#6ed8d9]/50 transition"
+            >
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-2 mb-1">
+                  <span class={`text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full ${coloresCat[page.categoria] ?? 'bg-stone-100 text-stone-500'}`}>
+                    {page.categoria}
                   </span>
-                ) : null}
+                </div>
+                <p class="font-semibold text-[#243c5a] text-sm group-hover:text-[#5d5a8c] transition-colors leading-snug">{page.title}</p>
+                <p class="text-stone-500 text-xs mt-1 line-clamp-2">{page.description}</p>
               </div>
+              <svg class="w-4 h-4 text-stone-300 group-hover:text-[#6ed8d9] flex-shrink-0 mt-1 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          ))}
+        </div>
+
+        <p class="text-xs font-bold uppercase tracking-widest text-stone-400 mb-5">Últimas del blog</p>
+        <ul class="space-y-4">
+          {sortedPosts.slice(0, 5).map(post => (
+            <li class="p-5 bg-white rounded-2xl border border-stone-200 shadow-sm hover:shadow-md transition">
               <a class="group" href={`/blog/${post.slug}`}>
-                <h2 class="text-xl font-semibold text-[#243c5a] group-hover:text-[#6ed8d9] transition-colors">{post.data.title}</h2>
-                <p class="text-stone-600 mt-2 line-clamp-2">{post.data.description}</p>
+                <div class="flex items-center gap-2 mb-2">
+                  <span class="text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full bg-[#5d5a8c]/10 text-[#5d5a8c]">Blog</span>
+                  {post.data.pubDate && (
+                    <span class="text-xs text-stone-400">{post.data.pubDate.toLocaleDateString('es-CO', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
+                  )}
+                </div>
+                <h2 class="text-base font-semibold text-[#243c5a] group-hover:text-[#5d5a8c] transition-colors">{post.data.title}</h2>
+                <p class="text-stone-500 text-sm mt-1 line-clamp-2">{post.data.description}</p>
               </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+
+    {/* ── CON QUERY: resultados ─────────────────────────────── */}
+    {query && totalResults === 0 && (
+      <div class="text-center py-16">
+        <p class="text-4xl mb-4">🔍</p>
+        <p class="text-stone-600 font-medium mb-2">Sin resultados para "{query}"</p>
+        <p class="text-stone-400 text-sm">Prueba con otras palabras: <em>yoga</em>, <em>ritual</em>, <em>gong</em>, <em>masaje</em>…</p>
+      </div>
+    )}
+
+    {query && totalResults > 0 && (
+      <div class="space-y-10">
+
+        {/* Páginas primero */}
+        {filteredPages.length > 0 && (
+          <div>
+            <p class="text-xs font-bold uppercase tracking-widest text-stone-400 mb-4">
+              Servicios y páginas · {filteredPages.length} resultado{filteredPages.length === 1 ? '' : 's'}
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {filteredPages.map(page => (
+                <a
+                  href={page.url}
+                  class="group flex items-start gap-4 p-5 bg-white rounded-2xl border border-stone-200 shadow-sm hover:shadow-md hover:border-[#6ed8d9]/50 transition"
+                >
+                  <div class="flex-1 min-w-0">
+                    <div class="flex items-center gap-2 mb-1.5">
+                      <span class={`text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full ${coloresCat[page.categoria] ?? 'bg-stone-100 text-stone-500'}`}>
+                        {page.categoria}
+                      </span>
+                    </div>
+                    <p class="font-semibold text-[#243c5a] group-hover:text-[#5d5a8c] transition-colors leading-snug">{page.title}</p>
+                    <p class="text-stone-500 text-sm mt-1 line-clamp-2">{page.description}</p>
+                  </div>
+                  <svg class="w-4 h-4 text-stone-300 group-hover:text-[#6ed8d9] flex-shrink-0 mt-1 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </a>
+              ))}
             </div>
-          </li>
-        ))}
-      </ul>
-    </div>
+          </div>
+        )}
+
+        {/* Blog después */}
+        {filteredPosts.length > 0 && (
+          <div>
+            <p class="text-xs font-bold uppercase tracking-widest text-stone-400 mb-4">
+              Blog · {filteredPosts.length} resultado{filteredPosts.length === 1 ? '' : 's'}
+            </p>
+            <ul class="space-y-4">
+              {filteredPosts.map(post => (
+                <li class="p-5 bg-white rounded-2xl border border-stone-200 shadow-sm hover:shadow-md transition">
+                  <a class="group" href={`/blog/${post.slug}`}>
+                    <div class="flex items-center gap-2 mb-2">
+                      <span class="text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full bg-[#5d5a8c]/10 text-[#5d5a8c]">Blog</span>
+                      {post.data.pubDate && (
+                        <span class="text-xs text-stone-400">{post.data.pubDate.toLocaleDateString('es-CO', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
+                      )}
+                      {post.data.tags?.length ? (
+                        <span class="hidden md:flex flex-wrap gap-1">
+                          {post.data.tags.slice(0, 3).map(tag => (
+                            <span class="px-2 py-0.5 rounded-full bg-stone-100 text-stone-500 text-[10px]">{tag}</span>
+                          ))}
+                        </span>
+                      ) : null}
+                    </div>
+                    <h2 class="text-base font-semibold text-[#243c5a] group-hover:text-[#5d5a8c] transition-colors">{post.data.title}</h2>
+                    <p class="text-stone-500 text-sm mt-1 line-clamp-2">{post.data.description}</p>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+      </div>
+    )}
+
   </section>
 </Layout>
