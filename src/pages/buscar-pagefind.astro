@@ -1,0 +1,102 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Búsqueda avanzada | Marce Anahata"
+  description="Busca en todo el contenido del sitio de Marce Anahata."
+  hideAuthorInTitle={true}
+>
+  <Fragment slot="head">
+    <meta name="robots" content="noindex, nofollow" />
+    <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+    <style>
+      :root {
+        --pagefind-ui-scale: 1;
+        --pagefind-ui-primary: #243c5a;
+        --pagefind-ui-text: #57534e;
+        --pagefind-ui-background: #ffffff;
+        --pagefind-ui-border: #e7e5e4;
+        --pagefind-ui-tag: #f5f5f4;
+        --pagefind-ui-border-width: 1px;
+        --pagefind-ui-border-radius: 12px;
+        --pagefind-ui-image-border-radius: 8px;
+        --pagefind-ui-font: 'Montserrat', sans-serif;
+      }
+      .pagefind-ui__search-input {
+        border-radius: 9999px !important;
+        padding-left: 1.25rem !important;
+      }
+      .pagefind-ui__search-clear {
+        border-radius: 9999px !important;
+      }
+      .pagefind-ui__result-link {
+        color: #243c5a !important;
+        font-weight: 600;
+      }
+      .pagefind-ui__result-link:hover {
+        color: #5d5a8c !important;
+      }
+      .pagefind-ui__result-excerpt mark {
+        background: #6ed8d9 !important;
+        color: #243c5a !important;
+        border-radius: 3px;
+        padding: 0 2px;
+      }
+      .pagefind-ui__button {
+        background: #243c5a !important;
+        color: white !important;
+        border-radius: 9999px !important;
+      }
+      .pagefind-ui__button:hover {
+        background: #5d5a8c !important;
+      }
+    </style>
+  </Fragment>
+
+  <section class="max-w-4xl mx-auto px-6 py-16">
+
+    <div class="mb-10">
+      <p class="text-sm uppercase tracking-wide text-[#5d5a8c] font-semibold mb-1">Búsqueda</p>
+      <h1 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-2">Buscar en el sitio</h1>
+      <p class="text-stone-500 text-sm">Servicios, rituales, clases, blog y más — todo el contenido indexado.</p>
+    </div>
+
+    <div id="pagefind-search"></div>
+
+    <div id="pagefind-not-built" class="hidden mt-8 p-6 bg-amber-50 border border-amber-200 rounded-2xl text-sm text-amber-800">
+      <p class="font-semibold mb-1">El índice de búsqueda no está disponible en modo desarrollo.</p>
+      <p>Ejecuta <code class="bg-amber-100 px-1.5 py-0.5 rounded font-mono">npm run build</code> y luego <code class="bg-amber-100 px-1.5 py-0.5 rounded font-mono">npm run preview</code> para probar Pagefind.</p>
+    </div>
+
+  </section>
+
+  <script is:inline>
+    window.addEventListener('DOMContentLoaded', () => {
+      const script = document.createElement('script');
+      script.src = '/pagefind/pagefind-ui.js';
+      script.onload = () => {
+        new PagefindUI({
+          element: '#pagefind-search',
+          showSubResults: true,
+          showImages: false,
+          excerptLength: 25,
+          resetStyles: false,
+          translations: {
+            placeholder: 'Buscar: yoga, ritual, gong, masaje…',
+            zero_results: 'No encontramos resultados para "[SEARCH_TERM]"',
+            many_results: '[COUNT] resultados para "[SEARCH_TERM]"',
+            one_result: '1 resultado para "[SEARCH_TERM]"',
+            load_more: 'Ver más resultados',
+            searching: 'Buscando…',
+            clear_search: 'Limpiar',
+          }
+        });
+      };
+      script.onerror = () => {
+        document.getElementById('pagefind-not-built')?.classList.remove('hidden');
+      };
+      document.head.appendChild(script);
+    });
+  </script>
+</Layout>

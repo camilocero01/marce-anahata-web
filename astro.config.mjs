@@ -11,6 +11,8 @@ import mdx from '@astrojs/mdx';
 
 import vercel from '@astrojs/vercel';
 
+import pagefind from 'astro-pagefind';
+
 // https://astro.build/config
 export default defineConfig({
   i18n: {
@@ -30,6 +32,7 @@ export default defineConfig({
   },
 
   integrations: [
+    pagefind(),
     mdx(),
     sitemap({
       filter: (page) => {
