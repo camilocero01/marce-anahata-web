@@ -50,6 +50,21 @@ const faqItems = [
     question: 'How do I book my session?',
     answer:
       'You can book directly via WhatsApp from this page. The reservation is confirmed with a deposit to hold your date.'
+  },
+  {
+    question: 'What is the difference between Ayurvedic massage and a regular relaxation massage?',
+    answer:
+      'A conventional relaxation massage works mainly on surface muscle tissue to relieve physical tension. Ayurvedic massage goes deeper: it uses warm medicinal oils tailored to your body constitution (Dosha), activates the 107 Marma Points, and works simultaneously on the physical body and the energy field. The result is a deeper detoxification and rebalancing that goes beyond muscle relief.'
+  },
+  {
+    question: 'Does Ayurvedic massage help with stress and anxiety?',
+    answer:
+      'Yes. Ayurvedic massage is especially effective for the nervous system. Warm medicinal oils have a direct effect on the peripheral nervous system, and Marma Point activation releases emotional blocks stored in the body. Many people combine it with our yoga classes and sound therapy sessions to further support nervous system work.'
+  },
+  {
+    question: 'Is there anything special I should do before or after the massage?',
+    answer:
+      'Before: avoid heavy meals 2 hours prior, arrive well hydrated and in comfortable clothing. After: rest, drink water, and avoid intense activity that day to allow the body to integrate the detoxification process. The medicinal oils continue to act for hours after the session.'
   }
 ];
 
@@ -85,16 +100,24 @@ const masajePosts = (await getCollection('blog', ({ data, slug }) =>
     <script is:inline type="application/ld+json">{JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Service",
-      "name": "Ayurvedic Massage & Marma Points in Envigado",
-      "description": "Ancient manual therapy with warm medicinal oils and Marma Point activation to detoxify the body, release tension and restore the flow of vital energy.",
+      "name": "Ayurvedic Massage & Marma Points in Envigado — La Frontera with El Poblado",
+      "description": "Ancient manual therapy with warm medicinal oils and activation of the 107 Marma Points to detoxify the body, release deep tension and restore the flow of vital energy (Prana). Sessions 60 to 90 minutes in Envigado, 2 minutes from El Poblado.",
       "serviceType": "Ayurvedic Massage",
       "provider": {
         "@type": "Person",
         "name": "Marce Anahata",
-        "url": "https://www.marceanahata.com/en/sobre-mi"
+        "url": "https://www.marceanahata.com/en",
+        "telephone": "+573207329921",
+        "email": "info@marceanahata.com",
+        "sameAs": [
+          "https://www.instagram.com/marce_anahata/",
+          "https://www.youtube.com/@marce_anahata"
+        ]
       },
       "areaServed": [
         { "@type": "City", "name": "Envigado" },
+        { "@type": "Neighborhood", "name": "El Poblado" },
+        { "@type": "Neighborhood", "name": "La Frontera" },
         { "@type": "City", "name": "Medellín" }
       ],
       "offers": {
@@ -105,7 +128,14 @@ const masajePosts = (await getCollection('blog', ({ data, slug }) =>
         "url": serviceUrl
       },
       "url": serviceUrl,
-      "keywords": "ayurvedic massage Medellín, marma points Envigado, ayurveda therapy Colombia, medicinal oil massage, holistic wellness"
+      "keywords": "ayurvedic massage Envigado, ayurvedic massage El Poblado, marma points Envigado, ayurveda therapy Medellín, medicinal oil massage, relaxation massage Envigado, stress relief massage El Poblado, holistic wellness, Abhyanga massage, Ayurveda detox, anxiety massage Medellín",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "11",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
     })}</script>
     <script is:inline type="application/ld+json">{JSON.stringify({
       "@context": "https://schema.org",
@@ -121,8 +151,27 @@ const masajePosts = (await getCollection('blog', ({ data, slug }) =>
     })}</script>
     <script is:inline type="application/ld+json">{JSON.stringify({
       "@context": "https://schema.org",
-      "@type": "Service",
-      "name": "Ayurvedic Massage & Marma Points — Marce Anahata",
+      "@type": ["HealthAndBeautyBusiness", "SportsActivityLocation"],
+      "@id": "https://www.marceanahata.com/#business",
+      "name": "Marce Anahata Wellness Center",
+      "description": "Wellness center in Envigado (La Frontera — El Poblado border) specializing in Ayurvedic massage, Kundalini Yoga, sound therapy, women circles, and sacred rituals.",
+      "url": "https://www.marceanahata.com/en",
+      "telephone": "+573207329921",
+      "email": "info@marceanahata.com",
+      "image": "https://www.marceanahata.com/images/social-preview-wa.jpg",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Cl. 23 Sur #42B-60, Los Cristales",
+        "addressLocality": "Envigado",
+        "addressRegion": "Antioquia",
+        "addressCountry": "CO"
+      },
+      "sameAs": [
+        "https://www.instagram.com/marce_anahata/",
+        "https://www.youtube.com/@marce_anahata",
+        "https://www.tiktok.com/@marce_anahata"
+      ],
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "5.0",

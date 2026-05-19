@@ -50,6 +50,21 @@ const faqItems = [
     question: '¿Cómo agendo mi sesión?',
     answer:
       'Puedes agendar directamente por WhatsApp desde esta página. La reserva se confirma con un abono previo para separar la fecha.'
+  },
+  {
+    question: '¿Cuál es la diferencia entre el masaje Ayurvédico y un masaje relajante convencional?',
+    answer:
+      'El masaje relajante convencional trabaja principalmente el tejido muscular superficial para aliviar tensión física. El masaje Ayurvédico va más profundo: usa aceites medicinales calientes adaptados a tu constitución (Dosha), activa los 107 Puntos Marma del cuerpo y trabaja simultáneamente el cuerpo físico y el campo energético. El resultado es una desintoxicación más profunda y un reequilibrio que va más allá del músculo.'
+  },
+  {
+    question: '¿Sirve el masaje Ayurvédico para el estrés y la ansiedad?',
+    answer:
+      'Sí. El masaje Ayurvédico es especialmente efectivo para el sistema nervioso. Los aceites medicinales calientes tienen un efecto directo sobre el sistema nervioso periférico, y la activación de Puntos Marma libera bloqueos emocionales almacenados en el cuerpo. Muchas personas lo combinan con nuestras clases de yoga y terapia de sonido para potenciar el trabajo con el sistema nervioso.'
+  },
+  {
+    question: '¿Debo hacer algo especial antes o después del masaje?',
+    answer:
+      'Antes: evita comidas pesadas 2 horas antes, llega bien hidratado/a y con ropa cómoda. Después: se recomienda descansar, beber agua y evitar actividad intensa ese día para permitir que el cuerpo integre el proceso de desintoxicación. Los aceites medicinales siguen actuando horas después de la sesión.'
   }
 ];
 
@@ -85,16 +100,24 @@ const masajePosts = (await getCollection('blog', ({ data, slug }) =>
     <script is:inline type="application/ld+json">{JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Service",
-      "name": "Masaje Ayurvédico con Puntos Marma en Envigado",
-      "description": "Terapia manual milenaria con aceites medicinales y activación de Puntos Marma para desintoxicar el cuerpo, liberar tensión y restaurar el flujo de energía vital.",
+      "name": "Masaje Ayurvédico con Puntos Marma en Envigado — La Frontera con El Poblado",
+      "description": "Terapia manual milenaria con aceites medicinales calientes y activación de los 107 Puntos Marma para desintoxicar el cuerpo, liberar tensión profunda y restaurar el flujo de energía vital (Prana). Sesiones de 60 a 90 minutos en Envigado, a 2 minutos de El Poblado.",
       "serviceType": "Masaje Ayurvédico",
       "provider": {
         "@type": "Person",
         "name": "Marce Anahata",
-        "url": "https://www.marceanahata.com/sobre-mi"
+        "url": "https://www.marceanahata.com/sobre-mi",
+        "telephone": "+573207329921",
+        "email": "info@marceanahata.com",
+        "sameAs": [
+          "https://www.instagram.com/marce_anahata/",
+          "https://www.youtube.com/@marce_anahata"
+        ]
       },
       "areaServed": [
         { "@type": "City", "name": "Envigado" },
+        { "@type": "Neighborhood", "name": "El Poblado" },
+        { "@type": "Neighborhood", "name": "La Frontera" },
         { "@type": "City", "name": "Medellín" }
       ],
       "offers": {
@@ -105,7 +128,14 @@ const masajePosts = (await getCollection('blog', ({ data, slug }) =>
         "url": serviceUrl
       },
       "url": serviceUrl,
-      "keywords": "masaje ayurvédico Medellín, puntos marma Envigado, terapia ayurveda, masaje con aceites, bienestar holístico"
+      "keywords": "masaje ayurvédico Envigado, masaje ayurvédico El Poblado, puntos marma Envigado, terapia ayurveda Medellín, masaje con aceites medicinales, masaje relajante Envigado, masaje anti-estrés El Poblado, bienestar holístico, masaje Abhyanga, desintoxicación Ayurveda, masaje para ansiedad Medellín",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "11",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
     })}</script>
     <script is:inline type="application/ld+json">{JSON.stringify({
       "@context": "https://schema.org",
@@ -121,8 +151,27 @@ const masajePosts = (await getCollection('blog', ({ data, slug }) =>
     })}</script>
     <script is:inline type="application/ld+json">{JSON.stringify({
       "@context": "https://schema.org",
-      "@type": "Service",
-      "name": "Masajes Ayurvédicos y Puntos Marma — Marce Anahata",
+      "@type": ["HealthAndBeautyBusiness", "SportsActivityLocation"],
+      "@id": "https://www.marceanahata.com/#business",
+      "name": "Marce Anahata Centro de Bienestar",
+      "description": "Centro de bienestar en Envigado (La Frontera con El Poblado) especializado en masajes ayurvédicos, Kundalini Yoga, terapia de sonido, círculos de mujeres y rituales sagrados.",
+      "url": "https://www.marceanahata.com",
+      "telephone": "+573207329921",
+      "email": "info@marceanahata.com",
+      "image": "https://www.marceanahata.com/images/social-preview-wa.jpg",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Cl. 23 Sur #42B-60, Los Cristales",
+        "addressLocality": "Envigado",
+        "addressRegion": "Antioquia",
+        "addressCountry": "CO"
+      },
+      "sameAs": [
+        "https://www.instagram.com/marce_anahata/",
+        "https://www.youtube.com/@marce_anahata",
+        "https://www.tiktok.com/@marce_anahata"
+      ],
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "5.0",
