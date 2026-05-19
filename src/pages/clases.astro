@@ -46,6 +46,26 @@ const faqItems = [
     question: '¿Ofrecen clases de Pilates cerca de El Poblado o Envigado?',
     answer:
       'No dictamos Pilates tradicional, pero contamos con Yogalates —una fusión que combina los principios de Pilates con la profundidad del yoga— y Barre Balance, que trabaja fuerza, equilibrio y postura con técnica de barra. Muchos estudiantes los eligen como alternativa directa al Pilates. Escríbenos y te contamos cuál se adapta mejor a tu objetivo.'
+  },
+  {
+    question: '¿Cuál es la diferencia entre Yogalates y Pilates tradicional?',
+    answer:
+      'El Pilates tradicional trabaja principalmente el core con equipos especializados o en mat. Yogalates fusiona esos principios de fuerza central y postura con el trabajo de respiración, mindfulness y energía del yoga. El resultado es una práctica que tonifica y al mismo tiempo calma el sistema nervioso — sin necesitar máquinas ni equipos especiales.'
+  },
+  {
+    question: '¿Hay clases de yoga los sábados en Envigado?',
+    answer:
+      'Sí. Los sábados a las 9:00 AM dictamos Kundalini Yoga en nuestro Centro de Bienestar (Cl. 23 Sur #42B-60, Envigado, zona La Frontera con El Poblado). Es una clase ideal para arrancar el fin de semana con energía. Se recomienda confirmar disponibilidad por WhatsApp.'
+  },
+  {
+    question: '¿Cuánto cuestan las clases de yoga en Envigado y El Poblado?',
+    answer:
+      'Manejamos packs mensuales con acceso a todas las clases grupales de la semana. Para conocer precios actualizados, packs disponibles y opciones personalizadas, visita nuestra página de tarifas o escríbenos por WhatsApp y te respondemos al momento.'
+  },
+  {
+    question: '¿Qué es Barre Balance y para quién es?',
+    answer:
+      'Barre Balance es una práctica que combina técnica de barra de ballet con ejercicios funcionales de fuerza, equilibrio y postura. No necesitas experiencia en danza. Es especialmente útil para quienes buscan tonificar sin impacto articular, mejorar la postura o encontrar una alternativa dinámica al Pilates o al yoga más pasivo. Clases los jueves a las 7:00 PM.'
   }
 ];
 
@@ -209,6 +229,45 @@ const offerings = [
           "text": item.answer
         }
       }))
+    })}</script>
+    <script type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": ["HealthAndBeautyBusiness", "SportsActivityLocation"],
+      "@id": "https://www.marceanahata.com/#business",
+      "name": "Marce Anahata Centro de Bienestar",
+      "description": "Centro de bienestar en Envigado (La Frontera con El Poblado) especializado en Kundalini Yoga, Yin Yoga, Yogalates, Barre Balance, Yoga Nidra, Vinyasa Detox, terapia de sonido y rituales sagrados.",
+      "url": "https://www.marceanahata.com",
+      "telephone": "+573207329921",
+      "email": "info@marceanahata.com",
+      "image": "https://www.marceanahata.com/images/social-preview-wa.jpg",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Cl. 23 Sur #42B-60, Los Cristales",
+        "addressLocality": "Envigado",
+        "addressRegion": "Antioquia",
+        "addressCountry": "CO"
+      },
+      "sameAs": [
+        "https://www.instagram.com/marce_anahata/",
+        "https://www.youtube.com/@marce_anahata",
+        "https://www.tiktok.com/@marce_anahata"
+      ],
+      "openingHoursSpecification": [
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Monday", "opens": "08:30", "closes": "20:00" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Tuesday", "opens": "08:30", "closes": "20:00" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Wednesday", "opens": "07:30", "closes": "19:00" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Thursday", "opens": "08:30", "closes": "20:30" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "08:30", "closes": "18:00" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "11:00" }
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "11",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
     })}</script>
   </Fragment>
   
@@ -549,6 +608,44 @@ const offerings = [
         Reservar Mi Clase
       </a>
       <p class="mt-6 text-sm text-[#6ed8d9]/80 font-light tracking-wider">Respuesta rápida vía WhatsApp</p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-[#6ed8d9]/8 px-6 border-t border-[#6ed8d9]/20">
+    <div class="max-w-4xl mx-auto">
+      <div class="bg-white rounded-2xl p-8 md:p-10 shadow-sm border border-[#6ed8d9]/30">
+        <h2 class="text-2xl md:text-3xl font-serif text-[#243c5a] mb-4">¿Buscas clases de Pilates en Envigado o El Poblado?</h2>
+        <p class="text-[#243c5a]/80 leading-relaxed mb-6">
+          No dictamos Pilates tradicional, pero dos de nuestras clases nuevas son una alternativa directa que muchos estudiantes prefieren: trabajan fuerza, postura y core con la misma intención, pero añaden respiración consciente y bienestar del sistema nervioso.
+        </p>
+        <div class="grid md:grid-cols-2 gap-6 mb-6">
+          <div class="bg-stone-50 rounded-xl p-5 border border-[#6ed8d9]/20">
+            <div class="flex items-center gap-2 mb-2">
+              <h3 class="font-semibold text-[#243c5a]">Yogalates</h3>
+              <span class="text-[10px] font-bold uppercase tracking-wide text-[#243c5a] bg-[#6ed8d9] px-1.5 py-0.5 rounded-full">Nueva</span>
+            </div>
+            <p class="text-sm text-[#243c5a]/70 leading-relaxed">Fusión de Pilates y yoga: trabaja el core, la postura y la respiración consciente. Sin máquinas, con más profundidad. Martes 6:30 PM · Miércoles 8:30 AM.</p>
+          </div>
+          <div class="bg-stone-50 rounded-xl p-5 border border-[#6ed8d9]/20">
+            <div class="flex items-center gap-2 mb-2">
+              <h3 class="font-semibold text-[#243c5a]">Barre Balance</h3>
+              <span class="text-[10px] font-bold uppercase tracking-wide text-[#243c5a] bg-[#6ed8d9] px-1.5 py-0.5 rounded-full">Nueva</span>
+            </div>
+            <p class="text-sm text-[#243c5a]/70 leading-relaxed">Técnica de barra con movimientos funcionales de fuerza y equilibrio. Tonifica sin impacto articular, mejora la postura. Jueves 7:00 PM.</p>
+          </div>
+        </div>
+        <p class="text-sm text-[#243c5a]/60 italic mb-5">Cuando te contactes, te explicamos cuál se adapta mejor a lo que buscas.</p>
+        <a
+          href={whatsappLinkGeneral}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-event="whatsapp_click"
+          data-label="Pilates Alternative CTA"
+          class="inline-flex items-center gap-2 bg-[#6ed8d9] text-[#243c5a] px-6 py-3 rounded-full font-semibold hover:bg-[#243c5a] hover:text-white transition-all text-sm shadow-sm"
+        >
+          Consultar disponibilidad
+        </a>
+      </div>
     </div>
   </section>
 

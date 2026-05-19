@@ -45,6 +45,26 @@ const faqItems = [
     question: 'Do you offer Pilates classes near El Poblado or Envigado?',
     answer:
       'We don\'t offer traditional Pilates, but we do have Yogalates — a fusion combining Pilates principles with the depth of yoga — and Barre Balance, which builds strength, balance, and posture using barre technique. Many students choose them as a direct alternative to Pilates. Message us and we\'ll help you find the best fit for your goals.'
+  },
+  {
+    question: 'What is the difference between Yogalates and traditional Pilates?',
+    answer:
+      'Traditional Pilates focuses mainly on core strength using specialized equipment or mat work. Yogalates combines those principles of central strength and posture with the breath work, mindfulness, and energy focus of yoga. The result is a practice that tones the body while also calming the nervous system — no machines or special equipment needed.'
+  },
+  {
+    question: 'Are there yoga classes on Saturdays in Envigado or El Poblado?',
+    answer:
+      'Yes. On Saturdays at 9:00 AM we offer Kundalini Yoga at our Wellness Center (Cl. 23 Sur #42B-60, Envigado, La Frontera — El Poblado border). It\'s a great way to start the weekend with energy. We recommend confirming availability via WhatsApp before attending.'
+  },
+  {
+    question: 'How much do yoga classes cost in Envigado or El Poblado?',
+    answer:
+      'We offer monthly packs with access to all weekly group classes. For current pricing, available packs, and personalized options, visit our pricing page or message us on WhatsApp — we reply quickly.'
+  },
+  {
+    question: 'What is Barre Balance and who is it for?',
+    answer:
+      'Barre Balance combines ballet barre technique with functional strength, balance, and posture exercises. No dance experience needed. It\'s ideal for people who want to tone without joint impact, improve posture, or find a dynamic alternative to Pilates or more passive yoga styles. Classes on Thursdays at 7:00 PM.'
   }
 ];
 
@@ -138,6 +158,45 @@ const offerings = [
           "text": item.answer
         }
       }))
+    })}</script>
+    <script type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": ["HealthAndBeautyBusiness", "SportsActivityLocation"],
+      "@id": "https://www.marceanahata.com/#business",
+      "name": "Marce Anahata Wellness Center",
+      "description": "Wellness center in Envigado (La Frontera — El Poblado border) specializing in Kundalini Yoga, Yin Yoga, Yogalates, Barre Balance, Yoga Nidra, Vinyasa Detox, sound therapy, and sacred rituals.",
+      "url": "https://www.marceanahata.com/en",
+      "telephone": "+573207329921",
+      "email": "info@marceanahata.com",
+      "image": "https://www.marceanahata.com/images/social-preview-wa.jpg",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Cl. 23 Sur #42B-60, Los Cristales",
+        "addressLocality": "Envigado",
+        "addressRegion": "Antioquia",
+        "addressCountry": "CO"
+      },
+      "sameAs": [
+        "https://www.instagram.com/marce_anahata/",
+        "https://www.youtube.com/@marce_anahata",
+        "https://www.tiktok.com/@marce_anahata"
+      ],
+      "openingHoursSpecification": [
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Monday", "opens": "08:30", "closes": "20:00" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Tuesday", "opens": "08:30", "closes": "20:00" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Wednesday", "opens": "07:30", "closes": "19:00" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Thursday", "opens": "08:30", "closes": "20:30" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "08:30", "closes": "18:00" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "11:00" }
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "11",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
     })}</script>
     <meta property="og:locale" content="en_US" />
   </Fragment>
@@ -475,6 +534,44 @@ const offerings = [
         Book My Class
       </a>
       <p class="mt-6 text-sm text-[#6ed8d9]/80 font-light tracking-wider">Fast response via WhatsApp</p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-[#6ed8d9]/8 px-6 border-t border-[#6ed8d9]/20">
+    <div class="max-w-4xl mx-auto">
+      <div class="bg-white rounded-2xl p-8 md:p-10 shadow-sm border border-[#6ed8d9]/30">
+        <h2 class="text-2xl md:text-3xl font-serif text-[#243c5a] mb-4">Looking for Pilates Classes in Envigado or El Poblado?</h2>
+        <p class="text-[#243c5a]/80 leading-relaxed mb-6">
+          We don't offer traditional Pilates, but two of our new classes are a direct alternative that many students prefer: they work strength, posture, and core with the same intention — plus conscious breathing and nervous system wellbeing.
+        </p>
+        <div class="grid md:grid-cols-2 gap-6 mb-6">
+          <div class="bg-stone-50 rounded-xl p-5 border border-[#6ed8d9]/20">
+            <div class="flex items-center gap-2 mb-2">
+              <h3 class="font-semibold text-[#243c5a]">Yogalates</h3>
+              <span class="text-[10px] font-bold uppercase tracking-wide text-[#243c5a] bg-[#6ed8d9] px-1.5 py-0.5 rounded-full">New</span>
+            </div>
+            <p class="text-sm text-[#243c5a]/70 leading-relaxed">Pilates and yoga fusion: works core, posture, and conscious breathing. No machines, deeper results. Tuesdays 6:30 PM · Wednesdays 8:30 AM.</p>
+          </div>
+          <div class="bg-stone-50 rounded-xl p-5 border border-[#6ed8d9]/20">
+            <div class="flex items-center gap-2 mb-2">
+              <h3 class="font-semibold text-[#243c5a]">Barre Balance</h3>
+              <span class="text-[10px] font-bold uppercase tracking-wide text-[#243c5a] bg-[#6ed8d9] px-1.5 py-0.5 rounded-full">New</span>
+            </div>
+            <p class="text-sm text-[#243c5a]/70 leading-relaxed">Barre technique with functional strength and balance movements. Tones without joint impact, improves posture. Thursdays 7:00 PM.</p>
+          </div>
+        </div>
+        <p class="text-sm text-[#243c5a]/60 italic mb-5">When you reach out, we'll explain which one fits your goals best.</p>
+        <a
+          href={whatsappLinkGeneral}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-event="whatsapp_click"
+          data-label="Pilates Alternative CTA EN"
+          class="inline-flex items-center gap-2 bg-[#6ed8d9] text-[#243c5a] px-6 py-3 rounded-full font-semibold hover:bg-[#243c5a] hover:text-white transition-all text-sm shadow-sm"
+        >
+          Check availability
+        </a>
+      </div>
     </div>
   </section>
 

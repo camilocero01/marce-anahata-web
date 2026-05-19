@@ -48,23 +48,20 @@ const relatedPosts = (await getCollection('blog', ({ data, slug }) =>
         name: 'Marce Anahata Centro de Bienestar',
         address: {
           '@type': 'PostalAddress',
-          streetAddress: 'Cl. 23 Sur #42B-60',
-          addressLocality: 'Medellín',
+          streetAddress: 'Cl. 23 Sur #42B-60, Los Cristales',
+          addressLocality: 'Envigado',
           addressRegion: 'Antioquia',
-          postalCode: '050012',
+          postalCode: '055420',
           addressCountry: 'CO'
-        },
-        geo: {
-          '@type': 'GeoCoordinates',
-          latitude: 6.2092,
-          longitude: -75.5697
         }
       },
       organizer: {
         '@type': 'Person',
         name: 'Marce Anahata',
         url: 'https://www.marceanahata.com/sobre-mi',
-        sameAs: ['https://www.instagram.com/marceanahata/']
+        telephone: '+573207329921',
+        email: 'info@marceanahata.com',
+        sameAs: ['https://www.instagram.com/marce_anahata/']
       },
       audience: {
         '@type': 'Audience',
@@ -520,7 +517,38 @@ const relatedPosts = (await getCollection('blog', ({ data, slug }) =>
         </div>
       </div>
 
-      <!-- FAQPage Schema -->
+      <!-- LocalBusiness + FAQPage Schemas -->
+      <script type="application/ld+json">{JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': ['HealthAndBeautyBusiness', 'SportsActivityLocation'],
+        '@id': 'https://www.marceanahata.com/#business',
+        name: 'Marce Anahata Centro de Bienestar',
+        description: 'Centro de bienestar en Envigado (La Frontera con El Poblado) especializado en Kundalini Yoga, Yogalates, Barre Balance, terapia de sonido, círculos de mujeres y rituales sagrados.',
+        url: 'https://www.marceanahata.com',
+        telephone: '+573207329921',
+        email: 'info@marceanahata.com',
+        image: 'https://www.marceanahata.com/images/social-preview-wa.jpg',
+        priceRange: '$$',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: 'Cl. 23 Sur #42B-60, Los Cristales',
+          addressLocality: 'Envigado',
+          addressRegion: 'Antioquia',
+          addressCountry: 'CO'
+        },
+        sameAs: [
+          'https://www.instagram.com/marce_anahata/',
+          'https://www.youtube.com/@marce_anahata',
+          'https://www.tiktok.com/@marce_anahata'
+        ],
+        aggregateRating: {
+          '@type': 'AggregateRating',
+          ratingValue: '5.0',
+          reviewCount: '11',
+          bestRating: '5',
+          worstRating: '1'
+        }
+      })}</script>
       <script type="application/ld+json">{JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'FAQPage',
@@ -562,7 +590,7 @@ const relatedPosts = (await getCollection('blog', ({ data, slug }) =>
             name: '¿Cuánto cuesta participar en el Círculo de Mujeres?',
             acceptedAnswer: {
               '@type': 'Answer',
-              text: 'La inversión por encuentro mensual varía según la temporada y el ritual específico, generalmente entre $80.000 - $120.000 COP. También se ofrecen packs trimestrales con descuento para quienes desean comprometerse con el proceso de largo plazo.'
+              text: 'La inversión es $120.000 COP por persona, o $90.000 COP cada una si vienes con una amiga. También ofrecemos packs trimestrales con descuento para quienes desean profundizar el proceso de largo plazo. Contáctanos vía WhatsApp para conocer disponibilidad y opciones actuales.'
             }
           },
           {
