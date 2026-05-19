@@ -54,7 +54,7 @@ const isEnPath = normalizedPath.startsWith('/en');
 const baseEsPath = isEnPath ? normalizedPath.replace(/^\/en/, '') || '/' : normalizedPath || '/';
 
 const enPathOverrides: Record<string, string> = {
-    '/': '/en/',
+    '/': '/en',
     '/nosotros': '/en/about',
     '/sobre-mi': '/en/sobre-mi',
     '/clases': '/en/clases',
@@ -582,7 +582,7 @@ const websiteSchema = JSON.stringify({
 
         <nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm border-b border-stone-100 z-50 transition-all duration-300">
             <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
-                <a href={lang === 'en' ? '/en/' : '/'} class="flex items-center gap-3 group">
+                <a href={lang === 'en' ? '/en' : '/'} class="flex items-center gap-3 group">
                     <Image src={logoImg} alt="Logo Marce Anahata" class="h-10 w-auto group-hover:scale-105 transition-transform" width={40} />
                     <span class="flex flex-col leading-tight">
                         <span class="font-serif text-xl text-[#243c5a] group-hover:text-[#6ed8d9] transition-colors">MARCE ANAHATA</span>
@@ -591,7 +591,7 @@ const websiteSchema = JSON.stringify({
                 </a>
 
                 <div class="hidden md:flex gap-8 items-center">
-                    <a href={lang === 'en' ? '/en/' : '/'} class="text-sm font-medium text-stone-600 hover:text-[#243c5a] transition-colors">{t('nav.home')}</a>
+                    <a href={lang === 'en' ? '/en' : '/'} class="text-sm font-medium text-stone-600 hover:text-[#243c5a] transition-colors">{t('nav.home')}</a>
                     <a href={lang === 'en' ? '/en/blog' : '/blog'} class="text-sm font-medium text-stone-600 hover:text-[#243c5a] transition-colors">{t('nav.blog')}</a>
                     <a href="/viaje-450-vibraciones" class="text-sm font-semibold text-[#6ed8d9] hover:text-[#243c5a] transition-colors whitespace-nowrap">{t('nav.viaje')}</a>
                     <!-- Dropdown Servicios -->
@@ -648,7 +648,7 @@ const websiteSchema = JSON.stringify({
                         <svg class="w-7 h-7 text-[#243c5a]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
                     </summary>
                     <nav aria-label="Menú principal mobile" class="absolute right-0 top-full mt-2 w-56 bg-white rounded-xl shadow-xl border border-stone-100 p-4 flex flex-col gap-3 z-50">
-                        <a href={lang === 'en' ? '/en/' : '/'} class="text-stone-700 hover:text-[#6ed8d9]">{t('nav.home')}</a>
+                        <a href={lang === 'en' ? '/en' : '/'} class="text-stone-700 hover:text-[#6ed8d9]">{t('nav.home')}</a>
                         <a href={lang === 'en' ? '/en/blog' : '/blog'} class="text-stone-700 hover:text-[#6ed8d9]">{t('nav.blog')}</a>
                         <a href="/viaje-450-vibraciones" class="font-semibold text-[#6ed8d9] hover:text-[#5ac5c6]">{t('nav.viaje')}</a>
                         <div class="border-t border-stone-100 pt-3">
@@ -749,7 +749,7 @@ const websiteSchema = JSON.stringify({
                     <div>
                         <div class="text-white font-serif text-lg mb-6">{t('footer.explore')}</div>
                         <ul class="space-y-3 text-sm">
-                            <li><a href={lang === 'en' ? '/en/' : '/'} class="hover:text-[#6ed8d9] transition-colors">{t('nav.home')}</a></li>
+                            <li><a href={lang === 'en' ? '/en' : '/'} class="hover:text-[#6ed8d9] transition-colors">{t('nav.home')}</a></li>
                             <li><a href={lang === 'en' ? '/en/blog' : '/blog'} class="hover:text-[#6ed8d9] transition-colors">{t('nav.blog')}</a></li>
                             <li><a href={lang === 'en' ? '/en/sobre-mi' : '/sobre-mi'} class="hover:text-[#6ed8d9] transition-colors">{t('nav.aboutme')}</a></li>
                             <li><a href={lang === 'en' ? '/en/faq' : '/faq'} class="hover:text-[#6ed8d9] transition-colors">{t('nav.faq')}</a></li>
