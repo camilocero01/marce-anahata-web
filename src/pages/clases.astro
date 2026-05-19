@@ -23,9 +23,9 @@ const faqItems = [
       'Incluyen kriyas, pranayamas, meditación y mantras para fortalecer sistema nervioso, mejorar enfoque y elevar la energía vital en la vida diaria.'
   },
   {
-    question: '¿Dónde se dictan las clases de Kundalini Yoga?',
+    question: '¿Dónde se dictan las clases de yoga?',
     answer:
-      'Las clases se realizan en Envigado y Envigado y El Poblado, y también hay opciones online según la modalidad y disponibilidad.'
+      'Las clases se realizan en nuestro Centro de Bienestar en Envigado, zona La Frontera con El Poblado (Cl. 23 Sur #42B-60). Estamos a 2 minutos de El Poblado, fácil acceso desde Medellín y Envigado.'
   },
   {
     question: '¿Necesito experiencia previa para empezar?',
@@ -41,6 +41,11 @@ const faqItems = [
     question: '¿Cómo puedo reservar mi clase?',
     answer:
       'Puedes reservar por WhatsApp desde esta página para conocer horarios vigentes, packs mensuales y opciones personalizadas.'
+  },
+  {
+    question: '¿Ofrecen clases de Pilates cerca de El Poblado o Envigado?',
+    answer:
+      'No dictamos Pilates tradicional, pero contamos con Yogalates —una fusión que combina los principios de Pilates con la profundidad del yoga— y Barre Balance, que trabaja fuerza, equilibrio y postura con técnica de barra. Muchos estudiantes los eligen como alternativa directa al Pilates. Escríbenos y te contamos cuál se adapta mejor a tu objetivo.'
   }
 ];
 
@@ -84,7 +89,7 @@ const offerings = [
 ];
 ---
 
-<Layout title="Clases y Talleres | Marce Anahata" description="Clases de kundalini yoga presenciales y online en Medellín. Aprende técnicas de respiración consciente, meditación y kriyas para despertar tu energía vital.">
+<Layout title="Clases de Yoga en Envigado — La Frontera con El Poblado | Marce Anahata" description="Clases de yoga en Envigado a 2 minutos de El Poblado. Kundalini Yoga, Yin Yoga, Yogalates, Yoga Nidra, Vinyasa Detox, Barre Balance y más. Grupos abiertos y sesiones privadas en La Frontera.">
   <Fragment slot="head">
     <script type="application/ld+json">{JSON.stringify({
       "@context": "https://schema.org",
@@ -107,25 +112,27 @@ const offerings = [
     <script type="application/ld+json">{JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Service",
-      "name": "Clases y Talleres de Kundalini Yoga en Medellín",
-      "description": "Clases de Kundalini Yoga en Medellín para fortalecer cuerpo, calmar mente y despertar energía vital con respiración, meditación y kriyas.",
-      "serviceType": "Kundalini Yoga Classes",
+      "name": "Clases de Yoga en Envigado — La Frontera con El Poblado",
+      "description": "Clases de yoga presenciales en Envigado, a 2 minutos de El Poblado. Kundalini Yoga, Yin Yoga, Yogalates, Yoga Nidra, Yoga Restaurativo, Vinyasa Detox, Barre Balance y más. Grupos abiertos con horarios fijos y sesiones privadas personalizadas.",
+      "serviceType": "Yoga Classes",
       "provider": {
         "@type": "Person",
         "name": "Marce Anahata",
         "url": "https://www.marceanahata.com/sobre-mi"
       },
-      "areaServed": {
-        "@type": "City",
-        "name": "Medellín"
-      },
+      "areaServed": [
+        { "@type": "City", "name": "Envigado" },
+        { "@type": "Neighborhood", "name": "El Poblado" },
+        { "@type": "Neighborhood", "name": "La Frontera" },
+        { "@type": "City", "name": "Medellín" }
+      ],
       "offers": {
         "@type": "Offer",
         "availability": "https://schema.org/InStock",
         "url": serviceUrl
       },
       "url": serviceUrl,
-      "keywords": "kundalini yoga Medellín, clases de yoga Medellín, meditación, pranayama, bienestar integral",
+      "keywords": "clases de yoga Envigado, yoga El Poblado, yoga La Frontera Envigado, Kundalini Yoga, Yin Yoga, Yogalates, Yoga Nidra, Yoga Restaurativo, Vinyasa Detox, Barre Balance, clases de yoga Medellín, pranayama, meditación, bienestar integral, pilates Envigado, pilates El Poblado, pilates La Frontera, alternativa pilates Medellín, clases pilates Envigado, pilates y yoga Envigado",
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "5.0",
@@ -137,11 +144,11 @@ const offerings = [
     <script type="application/ld+json">{JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Course",
-      "name": "Kundalini Yoga en Medellín — Clases y Talleres",
-      "description": "Clases de Kundalini Yoga presenciales y online en Envigado y Envigado y El Poblado. Kriyas, pranayamas, meditación y mantras para fortalecer el sistema nervioso, mejorar el enfoque y despertar la energía vital. Aptas para principiantes y practicantes con experiencia.",
+      "name": "Clases de Yoga en Envigado — La Frontera con El Poblado",
+      "description": "Clases de yoga presenciales en Envigado, zona La Frontera con El Poblado. Kundalini Yoga, Yin Yoga y Pranayama, Yogalates, Yoga Nidra, Yoga Restaurativo, Vinyasa Detox, Barre Balance y más. Horarios de lunes a sábado. Aptas para principiantes y practicantes con experiencia.",
       "url": serviceUrl,
       "inLanguage": "es",
-      "teaches": ["Kundalini Yoga", "Pranayama", "Meditación", "Kriyas", "Mantras", "Sistema nervioso"],
+      "teaches": ["Kundalini Yoga", "Yin Yoga", "Pranayama", "Yoga Nidra", "Yoga Restaurativo", "Yogalates", "Vinyasa Detox", "Barre Balance", "Yoga para la Ansiedad", "Meditación", "Kriyas", "Mantras"],
       "educationalLevel": "Principiante a avanzado",
       "provider": {
         "@type": "Person",
@@ -161,11 +168,11 @@ const offerings = [
           },
           "location": {
             "@type": "Place",
-            "name": "Marce Anahata Centro de Bienestar",
+            "name": "Marce Anahata Centro de Bienestar — La Frontera con El Poblado",
             "address": {
               "@type": "PostalAddress",
-              "streetAddress": "Cl. 23 Sur #42B-60",
-              "addressLocality": "Medellín",
+              "streetAddress": "Cl. 23 Sur #42B-60, Los Cristales",
+              "addressLocality": "Envigado",
               "addressRegion": "Antioquia",
               "addressCountry": "CO"
             }
@@ -265,7 +272,10 @@ const offerings = [
             <span class="bg-[#5d5a8c]/10 px-4 py-2 rounded-full">Vitalidad Física</span>
             <span class="bg-[#5d5a8c]/10 px-4 py-2 rounded-full">Conexión Espiritual</span>
         </div>
-        <p class="text-[#243c5a]/70 mt-6 text-sm italic">
+        <p class="text-[#243c5a]/70 mt-4 text-sm">
+          📍 Estamos en <strong class="text-[#243c5a]">Envigado, zona La Frontera con El Poblado</strong> — a 2 minutos de El Poblado, con clases de lunes a sábado.
+        </p>
+        <p class="text-[#243c5a]/70 mt-3 text-sm italic">
           ¿Tu empresa busca herramientas para el manejo del estrés? Conoce nuestros <a href="/bienestar-corporativo" class="text-[#5d5a8c] font-medium hover:text-[#6ed8d9] transition-colors underline decoration-[#6ed8d9]/50">talleres de bienestar corporativo personalizados</a>.
         </p>
       </div>
