@@ -29,7 +29,7 @@ const faqItems = [
   {
     question: '¿Dónde se realiza el masaje?',
     answer:
-      'Las sesiones se realizan en Marce Anahata Centro de Bienestar, en Envigado (a 2 cuadras de El Poblado), Colombia. Los detalles de reserva se confirman directamente por WhatsApp.'
+      'Las sesiones se realizan en Marce Anahata Centro de Bienestar, en Envigado, zona La Frontera con El Poblado (Cl. 23 Sur #42B-60). La ubicación exacta se comparte al confirmar la reserva por WhatsApp.'
   },
   {
     question: '¿Cuánto dura la sesión y cuál es la inversión?',
@@ -105,6 +105,7 @@ const masajePosts = (await getCollection('blog', ({ data, slug }) =>
       "serviceType": "Masaje Ayurvédico",
       "provider": {
         "@type": "Person",
+        "@id": "https://www.marceanahata.com/#person",
         "name": "Marce Anahata",
         "url": "https://www.marceanahata.com/sobre-mi",
         "telephone": "+573207329921",
@@ -165,6 +166,7 @@ const masajePosts = (await getCollection('blog', ({ data, slug }) =>
         "streetAddress": "Cl. 23 Sur #42B-60, Los Cristales",
         "addressLocality": "Envigado",
         "addressRegion": "Antioquia",
+        "postalCode": "055420",
         "addressCountry": "CO"
       },
       "sameAs": [
@@ -522,12 +524,17 @@ const masajePosts = (await getCollection('blog', ({ data, slug }) =>
         <p class="text-[#243c5a]/70 max-w-2xl mx-auto">Todo lo que necesitas saber antes de tu primera sesión.</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="flex flex-col gap-3 max-w-3xl mx-auto">
         {faqItems.map((item) => (
-          <article class="bg-white p-6 rounded-xl border border-stone-100 shadow-sm">
-            <h3 class="text-lg font-semibold text-[#243c5a] mb-3">{item.question}</h3>
-            <p class="text-sm text-[#243c5a]/80 leading-relaxed">{item.answer}</p>
-          </article>
+          <details class="group bg-white rounded-xl border border-stone-100 shadow-sm hover:border-[#6ed8d9]/40 transition-colors">
+            <summary class="flex items-center justify-between gap-4 px-6 py-5 cursor-pointer list-none">
+              <h3 class="text-base font-semibold text-[#243c5a]">{item.question}</h3>
+              <svg class="w-5 h-5 text-[#5d5a8c] shrink-0 transition-transform duration-300 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </summary>
+            <p class="px-6 pb-5 text-[#243c5a]/75 leading-relaxed text-sm border-t border-stone-100 pt-4">{item.answer}</p>
+          </details>
         ))}
       </div>
     </div>
