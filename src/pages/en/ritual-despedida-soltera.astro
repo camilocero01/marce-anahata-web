@@ -19,11 +19,11 @@ const serviceUrl = `https://www.marceanahata.com${Astro.url.pathname}`;
 const faqItems = [
   {
     question: `What is included in ${serviceInfo.title}?`,
-    answer: `It is a personalized ritual experience in Medellín designed to honor your process, elevate your energy, and create a sacred moment of transformation.`
+    answer: `The Conscious Bachelorette Ritual is a personalized sacred circle in Envigado to honor the bride with her closest friends. Includes cacao ceremony opening, symbolic acts (crown, red thread, foot washing), individual blessing rituals from each guest, and a closing sound bath to seal the energy of love.`
   },
   {
-    question: 'Where is this ritual held in Medellín?',
-    answer: 'It is held in Envigado y El Poblado. Exact location details are shared once your booking is confirmed via WhatsApp.'
+    question: 'Where is this ritual held?',
+    answer: 'It is held at our Wellness Center in Envigado, in the La Frontera area near El Poblado (Calle 23 Sur #42B-60). Exact directions are shared after booking confirmation via WhatsApp.'
   },
   {
     question: 'How long does the ritual last and how do I book?',
@@ -57,24 +57,68 @@ const ritualPosts: any[] = [];
     })}</script>
     <script type="application/ld+json">{JSON.stringify({
       "@context": "https://schema.org",
+      "@type": ["HealthAndBeautyBusiness", "SportsActivityLocation"],
+      "@id": "https://www.marceanahata.com/#business",
+      "name": "Marce Anahata Centro de Bienestar",
+      "description": "Wellness center in Envigado (La Frontera area, near El Poblado) specializing in sacred rituals, Kundalini Yoga, sound therapy, and women's circles.",
+      "url": "https://www.marceanahata.com",
+      "telephone": "+573207329921",
+      "email": "info@marceanahata.com",
+      "image": "https://www.marceanahata.com/images/social-preview-wa.jpg",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Cl. 23 Sur #42B-60, Los Cristales",
+        "addressLocality": "Envigado",
+        "addressRegion": "Antioquia",
+        "postalCode": "055420",
+        "addressCountry": "CO"
+      },
+      "sameAs": ["https://www.instagram.com/marce_anahata/", "https://www.youtube.com/@marce_anahata", "https://www.tiktok.com/@marce_anahata"],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "11",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
+    })}</script>
+    <script type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
       "@type": "Service",
       "name": serviceInfo.title,
-      "description": "Personalized ritual service in Medellín for emotional, energetic, and spiritual transformation.",
-      "serviceType": "Ritual Service",
+      "description": "Conscious Bachelorette Ritual (Goddess Circle) in Envigado (La Frontera area, near El Poblado, Medellín): a personalized sacred circle to honor the bride with her closest friends. Includes cacao ceremony, symbolic acts (crown, red thread, foot washing), blessing rituals from each guest, and sound bath.",
+      "serviceType": "Conscious Bachelorette Ritual",
       "provider": {
         "@type": "Person",
         "name": "Marce Anahata",
-        "url": "https://www.marceanahata.com/en/sobre-mi"
+        "url": "https://www.marceanahata.com/en/sobre-mi",
+        "telephone": "+573207329921",
+        "email": "info@marceanahata.com",
+        "sameAs": ["https://www.instagram.com/marce_anahata/", "https://www.youtube.com/@marce_anahata"]
       },
-      "areaServed": { "@type": "City", "name": "Medellín" },
+      "areaServed": [
+        { "@type": "City", "name": "Envigado" },
+        { "@type": "Neighborhood", "name": "El Poblado" },
+        { "@type": "Neighborhood", "name": "La Frontera" },
+        { "@type": "City", "name": "Medellín" }
+      ],
       "offers": {
         "@type": "Offer",
+        "price": "138000",
         "priceCurrency": "COP",
         "availability": "https://schema.org/InStock",
         "url": serviceUrl
       },
       "url": serviceUrl,
-      "keywords": "rituals Medellín, personalized ritual, energy healing, spiritual wellness"
+      "keywords": "conscious bachelorette ritual Envigado, goddess circle near El Poblado, spiritual bachelorette Medellín, sacred bridal ceremony Colombia",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "11",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
     })}</script>
     <script type="application/ld+json">{JSON.stringify({
       "@context": "https://schema.org",

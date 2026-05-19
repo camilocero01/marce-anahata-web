@@ -21,11 +21,11 @@ const serviceUrl = `https://www.marceanahata.com${Astro.url.pathname}`;
 const faqItems = [
   {
     question: `¿En qué consiste ${serviceInfo.title}?`,
-    answer: `Es una experiencia ritual personalizada para honrar tu proceso, elevar tu energía y crear un momento sagrado de transformación en Medellín.`
+    answer: `El Ritual de Pareja es una experiencia sagrada personalizada en Envigado para reconectar corazones y sanar vínculos. Incluye apertura con cacao ceremonial, Venus Kriyas de Kundalini Yoga, meditación tántrica blanca y baño de sonido con cuencos de cristal y gongs para integrar la energía.`
   },
   {
-    question: '¿Dónde se realiza este ritual en Medellín?',
-    answer: 'Se realiza en Envigado y Envigado y El Poblado. Los detalles de la ubicación se comparten al confirmar la reserva por WhatsApp.'
+    question: '¿Dónde se realiza este ritual?',
+    answer: 'Se realiza en nuestro Centro de Bienestar en Envigado, zona La Frontera con El Poblado (Cl. 23 Sur #42B-60). La ubicación exacta se comparte al confirmar la reserva por WhatsApp.'
   },
   {
     question: '¿Cuánto dura el ritual y cómo se reserva?',
@@ -56,9 +56,17 @@ const ritualesPosts = (await getCollection('blog', ({ data, slug }) =>
       "provider": {
         "@type": "Person",
         "name": "Marce Anahata",
-        "url": "https://www.marceanahata.com/sobre-mi"
+        "url": "https://www.marceanahata.com/sobre-mi",
+        "telephone": "+573207329921",
+        "email": "info@marceanahata.com",
+        "sameAs": ["https://www.instagram.com/marce_anahata/", "https://www.youtube.com/@marce_anahata"]
       },
-      "areaServed": { "@type": "City", "name": "Medellín" },
+      "areaServed": [
+        { "@type": "City", "name": "Envigado" },
+        { "@type": "Neighborhood", "name": "El Poblado" },
+        { "@type": "Neighborhood", "name": "La Frontera" },
+        { "@type": "City", "name": "Medellín" }
+      ],
       "offers": {
         "@type": "Offer",
         "price": "360000",
@@ -67,7 +75,14 @@ const ritualesPosts = (await getCollection('blog', ({ data, slug }) =>
         "url": serviceUrl
       },
       "url": serviceUrl,
-      "keywords": "ritual de pareja Medellín, ceremonia sagrada parejas, reconexión de pareja, amor consciente El Poblado Medellín"
+      "keywords": "ritual de pareja Envigado, ceremonia sagrada parejas El Poblado, reconexión de pareja Medellín, amor consciente Envigado, terapia de pareja ritual La Frontera",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "11",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
     })}</script>
     <script type="application/ld+json">{JSON.stringify({
       "@context": "https://schema.org",
@@ -86,6 +101,34 @@ const ritualesPosts = (await getCollection('blog', ({ data, slug }) =>
         { "@type": "ListItem", "position": 2, "name": "Rituales Sagrados", "item": "https://www.marceanahata.com/rituales" },
         { "@type": "ListItem", "position": 3, "name": "Ritual de Pareja", "item": serviceUrl }
       ]
+    })}</script>
+    <script type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": ["HealthAndBeautyBusiness", "SportsActivityLocation"],
+      "@id": "https://www.marceanahata.com/#business",
+      "name": "Marce Anahata Centro de Bienestar",
+      "description": "Centro de bienestar en Envigado (La Frontera con El Poblado) especializado en rituales sagrados, Kundalini Yoga, terapia de sonido y círculos de mujeres.",
+      "url": "https://www.marceanahata.com",
+      "telephone": "+573207329921",
+      "email": "info@marceanahata.com",
+      "image": "https://www.marceanahata.com/images/social-preview-wa.jpg",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Cl. 23 Sur #42B-60, Los Cristales",
+        "addressLocality": "Envigado",
+        "addressRegion": "Antioquia",
+        "postalCode": "055420",
+        "addressCountry": "CO"
+      },
+      "sameAs": ["https://www.instagram.com/marce_anahata/", "https://www.youtube.com/@marce_anahata", "https://www.tiktok.com/@marce_anahata"],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "11",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
     })}</script>
     <meta property="og:locale" content="es_CO" />
   </Fragment>

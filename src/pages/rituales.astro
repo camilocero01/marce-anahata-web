@@ -22,7 +22,7 @@ const faqItems = [
   },
   {
     question: '¿Dónde se realizan los rituales?',
-    answer: 'Los rituales se realizan en Envigado y Envigado y El Poblado. La ubicación exacta se comparte al confirmar reserva por WhatsApp.'
+    answer: 'Los rituales se realizan en nuestro Centro de Bienestar en Envigado, zona La Frontera con El Poblado (Cl. 23 Sur #42B-60). La ubicación exacta se comparte al confirmar reserva por WhatsApp.'
   },
   {
     question: '¿Los rituales son personalizados?',
@@ -69,15 +69,23 @@ const ritualesPosts = (await getCollection('blog', ({ data, slug }) =>
     <script type="application/ld+json">{JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Service",
-      "name": "Rituales Sagrados en Medellín",
-      "description": "Rituales personalizados en Medellín para honrar ciclos de vida, elevar la vibración y promover transformación emocional y espiritual.",
+      "name": "Rituales Sagrados en Envigado — La Frontera con El Poblado",
+      "description": "Rituales sagrados personalizados en Envigado, a 2 minutos de El Poblado. Cumpleaños (vuelta al sol), ritual de pareja, baby blessing, despedida de soltera consciente y cierre y apertura de ciclo. Ceremonias con terapia de sonido y presencia consciente.",
       "serviceType": "Ritual Services",
       "provider": {
         "@type": "Person",
         "name": "Marce Anahata",
-        "url": "https://www.marceanahata.com/sobre-mi"
+        "url": "https://www.marceanahata.com/sobre-mi",
+        "telephone": "+573207329921",
+        "email": "info@marceanahata.com",
+        "sameAs": ["https://www.instagram.com/marce_anahata/", "https://www.youtube.com/@marce_anahata"]
       },
-      "areaServed": { "@type": "City", "name": "Medellín" },
+      "areaServed": [
+        { "@type": "City", "name": "Envigado" },
+        { "@type": "Neighborhood", "name": "El Poblado" },
+        { "@type": "Neighborhood", "name": "La Frontera" },
+        { "@type": "City", "name": "Medellín" }
+      ],
       "offers": {
         "@type": "Offer",
         "priceCurrency": "COP",
@@ -85,7 +93,14 @@ const ritualesPosts = (await getCollection('blog', ({ data, slug }) =>
         "url": serviceUrl
       },
       "url": serviceUrl,
-      "keywords": "rituales Medellín, ritual de pareja, baby blessing, vuelta al sol, despedida de soltera consciente"
+      "keywords": "rituales sagrados Envigado, ritual El Poblado, ritual de pareja Medellín, baby blessing Envigado, vuelta al sol Medellín, despedida de soltera consciente, cierre de ciclo, rituales personalizados Envigado, ceremonias sagradas La Frontera",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "11",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
     })}</script>
     <script type="application/ld+json">{JSON.stringify({
       "@context": "https://schema.org",
@@ -101,8 +116,23 @@ const ritualesPosts = (await getCollection('blog', ({ data, slug }) =>
     })}</script>
     <script type="application/ld+json">{JSON.stringify({
       "@context": "https://schema.org",
-      "@type": "Service",
-      "name": "Rituales Sagrados — Marce Anahata",
+      "@type": ["HealthAndBeautyBusiness", "SportsActivityLocation"],
+      "@id": "https://www.marceanahata.com/#business",
+      "name": "Marce Anahata Centro de Bienestar",
+      "description": "Centro de bienestar en Envigado (La Frontera con El Poblado) especializado en rituales sagrados, Kundalini Yoga, terapia de sonido y círculos de mujeres.",
+      "url": "https://www.marceanahata.com",
+      "telephone": "+573207329921",
+      "email": "info@marceanahata.com",
+      "image": "https://www.marceanahata.com/images/social-preview-wa.jpg",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Cl. 23 Sur #42B-60, Los Cristales",
+        "addressLocality": "Envigado",
+        "addressRegion": "Antioquia",
+        "addressCountry": "CO"
+      },
+      "sameAs": ["https://www.instagram.com/marce_anahata/", "https://www.youtube.com/@marce_anahata", "https://www.tiktok.com/@marce_anahata"],
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "5.0",

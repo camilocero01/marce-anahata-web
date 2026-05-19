@@ -21,7 +21,7 @@ const faqItems = [
   },
   {
     question: 'Where are rituals held?',
-    answer: 'Rituals are held in Envigado y El Poblado. Exact location details are shared once booking is confirmed via WhatsApp.'
+    answer: 'Rituals are held at our Wellness Center in Envigado, in the La Frontera area near El Poblado (Calle 23 Sur #42B-60). Exact directions are shared after booking confirmation via WhatsApp.'
   },
   {
     question: 'Are rituals personalized?',
@@ -94,16 +94,52 @@ const ritualPosts: any[] = [];
     })}</script>
     <script type="application/ld+json">{JSON.stringify({
       "@context": "https://schema.org",
+      "@type": ["HealthAndBeautyBusiness", "SportsActivityLocation"],
+      "@id": "https://www.marceanahata.com/#business",
+      "name": "Marce Anahata Centro de Bienestar",
+      "description": "Wellness center in Envigado (La Frontera area, near El Poblado) specializing in sacred rituals, Kundalini Yoga, sound therapy, and women's circles.",
+      "url": "https://www.marceanahata.com",
+      "telephone": "+573207329921",
+      "email": "info@marceanahata.com",
+      "image": "https://www.marceanahata.com/images/social-preview-wa.jpg",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Cl. 23 Sur #42B-60, Los Cristales",
+        "addressLocality": "Envigado",
+        "addressRegion": "Antioquia",
+        "postalCode": "055420",
+        "addressCountry": "CO"
+      },
+      "sameAs": ["https://www.instagram.com/marce_anahata/", "https://www.youtube.com/@marce_anahata", "https://www.tiktok.com/@marce_anahata"],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "11",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
+    })}</script>
+    <script type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
       "@type": "Service",
-      "name": "Sacred Rituals in Medellín",
-      "description": "Personalized rituals in Medellín to honor life cycles, elevate vibration, and support emotional and spiritual transformation.",
+      "name": "Sacred Rituals in Envigado — La Frontera near El Poblado",
+      "description": "Personalized sacred rituals in Envigado (La Frontera area, near El Poblado, Medellín): couple ceremonies, birthday solar return, baby blessing, conscious bachelorette, and closure-opening rituals. All ceremonies include sound therapy and conscious presence.",
       "serviceType": "Ritual Services",
       "provider": {
         "@type": "Person",
         "name": "Marce Anahata",
-        "url": "https://www.marceanahata.com/en/sobre-mi"
+        "url": "https://www.marceanahata.com/en/sobre-mi",
+        "telephone": "+573207329921",
+        "email": "info@marceanahata.com",
+        "sameAs": ["https://www.instagram.com/marce_anahata/", "https://www.youtube.com/@marce_anahata"]
       },
-      "areaServed": { "@type": "City", "name": "Medellín" },
+      "areaServed": [
+        { "@type": "City", "name": "Envigado" },
+        { "@type": "Neighborhood", "name": "El Poblado" },
+        { "@type": "Neighborhood", "name": "La Frontera" },
+        { "@type": "City", "name": "Medellín" }
+      ],
       "offers": {
         "@type": "Offer",
         "priceCurrency": "COP",
@@ -111,7 +147,14 @@ const ritualPosts: any[] = [];
         "url": serviceUrl
       },
       "url": serviceUrl,
-      "keywords": "rituals Medellín, couple ritual, baby blessing, solar return ritual, conscious bachelorette"
+      "keywords": "sacred rituals Envigado, rituals near El Poblado, couple ritual Medellín, baby blessing Envigado, solar return ritual Colombia, conscious bachelorette Medellín",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "11",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
     })}</script>
     <script type="application/ld+json">{JSON.stringify({
       "@context": "https://schema.org",
