@@ -56,8 +56,9 @@ const offerings = [
   {
     icon: "🧘‍♀️",
     title: "Clases Regulares (Grupales)",
-    description: "Tu espacio semanal de mantenimiento energético. Únete a la comunidad para practicar kriyas, pranayamas y meditaciones que te sostienen en la rutina.",
-    details: ["Presencial y Online", "Frecuencia semanal", "Packs mensuales disponibles"],
+    description: "Tu espacio semanal de mantenimiento energético. Clases abiertas al público en nuestro Centro de Bienestar, con horarios fijos cada semana. Ideal para quienes buscan una práctica constante en comunidad.",
+    details: ["En el Centro de Bienestar", "Horarios fijos semanales", "Grupo abierto — sin inscripción previa", "Packs mensuales disponibles"],
+    scheduleLink: "/clases#horarios",
     cta: "Reservar Ahora",
     whatsappMsg: "Hola Marce Anahata, quiero reservar mi lugar en las clases grupales regulares. ¿Cómo procedo?",
     tarifaLink: "/tarifas#clases-grupales"
@@ -65,8 +66,8 @@ const offerings = [
   {
     icon: "✨",
     title: "Sesiones Privadas (1 a 1)",
-    description: "Un acompañamiento personalizado y profundo. Diseñamos la práctica según tus necesidades específicas (ansiedad, propósito, vitalidad, etc.).",
-    details: ["Atención 100% personalizada", "Horarios flexibles", "Seguimiento cercano"],
+    description: "Acompañamiento personalizado en nuestro Centro de Bienestar con un grupo cerrado y exclusivo. La práctica se diseña según las necesidades específicas del grupo: ansiedad, propósito, vitalidad, etc.",
+    details: ["En el Centro de Bienestar", "Grupo cerrado y personalizado", "Horarios acordados con el grupo", "Seguimiento y progresión"],
     cta: "Agendar Sesión",
     whatsappMsg: "Hola Marce Anahata, quiero agendar una sesión privada de yoga personalizada. ¿Qué disponibilidad tienes?",
     tarifaLink: "/tarifas#clases-personalizadas"
@@ -74,8 +75,8 @@ const offerings = [
   {
     icon: "🔮",
     title: "Talleres Temáticos Profundos",
-    description: "Inmersiones de fin de semana o varias horas para trabajar temas específicos: Prosperidad, Relaciones, Sanación de Linaje, Chakras, etc.",
-    details: ["Temáticas rotativas", "Mayor duración y profundidad", "Material de apoyo"],
+    description: "Inmersiones de mayor duración realizadas por fuera del Centro de Bienestar, en espacios especiales según la temática. Diseñadas a medida para grupos, empresas o comunidades con un propósito concreto.",
+    details: ["Fuera del Centro de Bienestar", "Espacio adaptado a la temática", "Diseño personalizado por grupo", "Temáticas: chakras, prosperidad, sanación y más"],
     cta: "Consultar Talleres",
     whatsappMsg: "Hola Marce Anahata, quisiera información sobre los próximos talleres temáticos disponibles.",
     tarifaLink: "/tarifas#talleres"
@@ -288,7 +289,7 @@ const offerings = [
           <h3 class="text-2xl font-serif text-[#243c5a] mb-4">{offer.title}</h3>
           <p class="text-[#243c5a]/70 mb-8 leading-relaxed flex-grow">{offer.description}</p>
           
-          <ul class="mb-8 space-y-3">
+          <ul class="mb-4 space-y-3">
             {offer.details.map((detail) => (
                 <li class="flex items-center gap-2 text-sm text-[#5d5a8c] font-medium">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 text-[#6ed8d9]">
@@ -298,6 +299,18 @@ const offerings = [
                 </li>
             ))}
           </ul>
+
+          {'scheduleLink' in offer && (
+            <a
+              href={offer.scheduleLink}
+              class="inline-flex items-center gap-1.5 text-sm text-[#243c5a] font-medium hover:text-[#5d5a8c] transition-colors mb-6"
+            >
+              <svg class="w-4 h-4 text-[#6ed8d9]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
+              </svg>
+              Ver horarios disponibles →
+            </a>
+          )}
 
           <div class="flex flex-col gap-3">
             <a 
@@ -330,7 +343,8 @@ const offerings = [
         <p class="text-[#243c5a]/70 text-lg max-w-2xl mx-auto">Elige el horario que mejor se adapte a tu rutina. Todas nuestras clases combaten el estrés y despiertan tu vitalidad.</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+
         {/* LUNES */}
         <div class="group relative">
           <div class="absolute -inset-0.5 bg-gradient-to-r from-[#5d5a8c] to-[#6ed8d9] rounded-2xl opacity-20 group-hover:opacity-100 transition duration-300 blur"></div>
@@ -340,15 +354,15 @@ const offerings = [
               Lunes
             </h3>
             <div class="space-y-4">
-              <div class="pb-4 border-b border-stone-200">
-                <p class="text-sm font-medium text-[#5d5a8c] mb-1">6:30 AM</p>
-                <p class="text-[#243c5a] font-semibold">Kundalini Yoga</p>
-                <p class="text-xs text-[#243c5a]/60">Meditación</p>
+              <div class="pb-4 border-b border-stone-100">
+                <p class="text-sm font-medium text-[#5d5a8c] mb-1">8:30 AM</p>
+                <p class="text-[#243c5a] font-semibold">Yoga para la Ansiedad y el Estrés</p>
+                <p class="text-xs text-[#243c5a]/60">Gestión del sistema nervioso</p>
               </div>
               <div>
-                <p class="text-sm font-medium text-[#5d5a8c] mb-1">7:00 PM</p>
-                <p class="text-[#243c5a] font-semibold">Kundalini Yoga</p>
-                <p class="text-xs text-[#243c5a]/60">Meditación</p>
+                <p class="text-sm font-medium text-[#5d5a8c] mb-1">6:30 PM</p>
+                <p class="text-[#243c5a] font-semibold">Yin Yoga y Pranayama</p>
+                <p class="text-xs text-[#243c5a]/60">Respiración y apertura profunda</p>
               </div>
             </div>
           </div>
@@ -362,10 +376,20 @@ const offerings = [
               <span class="text-2xl">🕯️</span>
               Martes
             </h3>
-            <div>
-              <p class="text-sm font-medium text-[#5d5a8c] mb-1">10:30 AM</p>
-              <p class="text-[#243c5a] font-semibold">Yoga Restaurativo</p>
-              <p class="text-xs text-[#243c5a]/60">Relajo profundo y sanación</p>
+            <div class="space-y-4">
+              <div class="pb-4 border-b border-stone-100">
+                <p class="text-sm font-medium text-[#5d5a8c] mb-1">8:30 AM</p>
+                <p class="text-[#243c5a] font-semibold">Kundalini Yoga</p>
+                <p class="text-xs text-[#243c5a]/60">Despertar y energía vital</p>
+              </div>
+              <div>
+                <p class="text-sm font-medium text-[#5d5a8c] mb-1">6:30 PM</p>
+                <div class="flex items-center gap-2 mb-0.5">
+                  <p class="text-[#243c5a] font-semibold">Yogalates</p>
+                  <span class="text-[10px] font-bold uppercase tracking-wide text-[#243c5a] bg-[#6ed8d9] px-1.5 py-0.5 rounded-full">Nueva</span>
+                </div>
+                <p class="text-xs text-[#243c5a]/60">Nueva fusión — Yoga + Pilates</p>
+              </div>
             </div>
           </div>
         </div>
@@ -378,10 +402,25 @@ const offerings = [
               <span class="text-2xl">⚡</span>
               Miércoles
             </h3>
-            <div>
-              <p class="text-sm font-medium text-[#5d5a8c] mb-1">8:30 AM</p>
-              <p class="text-[#243c5a] font-semibold">Yoga Fit</p>
-              <p class="text-xs text-[#243c5a]/60">Energía y fortalecimiento</p>
+            <div class="space-y-4">
+              <div class="pb-4 border-b border-stone-100">
+                <p class="text-sm font-medium text-[#5d5a8c] mb-1">7:30 AM</p>
+                <p class="text-[#243c5a] font-semibold">Yoga Nidra</p>
+                <p class="text-xs text-[#243c5a]/60">Yoga del sueño consciente</p>
+              </div>
+              <div class="pb-4 border-b border-stone-100">
+                <p class="text-sm font-medium text-[#5d5a8c] mb-1">8:30 AM</p>
+                <div class="flex items-center gap-2 mb-0.5">
+                  <p class="text-[#243c5a] font-semibold">Yogalates</p>
+                  <span class="text-[10px] font-bold uppercase tracking-wide text-[#243c5a] bg-[#6ed8d9] px-1.5 py-0.5 rounded-full">Nueva</span>
+                </div>
+                <p class="text-xs text-[#243c5a]/60">Nueva fusión — Yoga + Pilates</p>
+              </div>
+              <div>
+                <p class="text-sm font-medium text-[#5d5a8c] mb-1">5:30 PM</p>
+                <p class="text-[#243c5a] font-semibold">Kundalini Yoga</p>
+                <p class="text-xs text-[#243c5a]/60">Despertar y energía vital</p>
+              </div>
             </div>
           </div>
         </div>
@@ -394,10 +433,20 @@ const offerings = [
               <span class="text-2xl">🧘</span>
               Jueves
             </h3>
-            <div>
-              <p class="text-sm font-medium text-[#5d5a8c] mb-1">10:30 AM</p>
-              <p class="text-[#243c5a] font-semibold">Kundalini Yoga</p>
-              <p class="text-xs text-[#243c5a]/60">Despertar y conciencia</p>
+            <div class="space-y-4">
+              <div class="pb-4 border-b border-stone-100">
+                <p class="text-sm font-medium text-[#5d5a8c] mb-1">8:30 AM</p>
+                <p class="text-[#243c5a] font-semibold">Yoga Restaurativo</p>
+                <p class="text-xs text-[#243c5a]/60">Relajo profundo y sanación</p>
+              </div>
+              <div>
+                <p class="text-sm font-medium text-[#5d5a8c] mb-1">7:00 PM</p>
+                <div class="flex items-center gap-2 mb-0.5">
+                  <p class="text-[#243c5a] font-semibold">Barre Balance</p>
+                  <span class="text-[10px] font-bold uppercase tracking-wide text-[#243c5a] bg-[#6ed8d9] px-1.5 py-0.5 rounded-full">Nueva</span>
+                </div>
+                <p class="text-xs text-[#243c5a]/60">Equilibrio y gracia con barra</p>
+              </div>
             </div>
           </div>
         </div>
@@ -410,10 +459,17 @@ const offerings = [
               <span class="text-2xl">🌊</span>
               Viernes
             </h3>
-            <div>
-              <p class="text-sm font-medium text-[#5d5a8c] mb-1">4:00 PM</p>
-              <p class="text-[#243c5a] font-semibold">Yoga Flow</p>
-              <p class="text-xs text-[#243c5a]/60">Movimiento fluido y grácil</p>
+            <div class="space-y-4">
+              <div class="pb-4 border-b border-stone-100">
+                <p class="text-sm font-medium text-[#5d5a8c] mb-1">8:30 AM</p>
+                <p class="text-[#243c5a] font-semibold">Vinyasa Detox</p>
+                <p class="text-xs text-[#243c5a]/60">Flujo purificador</p>
+              </div>
+              <div>
+                <p class="text-sm font-medium text-[#5d5a8c] mb-1">4:00 PM</p>
+                <p class="text-[#243c5a] font-semibold">Yoga Flow</p>
+                <p class="text-xs text-[#243c5a]/60">Movimiento fluido y grácil</p>
+              </div>
             </div>
           </div>
         </div>
@@ -433,6 +489,7 @@ const offerings = [
             </div>
           </div>
         </div>
+
       </div>
 
       <div class="bg-gradient-to-r from-[#5d5a8c]/5 to-[#6ed8d9]/5 rounded-2xl p-8 border border-[#6ed8d9]/20">
