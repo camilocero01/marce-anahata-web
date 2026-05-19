@@ -23,6 +23,29 @@ const allPosts = (await getCollection('blog', ({ data, slug }) => !data.draft &&
 const pageTitle = "Kundalini Yoga and Sound Therapy in Medellín";
 const pageDescription = "Wellness center in El Poblado offering Kundalini Yoga, sound therapy, sacred rituals, and corporate wellness programs.";
 
+const homeFaqItems = [
+  {
+    question: 'What is a gong bath and what is it for?',
+    answer: 'A gong bath is a sound therapy session where you lie down and receive the gong\'s frequencies directly into your body. It acts on the nervous system, reduces stress and anxiety, improves sleep, and releases accumulated tension. No prior experience needed — just arrive, lie down, and receive.'
+  },
+  {
+    question: 'Where is the Marce Anahata Wellness Center located?',
+    answer: 'We are in Envigado, in the La Frontera area near El Poblado (Calle 23 Sur #42B-60, Los Cristales). Just 2 minutes from El Poblado, with easy access from Medellín.'
+  },
+  {
+    question: 'Do I need prior experience for yoga classes?',
+    answer: 'No. All classes adapt to your level. We offer Kundalini Yoga, Yin, Restorative, Yogalates and Vinyasa — practices for beginners and advanced practitioners alike. All you need is comfortable clothing and an open mind.'
+  },
+  {
+    question: 'What types of sacred rituals do you offer?',
+    answer: 'We offer personalized rituals for different life moments: Birthday Solar Return Ritual, Couple Ritual, Baby Blessing, Conscious Bachelorette Ritual, and Closure & Opening Ritual. Each ceremony includes sound therapy and is designed around your personal intention.'
+  },
+  {
+    question: 'How do I book a session or class?',
+    answer: 'You can book directly via WhatsApp at +57 320 732 9921, or use the contact form on this site. For sacred rituals, a 50% deposit is required to hold your date.'
+  }
+];
+
 const serviciosHome = [
   {
     titulo: "Sound Therapy",
@@ -65,6 +88,79 @@ const serviciosHome = [
 
 <Layout title={pageTitle} description={pageDescription} lang="en">
   <Fragment slot="head">
+    <script type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": ["HealthAndBeautyBusiness", "SportsActivityLocation"],
+      "@id": "https://www.marceanahata.com/#business",
+      "name": "Marce Anahata Centro de Bienestar",
+      "description": "Wellness center in Envigado (La Frontera area, near El Poblado, Medellín) specializing in sound therapy, gong baths, Kundalini Yoga, sacred rituals, women's conscious circles, and Ayurvedic massages.",
+      "url": "https://www.marceanahata.com",
+      "telephone": "+573207329921",
+      "email": "info@marceanahata.com",
+      "image": "https://www.marceanahata.com/images/social-preview-wa.jpg",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Cl. 23 Sur #42B-60, Los Cristales",
+        "addressLocality": "Envigado",
+        "addressRegion": "Antioquia",
+        "postalCode": "055420",
+        "addressCountry": "CO"
+      },
+      "openingHoursSpecification": [
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "07:00", "closes": "20:00" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "08:00", "closes": "14:00" }
+      ],
+      "sameAs": ["https://www.instagram.com/marce_anahata/", "https://www.youtube.com/@marce_anahata", "https://www.tiktok.com/@marce_anahata"],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "11",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Wellness Services",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sound Therapy", "url": "https://www.marceanahata.com/en/terapia-sonido" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Gong Bath", "url": "https://www.marceanahata.com/en/bano-de-gong" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Kundalini Yoga & Classes", "url": "https://www.marceanahata.com/en/clases" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sacred Rituals", "url": "https://www.marceanahata.com/en/rituales" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Women's Conscious Circle", "url": "https://www.marceanahata.com/en/circulo-mujeres-conscientes" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ayurvedic Massages & Marma Points", "url": "https://www.marceanahata.com/en/ayurvedic-massage" } }
+        ]
+      }
+    })}</script>
+    <script type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "@id": "https://www.marceanahata.com/#person",
+      "name": "Marce Anahata",
+      "jobTitle": "Holistic Wellness Facilitator, Kundalini Yoga Teacher",
+      "url": "https://www.marceanahata.com/en/sobre-mi",
+      "worksFor": { "@id": "https://www.marceanahata.com/#business" },
+      "sameAs": ["https://www.instagram.com/marce_anahata/", "https://www.youtube.com/@marce_anahata", "https://www.tiktok.com/@marce_anahata"]
+    })}</script>
+    <script type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "https://www.marceanahata.com/#website",
+      "name": "Marce Anahata",
+      "url": "https://www.marceanahata.com",
+      "description": "Official website of Marce Anahata — Wellness center in Envigado, La Frontera near El Poblado, Medellín.",
+      "publisher": { "@id": "https://www.marceanahata.com/#business" },
+      "inLanguage": ["es", "en"]
+    })}</script>
+    <script type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": homeFaqItems.map((item) => ({
+        "@type": "Question",
+        "name": item.question,
+        "acceptedAnswer": { "@type": "Answer", "text": item.answer }
+      }))
+    })}</script>
     <meta property="og:locale" content="en_US" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
@@ -252,42 +348,40 @@ const serviciosHome = [
     </section>
   )}
 
-  <!-- FAQ Preview Section -->
-  <section class="py-20 px-4 bg-gradient-to-b from-stone-50 to-white">
-    <div class="max-w-6xl mx-auto text-center">
-      <h2 class="text-3xl md:text-4xl font-serif font-bold text-[#243c5a] mb-4">
-        Do you have questions?
-      </h2>
-      <p class="text-stone-600 mb-10 max-w-2xl mx-auto">
-        Find answers to common questions about our yoga services, sound therapy, and sacred rituals.
-      </p>
-      
-      <div class="grid md:grid-cols-3 gap-6 mb-10">
-        <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-100 hover:border-[#6ed8d9]/30 transition-all">
-          <div class="text-3xl mb-3">🧘‍♀️</div>
-          <h3 class="font-semibold text-[#243c5a] mb-2">About Classes</h3>
-          <p class="text-sm text-stone-600">Do I need experience? What to bring? Schedules?</p>
-        </div>
-        
-        <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-100 hover:border-[#6ed8d9]/30 transition-all">
-          <div class="text-3xl mb-3">🔔</div>
-          <h3 class="font-semibold text-[#243c5a] mb-2">Sound Therapy</h3>
-          <p class="text-sm text-stone-600">How does it work? How long? Who is it for?</p>
-        </div>
-        
-        <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-100 hover:border-[#6ed8d9]/30 transition-all">
-          <div class="text-3xl mb-3">✨</div>
-          <h3 class="font-semibold text-[#243c5a] mb-2">Bookings & Pricing</h3>
-          <p class="text-sm text-stone-600">How to schedule? Costs? Payment methods?</p>
-        </div>
+  <!-- FAQ Section -->
+  <section class="py-20 px-6 bg-gradient-to-b from-stone-50 to-white">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-serif font-bold text-[#243c5a] mb-4">
+          Frequently asked questions
+        </h2>
+        <p class="text-stone-600 max-w-2xl mx-auto">
+          Everything you need to know before your first session.
+        </p>
       </div>
 
-      <a 
-        href="/en/faq" 
-        class="inline-block px-8 py-3 bg-[#6ed8d9] text-[#243c5a] rounded-full font-semibold hover:bg-[#5ac5c6] transition-all shadow-md hover:shadow-lg"
-      >
-        View All Frequently Asked Questions
-      </a>
+      <div class="space-y-3">
+        {homeFaqItems.map((item) => (
+          <details class="group bg-white rounded-xl border border-stone-100 shadow-sm hover:border-[#6ed8d9]/40 transition-colors">
+            <summary class="flex items-center justify-between gap-4 px-6 py-5 cursor-pointer list-none">
+              <h3 class="text-base font-semibold text-[#243c5a]">{item.question}</h3>
+              <svg class="w-5 h-5 text-[#5d5a8c] shrink-0 transition-transform duration-300 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </summary>
+            <p class="px-6 pb-5 text-[#243c5a]/75 leading-relaxed text-sm border-t border-stone-100 pt-4">{item.answer}</p>
+          </details>
+        ))}
+      </div>
+
+      <div class="text-center mt-10">
+        <a
+          href="/en/faq"
+          class="inline-block px-8 py-3 border-2 border-[#243c5a] text-[#243c5a] rounded-full font-semibold hover:bg-[#243c5a] hover:text-white transition-all"
+        >
+          View all frequently asked questions
+        </a>
+      </div>
     </div>
   </section>
 
