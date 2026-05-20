@@ -1,8 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-const whatsappMsg = "Hola Marce Anahata, estoy interesado/a en el Espacio Anahata. ¿Me puedes dar información sobre disponibilidad y tarifas?";
-const whatsappLink = `https://wa.me/573207329921?text=${encodeURIComponent(whatsappMsg)}`;
+const wa = (msg: string) => `https://wa.me/573207329921?text=${encodeURIComponent(msg)}`;
+
+const whatsappLink      = wa("Hola Marce Anahata, estoy interesado/a en el Espacio Anahata. ¿Me puedes dar información sobre disponibilidad y tarifas?");
+const whatsappSalon     = wa("Hola Marce Anahata, me interesa reservar el Salón de Movimiento del Espacio Anahata. ¿Cuál es la disponibilidad y cómo confirmo la reserva?");
+const whatsappConsultorio = wa("Hola Marce Anahata, me interesa reservar el Consultorio Holístico del Espacio Anahata. ¿Cuál es la disponibilidad y cómo confirmo la reserva?");
+const whatsappVisita    = wa("Hola Marce Anahata, me gustaría agendar una visita sin costo al Espacio Anahata para conocerlo. ¿Cuándo tienen disponibilidad?");
 const serviceUrl = 'https://www.marceanahata.com/espacio-aliados';
 
 const stats = [
@@ -61,9 +65,9 @@ const tarifasSalon = [
 ];
 
 const tarifasConsultorio = [
-  { desc: "Por hora", precio: "$55.000", nota: "Mínimo 2 horas" },
-  { desc: "Franja fija semanal", precio: "$550.000/mes", nota: "Ej. todos los martes 10am–2pm — ingreso predecible", highlight: true },
-  { desc: "Franja fija quincenal", precio: "$300.000/mes", nota: "2 días al mes en horario fijo" },
+  { desc: "Por hora", precio: "$55.000", nota: "Mínimo 2 horas · Sin compromiso" },
+  { desc: "Franja fija semanal", precio: "$550.000/mes", nota: "Ej. todos los martes 10am–2pm · Tu horario reservado permanentemente", highlight: true },
+  { desc: "Franja fija quincenal", precio: "$300.000/mes", nota: "2 días al mes en horario fijo · Prepago mensual" },
 ];
 
 const tarifasAliado = [
@@ -332,7 +336,7 @@ const faqItems = [
             ))}
           </ul>
           <a
-            href={whatsappLink}
+            href={whatsappSalon}
             target="_blank"
             rel="noopener noreferrer"
             class="inline-block bg-[#243c5a] text-white px-6 py-3 rounded-full font-semibold text-sm hover:bg-[#5d5a8c] transition-all"
@@ -359,7 +363,7 @@ const faqItems = [
             ))}
           </ul>
           <a
-            href={whatsappLink}
+            href={whatsappConsultorio}
             target="_blank"
             rel="noopener noreferrer"
             class="inline-block bg-[#243c5a] text-white px-6 py-3 rounded-full font-semibold text-sm hover:bg-[#5d5a8c] transition-all"
@@ -534,6 +538,13 @@ const faqItems = [
               </div>
             ))}
           </div>
+          <!-- Explicación franja fija -->
+          <div class="px-6 py-5 bg-stone-50 border-t border-stone-100">
+            <p class="text-xs font-semibold text-[#5d5a8c] uppercase tracking-wider mb-2">¿Cómo funciona la franja fija?</p>
+            <p class="text-xs text-stone-600 leading-relaxed">
+              Reservas un día y horario específico cada semana — por ejemplo, todos los martes de 10am a 2pm. Ese bloque queda bloqueado permanentemente para ti: nadie más puede ocuparlo. Pagas un valor mensual fijo, independientemente de si asistes o no. El pago se realiza los primeros 5 días de cada mes.
+            </p>
+          </div>
         </div>
 
         <!-- Paquete aliado -->
@@ -637,7 +648,7 @@ const faqItems = [
           </div>
         </div>
         <a
-          href={whatsappLink}
+          href={whatsappVisita}
           target="_blank"
           rel="noopener noreferrer"
           class="inline-block mt-8 bg-[#243c5a] text-white px-6 py-3 rounded-full font-semibold text-sm hover:bg-[#5d5a8c] transition-all"
