@@ -26,19 +26,22 @@ const tarifas = {
       cantidad: 4,
       total: '$245,000',
       individual: '$61,250',
-      highlight: true
+      highlight: true,
+      nota: 'Vigencia 1 mes · 15 días de congelamiento'
     },
     {
       descripcion: 'Ticketera x 8 clases',
       cantidad: 8,
       total: '$368,000',
-      individual: '$46,000'
+      individual: '$46,000',
+      nota: 'Vigencia 2 meses · 15 días de congelamiento'
     },
     {
       descripcion: 'Ticketera x 12 clases',
       cantidad: 12,
       total: '$520,000',
-      individual: '$43,333'
+      individual: '$43,333',
+      nota: 'Vigencia 2 meses · 15 días de congelamiento'
     }
   ],
   personalizadas: [
@@ -52,13 +55,15 @@ const tarifas = {
       descripcion: 'Ticketera x 4 clases',
       cantidad: 4,
       total: '$508,000',
-      individual: '$127,000'
+      individual: '$127,000',
+      nota: 'Vigencia 1 mes · 15 días de congelamiento'
     },
     {
       descripcion: 'Ticketera x 8 clases',
       cantidad: 8,
       total: '$930,000',
-      individual: '$116,250'
+      individual: '$116,250',
+      nota: 'Vigencia 2 meses · 15 días de congelamiento'
     }
   ],
   grupalPersonalizada: [
@@ -72,13 +77,15 @@ const tarifas = {
       descripcion: 'Ticketera x 4 clases',
       cantidad: 4,
       total: '$370,000',
-      individual: '$92,500'
+      individual: '$92,500',
+      nota: 'Vigencia 1 mes · 15 días de congelamiento'
     },
     {
       descripcion: 'Ticketera x 8 clases',
       cantidad: 8,
       total: '$645,000',
-      individual: '$80,625'
+      individual: '$80,625',
+      nota: 'Vigencia 2 meses · 15 días de congelamiento'
     }
   ],
   banoGong: [
@@ -219,7 +226,10 @@ const tarifas = {
           <tbody>
             {tarifas.grupales.map((tarifa, index) => (
               <tr class={`border-b border-stone-200 hover:bg-marce-base-2/5 transition-colors ${tarifa.highlight ? 'bg-marce-base-2/10' : index % 2 === 0 ? 'bg-white' : 'bg-stone-50'}`}>
-                <td class="px-6 py-4 font-medium text-marce-base-3">{tarifa.descripcion}</td>
+                <td class="px-6 py-4 font-medium text-marce-base-3">
+                  {tarifa.descripcion}
+                  {tarifa.nota && <span class="block text-xs font-normal text-stone-400 mt-0.5">{tarifa.nota}</span>}
+                </td>
                 <td class="px-6 py-4 text-right text-marce-base-3 font-semibold">{tarifa.total}</td>
                 <td class="px-6 py-4 text-right text-marce-base-2 font-bold">{tarifa.individual}</td>
               </tr>
@@ -249,7 +259,10 @@ const tarifas = {
           <tbody>
             {tarifas.personalizadas.map((tarifa, index) => (
               <tr class={`border-b border-stone-200 hover:bg-marce-base-2/5 transition-colors ${index % 2 === 0 ? 'bg-white' : 'bg-stone-50'}`}>
-                <td class="px-6 py-4 font-medium text-marce-base-3">{tarifa.descripcion}</td>
+                <td class="px-6 py-4 font-medium text-marce-base-3">
+                  {tarifa.descripcion}
+                  {tarifa.nota && <span class="block text-xs font-normal text-stone-400 mt-0.5">{tarifa.nota}</span>}
+                </td>
                 <td class="px-6 py-4 text-right text-marce-base-3 font-semibold">{tarifa.total}</td>
                 <td class="px-6 py-4 text-right text-marce-base-2 font-bold">{tarifa.individual}</td>
               </tr>
@@ -279,7 +292,10 @@ const tarifas = {
           <tbody>
             {tarifas.grupalPersonalizada.map((tarifa, index) => (
               <tr class={`border-b border-stone-200 hover:bg-marce-base-2/5 transition-colors ${index % 2 === 0 ? 'bg-white' : 'bg-stone-50'}`}>
-                <td class="px-6 py-4 font-medium text-marce-base-3">{tarifa.descripcion}</td>
+                <td class="px-6 py-4 font-medium text-marce-base-3">
+                  {tarifa.descripcion}
+                  {tarifa.nota && <span class="block text-xs font-normal text-stone-400 mt-0.5">{tarifa.nota}</span>}
+                </td>
                 <td class="px-6 py-4 text-right text-marce-base-3 font-semibold">{tarifa.total}</td>
                 <td class="px-6 py-4 text-right text-marce-base-2 font-bold">{tarifa.individual}</td>
               </tr>

@@ -1,0 +1,687 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const whatsappMsg = "Hola Marce Anahata, estoy interesado/a en el Espacio Anahata. ¿Me puedes dar información sobre disponibilidad y tarifas?";
+const whatsappLink = `https://wa.me/573207329921?text=${encodeURIComponent(whatsappMsg)}`;
+const serviceUrl = 'https://www.marceanahata.com/espacio-aliados';
+
+const stats = [
+  { value: "67 m²", label: "Espacio total" },
+  { value: "2", label: "Ambientes independientes" },
+  { value: "20", label: "Personas — capacidad salón" },
+  { value: "Privado", label: "Parqueadero cubierto y gratuito" },
+  { value: "Estrato 6", label: "La Frontera · Envigado" },
+];
+
+const salonFeatures = [
+  "20 mats de yoga · 12 zafus · 12 bolsters · 20 ladrillos",
+  "10 balones y 10 aros de pilates",
+  "8 pares de pesas encauchetadas de 1 lb",
+  "Barra de barre de casi 5 metros",
+  "3 espejos con retroiluminación",
+  "Aire acondicionado",
+  "Bose S1 Plus — sonido de alta fidelidad",
+  "Luces LED inteligentes para ambientar eventos",
+  "6 ventanales con vinilo esmerilado de diseño elegante",
+];
+
+const consulторioFeatures = [
+  "Camilla de masajes profesional",
+  "2 poltronas individuales para terapia",
+  "Biblioteca decorativa con retroiluminación",
+  "Mesa de centro con decoración de alto nivel",
+  "Ambiente íntimo y privado",
+];
+
+const amenidades = [
+  { icon: "🚗", label: "Parqueadero cubierto privado y gratuito", desc: "Un diferencial real en La Frontera — sin estrés de parqueo para ti ni tus clientes." },
+  { icon: "🎵", label: "Bose S1 Plus", desc: "Sonido de alta fidelidad para clases, talleres, meditaciones y eventos." },
+  { icon: "💡", label: "Luces LED inteligentes", desc: "Crea el ambiente exacto que tu sesión o evento necesita." },
+  { icon: "🪟", label: "Ventanales con vinilo esmerilado", desc: "6 grandes ventanales con diseño elegante: luz natural difusa y privacidad total." },
+  { icon: "💧", label: "Dispensador Agualogic", desc: "Agua fría y caliente siempre disponible para ti y tus participantes." },
+  { icon: "☕", label: "Cocineta equipada", desc: "Calentador de agua, vasos y pocillos — ideal para infusiones en talleres." },
+  { icon: "❄️", label: "Aire acondicionado", desc: "Temperatura óptima durante todo el año." },
+  { icon: "🌿", label: "Decoración de interiores de alto nivel", desc: "Materas grandes de diseño y una estética cuidada que proyecta profesionalismo." },
+];
+
+const perfiles = [
+  { icon: "🧘", titulo: "Instructoras de yoga, pilates y barre", desc: "Espacio completamente equipado para tus clases. Tus clientes llegan, tú enseñas." },
+  { icon: "🤲", titulo: "Terapeutas y masajistas", desc: "Consultorio holístico privado con camilla y ambiente profesional de alto nivel." },
+  { icon: "💬", titulo: "Psicólogos, coaches y nutricionistas", desc: "Espacio íntimo y cálido para sesiones de consulta y acompañamiento terapéutico." },
+  { icon: "📚", titulo: "Facilitadores de talleres y formaciones", desc: "Salón amplio con sonido Bose, luces inteligentes y equipamiento completo." },
+  { icon: "📸", titulo: "Fotógrafos y creadores de contenido", desc: "Espejos con retroiluminación, luces LED y estética de alto nivel para tu shoot de marca." },
+  { icon: "✨", titulo: "Organizadores de eventos wellness", desc: "Capacidad para retiros urbanos, ceremonias, círculos y experiencias colectivas de hasta 20 personas." },
+];
+
+const tarifasSalon = [
+  { desc: "Por hora", precio: "$85.000", nota: "Mínimo 2 horas" },
+  { desc: "Medio día — 4 horas", precio: "$300.000", nota: "Ideal para talleres y clases", highlight: true },
+  { desc: "Día completo — 8 horas", precio: "$520.000", nota: "Ideal para formaciones y eventos de jornada completa" },
+  { desc: "Sesión de fotografía / contenido", precio: "$120.000/hora", nota: "Mínimo 2 horas" },
+];
+
+const tarifasConsultorio = [
+  { desc: "Por hora", precio: "$55.000", nota: "Mínimo 2 horas" },
+  { desc: "Franja fija semanal", precio: "$550.000/mes", nota: "Ej. todos los martes 10am–2pm — ingreso predecible", highlight: true },
+  { desc: "Franja fija quincenal", precio: "$300.000/mes", nota: "2 días al mes en horario fijo" },
+];
+
+const tarifasAliado = [
+  { desc: "Paquete 8 horas/mes", precio: "$580.000", nota: "En bloques de 2h · ~15% de descuento", highlight: true },
+  { desc: "Paquete 16 horas/mes", precio: "$1.050.000", nota: "En bloques de 2h · ~18% de descuento" },
+];
+
+const faqItems = [
+  {
+    question: "¿Cuál es el tiempo mínimo de reserva?",
+    answer: "El mínimo es de 2 horas continuas por reserva, tanto para el salón como para el consultorio."
+  },
+  {
+    question: "¿Cómo se confirma la reserva?",
+    answer: "La reserva se confirma con el 50% del valor total. El saldo restante debe pagarse 48 horas antes de la sesión."
+  },
+  {
+    question: "¿Cuál es la política de cancelación?",
+    answer: "Reembolso completo con 48 horas de anticipación. Con menos de 24 horas, no hay reembolso. Entre 24 y 48 horas, reembolso del 50%."
+  },
+  {
+    question: "¿Puedo visitar el espacio antes de reservar?",
+    answer: "Sí. Puedes agendar una visita de 30 minutos sin costo para conocer el espacio y decidir si es el lugar indicado para ti."
+  },
+  {
+    question: "¿El equipamiento está incluido en la tarifa?",
+    answer: "Sí. El uso de todo el equipamiento del salón está incluido: mats, zafus, bolsters, balones, aros, barre, pesas, ladrillos, sonido Bose y luces LED."
+  },
+  {
+    question: "¿Puedo usar el espacio los fines de semana?",
+    answer: "Sí. Los sábados y domingos tienen amplia disponibilidad y son especialmente ideales para talleres, formaciones y eventos de jornada completa."
+  },
+  {
+    question: "¿Dónde puedo alquilar un espacio para clases de yoga o talleres en Medellín?",
+    answer: "El Espacio Anahata está en La Frontera con El Poblado, Envigado (Cl. 23 Sur #42B-60). Es un salón holístico de 67 m² completamente equipado para yoga, pilates, barre, talleres y eventos wellness. Incluye parqueadero cubierto privado y gratuito, sonido Bose S1 Plus, luces LED inteligentes y un consultorio holístico independiente. Disponible de lunes a domingo previa reserva por WhatsApp."
+  },
+  {
+    question: "¿Cuánto cuesta alquilar un espacio wellness en El Poblado o Envigado?",
+    answer: "En el Espacio Anahata las tarifas son: salón de movimiento desde $85.000 COP por hora (mínimo 2 horas), medio día —4 horas— por $300.000 COP, y día completo —8 horas— por $520.000 COP. El consultorio holístico desde $55.000 COP por hora. Existen paquetes de aliado mensual con descuento de hasta el 18%."
+  },
+  {
+    question: "¿El Espacio Anahata tiene parqueadero?",
+    answer: "Sí. El espacio cuenta con parqueadero cubierto, privado y totalmente gratuito para el profesional y sus clientes. Está ubicado en Cl. 23 Sur #42B-60, Los Cristales, Envigado — zona La Frontera con El Poblado."
+  },
+  {
+    question: "¿Cuántas personas caben en el salón de yoga?",
+    answer: "El salón de movimiento del Espacio Anahata tiene capacidad para hasta 20 personas. Cuenta con 20 mats de yoga, 12 zafus, 12 bolsters, 10 balones de pilates, 10 aros, barra de barre de casi 5 metros y 3 espejos con retroiluminación."
+  },
+  {
+    question: "¿Dónde está ubicado exactamente el Espacio Anahata?",
+    answer: "El Espacio Anahata está en Cl. 23 Sur #42B-60, Los Cristales, Envigado, Antioquia — en la zona La Frontera, en el límite entre El Poblado (Medellín) y Envigado. Es una zona residencial estrato 6 con alto poder adquisitivo. La ubicación exacta y el acceso al parqueadero se comparten al confirmar la reserva por WhatsApp."
+  },
+];
+---
+
+<Layout
+  title="Espacio Anahata | Alquiler Salón de Yoga y Consultorio en La Frontera, Envigado"
+  description="Alquila el Espacio Anahata en La Frontera con El Poblado, Envigado. Salón de yoga de 35 m² con equipamiento completo, consultorio holístico y parqueadero cubierto gratuito. Desde $85.000/hora. Ideal para instructoras, terapeutas, talleres y eventos wellness."
+  image="/images/social-preview-wa.jpg"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.marceanahata.com" },
+        { "@type": "ListItem", "position": 2, "name": "Espacio Anahata", "item": serviceUrl }
+      ]
+    })}</script>
+    <script type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": ["HealthAndBeautyBusiness", "SportsActivityLocation"],
+      "@id": "https://www.marceanahata.com/#business",
+      "name": "Marce Anahata Centro de Bienestar — Espacio Anahata",
+      "description": "Espacio holístico en alquiler para profesionales del bienestar, terapeutas y eventos wellness en La Frontera con El Poblado, Envigado. Salón de yoga de 35 m² totalmente equipado, consultorio holístico y parqueadero cubierto privado y gratuito.",
+      "url": "https://www.marceanahata.com",
+      "telephone": "+573207329921",
+      "email": "info@marceanahata.com",
+      "image": "https://www.marceanahata.com/images/social-preview-wa.jpg",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Cl. 23 Sur #42B-60, Los Cristales",
+        "addressLocality": "Envigado",
+        "addressRegion": "Antioquia",
+        "postalCode": "055420",
+        "addressCountry": "CO"
+      },
+      "sameAs": [
+        "https://www.instagram.com/marce_anahata/",
+        "https://www.youtube.com/@marce_anahata",
+        "https://www.tiktok.com/@marce_anahata"
+      ],
+      "amenityFeature": [
+        { "@type": "LocationFeatureSpecification", "name": "Parqueadero cubierto privado gratuito", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Aire acondicionado", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Sonido Bose S1 Plus", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Luces LED inteligentes", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Espejos con retroiluminación", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Equipamiento completo de yoga y pilates", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Consultorio holístico independiente", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Dispensador de agua Agualogic", "value": true }
+      ]
+    })}</script>
+    <script type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Espacio Anahata — Alquiler de Salón Holístico en La Frontera con El Poblado, Envigado",
+      "description": "Alquiler de espacio holístico para profesionales del bienestar en La Frontera con El Poblado, Envigado. Salón de yoga de 35 m² con 20 mats, barra de barre, sonido Bose S1 Plus, luces LED, 3 espejos con retroiluminación y aire acondicionado. Consultorio holístico independiente con camilla y poltronas. Parqueadero cubierto privado y gratuito. Disponible para instructoras de yoga, pilates, barre, terapeutas, coaches, facilitadores de talleres y eventos wellness.",
+      "serviceType": "Alquiler de Espacio para Bienestar",
+      "provider": {
+        "@type": "Person",
+        "@id": "https://www.marceanahata.com/#person",
+        "name": "Marce Anahata",
+        "url": "https://www.marceanahata.com/sobre-mi",
+        "telephone": "+573207329921",
+        "email": "info@marceanahata.com",
+        "sameAs": [
+          "https://www.instagram.com/marce_anahata/",
+          "https://www.youtube.com/@marce_anahata"
+        ]
+      },
+      "areaServed": [
+        { "@type": "City", "name": "Envigado" },
+        { "@type": "Neighborhood", "name": "La Frontera" },
+        { "@type": "Neighborhood", "name": "El Poblado" },
+        { "@type": "City", "name": "Medellín" }
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Tarifas Espacio Anahata",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "name": "Salón de Movimiento — por hora",
+            "price": "85000",
+            "priceCurrency": "COP",
+            "description": "Alquiler por hora del salón de yoga de 35 m² con equipamiento completo. Mínimo 2 horas.",
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "@type": "Offer",
+            "name": "Salón de Movimiento — medio día (4 horas)",
+            "price": "300000",
+            "priceCurrency": "COP",
+            "description": "Alquiler de medio día del salón de yoga. Ideal para talleres y clases.",
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "@type": "Offer",
+            "name": "Salón de Movimiento — día completo (8 horas)",
+            "price": "520000",
+            "priceCurrency": "COP",
+            "description": "Alquiler de día completo del salón de yoga. Ideal para formaciones y eventos.",
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "@type": "Offer",
+            "name": "Consultorio Holístico — por hora",
+            "price": "55000",
+            "priceCurrency": "COP",
+            "description": "Alquiler por hora del consultorio holístico privado con camilla y poltronas. Mínimo 2 horas.",
+            "availability": "https://schema.org/InStock"
+          }
+        ]
+      },
+      "url": serviceUrl,
+      "keywords": "alquiler espacio yoga Medellín, alquiler salón wellness Envigado, espacio para talleres El Poblado, alquiler consultorio terapias Envigado, salón de yoga en alquiler La Frontera, espacio para eventos bienestar Medellín, alquiler espacio por horas El Poblado, estudio yoga alquiler Medellín, espacio holístico aliados wellness, salón pilates barre en alquiler Envigado, alquiler espacio para instructoras yoga Medellín, espacio para formaciones wellness Colombia"
+    })}</script>
+    <script type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": faqItems.map((item) => ({
+        "@type": "Question",
+        "name": item.question,
+        "acceptedAnswer": { "@type": "Answer", "text": item.answer }
+      }))
+    })}</script>
+    <meta property="og:locale" content="es_CO" />
+  </Fragment>
+
+  <!-- HERO -->
+  <section class="relative h-[85vh] flex items-center justify-center overflow-hidden">
+    <img
+      src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?auto=format&fit=crop&w=1800&q=80"
+      alt="Espacio Anahata — salón holístico para profesionales wellness en Envigado"
+      class="absolute inset-0 w-full h-full object-cover z-0"
+    />
+    <div class="absolute inset-0 bg-[#243c5a]/70 z-10"></div>
+
+    <div class="relative z-20 text-center text-white px-6 max-w-4xl mx-auto mt-16">
+      <span class="uppercase tracking-[0.25em] text-sm md:text-base mb-5 block font-bold text-[#6ed8d9]">
+        La Frontera con El Poblado · Envigado · Estrato 6
+      </span>
+      <h1 class="text-4xl md:text-6xl font-serif mb-6 leading-tight">
+        Espacio Anahata
+      </h1>
+      <p class="text-xl md:text-2xl font-light mb-4 text-white/90">
+        Un espacio holístico para profesionales que honran su trabajo
+      </p>
+      <p class="text-base md:text-lg font-light max-w-2xl mx-auto mb-10 text-white/70">
+        Salón de yoga totalmente equipado · Consultorio holístico · Parqueadero cubierto privado y gratuito
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href={whatsappLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-block bg-[#6ed8d9] text-[#243c5a] px-8 py-4 rounded-full font-bold hover:bg-white transition-all duration-300 shadow-lg"
+        >
+          Consultar disponibilidad
+        </a>
+        <a
+          href="#espacios"
+          class="inline-block border border-white/40 text-white px-8 py-4 rounded-full font-medium hover:bg-white/10 transition-all duration-300"
+        >
+          Conocer el espacio
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="bg-[#243c5a] py-10 px-6">
+    <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-5 gap-6 text-center">
+      {stats.map((stat) => (
+        <div>
+          <p class="text-2xl md:text-3xl font-serif text-[#6ed8d9] mb-1">{stat.value}</p>
+          <p class="text-xs text-white/60 uppercase tracking-wider">{stat.label}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- LOS DOS ESPACIOS -->
+  <section id="espacios" class="py-24 bg-stone-50 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <span class="uppercase tracking-[0.2em] text-sm text-[#5d5a8c] font-bold block mb-3">El espacio</span>
+        <h2 class="text-3xl md:text-5xl font-serif text-[#243c5a] mb-4">Dos ambientes · Un solo espacio</h2>
+        <p class="text-[#243c5a]/70 max-w-2xl mx-auto">Cada ambiente fue diseñado con un propósito específico. Pueden usarse de forma independiente o complementaria.</p>
+      </div>
+
+      <!-- Salón de movimiento -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-24">
+        <div class="relative">
+          <div class="absolute -top-4 -left-4 w-full h-full border-2 border-[#6ed8d9]/30 rounded-2xl z-0"></div>
+          <img
+            src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=900&q=80"
+            alt="Salón de yoga y movimiento — Espacio Anahata, Envigado"
+            class="rounded-2xl shadow-xl relative z-10 w-full h-[480px] object-cover"
+          />
+        </div>
+        <div>
+          <span class="uppercase tracking-widest text-xs text-[#6ed8d9] font-bold block mb-3">Ambiente 1</span>
+          <h3 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-4">Salón de Movimiento</h3>
+          <p class="text-[#243c5a]/75 mb-6 leading-relaxed">
+            35 m² diseñados para el movimiento consciente. Todo lo que necesitas para tu clase, taller o evento ya está aquí — solo llegas y empiezas.
+          </p>
+          <ul class="space-y-2 mb-8">
+            {salonFeatures.map((f) => (
+              <li class="flex items-start gap-3 text-[#243c5a]/80 text-sm">
+                <span class="text-[#6ed8d9] mt-0.5 shrink-0">✓</span>
+                {f}
+              </li>
+            ))}
+          </ul>
+          <a
+            href={whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-block bg-[#243c5a] text-white px-6 py-3 rounded-full font-semibold text-sm hover:bg-[#5d5a8c] transition-all"
+          >
+            Reservar el salón →
+          </a>
+        </div>
+      </div>
+
+      <!-- Consultorio holístico -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="order-2 lg:order-1">
+          <span class="uppercase tracking-widest text-xs text-[#6ed8d9] font-bold block mb-3">Ambiente 2</span>
+          <h3 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-4">Consultorio Holístico</h3>
+          <p class="text-[#243c5a]/75 mb-6 leading-relaxed">
+            Un espacio íntimo y privado para terapias, consultas y sesiones individuales. La estética de alto nivel comunica el nivel de tu trabajo antes de que digas una sola palabra.
+          </p>
+          <ul class="space-y-2 mb-8">
+            {consulторioFeatures.map((f) => (
+              <li class="flex items-start gap-3 text-[#243c5a]/80 text-sm">
+                <span class="text-[#6ed8d9] mt-0.5 shrink-0">✓</span>
+                {f}
+              </li>
+            ))}
+          </ul>
+          <a
+            href={whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-block bg-[#243c5a] text-white px-6 py-3 rounded-full font-semibold text-sm hover:bg-[#5d5a8c] transition-all"
+          >
+            Reservar el consultorio →
+          </a>
+        </div>
+        <div class="relative order-1 lg:order-2">
+          <div class="absolute -bottom-4 -right-4 w-full h-full border-2 border-[#5d5a8c]/20 rounded-2xl z-0"></div>
+          <img
+            src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=900&q=80"
+            alt="Consultorio holístico — Espacio Anahata, Envigado"
+            class="rounded-2xl shadow-xl relative z-10 w-full h-[480px] object-cover"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AMENIDADES -->
+  <section class="py-20 bg-white px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-14">
+        <span class="uppercase tracking-[0.2em] text-sm text-[#5d5a8c] font-bold block mb-3">Todo incluido</span>
+        <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-4">Lo que encuentras al llegar</h2>
+        <p class="text-[#243c5a]/70 max-w-2xl mx-auto">Diseñado para que tú y tus clientes tengan una experiencia sin fricciones desde el momento en que llegan.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {amenidades.map((a) => (
+          <div class="bg-stone-50 p-6 rounded-xl border border-stone-100 hover:shadow-md hover:border-[#6ed8d9]/30 transition-all group">
+            <span class="text-3xl mb-4 block">{a.icon}</span>
+            <h3 class="font-semibold text-[#243c5a] mb-2 text-sm group-hover:text-[#5d5a8c] transition-colors">{a.label}</h3>
+            <p class="text-xs text-[#243c5a]/65 leading-relaxed">{a.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ¿PARA QUIÉN? -->
+  <section class="py-20 bg-[#243c5a] px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-14">
+        <span class="uppercase tracking-[0.2em] text-sm text-[#6ed8d9] font-bold block mb-3">Aliados bienvenidos</span>
+        <h2 class="text-3xl md:text-4xl font-serif text-white mb-4">¿Este espacio es para ti?</h2>
+        <p class="text-white/60 max-w-2xl mx-auto">El Espacio Anahata está pensado para profesionales cuya práctica cuida el bienestar físico, emocional o espiritual de las personas.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-14">
+        {perfiles.map((p) => (
+          <div class="bg-white/5 border border-white/10 rounded-xl p-6 hover:bg-white/10 hover:border-[#6ed8d9]/30 transition-all">
+            <span class="text-3xl mb-4 block">{p.icon}</span>
+            <h3 class="font-semibold text-white mb-2">{p.titulo}</h3>
+            <p class="text-sm text-white/60 leading-relaxed">{p.desc}</p>
+          </div>
+        ))}
+      </div>
+
+      <!-- Texto semántico para IA y SEO -->
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-8 max-w-4xl mx-auto">
+        <h3 class="text-xl font-serif text-white mb-4">¿Por qué el Espacio Anahata?</h3>
+        <p class="text-white/70 leading-relaxed text-sm mb-4">
+          El <strong class="text-white">Espacio Anahata</strong> es un espacio holístico de 67 m² ubicado en <strong class="text-white">La Frontera con El Poblado, Envigado</strong> (Cl. 23 Sur #42B-60) — una de las zonas residenciales de mayor poder adquisitivo del Área Metropolitana de Medellín. Está diseñado específicamente para profesionales del bienestar que necesitan un espacio de alto nivel para ofrecer sus servicios sin la carga de un arrendamiento mensual fijo.
+        </p>
+        <p class="text-white/70 leading-relaxed text-sm mb-4">
+          A diferencia de otros espacios en alquiler en Medellín, el Espacio Anahata ofrece <strong class="text-white">equipamiento completo incluido en la tarifa</strong>: 20 mats de yoga, barra de barre de 5 metros, balones y aros de pilates, sonido Bose S1 Plus, luces LED inteligentes y un consultorio holístico privado con camilla de masajes. El <strong class="text-white">parqueadero cubierto, privado y gratuito</strong> es un diferencial difícil de encontrar en la zona.
+        </p>
+        <p class="text-white/70 leading-relaxed text-sm">
+          El espacio está disponible para <strong class="text-white">alquiler por horas, medio día, día completo y paquetes mensuales</strong> de lunes a domingo. Los fines de semana tienen amplia disponibilidad para talleres, formaciones y retiros urbanos de hasta 20 personas.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HORARIOS DISPONIBLES -->
+  <section class="py-20 bg-stone-50 px-6">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-12">
+        <span class="uppercase tracking-[0.2em] text-sm text-[#5d5a8c] font-bold block mb-3">Disponibilidad</span>
+        <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-4">Horarios disponibles</h2>
+        <p class="text-[#243c5a]/70">Los espacios están disponibles en los siguientes horarios. Consulta disponibilidad específica por WhatsApp.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-white rounded-xl border border-stone-100 shadow-sm p-8">
+          <div class="flex items-center gap-3 mb-6">
+            <span class="text-2xl">📅</span>
+            <h3 class="text-xl font-serif text-[#243c5a]">Lunes a Viernes</h3>
+          </div>
+          <div class="space-y-3">
+            <div class="flex justify-between items-center py-3 border-b border-stone-100">
+              <span class="text-[#243c5a]/80 text-sm">Mañana</span>
+              <span class="font-semibold text-[#5d5a8c]">10:00 AM – 6:00 PM</span>
+            </div>
+            <div class="flex justify-between items-center py-3">
+              <span class="text-[#243c5a]/80 text-sm">Tarde</span>
+              <span class="font-semibold text-[#5d5a8c]">Consultar disponibilidad</span>
+            </div>
+          </div>
+          <p class="mt-4 text-xs text-stone-400">Horario flexible según agenda del centro</p>
+        </div>
+        <div class="bg-white rounded-xl border border-[#6ed8d9]/30 shadow-sm p-8 relative overflow-hidden">
+          <div class="absolute top-0 right-0 bg-[#6ed8d9] text-[#243c5a] text-xs font-bold px-3 py-1 rounded-bl-lg">Más disponibilidad</div>
+          <div class="flex items-center gap-3 mb-6">
+            <span class="text-2xl">✨</span>
+            <h3 class="text-xl font-serif text-[#243c5a]">Sábados y Domingos</h3>
+          </div>
+          <div class="space-y-3">
+            <div class="flex justify-between items-center py-3 border-b border-stone-100">
+              <span class="text-[#243c5a]/80 text-sm">Mañana</span>
+              <span class="font-semibold text-[#5d5a8c]">8:00 AM – 1:00 PM</span>
+            </div>
+            <div class="flex justify-between items-center py-3">
+              <span class="text-[#243c5a]/80 text-sm">Tarde</span>
+              <span class="font-semibold text-[#5d5a8c]">2:00 PM – 8:00 PM</span>
+            </div>
+          </div>
+          <p class="mt-4 text-xs text-stone-400">Ideal para talleres, formaciones y eventos de jornada completa</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TARIFAS -->
+  <section class="py-20 bg-white px-6" id="tarifas">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-14">
+        <span class="uppercase tracking-[0.2em] text-sm text-[#5d5a8c] font-bold block mb-3">Inversión</span>
+        <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-4">Tarifas transparentes</h2>
+        <p class="text-[#243c5a]/70 max-w-2xl mx-auto">Sin costos ocultos. El equipamiento completo está incluido en todas las tarifas.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+        <!-- Salón -->
+        <div class="rounded-2xl border border-stone-200 overflow-hidden shadow-sm">
+          <div class="bg-[#243c5a] px-6 py-5">
+            <h3 class="text-lg font-serif text-white">🧘 Salón de Movimiento</h3>
+            <p class="text-white/60 text-sm mt-1">Con todo el equipamiento incluido</p>
+          </div>
+          <div class="divide-y divide-stone-100">
+            {tarifasSalon.map((t) => (
+              <div class={`px-6 py-4 ${t.highlight ? 'bg-[#6ed8d9]/10' : 'bg-white'}`}>
+                <div class="flex justify-between items-start gap-2">
+                  <div>
+                    <p class="font-semibold text-[#243c5a] text-sm">{t.desc}</p>
+                    <p class="text-xs text-stone-400 mt-0.5">{t.nota}</p>
+                  </div>
+                  <p class="font-bold text-[#5d5a8c] shrink-0 text-sm">{t.precio}</p>
+                </div>
+                {t.highlight && <span class="mt-2 inline-block text-xs bg-[#6ed8d9]/20 text-[#243c5a] px-2 py-0.5 rounded-full font-semibold">Más solicitado</span>}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Consultorio -->
+        <div class="rounded-2xl border border-stone-200 overflow-hidden shadow-sm">
+          <div class="bg-[#5d5a8c] px-6 py-5">
+            <h3 class="text-lg font-serif text-white">🤲 Consultorio Holístico</h3>
+            <p class="text-white/60 text-sm mt-1">Para terapias y sesiones individuales</p>
+          </div>
+          <div class="divide-y divide-stone-100">
+            {tarifasConsultorio.map((t) => (
+              <div class={`px-6 py-4 ${t.highlight ? 'bg-[#5d5a8c]/10' : 'bg-white'}`}>
+                <div class="flex justify-between items-start gap-2">
+                  <div>
+                    <p class="font-semibold text-[#243c5a] text-sm">{t.desc}</p>
+                    <p class="text-xs text-stone-400 mt-0.5">{t.nota}</p>
+                  </div>
+                  <p class="font-bold text-[#5d5a8c] shrink-0 text-sm">{t.precio}</p>
+                </div>
+                {t.highlight && <span class="mt-2 inline-block text-xs bg-[#5d5a8c]/20 text-[#243c5a] px-2 py-0.5 rounded-full font-semibold">Más popular</span>}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Paquete aliado -->
+        <div class="rounded-2xl border border-[#6ed8d9]/40 overflow-hidden shadow-md">
+          <div class="bg-gradient-to-br from-[#243c5a] to-[#5d5a8c] px-6 py-5">
+            <h3 class="text-lg font-serif text-white">⭐ Paquete Aliado Mensual</h3>
+            <p class="text-white/60 text-sm mt-1">Para profesionales con uso recurrente</p>
+          </div>
+          <div class="divide-y divide-stone-100">
+            {tarifasAliado.map((t) => (
+              <div class={`px-6 py-4 ${t.highlight ? 'bg-[#6ed8d9]/10' : 'bg-white'}`}>
+                <div class="flex justify-between items-start gap-2">
+                  <div>
+                    <p class="font-semibold text-[#243c5a] text-sm">{t.desc}</p>
+                    <p class="text-xs text-stone-400 mt-0.5">{t.nota}</p>
+                  </div>
+                  <p class="font-bold text-[#5d5a8c] shrink-0 text-sm">{t.precio}</p>
+                </div>
+                {t.highlight && <span class="mt-2 inline-block text-xs bg-[#6ed8d9]/20 text-[#243c5a] px-2 py-0.5 rounded-full font-semibold">Recomendado</span>}
+              </div>
+            ))}
+          </div>
+          <div class="px-6 py-4 bg-stone-50 border-t border-stone-100">
+            <p class="text-xs text-stone-500 leading-relaxed">Genera ingreso recurrente estable para el espacio y descuento garantizado para ti. Cupos limitados.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Política de reserva -->
+      <div class="mt-10 bg-[#243c5a]/5 rounded-2xl p-6 border border-[#243c5a]/10">
+        <h3 class="font-semibold text-[#243c5a] mb-4 flex items-center gap-2">
+          <span>📌</span> Política de reserva
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-[#243c5a]/75">
+          <div class="flex gap-2">
+            <span class="text-[#6ed8d9] shrink-0">✓</span>
+            <p>Reserva confirmada con el <strong>50% del valor</strong> al momento de agendar</p>
+          </div>
+          <div class="flex gap-2">
+            <span class="text-[#6ed8d9] shrink-0">✓</span>
+            <p>Saldo restante <strong>48 horas antes</strong> de la sesión</p>
+          </div>
+          <div class="flex gap-2">
+            <span class="text-[#6ed8d9] shrink-0">✓</span>
+            <p>Cancelación con +48h de anticipación: <strong>reembolso completo</strong></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-20 bg-stone-50 px-6">
+    <div class="max-w-3xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-4">Preguntas frecuentes</h2>
+        <p class="text-[#243c5a]/70">Todo lo que necesitas saber antes de reservar.</p>
+      </div>
+      <div class="flex flex-col gap-3">
+        {faqItems.map((item) => (
+          <details class="group bg-white rounded-xl border border-stone-100 shadow-sm hover:border-[#6ed8d9]/40 transition-colors">
+            <summary class="flex items-center justify-between gap-4 px-6 py-5 cursor-pointer list-none">
+              <h3 class="text-base font-semibold text-[#243c5a]">{item.question}</h3>
+              <svg class="w-5 h-5 text-[#5d5a8c] shrink-0 transition-transform duration-300 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </summary>
+            <p class="px-6 pb-5 text-[#243c5a]/75 leading-relaxed text-sm border-t border-stone-100 pt-4">{item.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- UBICACIÓN -->
+  <section class="py-20 bg-white px-6">
+    <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div>
+        <span class="uppercase tracking-[0.2em] text-sm text-[#5d5a8c] font-bold block mb-3">Ubicación</span>
+        <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-6">La Frontera con El Poblado</h2>
+        <p class="text-[#243c5a]/75 mb-4 leading-relaxed">
+          Una de las zonas residenciales más exclusivas de Medellín — límite entre El Poblado y Envigado, con acceso fácil desde los dos municipios.
+        </p>
+        <div class="space-y-3 text-sm text-[#243c5a]/80">
+          <div class="flex gap-3">
+            <span class="text-[#6ed8d9]">📍</span>
+            <p>Cl. 23 Sur #42B-60, Los Cristales, Envigado, Antioquia</p>
+          </div>
+          <div class="flex gap-3">
+            <span class="text-[#6ed8d9]">🚗</span>
+            <p>Parqueadero cubierto privado y gratuito incluido en la reserva</p>
+          </div>
+          <div class="flex gap-3">
+            <span class="text-[#6ed8d9]">🚇</span>
+            <p>A 5 minutos del Metro Cable El Poblado y la Línea A</p>
+          </div>
+          <div class="flex gap-3">
+            <span class="text-[#6ed8d9]">🏘️</span>
+            <p>Zona residencial estrato 6 — alto poder adquisitivo del cliente final</p>
+          </div>
+        </div>
+        <a
+          href={whatsappLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-block mt-8 bg-[#243c5a] text-white px-6 py-3 rounded-full font-semibold text-sm hover:bg-[#5d5a8c] transition-all"
+        >
+          Solicitar visita al espacio →
+        </a>
+      </div>
+      <div class="rounded-2xl overflow-hidden shadow-xl border border-stone-100 h-72 md:h-96">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.1!2d-75.5767!3d6.2006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e4429c3e4bce5c7%3A0x0!2sCl.%2023%20Sur%20%2342B-60%2C%20Envigado!5e0!3m2!1ses!2sco!4v1716000000000"
+          width="100%"
+          height="100%"
+          style="border:0;"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Ubicación Espacio Anahata — La Frontera, Envigado"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="py-24 bg-[#243c5a] text-white px-6 relative overflow-hidden text-center">
+    <div class="absolute top-0 right-0 w-80 h-80 bg-[#6ed8d9] rounded-full filter blur-[120px] opacity-10"></div>
+    <div class="absolute bottom-0 left-0 w-80 h-80 bg-[#5d5a8c] rounded-full filter blur-[120px] opacity-20"></div>
+    <div class="relative z-10 max-w-3xl mx-auto">
+      <span class="uppercase tracking-[0.25em] text-sm text-[#6ed8d9] font-bold block mb-5">Cupos limitados</span>
+      <h2 class="text-3xl md:text-5xl font-serif mb-6 leading-tight">
+        Tu práctica merece<br />un espacio a su altura
+      </h2>
+      <p class="text-white/70 mb-10 text-lg font-light max-w-xl mx-auto">
+        Escríbenos por WhatsApp para conocer disponibilidad, agendar una visita sin costo o resolver cualquier duda.
+      </p>
+      <a
+        href={whatsappLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-block bg-[#6ed8d9] text-[#243c5a] px-10 py-5 rounded-full font-bold text-lg hover:bg-white transition-all duration-300 shadow-xl"
+      >
+        Consultar disponibilidad por WhatsApp
+      </a>
+      <p class="mt-6 text-xs text-white/40">Respondemos en menos de 24 horas · Visita al espacio sin costo</p>
+    </div>
+  </section>
+
+</Layout>
