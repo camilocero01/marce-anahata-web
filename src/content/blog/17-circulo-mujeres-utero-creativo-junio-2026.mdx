@@ -5,7 +5,7 @@ description: "Cuarto encuentro del programa Los 9 Úteros. Activamos el segundo 
 pubDate: 2026-05-25
 updatedDate: 2026-05-25
 author: "Marce Anahata"
-tags: ["círculo de mujeres", "útero creativo", "segundo chakra", "chakra sacral", "creatividad femenina", "bienestar", "ritual", "medellín", "eventos"]
+tags: ["círculo de mujeres",eventos"]
 image: "/images/blog/9-circulo-mujeres-conciente-medellin.jpg"
 ogImage: "/images/blog/9-circulo-mujeres-conciente-medellin.jpg"
 draft: false
@@ -19,7 +19,9 @@ eventCapacity: 12
 featured: true
 ---
 
-Mujer, llegamos al tercer portal del viaje de los 9 Úteros. Después de sanar memorias y habitar el cuerpo, es hora de **crear**.
+import ReservaWhatsappForm from '../../components/ReservaWhatsappForm.astro';
+
+Mujer, llegamos al cuarto portal del viaje de los 9 Úteros. Después de sanar memorias, habitar el cuerpo y sincronizarnos con la luna, es hora de **crear**.
 
 ---
 
@@ -127,19 +129,9 @@ Cl. 23 Sur #42B-60, Los Cristales, Envigado
 
 *Colchonetas, mantas y todos los elementos del ritual están incluidos.*
 
-<div class="my-8 text-center">
-  <p class="text-stone-600 mb-4 font-medium">¡Los cupos son limitados — grupo de máximo 12 mujeres!</p>
-  <a
-    href="https://wa.me/573207329921?text=Hola%20Marce%20Anahata%2C%20quiero%20reservar%20mi%20lugar%20en%20el%204to%20Encuentro%20de%20los%209%20%C3%9Ateros%3A%20El%20%C3%9Atero%20Creativo%20del%2012%20de%20junio."
-    target="_blank"
-    rel="noopener noreferrer"
-    data-event="whatsapp_click"
-    data-label="Circulo Utero Creativo - Hero CTA"
-    class="btn-whatsapp inline-block px-8 py-4 rounded-full font-medium transition-all duration-300 transform hover:-translate-y-1 shadow-lg"
-  >
-    💚 Reserva tu lugar por WhatsApp
-  </a>
-</div>
+<ReservaWhatsappForm
+  mensajeBase="Hola Marce Anahata, quiero reservar mi lugar en el 4to Encuentro de los 9 Úteros: El Útero Creativo del 12 de junio."
+/>
 
 ---
 
@@ -204,17 +196,9 @@ No para arreglarte. No para tener todo claro. Sino para sentarte con otras mujer
 
 ---
 
-<div class="my-8 text-center">
-  <p class="text-stone-600 mb-2">Si algo en ti siente el llamado, ese es tu señal.</p>
-  <p class="text-stone-600 mb-6">Los cupos son limitados para garantizar la intimidad del espacio.</p>
-  <a
-    href="https://wa.me/573207329921?text=Hola%20Marce%20Anahata%2C%20quiero%20reservar%20mi%20lugar%20en%20el%204to%20Encuentro%20de%20los%209%20%C3%9Ateros%3A%20El%20%C3%9Atero%20Creativo%20del%2012%20de%20junio."
-    target="_blank"
-    rel="noopener noreferrer"
-    data-event="whatsapp_click"
-    data-label="Circulo Utero Creativo - Final CTA"
-    class="btn-whatsapp-dark inline-block px-8 py-4 rounded-full font-medium transition-all duration-300 transform hover:-translate-y-1 shadow-lg"
-  >
-    💚 Escríbenos y reserva tu lugar
-  </a>
-</div>
+<p class="text-center text-stone-600 mb-2">Si algo en ti siente el llamado, ese es tu señal.</p>
+
+<ReservaWhatsappForm
+  mensajeBase="Hola Marce Anahata, quiero reservar mi lugar en el 4to Encuentro de los 9 Úteros: El Útero Creativo del 12 de junio."
+  titulo="¿Lista para crear?"
+/>
