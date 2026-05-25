@@ -8,6 +8,19 @@ import ritualesImg from '../assets/ritual/circulo-mujeres-conciente-medellin.jpg
 
 const whatsappLink = `https://wa.me/573207329921?text=${encodeURIComponent('Hola Marce, me interesa el Círculo de Mujeres. ¿Cuándo es el próximo encuentro?')}`;
 
+// Programa anual 2026 — actualizar completado/actual cada mes
+const encuentros = [
+  { num: 1, mes: 'Marzo', nombre: 'Sanación de Útero y Liberación de Memorias', desc: 'Liberación de memorias sexuales propias y ancestrales. El inicio del viaje hacia el centro del poder femenino.', slug: '9-circulo-de-mujeres-2026', completado: true, actual: false },
+  { num: 2, mes: 'Abril', nombre: 'La Anatomía Sagrada', desc: 'Conectar con el útero físico, la pelvis y el movimiento fluido para liberar tensiones acumuladas.', slug: '8-circulo-mujeres-anatomia-sagrada', completado: true, actual: false },
+  { num: 3, mes: 'Mayo', nombre: 'Las Fases de la Luna', desc: 'Sincronizar el ciclo menstrual (o lunar) con los arquetipos: la Virgen, la Madre, la Hechicera y la Anciana.', slug: null, completado: true, actual: false },
+  { num: 4, mes: 'Junio', nombre: 'El Útero Creativo', desc: 'Activar el segundo chakra para manifestar proyectos y sueños. El útero como centro de creación, no solo biológico.', slug: '17-circulo-mujeres-utero-creativo-junio-2026', completado: false, actual: true },
+  { num: 5, mes: 'Julio', nombre: 'Limpieza de Memorias', desc: 'Liberar lazos energéticos de relaciones pasadas y recuperar la soberanía sobre el propio cuerpo.', slug: null, completado: false, actual: false },
+  { num: 6, mes: 'Agosto', nombre: 'Voz y Útero', desc: 'La conexión garganta-útero. Expresar la verdad y el poder a través del canto y la vibración sonora.', slug: null, completado: false, actual: false },
+  { num: 7, mes: 'Septiembre', nombre: 'Poder Primordial', desc: 'Integrar la energía de la Tierra y los elementos para enraizar la seguridad y el instinto.', slug: null, completado: false, actual: false },
+  { num: 8, mes: 'Octubre', nombre: 'Sabiduría y Abundancia', desc: 'Conectar con la frecuencia del merecimiento y las enseñanzas de las grandes maestras de la historia.', slug: null, completado: false, actual: false },
+  { num: 9, mes: 'Noviembre', nombre: 'El Útero de Luz', desc: 'El cierre: consagración del centro como un templo sagrado y conexión con la energía universal.', slug: null, completado: false, actual: false },
+];
+
 // Posts relacionados con círculo de mujeres o cacao
 const relatedPosts = (await getCollection('blog', ({ data, slug }) =>
   !data.draft && !slug.startsWith('en/') && (
@@ -23,7 +36,7 @@ const relatedPosts = (await getCollection('blog', ({ data, slug }) =>
   description="Encuentros mensuales de mujeres en Envigado y Envigado y El Poblado. Un espacio sagrado de ritual, sonido y hermandad para reconectar, sanar y renacer juntas."
 >
   <Fragment slot="head">
-    <script type="application/ld+json">{JSON.stringify({
+    <script is:inline type="application/ld+json">{JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',
       itemListElement: [
@@ -31,7 +44,7 @@ const relatedPosts = (await getCollection('blog', ({ data, slug }) =>
         { '@type': 'ListItem', position: 2, name: 'Círculo de Mujeres', item: 'https://www.marceanahata.com/circulo-mujeres-conscientes' },
       ],
     })}</script>
-    <script type="application/ld+json">{JSON.stringify({
+    <script is:inline type="application/ld+json">{JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'Event',
       name: 'Círculo de Mujeres Conscientes',
@@ -189,6 +202,73 @@ const relatedPosts = (await getCollection('blog', ({ data, slug }) =>
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Sección: El Encuentro de los 9 Úteros — Programa anual 2026 -->
+  <section class="py-24 bg-white px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-4">
+        <span class="text-[#5d5a8c] uppercase tracking-[0.3em] text-sm font-semibold">Programa 2026</span>
+      </div>
+      <div class="text-center mb-6">
+        <h2 class="text-4xl md:text-5xl font-serif text-[#243c5a]">El Encuentro de los 9 Úteros</h2>
+      </div>
+      <p class="text-lg text-[#243c5a]/70 max-w-3xl mx-auto text-center leading-relaxed mb-16">
+        Un viaje sagrado de nueve meses — de marzo a noviembre de 2026 — en el que cada encuentro abre una puerta diferente hacia el poder femenino interior. Cada mes, un tema. Cada tema, una capa más profunda del ser.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        {encuentros.map((enc) => (
+          enc.slug ? (
+            <a
+              href={`/blog/${enc.slug}`}
+              class={`relative rounded-2xl border p-6 transition-all duration-300 block group ${
+                enc.completado
+                  ? 'bg-[#5d5a8c]/5 border-[#5d5a8c]/20 hover:shadow-lg hover:border-[#5d5a8c]/40'
+                  : 'bg-gradient-to-br from-[#6ed8d9]/10 to-[#5d5a8c]/10 border-[#6ed8d9]/50 shadow-md hover:shadow-lg'
+              }`}
+            >
+              <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center gap-2">
+                  <span class={`w-7 h-7 rounded-full text-xs font-bold flex items-center justify-center flex-shrink-0 ${enc.completado ? 'bg-[#5d5a8c] text-white' : 'bg-[#6ed8d9] text-[#243c5a]'}`}>{enc.num}</span>
+                  <span class={`text-xs font-bold uppercase tracking-widest ${enc.completado ? 'text-[#5d5a8c]' : 'text-[#6ed8d9]'}`}>{enc.mes}</span>
+                </div>
+                {enc.completado ? (
+                  <span class="text-[#5d5a8c] text-xs font-semibold flex items-center gap-1">
+                    <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                    Realizado
+                  </span>
+                ) : (
+                  <span class="bg-[#6ed8d9] text-[#243c5a] text-xs font-bold px-2.5 py-1 rounded-full">Este mes</span>
+                )}
+              </div>
+              <h3 class="font-serif text-lg leading-tight mb-2 text-[#243c5a] group-hover:text-[#5d5a8c] transition-colors">{enc.nombre}</h3>
+              <p class="text-sm leading-relaxed text-[#243c5a]/70 mb-4">{enc.desc}</p>
+              <span class={`text-xs font-semibold flex items-center gap-1 ${enc.actual ? 'text-[#6ed8d9]' : 'text-[#5d5a8c]'}`}>
+                Ver este encuentro
+                <svg class="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </span>
+            </a>
+          ) : (
+            <div class="relative rounded-2xl border border-stone-100 bg-stone-50 p-6 opacity-50">
+              <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center gap-2">
+                  <span class="w-7 h-7 rounded-full text-xs font-bold flex items-center justify-center flex-shrink-0 bg-stone-200 text-stone-400">{enc.num}</span>
+                  <span class="text-xs font-bold uppercase tracking-widest text-stone-400">{enc.mes}</span>
+                </div>
+                <span class="text-stone-300 text-xs">Próximamente</span>
+              </div>
+              <h3 class="font-serif text-lg leading-tight mb-2 text-stone-400">{enc.nombre}</h3>
+              <p class="text-sm leading-relaxed text-stone-400">{enc.desc}</p>
+            </div>
+          )
+        ))}
+      </div>
+
+      <p class="text-center text-[#243c5a]/50 text-sm mt-10">
+        Cada encuentro es independiente. Puedes unirte en cualquier mes — aunque la experiencia se profundiza cuando acompañas el viaje completo.
+      </p>
     </div>
   </section>
 
@@ -518,7 +598,7 @@ const relatedPosts = (await getCollection('blog', ({ data, slug }) =>
       </div>
 
       <!-- LocalBusiness + FAQPage Schemas -->
-      <script type="application/ld+json">{JSON.stringify({
+      <script is:inline type="application/ld+json">{JSON.stringify({
         '@context': 'https://schema.org',
         '@type': ['HealthAndBeautyBusiness', 'SportsActivityLocation'],
         '@id': 'https://www.marceanahata.com/#business',
@@ -549,7 +629,7 @@ const relatedPosts = (await getCollection('blog', ({ data, slug }) =>
           worstRating: '1'
         }
       })}</script>
-      <script type="application/ld+json">{JSON.stringify({
+      <script is:inline type="application/ld+json">{JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'FAQPage',
         mainEntity: [
