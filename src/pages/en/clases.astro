@@ -44,7 +44,7 @@ const faqItems = [
   {
     question: 'Do you offer Pilates classes near El Poblado or Envigado?',
     answer:
-      'We don\'t offer traditional Pilates, but we do have Yogalates — a fusion combining Pilates principles with the depth of yoga — and Barre Balance, which builds strength, balance, and posture using barre technique. Many students choose them as a direct alternative to Pilates. Message us and we\'ll help you find the best fit for your goals.'
+      'We don\'t offer traditional Pilates, but we do have Yogalates — a fusion combining Pilates principles with the depth of yoga — and Mobility & Stretching, a class focused on joint range of motion, flexibility, and posture. Many students choose them as a direct alternative to Pilates. Message us and we\'ll help you find the best fit for your goals.'
   },
   {
     question: 'What is the difference between Yogalates and traditional Pilates?',
@@ -62,9 +62,9 @@ const faqItems = [
       'We offer monthly packs with access to all weekly group classes. For current pricing, available packs, and personalized options, visit our pricing page or message us on WhatsApp — we reply quickly.'
   },
   {
-    question: 'What is Barre Balance and who is it for?',
+    question: 'What is Mobility & Stretching and who is it for?',
     answer:
-      'Barre Balance combines ballet barre technique with functional strength, balance, and posture exercises. No dance experience needed. It\'s ideal for people who want to tone without joint impact, improve posture, or find a dynamic alternative to Pilates or more passive yoga styles. Classes on Thursdays at 7:00 PM.'
+      'Mobility & Stretching is a class focused on recovering and expanding joint range of motion, releasing muscle tension, and improving posture. Ideal for people who sit for long hours, play other sports, or want to complement their yoga practice with deep flexibility work. Classes on Thursdays at 7:00 PM.'
   }
 ];
 
@@ -116,7 +116,7 @@ const offerings = [
   lang="en"
 >
   <Fragment slot="head">
-    <script type="application/ld+json">{JSON.stringify({
+    <script is:inline type="application/ld+json">{JSON.stringify({
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       "itemListElement": [
@@ -124,7 +124,7 @@ const offerings = [
         { "@type": "ListItem", "position": 2, "name": "Classes & Workshops", "item": "https://www.marceanahata.com/en/clases" }
       ]
     })}</script>
-    <script type="application/ld+json">{JSON.stringify({
+    <script is:inline type="application/ld+json">{JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Service",
       "name": "Kundalini Yoga Classes and Workshops in Medellín",
@@ -147,7 +147,7 @@ const offerings = [
       "url": serviceUrl,
       "keywords": "yoga classes Envigado, yoga El Poblado, yoga La Frontera Envigado, Kundalini Yoga, Yin Yoga, Yogalates, Yoga Nidra, Restorative Yoga, Vinyasa Detox, Barre Balance, yoga classes Medellín, pranayama, meditation, holistic wellness, pilates Envigado, pilates El Poblado, pilates classes Envigado, pilates alternative Medellín, yoga and pilates Envigado"
     })}</script>
-    <script type="application/ld+json">{JSON.stringify({
+    <script is:inline type="application/ld+json">{JSON.stringify({
       "@context": "https://schema.org",
       "@type": "FAQPage",
       "mainEntity": faqItems.map((item) => ({
@@ -159,7 +159,7 @@ const offerings = [
         }
       }))
     })}</script>
-    <script type="application/ld+json">{JSON.stringify({
+    <script is:inline type="application/ld+json">{JSON.stringify({
       "@context": "https://schema.org",
       "@type": ["HealthAndBeautyBusiness", "SportsActivityLocation"],
       "@id": "https://www.marceanahata.com/#business",
@@ -360,8 +360,8 @@ const offerings = [
               </div>
               <div>
                 <p class="text-sm font-medium text-[#5d5a8c] mb-1">7:00 PM</p>
-                <p class="text-[#243c5a] font-semibold">Yoga Power</p>
-                <p class="text-xs text-[#243c5a]/60">Strength, activation and vitality</p>
+                <p class="text-[#243c5a] font-semibold">Yogalates</p>
+                <p class="text-xs text-[#243c5a]/60">Yoga + Pilates fusion · Core and breathwork</p>
               </div>
             </div>
           </div>
@@ -440,11 +440,8 @@ const offerings = [
               </div>
               <div>
                 <p class="text-sm font-medium text-[#5d5a8c] mb-1">7:00 PM</p>
-                <div class="flex items-center gap-2 mb-0.5">
-                  <p class="text-[#243c5a] font-semibold">Barre Balance</p>
-                  <span class="text-[10px] font-bold uppercase tracking-wide text-[#243c5a] bg-[#6ed8d9] px-1.5 py-0.5 rounded-full">New</span>
-                </div>
-                <p class="text-xs text-[#243c5a]/60">Balance and grace at the barre</p>
+                <p class="text-[#243c5a] font-semibold">Mobility & Stretching</p>
+                <p class="text-xs text-[#243c5a]/60">Flexibility, release and range of motion</p>
               </div>
             </div>
           </div>
@@ -559,10 +556,9 @@ const offerings = [
           </div>
           <div class="bg-stone-50 rounded-xl p-5 border border-[#6ed8d9]/20">
             <div class="flex items-center gap-2 mb-2">
-              <h3 class="font-semibold text-[#243c5a]">Barre Balance</h3>
-              <span class="text-[10px] font-bold uppercase tracking-wide text-[#243c5a] bg-[#6ed8d9] px-1.5 py-0.5 rounded-full">New</span>
+              <h3 class="font-semibold text-[#243c5a]">Mobility & Stretching</h3>
             </div>
-            <p class="text-sm text-[#243c5a]/70 leading-relaxed">Barre technique with functional strength and balance movements. Tones without joint impact, improves posture. Thursdays 7:00 PM.</p>
+            <p class="text-sm text-[#243c5a]/70 leading-relaxed">Joint mobility and deep flexibility work. Releases tension, improves posture, and expands range of motion. Thursdays 7:00 PM.</p>
           </div>
         </div>
         <p class="text-sm text-[#243c5a]/60 italic mb-5">When you reach out, we'll explain which one fits your goals best.</p>
