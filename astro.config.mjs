@@ -111,6 +111,9 @@ export default defineConfig({
     }),
     compress()
   ],
+  redirects: {
+    '/flyer': 'https://www.marceanahata.com/?utm_source=Flyer&utm_medium=Flyer&utm_campaign=Flyer&utm_id=Flyer',
+  },
   site: 'https://www.marceanahata.com',
   trailingSlash: 'never',
   prefetch: true,
