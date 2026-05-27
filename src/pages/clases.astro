@@ -111,7 +111,7 @@ const offerings = [
 
 <Layout title="Clases de Yoga en Envigado — La Frontera con El Poblado | Marce Anahata" description="Clases de yoga en Envigado a 2 minutos de El Poblado. Kundalini Yoga, Yin Yoga, Yogalates, Yoga Nidra, Vinyasa Detox, Barre Balance y más. Grupos abiertos y sesiones privadas en La Frontera.">
   <Fragment slot="head">
-    <script type="application/ld+json">{JSON.stringify({
+    <script is:inline type="application/ld+json">{JSON.stringify({
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       "itemListElement": [
@@ -129,7 +129,7 @@ const offerings = [
         }
       ]
     })}</script>
-    <script type="application/ld+json">{JSON.stringify({
+    <script is:inline type="application/ld+json">{JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Service",
       "name": "Clases de Yoga en Envigado — La Frontera con El Poblado",
@@ -161,7 +161,7 @@ const offerings = [
         "worstRating": "1"
       }
     })}</script>
-    <script type="application/ld+json">{JSON.stringify({
+    <script is:inline type="application/ld+json">{JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Course",
       "name": "Clases de Yoga en Envigado — La Frontera con El Poblado",
@@ -218,7 +218,7 @@ const offerings = [
         "url": serviceUrl
       }
     })}</script>
-    <script type="application/ld+json">{JSON.stringify({
+    <script is:inline type="application/ld+json">{JSON.stringify({
       "@context": "https://schema.org",
       "@type": "FAQPage",
       "mainEntity": faqItems.map((item) => ({
@@ -230,7 +230,7 @@ const offerings = [
         }
       }))
     })}</script>
-    <script type="application/ld+json">{JSON.stringify({
+    <script is:inline type="application/ld+json">{JSON.stringify({
       "@context": "https://schema.org",
       "@type": ["HealthAndBeautyBusiness", "SportsActivityLocation"],
       "@id": "https://www.marceanahata.com/#business",
@@ -515,7 +515,10 @@ const offerings = [
               </div>
               <div>
                 <p class="text-sm font-medium text-[#5d5a8c] mb-1">7:00 PM</p>
-                <p class="text-[#243c5a] font-semibold">Movilidad y Stretching</p>
+                <div class="flex items-center gap-2 mb-0.5">
+                  <p class="text-[#243c5a] font-semibold">Movilidad y Stretching</p>
+                  <span class="text-[10px] font-bold uppercase tracking-wide text-[#243c5a] bg-[#6ed8d9] px-1.5 py-0.5 rounded-full">Nueva</span>
+                </div>
                 <p class="text-xs text-[#243c5a]/60">Flexibilidad, liberación y rango de movimiento</p>
               </div>
             </div>
