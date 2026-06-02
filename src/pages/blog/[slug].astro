@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
+import { getOgImageSize } from '../../lib/ogImageSize';
 
 export async function getStaticPaths() {
   // Solo obtener posts en español (no comienzan con 'en/')
@@ -22,6 +23,7 @@ const description = data.description;
 const siteOrigin = 'https://www.marceanahata.com';
 const image = data.ogImage || data.image || '/images/social-preview-wa.jpg';
 const absoluteImage = image.startsWith('http') ? image : `${siteOrigin}${image}`;
+const { width: ogImageWidth, height: ogImageHeight } = await getOgImageSize(image);
 const url = new URL(Astro.url);
 let canonical = data.canonical || url.toString();
 // Ensure trailing slash for consistency with Astro's trailing slash behavior
@@ -191,7 +193,7 @@ const serviceCTA = {
   'viaje 450 vibraciones': { url: '/viaje-450-vibraciones', text: 'Ver todos los baños de gong 2026' }
 }[primaryTag];
 ---
-<Layout title={pageTitle} description={description} image={image} imageWidth={null} imageHeight={null} ogType="article" lang={lang} includeAlternates={false}>
+<Layout title={pageTitle} description={description} image={image} imageWidth={ogImageWidth} imageHeight={ogImageHeight} ogType="article" lang={lang} includeAlternates={false}>
   <Fragment slot="head">
     <meta property="article:published_time" content={publishedTime} />
     {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
