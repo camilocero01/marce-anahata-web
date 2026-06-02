@@ -1,0 +1,37 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Prueba de vista previa · Marce Anahata"
+  description="Página temporal para verificar que la miniatura de WhatsApp se genera correctamente. Si ves esta imagen al compartir el link, todo quedó funcionando."
+  image="/images/blog/17-circulo-mujeres-og.jpg"
+  hideAuthorInTitle={true}
+  includeAlternates={false}
+>
+  <Fragment slot="head">
+    <meta name="robots" content="noindex, nofollow" />
+  </Fragment>
+
+  <section class="max-w-2xl mx-auto px-6 py-24 text-center">
+    <h1 class="font-serif text-3xl md:text-4xl text-[#243c5a] mb-4">
+      Página de prueba de vista previa
+    </h1>
+    <p class="text-stone-600 leading-relaxed mb-8">
+      Esta es una URL nueva que WhatsApp nunca ha visto. Si al compartir este
+      enlace aparece la miniatura horizontal, significa que la configuración del
+      sitio quedó correcta y lo que faltaba era solo refrescar la caché de
+      WhatsApp en las demás URLs.
+    </p>
+    <img
+      src="/images/blog/17-circulo-mujeres-og.jpg"
+      alt="Imagen de prueba de vista previa"
+      width="1200"
+      height="630"
+      class="w-full rounded-2xl shadow-md"
+    />
+    <p class="text-stone-400 text-sm mt-6">
+      Página temporal · se puede eliminar después de la prueba.
+    </p>
+  </section>
+</Layout>

@@ -43,7 +43,8 @@ export default defineConfig({
         const url = new URL(page);
         const path = url.pathname.replace(/\/$/, '');
         if (['/admin', '/links', '/privacidad', '/buscar', '/404',
-             '/en/links', '/en/privacidad', '/en/buscar', '/en/404'
+             '/en/links', '/en/privacidad', '/en/buscar', '/en/404',
+             '/prueba-whatsapp-preview'
         ].includes(path)) return false;
         if (path.startsWith('/propuestas')) return false;
         if (path.endsWith('/blog/page/1')) return false;
