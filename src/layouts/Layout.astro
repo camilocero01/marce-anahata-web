@@ -19,6 +19,8 @@ interface Props {
     title: string;
     description?: string;
     image?: string;
+    imageWidth?: number | null;
+    imageHeight?: number | null;
     logo?: string;
     ogType?: string;
     hideAuthorInTitle?: boolean;
@@ -30,6 +32,8 @@ const {
     title,
     description = "Centro de bienestar Marce Anahata en Envigado, a 2 cuadras de El Poblado en Medellín - El Poblado. Kundalini Yoga, Terapia de Sonido, Rituales Sagrados y Bienestar Corporativo.",
     image = "/images/social-preview-wa.jpg" ,
+    imageWidth = 1200,
+    imageHeight = 634,
     logo = "/images/marce-perfil.webp",
     ogType = 'website',
     hideAuthorInTitle = false,
@@ -314,8 +318,12 @@ const websiteSchema = JSON.stringify({
         <meta property="og:description" content={description} />
         <meta property="og:image" content={resolvedImage} />
         <meta property="og:image:secure_url" content={resolvedImage} />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="634" />
+        {imageWidth && imageHeight && (
+            <>
+                <meta property="og:image:width" content={String(imageWidth)} />
+                <meta property="og:image:height" content={String(imageHeight)} />
+            </>
+        )}
         <meta property="og:image:type" content="image/jpeg" />
         <meta property="og:image:alt" content={title} />
         <meta property="og:logo" content={resolvedLogo} />
