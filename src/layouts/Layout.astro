@@ -46,6 +46,13 @@ const siteUrl = Astro.site ?? new URL('https://www.marceanahata.com');
 const resolvedImage = image?.startsWith('http') ? image : new URL(image, siteUrl).toString();
 const resolvedLogo = logo?.startsWith('http') ? logo : new URL(logo, siteUrl).toString();
 
+// Imagen para vistas previas sociales: se sirve a través de /social-image para
+// garantizar HTTP 200 (los estáticos de Vercel devuelven 206 ante peticiones
+// con Range, y WhatsApp no renderiza una og:image que responde 206).
+const socialImage = image?.startsWith('http')
+    ? image
+    : new URL('/social-image/' + image.replace(/^\/?images\//, '').replace(/^\/+/, ''), siteUrl).toString();
+
 const normalizedPath = Astro.url.pathname !== '/' && Astro.url.pathname.endsWith('/')
     ? Astro.url.pathname.slice(0, -1)
     : Astro.url.pathname;
@@ -309,15 +316,15 @@ const websiteSchema = JSON.stringify({
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
-        <meta name="twitter:image" content={resolvedImage} />
+        <meta name="twitter:image" content={socialImage} />
         <meta name="twitter:image:alt" content={title} />
 
         <meta property="og:type" content={ogType} />
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
-        <meta property="og:image" content={resolvedImage} />
-        <meta property="og:image:secure_url" content={resolvedImage} />
+        <meta property="og:image" content={socialImage} />
+        <meta property="og:image:secure_url" content={socialImage} />
         {imageWidth && imageHeight && (
             <>
                 <meta property="og:image:width" content={String(imageWidth)} />
