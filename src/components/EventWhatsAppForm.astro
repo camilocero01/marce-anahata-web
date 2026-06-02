@@ -1,0 +1,241 @@
+---
+export interface Props {
+  eventTitle: string;
+  eventDate: string;
+  waNumber?: string;
+  paymentLabel?: string;
+}
+
+const {
+  eventTitle,
+  eventDate,
+  waNumber = "573207329921",
+  paymentLabel = "",
+} = Astro.props;
+---
+
+<div class="event-wa-form-section">
+  <div class="max-w-2xl mx-auto">
+    <h3 class="font-serif font-bold text-[#243c5a] mb-2 text-2xl md:text-3xl">
+      Reserva tu lugar
+    </h3>
+    <p class="text-sm text-[#6ed8d9] font-semibold mb-4">📅 {eventDate}</p>
+    <p class="text-stone-600 mb-6">
+      Completa el formulario y al enviarlo se abrirá WhatsApp con tu información lista para confirmar tu cupo.
+    </p>
+
+    <!-- Estado de éxito -->
+    <div id="wa-success-state" class="hidden text-center py-12 px-6">
+      <div class="text-5xl mb-4">🙏</div>
+      <h3 class="font-serif text-2xl text-[#243c5a] mb-3">¡Mensaje enviado!</h3>
+      <p class="text-stone-600 mb-2">Marce te confirmará tu inscripción en breve.</p>
+      <p class="text-stone-500 text-sm mt-4">¿No se abrió WhatsApp?
+        <a id="wa-fallback-link" href="#" target="_blank" rel="noopener noreferrer" class="text-[#6ed8d9] underline font-semibold">Toca aquí para intentarlo de nuevo.</a>
+      </p>
+    </div>
+
+    <form id="wa-registration-form" class="space-y-4 mb-6" novalidate>
+
+      <!-- Nombre completo -->
+      <div>
+        <label for="wa-name" class="block text-sm font-medium text-[#243c5a] mb-2">
+          Nombre completo *
+        </label>
+        <input
+          type="text"
+          id="wa-name"
+          name="name"
+          placeholder="Tu nombre completo"
+          required
+          class="w-full px-4 py-3 rounded-lg border-2 border-stone-200 focus:border-[#6ed8d9] focus:outline-none placeholder:text-stone-400 transition-colors"
+        />
+        <span class="field-error hidden text-xs text-red-500 mt-1 block">Por favor ingresa tu nombre completo.</span>
+      </div>
+
+      <!-- Correo electrónico -->
+      <div>
+        <label for="wa-email" class="block text-sm font-medium text-[#243c5a] mb-2">
+          Correo electrónico *
+        </label>
+        <input
+          type="email"
+          id="wa-email"
+          name="email"
+          placeholder="tu@email.com"
+          required
+          class="w-full px-4 py-3 rounded-lg border-2 border-stone-200 focus:border-[#6ed8d9] focus:outline-none placeholder:text-stone-400 transition-colors"
+        />
+        <span class="field-error hidden text-xs text-red-500 mt-1 block">Por favor ingresa un correo válido.</span>
+      </div>
+
+      <!-- Celular -->
+      <div>
+        <label for="wa-phone" class="block text-sm font-medium text-[#243c5a] mb-2">
+          Celular *
+        </label>
+        <input
+          type="tel"
+          id="wa-phone"
+          name="phone"
+          placeholder="+57 300 123 4567"
+          required
+          class="w-full px-4 py-3 rounded-lg border-2 border-stone-200 focus:border-[#6ed8d9] focus:outline-none placeholder:text-stone-400 transition-colors"
+        />
+        <span class="field-error hidden text-xs text-red-500 mt-1 block">Por favor ingresa tu celular.</span>
+      </div>
+
+      <!-- Número de documento -->
+      <div>
+        <label for="wa-doc" class="block text-sm font-medium text-[#243c5a] mb-2">
+          Número de documento *
+        </label>
+        <input
+          type="text"
+          id="wa-doc"
+          name="doc"
+          placeholder="Cédula o pasaporte"
+          required
+          class="w-full px-4 py-3 rounded-lg border-2 border-stone-200 focus:border-[#6ed8d9] focus:outline-none placeholder:text-stone-400 transition-colors"
+        />
+        <span class="field-error hidden text-xs text-red-500 mt-1 block">Por favor ingresa tu número de documento.</span>
+      </div>
+
+      <!-- Condición de salud -->
+      <div>
+        <label for="wa-health" class="block text-sm font-medium text-[#243c5a] mb-2">
+          ¿Tienes alguna condición de salud?
+          <span class="text-stone-500 text-xs block mt-1">(Ej: embarazo, marcapasos, epilepsia, ansiedad severa — información confidencial)</span>
+        </label>
+        <textarea
+          id="wa-health"
+          name="health"
+          placeholder="Escribe aquí tu condición, o deja en blanco si no aplica."
+          rows="3"
+          class="w-full px-4 py-3 rounded-lg border-2 border-stone-200 focus:border-[#6ed8d9] focus:outline-none placeholder:text-stone-400 transition-colors resize-none"
+        ></textarea>
+      </div>
+
+      <!-- Info de pago -->
+      {paymentLabel && (
+        <div class="bg-amber-50 p-4 rounded-lg border border-amber-200 text-sm text-stone-700 leading-relaxed" set:html={paymentLabel} />
+      )}
+
+      <!-- Consentimiento -->
+      <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded text-xs text-blue-800 leading-relaxed">
+        <strong class="block mb-1">⚕️ Experiencia complementaria de bienestar</strong>
+        Este taller no es un tratamiento médico ni psicológico y no reemplaza ningún tratamiento prescrito por profesionales de la salud.
+      </div>
+
+      <!-- Botón enviar -->
+      <button
+        type="submit"
+        id="wa-submit-btn"
+        class="w-full px-6 py-3 bg-[#6ed8d9] text-[#243c5a] rounded-lg font-semibold hover:bg-[#5ac5c6] transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Reservar por WhatsApp
+      </button>
+
+      <p class="text-xs text-stone-400 text-center">
+        Al enviar aceptas participar voluntariamente y entiendes la información indicada.
+      </p>
+    </form>
+  </div>
+</div>
+
+<script is:inline define:vars={{ waNumber, eventTitle }}>
+  const form = document.getElementById('wa-registration-form');
+  const successState = document.getElementById('wa-success-state');
+  const fallbackLink = document.getElementById('wa-fallback-link');
+
+  const REQUIRED_IDS = ['wa-name', 'wa-email', 'wa-phone', 'wa-doc'];
+
+  function getError(id) {
+    return document.getElementById(id)?.nextElementSibling;
+  }
+
+  function showError(id) {
+    const el = document.getElementById(id);
+    if (el) el.classList.replace('border-stone-200', 'border-red-400');
+    getError(id)?.classList.remove('hidden');
+  }
+
+  function clearError(id) {
+    const el = document.getElementById(id);
+    if (el) el.classList.replace('border-red-400', 'border-stone-200');
+    getError(id)?.classList.add('hidden');
+  }
+
+  function validate() {
+    let firstInvalid = null;
+    for (const id of REQUIRED_IDS) {
+      const el = document.getElementById(id);
+      if (!el) continue;
+      const bad = id === 'wa-email'
+        ? !el.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim())
+        : !el.value.trim();
+      if (bad) {
+        showError(id);
+        if (!firstInvalid) firstInvalid = el;
+      } else {
+        clearError(id);
+      }
+    }
+    return firstInvalid;
+  }
+
+  if (form) {
+    REQUIRED_IDS.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener('input', () => clearError(id));
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const firstInvalid = validate();
+      if (firstInvalid) {
+        firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        firstInvalid.focus();
+        return;
+      }
+
+      const name    = document.getElementById('wa-name').value.trim();
+      const email   = document.getElementById('wa-email').value.trim();
+      const phone   = document.getElementById('wa-phone').value.trim();
+      const doc     = document.getElementById('wa-doc').value.trim();
+      const health  = document.getElementById('wa-health').value.trim() || 'Ninguna';
+
+      const msg = [
+        `Hola Marce, quiero inscribirme al *${eventTitle}*.`,
+        '',
+        `✅ *Nombre:* ${name}`,
+        `✅ *Correo:* ${email}`,
+        `✅ *Celular:* ${phone}`,
+        `✅ *Documento:* ${doc}`,
+        `✅ *Condición de salud:* ${health}`,
+      ].join('\n');
+
+      const url = `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`;
+
+      if (fallbackLink) fallbackLink.href = url;
+
+      form.classList.add('hidden');
+      successState?.classList.remove('hidden');
+
+      window.open(url, '_blank');
+    });
+  }
+</script>
+
+<style>
+  .event-wa-form-section {
+    padding: 2.5rem 2rem;
+    background: linear-gradient(135deg, rgba(110, 216, 217, 0.08) 0%, rgba(93, 90, 140, 0.05) 100%);
+    border-radius: 1rem;
+    border: 2px solid rgba(110, 216, 217, 0.2);
+    margin: 2rem 0;
+  }
+</style>
