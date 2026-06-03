@@ -7,6 +7,11 @@ import { getCollection } from 'astro:content';
 import masajeBioImg from '../assets/marmaterapia/puntos-marma-terapia-energetica-espalda.png';
 import masajeCertImg from '../assets/marmaterapia/masaje-ayurvedico-aceites-medicinales.png';
 import masajeMeditacionImg from '../assets/marmaterapia/meditacion-ayurveda-bienestar-holistico.png';
+// Imágenes de las 4 tarjetas de masaje
+import imgAbhyangam from '../assets/marmaterapia/terapeuta-puntos-marma-ayurveda.png';
+import imgSonido from '../assets/marmaterapia/masaje-ayurvedico-abhyanga-gong-medellin.png';
+import imgChampi from '../assets/marmaterapia/masaje-champi-cabeza-cuello-ayurveda.jpg';
+import imgPadabyanga from '../assets/marmaterapia/masaje-padabyanga-pies-piernas-ayurveda.jpg';
 
 // --- DATOS DEL SERVICIO ---
 const serviceInfo = {
@@ -28,7 +33,9 @@ const subservicios = [
     precio: "$250.000",
     precioNum: "250000",
     icono: "🌿",
-    destacado: true
+    destacado: true,
+    img: imgAbhyangam,
+    alt: "Masaje Abhyangam ayurvédico de cuerpo completo con aceites medicinales en Envigado - Marce Anahata"
   },
   {
     nombre: "Masaje de Relajación con Terapia de Sonido",
@@ -39,7 +46,9 @@ const subservicios = [
     precio: "$250.000",
     precioNum: "250000",
     icono: "🔔",
-    destacado: true
+    destacado: true,
+    img: imgSonido,
+    alt: "Masaje ayurvédico de relajación con terapia de sonido, gong y cuencos de cristal en Envigado - Marce Anahata"
   },
   {
     nombre: "Masaje Champi y Marmaterapia",
@@ -50,7 +59,9 @@ const subservicios = [
     precio: "$180.000",
     precioNum: "180000",
     icono: "🪷",
-    destacado: false
+    destacado: false,
+    img: imgChampi,
+    alt: "Masaje Champi ayurvédico de cabeza, cuello y hombros con marmaterapia en Envigado - Marce Anahata"
   },
   {
     nombre: "Masaje Padabyanga",
@@ -61,7 +72,9 @@ const subservicios = [
     precio: "$180.000",
     precioNum: "180000",
     icono: "🦶",
-    destacado: false
+    destacado: false,
+    img: imgPadabyanga,
+    alt: "Masaje Padabyanga ayurvédico de pies y piernas con aceites medicinales en Envigado - Marce Anahata"
   }
 ];
 
@@ -345,23 +358,34 @@ const masajePosts = (await getCollection('blog', ({ data, slug }) =>
     <div class="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-6">
       {subservicios.map((s) => (
         <article class="group relative bg-white rounded-2xl border border-stone-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col">
-          <div class="h-1.5 bg-gradient-to-r from-[#6ed8d9] to-[#5d5a8c]"></div>
-          {s.destacado && (
-            <span class="absolute top-5 right-5 text-[10px] font-bold uppercase tracking-widest text-[#243c5a] bg-[#6ed8d9] px-3 py-1 rounded-full shadow-sm">
-              Experiencia completa
+          <div class="relative h-52 overflow-hidden">
+            <Image
+              src={s.img}
+              alt={s.alt}
+              width={600}
+              height={400}
+              densities={[1.5, 2]}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#243c5a]/50 via-transparent to-transparent"></div>
+            <span class="absolute top-4 left-4 inline-flex items-center gap-1 text-xs font-bold uppercase tracking-widest text-[#243c5a] bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-sm">
+              ⏱ {s.duracion}
             </span>
-          )}
-          <div class="p-8 flex flex-col flex-grow">
-            <div class="flex items-center gap-4 mb-5">
-              <div class="w-14 h-14 rounded-2xl bg-[#6ed8d9]/10 flex items-center justify-center text-3xl group-hover:scale-110 transition-transform duration-300">
+            {s.destacado && (
+              <span class="absolute top-4 right-4 text-[10px] font-bold uppercase tracking-widest text-[#243c5a] bg-[#6ed8d9] px-3 py-1 rounded-full shadow-sm">
+                Experiencia completa
+              </span>
+            )}
+          </div>
+          <div class="p-7 flex flex-col flex-grow">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-11 h-11 rounded-xl bg-[#6ed8d9]/10 flex items-center justify-center text-2xl flex-shrink-0">
                 {s.icono}
               </div>
-              <span class="text-xs font-bold uppercase tracking-widest text-[#5d5a8c] bg-[#5d5a8c]/10 px-3 py-1.5 rounded-full">
-                ⏱ {s.duracion}
-              </span>
+              <h3 class="text-xl font-serif text-[#243c5a] leading-snug">{s.nombre}</h3>
             </div>
-            <h3 class="text-xl font-serif text-[#243c5a] mb-1.5 leading-snug">{s.nombre}</h3>
-            <p class="text-sm text-[#5d5a8c] font-medium mb-4">{s.tagline}</p>
+            <p class="text-sm text-[#5d5a8c] font-medium mb-3">{s.tagline}</p>
             <p class="text-sm text-[#243c5a]/70 leading-relaxed mb-6 flex-grow">{s.descripcion}</p>
             <div class="flex items-center justify-between pt-5 border-t border-stone-100">
               <div class="leading-none">
