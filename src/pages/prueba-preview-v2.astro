@@ -1,0 +1,37 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Prueba de vista previa v2 · Marce Anahata"
+  description="Segunda prueba: la og:image ahora es un archivo estático directo (sin proxy). Si ves la imagen del círculo de mujeres al compartir, quedó resuelto."
+  image="/images/blog/17-circulo-mujeres-og.jpg"
+  imageWidth={1200}
+  imageHeight={630}
+  hideAuthorInTitle={true}
+  includeAlternates={false}
+>
+  <Fragment slot="head">
+    <meta name="robots" content="noindex, nofollow" />
+  </Fragment>
+
+  <section class="max-w-2xl mx-auto px-6 py-24 text-center">
+    <h1 class="font-serif text-3xl md:text-4xl text-[#243c5a] mb-4">
+      Prueba de vista previa v2
+    </h1>
+    <p class="text-stone-600 leading-relaxed mb-8">
+      URL nueva que WhatsApp nunca ha visto. Ahora la <code>og:image</code> es un
+      archivo estático directo (sin el proxy lento). Si al compartir este enlace
+      aparece la imagen horizontal del círculo de mujeres, el problema quedó
+      resuelto y solo falta que las demás URLs renueven su caché.
+    </p>
+    <img
+      src="/images/blog/17-circulo-mujeres-og.jpg"
+      alt="Imagen de prueba"
+      width="1200"
+      height="630"
+      class="w-full rounded-2xl shadow-md"
+    />
+    <p class="text-stone-400 text-sm mt-6">Página temporal · se elimina tras la prueba.</p>
+  </section>
+</Layout>

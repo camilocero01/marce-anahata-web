@@ -12,12 +12,62 @@ import masajeMeditacionImg from '../assets/marmaterapia/meditacion-ayurveda-bien
 const serviceInfo = {
   title: "Masajes Ayurvédicos y Puntos Marma",
   subtitle: "En Envigado - La Frontera con El Poblado, vive una terapia milenaria que desintoxica tu cuerpo y restaura el flujo de tu energía vital desde las raíces de la medicina Ayurvédica.",
-  price: "$250.000 COP",
+  priceFrom: "$180.000 COP",
   duration: "60 - 90 Min",
   whatsappMessage: "Hola Marce Anahata, me interesa el Masaje Ayurvédico y Puntos Marma. Quisiera agendar una sesión para restaurar mi energía vital."
 };
 
+// --- LOS 4 MASAJES AYURVÉDICOS ---
+const subservicios = [
+  {
+    nombre: "Masaje Abhyangam Completo",
+    tagline: "El masaje ayurvédico clásico de cuerpo completo",
+    descripcion: "Masaje tradicional de cuerpo entero con abundante aceite medicinal tibio, trabajando de la cabeza a los pies en el sentido de los canales energéticos. Desintoxica los tejidos profundos, nutre la piel y el sistema nervioso, y reequilibra tus doshas. La experiencia más profunda y completa.",
+    duracion: "90 min",
+    duracionISO: "PT90M",
+    precio: "$250.000",
+    precioNum: "250000",
+    icono: "🌿",
+    destacado: true
+  },
+  {
+    nombre: "Masaje de Relajación con Terapia de Sonido",
+    tagline: "Masaje con aceites + baño sonoro de cuencos y gong",
+    descripcion: "Une el masaje con aceites tibios a un baño de sonido con cuencos de cristal de cuarzo y gong. Mientras el cuerpo se libera con el contacto terapéutico, las vibraciones llevan al sistema nervioso a una calma profunda. Ideal para estrés, ansiedad e insomnio.",
+    duracion: "90 min",
+    duracionISO: "PT90M",
+    precio: "$250.000",
+    precioNum: "250000",
+    icono: "🔔",
+    destacado: true
+  },
+  {
+    nombre: "Masaje Champi y Marmaterapia",
+    tagline: "Cabeza, cuello y hombros + Puntos Marma",
+    descripcion: "Masaje de cabeza, cuello y hombros (Champi) combinado con la activación de los Puntos Marma de la zona alta. Libera la tensión craneal acumulada, alivia dolores de cabeza y fatiga mental, y devuelve la claridad. Una caricia para la mente que piensa de más.",
+    duracion: "60 min",
+    duracionISO: "PT60M",
+    precio: "$180.000",
+    precioNum: "180000",
+    icono: "🪷",
+    destacado: false
+  },
+  {
+    nombre: "Masaje Padabyanga",
+    tagline: "Masaje terapéutico de pies y piernas con Puntos Marma",
+    descripcion: "Masaje de pies y piernas con aceites medicinales y estimulación de los Puntos Marma de la zona. Los pies y las piernas concentran terminaciones que conectan con todo el cuerpo: trabajarlos induce descanso profundo, mejora el sueño y genera una sensación de enraizamiento y serenidad.",
+    duracion: "60 min",
+    duracionISO: "PT60M",
+    precio: "$180.000",
+    precioNum: "180000",
+    icono: "🦶",
+    destacado: false
+  }
+];
+
 const whatsappLink = `https://wa.me/573207329921?text=${encodeURIComponent(serviceInfo.whatsappMessage)}`;
+const waSub = (nombre: string) =>
+  `https://wa.me/573207329921?text=${encodeURIComponent(`Hola Marce Anahata, me interesa el ${nombre}. Quisiera agendar una sesión.`)}`;
 const serviceUrl = 'https://www.marceanahata.com/masajes-ayurvedicos';
 
 const faqItems = [
@@ -32,9 +82,14 @@ const faqItems = [
       'Las sesiones se realizan en Marce Anahata Centro de Bienestar, en Envigado, zona La Frontera con El Poblado (Cl. 23 Sur #42B-60). La ubicación exacta se comparte al confirmar la reserva por WhatsApp.'
   },
   {
+    question: '¿Qué tipos de masaje ayurvédico ofrecen?',
+    answer:
+      'Ofrecemos 4 experiencias: (1) Masaje Abhyangam Completo de cuerpo entero (90 min · $250.000 COP); (2) Masaje de Relajación con Terapia de Sonido, que une el masaje a un baño de cuencos y gong (90 min · $250.000 COP); (3) Masaje Champi y Marmaterapia, de cabeza, cuello y hombros (60 min · $180.000 COP); y (4) Masaje Padabyanga, masaje terapéutico de pies y piernas (60 min · $180.000 COP).'
+  },
+  {
     question: '¿Cuánto dura la sesión y cuál es la inversión?',
     answer:
-      'Las sesiones tienen una duración de 60 a 90 minutos según el protocolo elegido. La inversión es de $250.000 COP. Contáctanos por WhatsApp para reservar tu fecha.'
+      'Según el masaje elegido, las sesiones duran 60 o 90 minutos. Los masajes de 60 minutos (Champi y Marmaterapia, y Padabyanga) tienen una inversión de $180.000 COP, y los de 90 minutos (Abhyangam Completo y Relajación con Terapia de Sonido) de $250.000 COP. Contáctanos por WhatsApp para reservar tu fecha.'
   },
   {
     question: '¿Qué son los Puntos Marma?',
@@ -77,7 +132,7 @@ const masajePosts = (await getCollection('blog', ({ data, slug }) =>
   .slice(0, 3);
 ---
 
-<Layout title="Masajes Ayurvédicos y Puntos Marma | Marce Anahata" description="Masaje Ayurvédico con Puntos Marma en Envigado, a 2 cuadras de El Poblado. Aceites medicinales, desintoxicación profunda y restauración de energía vital. Desde $250.000 COP." image="/images/masajes-ayurvedicos-poster.png">
+<Layout title="Masajes Ayurvédicos y Puntos Marma | Marce Anahata" description="Masaje Ayurvédico en Envigado, a 2 cuadras de El Poblado: Abhyangam completo, masaje con terapia de sonido, Champi y Marmaterapia, y Padabyanga. Aceites medicinales y Puntos Marma. Desde $180.000 COP." image="/images/masajes-ayurvedicos-poster.png">
   <Fragment slot="head">
     <script is:inline type="application/ld+json">{JSON.stringify({
       "@context": "https://schema.org",
@@ -122,14 +177,33 @@ const masajePosts = (await getCollection('blog', ({ data, slug }) =>
         { "@type": "City", "name": "Medellín" }
       ],
       "offers": {
-        "@type": "Offer",
-        "price": "250000",
+        "@type": "AggregateOffer",
+        "lowPrice": "180000",
+        "highPrice": "250000",
         "priceCurrency": "COP",
+        "offerCount": "4",
         "availability": "https://schema.org/InStock",
         "url": serviceUrl
       },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Masajes Ayurvédicos",
+        "itemListElement": subservicios.map((s) => ({
+          "@type": "Offer",
+          "price": s.precioNum,
+          "priceCurrency": "COP",
+          "availability": "https://schema.org/InStock",
+          "url": serviceUrl,
+          "itemOffered": {
+            "@type": "Service",
+            "name": s.nombre,
+            "description": s.descripcion,
+            "serviceType": "Masaje Ayurvédico"
+          }
+        }))
+      },
       "url": serviceUrl,
-      "keywords": "masaje ayurvédico Envigado, masaje ayurvédico El Poblado, puntos marma Envigado, terapia ayurveda Medellín, masaje con aceites medicinales, masaje relajante Envigado, masaje anti-estrés El Poblado, bienestar holístico, masaje Abhyanga, desintoxicación Ayurveda, masaje para ansiedad Medellín",
+      "keywords": "masaje ayurvédico Envigado, masaje ayurvédico El Poblado, puntos marma Envigado, terapia ayurveda Medellín, masaje con aceites medicinales, masaje relajante Envigado, masaje anti-estrés El Poblado, bienestar holístico, masaje Abhyanga, Abhyangam, masaje con terapia de sonido, masaje Champi, marmaterapia, masaje Padabyanga, masaje de pies y piernas ayurvédico, desintoxicación Ayurveda, masaje para ansiedad Medellín",
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "5.0",
@@ -211,13 +285,10 @@ const masajePosts = (await getCollection('blog', ({ data, slug }) =>
         {serviceInfo.subtitle}
       </p>
       <a
-        href={whatsappLink}
-        target="_blank"
-        data-event="whatsapp_click"
-        data-label="Masajes Hero CTA"
+        href="#experiencias"
         class="inline-block bg-[#6ed8d9] text-[#243c5a] px-8 py-4 rounded-full font-medium hover:bg-[#243c5a] hover:text-white transition-all duration-300 transform hover:-translate-y-1 shadow-lg"
       >
-        Agendar mi Sesión
+        Ver los 4 masajes
       </a>
     </div>
   </section>
@@ -259,6 +330,63 @@ const masajePosts = (await getCollection('blog', ({ data, slug }) =>
         </ul>
       </div>
     </div>
+  </section>
+
+  <!-- LOS 4 MASAJES -->
+  <section id="experiencias" class="py-20 bg-white px-6 scroll-mt-20">
+    <div class="max-w-3xl mx-auto text-center mb-14">
+      <span class="uppercase tracking-[0.2em] text-xs md:text-sm text-[#5d5a8c] font-bold block mb-3">Elige tu experiencia</span>
+      <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-4">Cuatro masajes ayurvédicos</h2>
+      <p class="text-[#243c5a]/70 leading-relaxed">
+        Cada masaje trabaja una necesidad distinta —desde la desintoxicación profunda de cuerpo completo hasta el descanso a través de los pies o la cabeza. Elige el que tu cuerpo te pide hoy.
+      </p>
+    </div>
+
+    <div class="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-6">
+      {subservicios.map((s) => (
+        <article class="group relative bg-white rounded-2xl border border-stone-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col">
+          <div class="h-1.5 bg-gradient-to-r from-[#6ed8d9] to-[#5d5a8c]"></div>
+          {s.destacado && (
+            <span class="absolute top-5 right-5 text-[10px] font-bold uppercase tracking-widest text-[#243c5a] bg-[#6ed8d9] px-3 py-1 rounded-full shadow-sm">
+              Experiencia completa
+            </span>
+          )}
+          <div class="p-8 flex flex-col flex-grow">
+            <div class="flex items-center gap-4 mb-5">
+              <div class="w-14 h-14 rounded-2xl bg-[#6ed8d9]/10 flex items-center justify-center text-3xl group-hover:scale-110 transition-transform duration-300">
+                {s.icono}
+              </div>
+              <span class="text-xs font-bold uppercase tracking-widest text-[#5d5a8c] bg-[#5d5a8c]/10 px-3 py-1.5 rounded-full">
+                ⏱ {s.duracion}
+              </span>
+            </div>
+            <h3 class="text-xl font-serif text-[#243c5a] mb-1.5 leading-snug">{s.nombre}</h3>
+            <p class="text-sm text-[#5d5a8c] font-medium mb-4">{s.tagline}</p>
+            <p class="text-sm text-[#243c5a]/70 leading-relaxed mb-6 flex-grow">{s.descripcion}</p>
+            <div class="flex items-center justify-between pt-5 border-t border-stone-100">
+              <div class="leading-none">
+                <span class="text-2xl font-serif text-[#243c5a]">{s.precio}</span>
+                <span class="text-xs text-[#243c5a]/50 ml-1">COP</span>
+              </div>
+              <a
+                href={waSub(s.nombre)}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-event="whatsapp_click"
+                data-label={`Masaje Card - ${s.nombre}`}
+                class="bg-[#6ed8d9] text-[#243c5a] px-6 py-2.5 rounded-full font-semibold text-sm hover:bg-[#243c5a] hover:text-white transition-all duration-300 shadow-sm"
+              >
+                Agendar
+              </a>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <p class="text-center text-sm text-[#243c5a]/60 mt-10 max-w-2xl mx-auto">
+      Todos los masajes inician con una breve evaluación de tu constitución (Dosha) para adaptar los aceites y la técnica. <a href="#faq-masajes" class="text-[#5d5a8c] font-medium hover:text-[#6ed8d9] transition-colors underline decoration-[#6ed8d9]/50">Resuelve tus dudas aquí</a>.
+    </p>
   </section>
 
   <!-- CÓMO ACTÚA -->
@@ -413,12 +541,12 @@ const masajePosts = (await getCollection('blog', ({ data, slug }) =>
       <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 md:p-12 inline-block max-w-2xl w-full">
         <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-6 border-b border-white/10 pb-8">
           <div class="text-center md:text-left">
-            <p class="text-[#6ed8d9] uppercase text-xs tracking-widest mb-1">Duración Sesión</p>
+            <p class="text-[#6ed8d9] uppercase text-xs tracking-widest mb-1">4 masajes · Duración</p>
             <p class="text-xl">{serviceInfo.duration}</p>
           </div>
           <div class="text-center md:text-right">
-            <p class="text-[#6ed8d9] uppercase text-xs tracking-widest mb-1">Inversión Personal</p>
-            <p class="text-3xl font-serif">{serviceInfo.price}</p>
+            <p class="text-[#6ed8d9] uppercase text-xs tracking-widest mb-1">Inversión desde</p>
+            <p class="text-3xl font-serif">{serviceInfo.priceFrom}</p>
           </div>
         </div>
 
@@ -517,7 +645,7 @@ const masajePosts = (await getCollection('blog', ({ data, slug }) =>
   )}
 
   <!-- FAQ -->
-  <section class="py-20 bg-stone-50 px-6">
+  <section id="faq-masajes" class="py-20 bg-stone-50 px-6 scroll-mt-20">
     <div class="max-w-5xl mx-auto">
       <div class="text-center mb-12">
         <h2 class="text-3xl md:text-4xl font-serif text-[#243c5a] mb-4">Preguntas frecuentes sobre Masaje Ayurvédico</h2>
