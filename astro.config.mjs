@@ -87,6 +87,7 @@ export default defineConfig({
           '/blog/12-viaje-450-vibraciones-abril-2026',
           '/blog/13-viaje-450-vibraciones-mayo-2026',
           '/blog/14-viaje-450-vibraciones-junio-2026',
+          '/blog/19-eventos-junio-2026',
         ].includes(path)) {
           return { ...item, priority: 0.9, changefreq: 'weekly' };
         }
